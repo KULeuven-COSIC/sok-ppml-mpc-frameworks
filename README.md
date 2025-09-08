@@ -1,2 +1,2 @@
-# sok-ppml-mpc-frameworks
-This repository will contain comparison tables based on the paper "SoK: Connecting the Dots in Privacy-Preserving ML: Systematization of MPC Protocols and Conversions Between Secret Sharing Schemes".
+# Connecting the Dots in Privacy-Preserving ML
+This repository will contain the papers we considered in our paper “SoK: Connecting the Dots in Privacy-Preserving ML -- Systematization of MPC Protocols and Conversions Between Secret Sharing Schemes”, along with all corresponding analysis. The collection cuurently covers works up to September 2025 and will be updated regularly with new papers and analyses.
