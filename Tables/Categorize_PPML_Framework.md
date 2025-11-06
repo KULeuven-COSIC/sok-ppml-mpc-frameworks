@@ -4,7 +4,7 @@
 
 | Work                  | Year | Ring     | Field | DM  | HM     | Super HM | Online‑only   | Pre‑processing | Dealer | Outsourcing | Client‑Server | High Throughput | Low Latency | Mixed |
 | --------------------- | ---: | -------- | ----- | --- | ------ | -------- | ------------- | -------------- | ------ | :---------: | :-----------: | :-------------: | :---------: | :---: |
-| SecureML\[^1]         | 2017 | ℤ₂^ℓ, ℤ₂ | ✘     | SH  | ✘      | ✘        | ✘             | f‑independent  | TTP    |      ✔      |       ✘       |        ✔        |      ✘      |   ✘   |
+| SecureML\[^1]         | 2017 | $\mathbb{Z}_{2\ell^}$, ℤ₂ | ✘     | SH  | ✘      | ✘        | ✘             | f‑independent  | TTP    |      ✔      |       ✘       |        ✔        |      ✘      |   ✘   |
 | DeepSecure\[^2]       | 2017 | ℤ₂       | ✘     | SH  | ✘      | ✘        | ✘             | f‑dependent    | ✘      |      ✔      |       ✘       |        ✘        |      ✔      |   ✘   |
 | MiniONN\[^3]          | 2017 | ℤ₂^ℓ, ℤ₂ | ✘     | SH  | ✘      | ✘        | ✘             | f‑independent  | ✘      |      ✘      |       ✔       |        ✘        |      ✔      |   ✘   |
 | Chameleon\[^4]        | 2017 | ℤ₂^ℓ, ℤ₂ | ✘     | SH  | ✘      | ✘        | ✘             | ✘              | TTP    |      ✔      |       ✘       |        ✔        |      ✘      |   ✘   |
