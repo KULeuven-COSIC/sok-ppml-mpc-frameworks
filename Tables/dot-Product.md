@@ -14,7 +14,7 @@ Table: Theoretical cost analysis in total bits for dot-product functionality. Su
 | 2 | SH | ABY2.0 [10] | $2n\ell(\kappa + \ell)$ | $2\ell$ | SS |
 | 2 | SH | SirNN [11] | - | $\mathcal{O}(n\Lambda\ell)$ | OT |
 | 2 | SH | pMPL [12] | $\mathcal{O}(n\ell)$ | $6n\ell$ | SS |
-| 2 | SH | pMPL$^{\mathsf{Tr}}$ [12] | $\mathcal{O}(n\ell\log\ell)$ | $6n\ell + \ell$ | SS |
+| 2 | SH | $\text{pMPL}^{\mathsf{Tr}}$ [12] | $\mathcal{O}(n\ell\log\ell)$ | $6n\ell + \ell$ | SS |
 | 2 | SH | Iron [13] | - | $\mathcal{O}({\sqrt{n}\mathsf{CT}_{\mathsf{BFV}}})$ | FHE |
 | 2 | SH | SecFloat [14] | - | $\mathcal{O}(\Lambda n (\mu + \nu))$ | SS |
 | 2 | SH | Llama [15] | $\mathcal{O}(n\Lambda(\mu+\nu))$ | $4\ell + 2\mu + 2\nu$ | STP |
