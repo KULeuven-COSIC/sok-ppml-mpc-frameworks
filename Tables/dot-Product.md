@@ -1,4 +1,4 @@
-_Table: Theoretical cost analysis in total bits for dot-product functionality. Superscript ${\mathsf{Tr}}$ denotes cost for a protocol for dot-product with truncation. Notation and abbreviations are defined in Table tab:table-abbreviations._
+Table: Theoretical cost analysis in total bits for dot-product functionality. Superscript $^{\mathsf{Tr}}$ denotes a cost for a protocol for dot-product with truncation. Notation and abbreviations are defined in Table tab:table-abbreviations.
 
 | N | Sec. | Protocol | Communication (Offline) | Communication (Online) | Tech |
 | --- | --- | --- | --- | --- | --- |
