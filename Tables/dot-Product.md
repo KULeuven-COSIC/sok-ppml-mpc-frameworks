@@ -1,4 +1,4 @@
-Table: Theoretical cost analysis in total bits for dot-product functionality. Superscript $^{\mathsf{Tr}}$ denotes a cost for a protocol for dot-product with truncation. Notation and abbreviations are defined in Table tab:table-abbreviations.
+Table: Theoretical cost analysis in total bits for dot-product functionality. Superscript ${\mathsf{Tr}}$ denotes a cost for a protocol for dot-product with truncation. Notation and abbreviations are defined in Table tab:table-abbreviations.
 
 | N | Sec. | Protocol | Communication (Offline) | Communication (Online) | Tech |
 | --- | --- | --- | --- | --- | --- |
@@ -14,7 +14,7 @@ Table: Theoretical cost analysis in total bits for dot-product functionality. Su
 | 2 | SH | ABY2.0 [10] | $2n\ell(\kappa + \ell)$ | $2\ell$ | SS |
 | 2 | SH | SirNN [11] | - | $\mathcal{O}(n\Lambda\ell)$ | OT |
 | 2 | SH | pMPL [12] | $\mathcal{O}(n\ell)$ | $6n\ell$ | SS |
-| 2 | SH | pMPL$^\mathsf{Tr}$ [12] | $\mathcal{O}(n\ell\log\ell)$ | $6n\ell + \ell$ | SS |
+| 2 | SH | pMPL$^{\mathsf{Tr}}$ [12] | $\mathcal{O}(n\ell\log\ell)$ | $6n\ell + \ell$ | SS |
 | 2 | SH | Iron [13] | - | $\mathcal{O}({\sqrt{n}\mathsf{CT}_{\mathsf{BFV}}})$ | FHE |
 | 2 | SH | SecFloat [14] | - | $\mathcal{O}(\Lambda n (\mu + \nu))$ | SS |
 | 2 | SH | Llama [15] | $\mathcal{O}(n\Lambda(\mu+\nu))$ | $4\ell + 2\mu + 2\nu$ | STP |
@@ -33,34 +33,34 @@ Table: Theoretical cost analysis in total bits for dot-product functionality. Su
 | 3 | SH | SecureNN [28] | - | $(8n+2)\ell$ | SS |
 | 3 | SH | Cryptflow [29] | - | $(4n+2)\ell$ | SS |
 | 3 | SH | pMPL [12] | $\mathcal{O}(n\ell)$ | $12n\ell$ | SS |
-| 3 | SH | pMPL$^\mathsf{Tr}$ [12] | $\mathcal{O}(n\ell)$ | $12n\ell + 2\ell$ | SS |
+| 3 | SH | pMPL$^{\mathsf{Tr}}$ [12] | $\mathcal{O}(n\ell)$ | $12n\ell + 2\ell$ | SS |
 | 3 | SH | AdaminPrivate [30] | - | $3\ell$ | SS |
 | 3 | SH | CECILIA [31] | $6n\ell$ | $4n\ell$ | Helper |
 | 3 | A | Boyle et al. [32] | - | $3\ell$ | ZK |
-| 3 | A | ABY3$^\mathsf{Tr}$ [33] | $\mathcal{O}({n\ell})$ | $(9n+3)\ell$ | SS |
+| 3 | A | ABY3$^{\mathsf{Tr}}$ [33] | $\mathcal{O}({n\ell})$ | $(9n+3)\ell$ | SS |
 | 3 | A | AdaminPrivate [30] | - | $6n\ell$ | SS |
 | 3 | F | ASTRA [25] | $21n\ell$ | $(2n+2)\ell$ | SS |
 | 3 | F | BLAZE [34] | $3\ell$ | $3\ell$ | ZK |
-| 3 | F | BLAZE$^\mathsf{Tr}$ [34] | $15\ell$ | $3\ell$ | ZK |
+| 3 | F | BLAZE$^{\mathsf{Tr}}$ [34] | $15\ell$ | $3\ell$ | ZK |
 | 3 | R | SWIFT [35] | $3\ell$ | $3\ell$ | ZK |
 | 3 | R | SWIFT$^{\mathsf{Tr}}$ [35] | $15\ell$ | $3\ell$ | ZK |
 | 3 | R | Fantastic Four [36] | - | $6(\ell + s)$ | ZK |
-| 3 | R | Fantastic Four$^\mathsf{Tr}$ [36] | $\mathcal{O}({\ell + s})$ | $9\ell + 6s$ | ZK |
-| 4 | SH | Force$^\mathsf{Tr}$ [37] | - | $4\ell$ | SS |
-| 4 | SH | PrivPy$^\mathsf{Tr}$ [38] | - | $8n\ell$ | SS |
+| 3 | R | Fantastic Four$^{\mathsf{Tr}}$ [36] | $\mathcal{O}({\ell + s})$ | $9\ell + 6s$ | ZK |
+| 4 | SH | Force$^{\mathsf{Tr}}$ [37] | - | $4\ell$ | SS |
+| 4 | SH | PrivPy$^{\mathsf{Tr}}$ [38] | - | $8n\ell$ | SS |
 | 4 | A | FLASH [39] | $3\ell$ | $3\ell$ | SS |
-| 4 | A | FLASH$^\mathsf{Tr}$ [39] | $10\ell$ | $3\ell$ | SS |
+| 4 | A | FLASH$^{\mathsf{Tr}}$ [39] | $10\ell$ | $3\ell$ | SS |
 | 4 | F | Gordon et al. [40] | $4\ell$ | $2\ell$ | SS |
 | 4 | F | Trident [41] | $3\ell$ | $3\ell$ | SS |
-| 4 | F | Trident$^\mathsf{Tr}$ [41] | $6\ell$ | $3\ell$ | SS |
-| 4 | F | Tetrad$^\mathsf{Tr}$ [42] | $2\ell$ | $3\ell$ | SS |
+| 4 | F | Trident$^{\mathsf{Tr}}$ [41] | $6\ell$ | $3\ell$ | SS |
+| 4 | F | Tetrad$^{\mathsf{Tr}}$ [42] | $2\ell$ | $3\ell$ | SS |
 | 4 | R | FLASH [39] | $6\ell$ | $6\ell$ | SS |
-| 4 | R | FLASH$^\mathsf{Tr}$ [39] | $20\ell$ | $6\ell$ | SS |
+| 4 | R | FLASH$^{\mathsf{Tr}}$ [39] | $20\ell$ | $6\ell$ | SS |
 | 4 | R | SWIFT [35] | $3\ell$ | $3\ell$ | SS |
-| 4 | R | SWIFT$^\mathsf{Tr}$ [35] | $4\ell$ | $3\ell$ | SS |
+| 4 | R | SWIFT$^{\mathsf{Tr}}$ [35] | $4\ell$ | $3\ell$ | SS |
 | 4 | R | Fantastic Four [36] | - | $6\ell$ | SS |
-| 4 | R | Fantastic Four$^\mathsf{Tr}$ [36] | $\ell$ | $9\ell$ | SS |
-| 4 | R | Fantastic Four$^\mathsf{Tr}$ [36] | $2\ell$ | $16\ell$ | SS |
+| 4 | R | Fantastic Four$^{\mathsf{Tr}}$ [36] | $\ell$ | $9\ell$ | SS |
+| 4 | R | Fantastic Four$^{\mathsf{Tr}}$ [36] | $2\ell$ | $16\ell$ | SS |
 | N | SH | MPClan [43] | $t\ell$ | $2t\ell$ | SS |
 | N | SH | Baccarini et al. [44] | - | $tN\ell$ | SS |
 | N | SH | Liu et al. [45] | $\frac{3N^2}{t+1}\ell$ | $2N\ell$ | SS |
