@@ -1,4 +1,4 @@
-*Theoretical cost analysis in total bits for truncation functionality. We depict the costs for truncation of (k) bits in a ring $(\mathbb{Z}_{\ell})$. SPDZ2k [1]-style “slack” $((s+\log s=\kappa))$. Notation and abbreviations are defined in Table 2.*
+### Theoretical cost analysis in total bits for truncation functionality. We depict the costs for truncation of (k) bits in a ring $(\mathbb{Z}_{\ell})$. SPDZ2k [1]-style “slack” $((s+\log s=\kappa))$ Notation and abbreviations are defined in Table 2. 
 
 |  N |   Sec.  | Protocol              |           Offline Comm.          |           Online Comm.           |           Online Rounds           |     Result    | Tech. |
 | -: | :-----: | :-------------------- | :------------------------------: | :------------------------------: | :-------------------------------: | :-----------: | :---: |
