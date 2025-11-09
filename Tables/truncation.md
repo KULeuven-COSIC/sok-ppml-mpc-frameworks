@@ -1,37 +1,37 @@
-*Theoretical cost analysis in total bits for truncation functionality. We depict the costs for truncation of (k) bits in a ring (\mathbb{Z}_{\ell}). SPDZ2k [1]-style “slack” ((s+\log s=\kappa)). Notation and abbreviations are defined in Table `table-abbreviations`.*
+*Theoretical cost analysis in total bits for truncation functionality. We depict the costs for truncation of (k) bits in a ring ($\mathbb{Z}_{\ell}$). SPDZ2k [1]-style “slack” ((s+\log s=\kappa)). Notation and abbreviations are defined in Table `table-abbreviations`.*
 
-|  N |   Sec.  | Protocol              | Offline Comm.                    | Online Comm.                 | Online Rounds                   | Result        | Tech. |
-| -: | :-----: | :-------------------- | :------------------------------- | :--------------------------- | :------------------------------ | :------------ | :---: |
-|  2 |    SH   | SecureML [2]          | —                                | —                            | —                               | Probabilistic |   SS  |
-|  2 |    SH   | CryptFlow2 [3]        | —                                | (\mathcal{O}(\Lambda,\ell))  | (\lceil \log(\ell)\rceil + 1)   | Faithful      |   OT  |
-|  2 |    SH   | Cheetah [4]           | —                                | (16\ell + 11k)               | (\lceil \log(\ell)\rceil)       | Faithful      |   OT  |
-|  2 |    SH   | Cheetah [4]           | —                                | (13\ell)                     | (\lceil \log(\ell)\rceil)       | Stochastic    |   OT  |
-|  2 |    SH   | Zou et al. [5]        | —                                | (\mathcal{O}(\Lambda,\ell))  | (\lceil \log(\ell)\rceil + 1)   | Faithful      |   OT  |
-|  2 |    SH   | SirNN [6]             | —                                | (\mathcal{O}(\Lambda,\ell))  | (\log \ell + 3)                 | Faithful      |   OT  |
-|  2 |    SH   | Orca [7]              | (\mathcal{O}(\Lambda(\ell + k))) | (2(\ell - k + 1))            | 3                               | Stochastic    |  FSS  |
-|  2 |    SH   | Shark [8]             | ((\Lambda + \kappa)(\ell + k))   | (\ell + s + 2)               | 2                               | Faithful      |  FSS  |
-|  2 |    SH   | Guo et al. [9]        | —                                | (\mathcal{O}(\Lambda,k))     | (\log k + 2)                    | Faithful      |   OT  |
-|  2 |    SH   | Guo et al. [9]        | —                                | (\Lambda + k)                | 2                               | Stochastic    |   OT  |
-|  3 |    SH   | Dalskov et al. [10]   | (4\ell - 2k)                     | (4\ell)                      | 2                               | Stochastic    |   SS  |
-|  3 |    SH   | ABY3 [11]             | —                                | (\ell)                       | 1                               | Probabilistic |   SS  |
-|  3 |    SH   | AdamInPrivate [12]    | —                                | (5\ell + 5)                  | 4                               | Stochastic    |   SS  |
-|  3 |    A    | ABY3 [11]             | (20(2\ell - k))                  | (3\ell)                      | 1                               | Probabilistic |   SS  |
-|  3 |    A    | MaSTer [13]           | —                                | (3\ell)                      | 1                               | Probabilistic |   SS  |
-|  3 |    A    | AdamInPrivate [12]    | —                                | (30\ell + 21\kappa + 15)     | 5                               | Stochastic    |   SS  |
-|  3 |    R    | SWIFT [14]            | (12\ell)                         | (\ell)                       | 1                               | Probabilistic |   SS  |
-|  3 |    R    | Fantastic Four [15]   | (76(\ell + s) + 54k + 12)        | (3\ell)                      | 1                               | Stochastic    |   SS  |
-|  4 |    A    | Flash [16]            | —                                | (7\ell)                      | 5                               | Probabilistic |   SS  |
-|  4 |    F    | Trident [17]          | (3\ell)                          | (\ell)                       | 1                               | Probabilistic |   SS  |
-|  4 |    F    | Tetrad [18]           | (\ell)                           | (\ell)                       | 1                               | Probabilistic |   SS  |
-|  4 |    R    | Fantastic Four [15]   | (2\ell)                          | (16\ell)                     | 1                               | Stochastic    |   SS  |
-|  4 |    R    | Fantastic Four [15]   | (\ell)                           | (3\ell)                      | 1                               | Probabilistic |   SS  |
-|  4 |    R    | Flash [16]            | —                                | (14\ell)                     | 5                               | Probabilistic |   SS  |
-|  4 |    R    | SWIFT [14]            | (\ell)                           | (\ell)                       | 1                               | Probabilistic |   SS  |
-|  N | SH (HM) | Baccarini et al. [19] | (\mathcal{O}(N))                 | (Nt(2\ell + 1))              | 2                               | Stochastic    |   SS  |
-|  N | SH (HM) | Liu et al. [20]       | (3N\ell^2)                       | (2N\ell)                     | 1                               | Stochastic    |   SS  |
-|  N |  A (DM) | Escudero et al. [21]  | (\mathcal{O}(t^2\log \ell))      | (\mathcal{O}(Nt^2\log \ell)) | (\mathcal{O}(\log t \log \ell)) | Stochastic    |   SS  |
-|  N |  A (DM) | MD-ML [22]            | (\mathcal{O}(t^2\log \ell))      | (N(\ell + \sigma))           | 1                               | Probabilistic |   SS  |
-|  N |  A (DM) | MD-SONIC [23]         | (\mathcal{O}(t^2\log \ell))      | (N(\ell + \sigma))           | 1                               | Probabilistic |   SS  |
+|  N |   Sec.  | Protocol              |           Offline Comm.          |           Online Comm.           |           Online Rounds           |     Result    | Tech. |
+| -: | :-----: | :-------------------- | :------------------------------: | :------------------------------: | :-------------------------------: | :-----------: | :---: |
+|  2 |    SH   | SecureML [2]          |                 —                |                 —                |                 —                 | Probabilistic |   SS  |
+|  2 |    SH   | CryptFlow2 [3]        |                 —                |  $$\mathcal{O}(\Lambda ,\ell)$$  |  $$\lceil \log(\ell)\rceil + 1$$  |    Faithful   |   OT  |
+|  2 |    SH   | Cheetah [4]           |                 —                |         $$16\ell + 11k$$         |    $$\lceil \log(\ell)\rceil$$    |    Faithful   |   OT  |
+|  2 |    SH   | Cheetah [4]           |                 —                |            $$13\ell$$            |    $$\lceil \log(\ell)\rceil$$    |   Stochastic  |   OT  |
+|  2 |    SH   | Zou et al. [5]        |                 —                |  $$\mathcal{O}(\Lambda ,\ell)$$  |  $$\lceil \log(\ell)\rceil + 1$$  |    Faithful   |   OT  |
+|  2 |    SH   | SirNN [6]             |                 —                |  $$\mathcal{O}(\Lambda ,\ell)$$  |         $$\log \ell + 3$$         |    Faithful   |   OT  |
+|  2 |    SH   | Orca [7]              | $$\mathcal{O}(\Lambda(\ell+k))$$ |        $$2(\ell - k + 1)$$       |                 3                 |   Stochastic  |  FSS  |
+|  2 |    SH   | Shark [8]             | $$(\Lambda + \kappa)(\ell + k)$$ |         $$\ell + s + 2$$         |                 2                 |    Faithful   |  FSS  |
+|  2 |    SH   | Guo et al. [9]        |                 —                |    $$\mathcal{O}(\Lambda,k)$$    |           $$\log k + 2$$          |    Faithful   |   OT  |
+|  2 |    SH   | Guo et al. [9]        |                 —                |          $$\Lambda + k$$         |                 2                 |   Stochastic  |   OT  |
+|  3 |    SH   | Dalskov et al. [10]   |          $$4\ell - 2k$$          |             $$4\ell$$            |                 2                 |   Stochastic  |   SS  |
+|  3 |    SH   | ABY3 [11]             |                 —                |             $$\ell$$             |                 1                 | Probabilistic |   SS  |
+|  3 |    SH   | AdamInPrivate [12]    |                 —                |           $$5\ell + 5$$          |                 4                 |   Stochastic  |   SS  |
+|  3 |    A    | ABY3 [11]             |         $$20(2\ell - k)$$        |             $$3\ell$$            |                 1                 | Probabilistic |   SS  |
+|  3 |    A    | MaSTer [13]           |                 —                |             $$3\ell$$            |                 1                 | Probabilistic |   SS  |
+|  3 |    A    | AdamInPrivate [12]    |                 —                |    $$30\ell + 21\kappa + 15$$    |                 5                 |   Stochastic  |   SS  |
+|  3 |    R    | SWIFT [14]            |            $$12\ell$$            |             $$\ell$$             |                 1                 | Probabilistic |   SS  |
+|  3 |    R    | Fantastic Four [15]   |     $$76(\ell+s) + 54k + 12$$    |             $$3\ell$$            |                 1                 |   Stochastic  |   SS  |
+|  4 |    A    | Flash [16]            |                 —                |             $$7\ell$$            |                 5                 | Probabilistic |   SS  |
+|  4 |    F    | Trident [17]          |             $$3\ell$$            |             $$\ell$$             |                 1                 | Probabilistic |   SS  |
+|  4 |    F    | Tetrad [18]           |             $$\ell$$             |             $$\ell$$             |                 1                 | Probabilistic |   SS  |
+|  4 |    R    | Fantastic Four [15]   |             $$2\ell$$            |            $$16\ell$$            |                 1                 |   Stochastic  |   SS  |
+|  4 |    R    | Fantastic Four [15]   |             $$\ell$$             |             $$3\ell$$            |                 1                 | Probabilistic |   SS  |
+|  4 |    R    | Flash [16]            |                 —                |            $$14\ell$$            |                 5                 | Probabilistic |   SS  |
+|  4 |    R    | SWIFT [14]            |             $$\ell$$             |             $$\ell$$             |                 1                 | Probabilistic |   SS  |
+|  N | SH (HM) | Baccarini et al. [19] |        $$\mathcal{O}(N)$$        |         $$Nt(2\ell + 1)$$        |                 2                 |   Stochastic  |   SS  |
+|  N | SH (HM) | Liu et al. [20]       |          $$3N\ell^{2}$$          |            $$2N\ell$$            |                 1                 |   Stochastic  |   SS  |
+|  N |  A (DM) | Escudero et al. [21]  |  $$\mathcal{O}(t^{2}\log \ell)$$ | $$\mathcal{O}(Nt^{2}\log \ell)$$ | $$\mathcal{O}(\log t \log \ell)$$ |   Stochastic  |   SS  |
+|  N |  A (DM) | MD-ML [22]            |  $$\mathcal{O}(t^{2}\log \ell)$$ |       $$N(\ell + \sigma)$$       |                 1                 | Probabilistic |   SS  |
+|  N |  A (DM) | MD-SONIC [23]         |  $$\mathcal{O}(t^{2}\log \ell)$$ |       $$N(\ell + \sigma)$$       |                 1                 | Probabilistic |   SS  |
 
 ### References
 
