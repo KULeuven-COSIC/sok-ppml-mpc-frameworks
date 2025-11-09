@@ -78,7 +78,7 @@ Table: Theoretical cost analysis in total bits for dot-product functionality. Su
 
 [4] Youming Huang, Chenkai Li, Zhenqi Huang, Zheli Liu, Kai Chen — **Cheetah: Lean and Fast Secure Two-party Deep Neural Network Inference** — USENIX Security, 2022 — https://www.usenix.org/conference/usenixsecurity22/presentation/huang-youming
 
-[5] *Missing in bibliography file:* `MediSC/DBLP:conf/esorics/LiuZYY21`.
+[5] Xiaoning Liu, Yifeng Zheng, Xingliang Yuan, and Xun Yi. - **Towards Secure and Lightweight Deep Learning as a Medical Diagnostic Service** - ESORICS, 2021.
 
 [6] Syed Hussain, Muhammad Junaid, Ankit Sharma, Jae W. Lee — **COINN: Crypto-Optimized Inference via Neural Networks** — ACM CCS, 2021 — https://doi.org/10.1145/3460120.3484541
 
