@@ -44,7 +44,7 @@
 | PriFFT [40]        | 2025 |    2    |    ✓   |   ✓   | Probabilistic | ◐ [T1] |    ✓    |  ◐ [T1]  |     ◐ [T1]     | ◐ [T1] |
 | Shark [41]         | 2025 |    2    |    ✓   |   ✓   | Faithful      |   ✓   |    ✓    |    ✓    |       ✗       |   ✓   |
 
-**Tablenotes**
+### Tablenotes
 [T1] Proposes underlying primitives needed for evaluation, but no dedicated protocol for the functionality.
 [T2] Garbled Circuits.
 
