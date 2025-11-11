@@ -1,4 +1,4 @@
-### Table 8. Comparison of our SoK to related surveys and SoKs in the domain of PPML.
+### Comparison of our SoK to related surveys and SoKs in the domain of PPML.
 
 | Reference                     |     Year | SoK/Survey |  MPC  |  FSS  |  FHE  |  TEE  | Hybrid |  C/S  |  TTP  | Outsourcing | Inference | Training | Added value                                            |
 | ----------------------------- | -------: | :--------: | :---: | :---: | :---: | :---: | :----: | :---: | :---: | :---------: | :-------: | :------: | ------------------------------------------------------ |
