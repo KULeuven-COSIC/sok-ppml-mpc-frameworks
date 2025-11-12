@@ -5,7 +5,7 @@
 |   2 |  SH  | Chameleon [1]                       | $2\ell$                                   | $4n\ell$                                      | STP     |
 |   2 |  SH  | SecureML [2]                        | $2n\ell(\kappa+\ell)$                     | $4n\ell$                                      | SS      |
 |   2 |  SH  | Delphi [3]                          | $\mathcal{O}!\big(n,\mathrm{Pai}\big)$    | $n\ell$                                       | LHE     |
-|   2 |  SH  | Cheetah [4]                         | —                                         | $\mathcal{O}!\big(n,\mathrm{BFV}\big)$        | FHE     |
+|   2 |  SH  | Cheetah [4]                         | —                                         | $\mathcal{O}\big(n,\mathrm{BFV}\big)$        | FHE     |
 |   2 |  SH  | MediSC [5]                          | $n\ell$                                   | $n\ell$                                       | STP     |
 |   2 |  SH  | COINN [6]                           | $n\ell^{2}$                               | $n\ell$                                       | OT      |
 |   2 |  SH  | SONIC [7]                           | $6n\ell$                                  | $4n\ell$                                      | STP     |
@@ -15,18 +15,18 @@
 |   2 |  SH  | SirNN [11]                          | —                                         | $\mathcal{O}(n\Lambda\ell)$                   | OT      |
 |   2 |  SH  | pMPL [12]                           | $\mathcal{O}(n\ell)$                      | $6n\ell$                                      | SS      |
 |   2 |  SH  | pMPL$^{\mathsf{Tr}}$ [12]           | $\mathcal{O}(n\ell\log\ell)$              | $6n\ell+\ell$                                 | SS      |
-|   2 |  SH  | Iron [13]                           | —                                         | $\mathcal{O}!\big(\sqrt{n},\mathrm{BFV}\big)$ | FHE     |
-|   2 |  SH  | SecFloat [14]                       | —                                         | $\mathcal{O}!\big(\Lambda n(\mu+\nu)\big)$    | SS      |
-|   2 |  SH  | Llama [15]                          | $\mathcal{O}!\big(n\Lambda(\mu+\nu)\big)$ | $4\ell+2\mu+2\nu$                             | STP     |
+|   2 |  SH  | Iron [13]                           | —                                         | $\mathcal{O}\big(\sqrt{n},\mathrm{BFV}\big)$ | FHE     |
+|   2 |  SH  | SecFloat [14]                       | —                                         | $\mathcal{O}\big(\Lambda n(\mu+\nu)\big)$    | SS      |
+|   2 |  SH  | Llama [15]                          | $\mathcal{O}\big(n\Lambda(\mu+\nu)\big)$ | $4\ell+2\mu+2\nu$                             | STP     |
 |   2 |  SH  | Primer [16]                         | $\mathcal{O}(\mathrm{BFV})$               | $\ell$                                        | FHE     |
 |   2 |  SH  | FastSecNet [17]                     | $\ell$                                    | $2\ell$                                       | STP     |
 |   2 |  SH  | Rathee et al. [18]                  | —                                         | $\mathcal{O}(\Lambda n\ell)$                  | SS      |
 |   2 |  SH  | FssNN [19]                          | $\mathcal{O}(n\ell)$                      | $4n\ell$                                      | OT      |
 |   2 |  SH  | Sigma [20]                          | $6n\ell$                                  | $4n\ell$                                      | STP     |
-|   2 |  SH  | Bolt [21]                           | —                                         | $\mathcal{O}!\big(n,\mathrm{BFV}\big)$        | FHE     |
+|   2 |  SH  | Bolt [21]                           | —                                         | $\mathcal{O}\big(n,\mathrm{BFV}\big)$        | FHE     |
 |   2 |  SH  | CipherGPT [22]                      | $\mathcal{O}(\mathrm{BFV})$               | $n\ell$                                       | FHE, OT |
 |   2 |  SH  | Nimbus [23]                         | —                                         | $\mathcal{O}(\mathrm{BFV})$                   | FHE     |
-|   2 |  SH  | BumbleBee [24]                      | —                                         | $\mathcal{O}!\big(n,\mathrm{BFV}\big)$        | FHE     |
+|   2 |  SH  | BumbleBee [24]                      | —                                         | $\mathcal{O}\big(n,\mathrm{BFV}\big)$        | FHE     |
 |   3 |  SH  | ASTRA [25]                          | $\ell$                                    | $2\ell$                                       | SS      |
 |   3 |  SH  | Falcon [26]                         | —                                         | $3\ell$                                       | SS      |
 |   3 |  SH  | Meteor [27]                         | $3\ell$                                   | $3\ell$                                       | SS      |
@@ -65,8 +65,8 @@
 | $N$ |  SH  | Baccarini et al. [42]               | —                                         | $tN\ell$                                      | SS      |
 | $N$ |  SH  | Liu et al. [43]                     | $\dfrac{3N^{2}}{t+1},\ell$                | $2N\ell$                                      | SS      |
 | $N$ |   A  | MPClan [41]                         | $3t\ell$                                  | $3t\ell$                                      | SS      |
-| $N$ |   A  | MD-ML [44]                          | $\mathcal{O}!\big(N^{2}(\ell+s)^{2}\big)$ | $N(\ell+s)$                                   | SS      |
-| $N$ |   A  | MD-SONIC [45]                       | $\mathcal{O}!\big(N^{2}(\ell+s)^{2}\big)$ | $N(\ell+s)$                                   | SS      |
+| $N$ |   A  | MD-ML [44]                          | $\mathcal{O}\big(N^{2}(\ell+s)^{2}\big)$ | $N(\ell+s)$                                   | SS      |
+| $N$ |   A  | MD-SONIC [45]                       | $\mathcal{O}\big(N^{2}(\ell+s)^{2}\big)$ | $N(\ell+s)$                                   | SS      |
 
 ### References 
 [1] M. Sadegh Riazi, Christian Weinert, Oleksandr Tkachenko, Ebrahim M. Songhori, Thomas Schneider, Farinaz Koushanfar. “Chameleon: {A} Hybrid Secure Computation Framework for Machine Learning
