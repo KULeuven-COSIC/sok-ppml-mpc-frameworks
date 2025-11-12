@@ -2,7 +2,7 @@
 
 | Work                    | Year | Ring                                       | Field              | DM        | HM     | Super HM | Online-only |   Pre-processing  |    Dealer   | Outsourcing | Client-Server | High Throughput | Low Latency | Mixed |
 | ----------------------- | ---: | ------------------------------------------ | ------------------ | --------- | ------ | -------- | :---------: | :---------------: | :---------: | :---------: | :-----------: | :-------------: | :---------: | :---: |
-| SecureML [1]            | 2017 | $$\mathbb{Z}*{2^{\ell}},\ \mathbb{Z}*{2}$$ | ✗                  | SH        | ✗      | ✗        |      ✗      | $$f$$-independent |     TTP     |      ✓      |       ✗       |        ✓        |      ✗      |   ✗   |
+| SecureML [1]            | 2017 | $\mathbb{Z}_{2^{\ell}}, \mathbb{Z}_{2}$ | ✗                  | SH        | ✗      | ✗        |      ✗      | $$f$$-independent |     TTP     |      ✓      |       ✗       |        ✓        |      ✗      |   ✗   |
 | DeepSecure [2]          | 2017 | $$\mathbb{Z}_{2}$$                         | ✗                  | SH        | ✗      | ✗        |      ✗      |  $$f$$-dependent  |      ✗      |      ✓      |       ✗       |        ✗        |      ✓      |   ✗   |
 | MiniONN [3]             | 2017 | $$\mathbb{Z}*{2^{\ell}},\ \mathbb{Z}*{2}$$ | ✗                  | SH        | ✗      | ✗        |      ✗      | $$f$$-independent |      ✗      |      ✗      |       ✓       |        ✗        |      ✓      |   ✗   |
 | Chameleon [4]           | 2017 | $$\mathbb{Z}*{2^{\ell}},\ \mathbb{Z}*{2}$$ | ✗                  | SH        | ✗      | ✗        |      ✗      |         ✗         |     TTP     |      ✓      |       ✗       |        ✓        |      ✗      |   ✗   |
