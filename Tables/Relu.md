@@ -43,66 +43,107 @@
 
 ### References
 
-[1] Payman Mohassel, Yupeng Zhang. “SecureML: A System for Scalable Privacy-Preserving Machine Learning.” *2017 IEEE Symposium on Security and Privacy (SP)* 2017. DOI/URL: [https://doi.org/10.1109/SP.2017.12](https://doi.org/10.1109/SP.2017.12).
+[1] Payman Mohassel, Yupeng Zhang. “SecureML: {A} System for Scalable Privacy-Preserving Machine Learning.” 2017 {IEEE} Symposium on Security and Privacy, {SP} 2017, San Jose,
+                  CA, USA, May 22-26, 2017 2017. DOI/URL: https://doi.org/10.1109/SP.2017.12.
 
-[2] Deevashwer Rathee, Mayank Rathee, Nishant Kumar, Nishanth Chandran, Divya Gupta, Aseem Rastogi, Rahul Sharma. “CrypTFlow2: Practical 2-Party Secure Inference.” *Proceedings of the 2020 ACM SIGSAC Conference on Computer and Communications Security (CCS)* 2020. DOI/URL: [https://doi.org/10.1145/3372297.3417274](https://doi.org/10.1145/3372297.3417274).
+[2] Deevashwer Rathee, Mayank Rathee, Nishant Kumar, Nishanth Chandran, Divya Gupta, Aseem Rastogi, Rahul Sharma. “CrypTFlow2: Practical 2-Party Secure Inference.” {CCS} '20: 2020 {ACM} {SIGSAC} Conference on Computer and Communications
+                  Security, Virtual Event, USA, November 9-13, 2020 2020. DOI/URL: https://doi.org/10.1145/3372297.3417274.
 
-[3] Pratyush Mishra, Ryan Lehmkuhl, Akshayaram Srinivasan, Wenting Zheng, Raluca Ada Popa. “Delphi: A Cryptographic Inference Service for Neural Networks.” *USENIX Security 2020* 2020. DOI/URL: [https://www.usenix.org/conference/usenixsecurity20/presentation/mishra](https://www.usenix.org/conference/usenixsecurity20/presentation/mishra).
+[3] Pratyush Mishra, Ryan Lehmkuhl, Akshayaram Srinivasan, Wenting Zheng, Raluca Ada Popa. “Delphi: {A} Cryptographic Inference Service for Neural Networks.” 29th {USENIX} Security Symposium, {USENIX} Security 2020, August 12-14,
+                  2020 2020. DOI/URL: https://www.usenix.org/conference/usenixsecurity20/presentation/mishra.
 
-[4] Xiaoning Liu, Yifeng Zheng, Xingliang Yuan, Xun Yi. “MediSC: Towards Secure and Lightweight Deep Learning as a Medical Diagnostic Service.” *ESORICS 2021* 2021.
+[4] Xiaoning Liu, Yifeng Zheng, Xingliang Yuan, Xun Yi. “[inline-graphic not available: see fulltext] : Towards Secure and
+                  Lightweight Deep Learning as a Medical Diagnostic Service.” Computer Security - {ESORICS} 2021 - 26th European Symposium on Research
+                  in Computer Security, Darmstadt, Germany, October 4-8, 2021, Proceedings,
+                  Part {I} 2021. DOI/URL: https://doi.org/10.1007/978-3-030-88418-5\_25.
 
-[5] Syed Naveed Hussain, Hammad Javed, Shoaib Shafique, Muhammad Khurram. “COINN: Communication-Optimized Inference for Neural Networks.” *ACM CCS 2021* 2021.
+[5] Siam Umar Hussain, Mojan Javaheripi, Mohammad Samragh, Farinaz Koushanfar. “{COINN:} Crypto/ML Codesign for Oblivious Inference via Neural Networks.” {CCS} '21: 2021 {ACM} {SIGSAC} Conference on Computer and Communications
+                  Security, Virtual Event, Republic of Korea, November 15 - 19, 2021 2021. DOI/URL: https://doi.org/10.1145/3460120.3484797.
 
-[6] Xiaoning Liu, Yifeng Zheng, Xingliang Yuan, Xun Yi. “SONIC: Secure One-round Inference with Convolution.” *IEEE Transactions on Dependable and Secure Computing* 2023.
+[6] Xiaoning Liu, Yifeng Zheng, Xingliang Yuan, Xun Yi. “Securely Outsourcing Neural Network Inference to the Cloud With Lightweight
+                  Techniques.” {IEEE} Trans. Dependable Secur. Comput. 2023. DOI/URL: https://doi.org/10.1109/TDSC.2022.3141391.
 
-[7] Yannick Ryffel, Edwige Pagnin, Jamie Hayes, Mathieu Keller. “AriaNN: Low-Interaction Privacy-Preserving Deep Learning via Function Secret Sharing.” *PoPETs 2022* 2022.
+[7] Th{\'{e}}o Ryffel, Pierre Tholoniat, David Pointcheval, Francis R. Bach. “AriaNN: Low-Interaction Privacy-Preserving Deep Learning via Function
+                  Secret Sharing.” Proc. Priv. Enhancing Technol. 2022. DOI/URL: https://doi.org/10.2478/POPETS-2022-0015.
 
-[8] Elette Boyle, Geoffroy Couteau, Niv Gilboa, Yuval Ishai, Lisa Kohl, Peter Rindal. “Efficient Two-Round Function Secret Sharing and Applications.” *EUROCRYPT 2021* 2021.
+[8] Elette Boyle, Nishanth Chandran, Niv Gilboa, Divya Gupta, Yuval Ishai, Nishant Kumar, Mayank Rathee. “Function Secret Sharing for Mixed-Mode and Fixed-Point Secure Computation.” Advances in Cryptology - {EUROCRYPT} 2021 - 40th Annual International
+                  Conference on the Theory and Applications of Cryptographic Techniques,
+                  Zagreb, Croatia, October 17-21, 2021, Proceedings, Part {II} 2021. DOI/URL: https://doi.org/10.1007/978-3-030-77886-6\_30.
 
-[9] Xueyuan Song, Da Luo, Liwei Wang, Rui Wang, Tao Luo, Xinyue Ruan, Zhenhua Wu, Qian Wang, Zhan Qin, Kui Ren, Qian Hong. “pMPL: Accurate and Efficient Privacy-Preserving Machine Learning.” *ACM CCS 2022* 2022.
+[9] Lushan Song, Jiaxuan Wang, Zhexuan Wang, Xinyu Tu, Guopeng Lin, Wenqiang Ruan, Haoqi Wu, Weili Han. “pMPL: {A} Robust Multi-Party Learning Framework with a Privileged
+                  Party.” Proceedings of the 2022 {ACM} {SIGSAC} Conference on Computer and
+                  Communications Security, {CCS} 2022, Los Angeles, CA, USA, November
+                  7-11, 2022 2022. DOI/URL: https://doi.org/10.1145/3548606.3560697.
 
-[10] Jie Hao, Haotian Li, Huanyu Cheng, Zhipeng Xu, Jing Zhang. “FastSecNet: Fast and Secure Neural Network Inference via FSS.” *IEEE Transactions on Information Forensics and Security* 2023.
+[10] Meng Hao, Hongwei Li, Hanxiao Chen, Pengzhi Xing, Tianwei Zhang. “FastSecNet: An Efficient Cryptographic Framework for Private Neural
+                  Network Inference.” {IEEE} Trans. Inf. Forensics Secur. 2023. DOI/URL: https://doi.org/10.1109/TIFS.2023.3262149.
 
-[11] Nitin Jawalkar, Padmanabhan G., Nilay Sheth, Nirvan Tyagi, Ran Gilad-Bachrach, Sameer Wagh. “Orca: FSS-based Secure Inference.” *IEEE S&P 2024* 2024.
+[11] Neha Jawalkar, Kanav Gupta, Arkaprava Basu, Nishanth Chandran, Divya Gupta, Rahul Sharma. “Orca: FSS-based Secure Training and Inference with GPUs.” {IEEE} Symposium on Security and Privacy, {SP} 2024, San Francisco,
+                  CA, USA, May 19-23, 2024 2024. DOI/URL: https://doi.org/10.1109/SP54263.2024.00063.
 
-[12] Tianqi Chen, Rui Feng, Hang Xu, Xiyao Chen, et al. “FssNN.” *ProvSec 2024* 2024. DOI/URL: [https://doi.org/10.1007/978-981-96-0957-4_8](https://doi.org/10.1007/978-981-96-0957-4_8).
+[12] Peng Yang, Zoe Lin Jiang, Shiqi Gao, Hongxiao Wang, Jun Zhou, Yangyiye Jin, Siu-Ming Yiu, Junbin Fang. “Communication-Efficient Secure Neural Network via Key-Reduced Distributed Comparison Function.” Provable and Practical Security: 18th International Conference, ProvSec 2024, Gold Coast, QLD, Australia, September 25–27, 2024, Proceedings, Part II 2025. DOI/URL: https://doi.org/10.1007/978-981-96-0957-4_8.
 
-[13] Divya Gupta, Zhicong Huang, Mayank Rathee, Nishanth Chandran, Aseem Rastogi. “SHARK: A Framework for Secure Inference with FSS.” *IEEE S&P 2025* 2025.
+[13] Kanav Gupta, Nishanth Chandran, Divya Gupta, Jonathan Katz, Rahul Sharma. “{SHARK:} Actively Secure Inference Using Function Secret Sharing.” {IEEE} Symposium on Security and Privacy, {SP} 2025, San Francisco,
+                  CA, USA, May 12-15, 2025 2025. DOI/URL: https://doi.org/10.1109/SP61157.2025.00175.
 
-[14] Sameer Wagh, Divya Gupta, Nishanth Chandran. “SecureNN: Efficient and Private Neural Network Inference.” *PoPETs 2019* 2019.
+[14] Sameer Wagh, Divya Gupta, Nishanth Chandran. “SecureNN: 3-Party Secure Computation for Neural Network Training.” Proc. Priv. Enhancing Technol. 2019. DOI/URL: https://doi.org/10.2478/popets-2019-0035.
 
-[15] Sameer Wagh, Divya Gupta, Rahul Sharma, Pramod Subramanyan, et al. “CrypTFlow: Secure ML Inference.” *IEEE S&P 2020* 2020.
+[15] Nishant Kumar, Mayank Rathee, Nishanth Chandran, Divya Gupta, Aseem Rastogi, Rahul Sharma. “CrypTFlow: Secure TensorFlow Inference.” 2020 {IEEE} Symposium on Security and Privacy, {SP} 2020, San Francisco,
+                  CA, USA, May 18-21, 2020 2020. DOI/URL: https://doi.org/10.1109/SP40000.2020.00092.
 
-[16] Nuttapong Attrapadung, Goichiro Hanaoka, Dai Ikarashi, Yuichi Komano, Ryo Nishimaki, Jun Sakuma, Jacobus Siemons, Shigenobu Tanaka. “AdamInPrivate: Faster Secure Inference.” *PoPETs 2022* 2022.
+[16] Nuttapong Attrapadung, Koki Hamada, Dai Ikarashi, Ryo Kikuchi, Takahiro Matsuda, Ibuki Mishina, Hiraku Morita, Jacob C. N. Schuldt. “Adam in Private: Secure and Fast Training of Deep Neural Networks
+                  with Adaptive Moment Estimation.” Proc. Priv. Enhancing Technol. 2022. DOI/URL: https://doi.org/10.56553/POPETS-2022-0131.
 
-[17] Zhenqi Zhou, Xiao Wang, Chenkai Shen, Yuan Zhang, Yangming Yu. “Bicoptor: Efficient Secure Comparison.” *IEEE S&P 2023* 2023.
+[17] Lijing Zhou, Ziyu Wang, Hongrui Cui, Qingrui Song, Yu Yu. “Bicoptor: Two-round Secure Three-party Non-linear Computation without
+                  Preprocessing for Privacy-preserving Machine Learning.” 44th {IEEE} Symposium on Security and Privacy, {SP} 2023, San Francisco,
+                  CA, USA, May 21-25, 2023 2023. DOI/URL: https://doi.org/10.1109/SP46215.2023.10179449.
 
-[18] Zhenqi Zhou, Xiao Wang, Chenkai Shen, Yangming Yu. “Bicoptor2.” *arXiv 2309.04909* 2023.
+[18] Lijing Zhou, Qingrui Song, Su Zhang, Ziyu Wang, Xianggui Wang, Yong Li. “Bicoptor 2.0: Addressing Challenges in Probabilistic Truncation for
+                  Enhanced Privacy-Preserving Machine Learning.” CoRR 2023. DOI/URL: https://doi.org/10.48550/ARXIV.2309.04909.
 
-[19] Zhifeng Dong, Rong Chen, Jin Li, Zhemin Liu, Haibo Wang. “Meteor: Towards Efficient Secure Inference.” *The Web Conference 2023 (WWW)* 2023.
+[19] Ye Dong, Xiaojun Chen, Weizhan Jing, Kaiyun Li, Weiping Wang. “Meteor: Improved Secure 3-Party Neural Network Inference with Reducing
+                  Online Communication Costs.” Proceedings of the {ACM} Web Conference 2023, {WWW} 2023, Austin,
+                  TX, USA, 30 April 2023 - 4 May 2023 2023. DOI/URL: https://doi.org/10.1145/3543507.3583272.
 
-[20] Sameer Wagh, Venkatachalam Balakrishnan, Payman Mohassel, Daniele Micciancio, et al. “Falcon: Honest-Majority Secure Inference.” *PoPETs 2021* 2021.
+[20] Sameer Wagh, Shruti Tople, Fabrice Benhamouda, Eyal Kushilevitz, Prateek Mittal, Tal Rabin. “Falcon: Honest-Majority Maliciously Secure Framework for Private Deep
+                  Learning.” Proc. Priv. Enhancing Technol. 2021. DOI/URL: https://doi.org/10.2478/popets-2021-0011.
 
-[21] Shweta Agrawal, Dheeru Dua, et al. “CECILIA.” *arXiv 2202.03023* 2022.
+[21] Ali Burak {\"{U}}nal, Mete Akg{\"{u}}n, Nico Pfeifer. “{CECILIA:} Comprehensive Secure Machine Learning Framework.” CoRR 2022. DOI/URL: https://arxiv.org/abs/2202.03023.
 
-[22] Payman Mohassel, Peter Rindal. “ABY3: A Mixed Protocol Framework for Machine Learning.” *ACM CCS 2018* 2018.
+[22] Arpita Patra, Ajith Suresh. “BLAZE: Blazing Fast Privacy-Preserving Machine Learning.” 27th Annual Network and Distributed System Security Symposium, {NDSS}
+                  2020, San Diego, California, USA, February 23-26, 2020 2020. DOI/URL: https://www.ndss-symposium.org/ndss-paper/blaze-blazing-fast-privacy-preserving-machine-learning/.
 
-[23] Arpita Patra, Ajith Suresh. “BLAZE: Blazing Fast Privacy-Preserving ML.” *NDSS 2020* 2020.
+[23] Nishat Koti, Mahak Pancholi, Arpita Patra, Ajith Suresh. “{SWIFT:} Super-fast and Robust Privacy-Preserving Machine Learning.” 30th {USENIX} Security Symposium, {USENIX} Security 2021, August 11-13,
+                  2021 2021. DOI/URL: https://www.usenix.org/conference/usenixsecurity21/presentation/koti.
 
-[24] Pratyush Mishra Koti, Pramod Subramanyan, et al. “SWIFT.” *USENIX Security 2021* 2021.
+[24] Anders P. K. Dalskov, Daniel Escudero, Marcel Keller. “Fantastic Four: Honest-Majority Four-Party Secure Computation With
+                  Malicious Security.” 30th {USENIX} Security Symposium, {USENIX} Security 2021, August 11-13,
+                  2021 2021. DOI/URL: https://www.usenix.org/conference/usenixsecurity21/presentation/dalskov.
 
-[25] Allan Thomsen Dalskov, Daniel Escudero, Marcel Keller. “Fantastic Four: Honest-Majority 3PC with All Primitives.” *USENIX Security 2021* 2021.
+[25] Megha Byali, Harsh Chaudhari, Arpita Patra, Ajith Suresh. “FLASH: Fast and Robust Framework for Privacy-preserving Machine
+                  Learning.” Proc. Priv. Enhancing Technol. 2020. DOI/URL: https://doi.org/10.2478/popets-2020-0036.
 
-[26] Pratik Byali, Arpita Patra, and others. “FLASH: Fast With Fewer Rounds.” *PoPETs 2020* 2020.
+[26] Harsh Chaudhari, Rahul Rachuri, Ajith Suresh. “Trident: Efficient 4PC Framework for Privacy Preserving Machine Learning.” 27th Annual Network and Distributed System Security Symposium, {NDSS}
+                  2020, San Diego, California, USA, February 23-26, 2020 2020. DOI/URL: https://www.ndss-symposium.org/ndss-paper/trident-efficient-4pc-framework-for-privacy-preserving-machine-learning/.
 
-[27] Abhranil Chaudhari, Pratyush Mishra, Srinath Setty. “Trident.” *NDSS 2020* 2020.
+[27] Nishat Koti, Arpita Patra, Rahul Rachuri, Ajith Suresh. “Tetrad: Actively Secure 4PC for Secure Training and Inference.” 29th Annual Network and Distributed System Security Symposium, {NDSS}
+                  2022, San Diego, California, USA, April 24-28, 2022 2022. DOI/URL: https://www.ndss-symposium.org/ndss-paper/auto-draft-202/.
 
-[28] Pratyush Mishra Koti, Rahul Rachuri, Peter Schoppmann, et al. “Tetrad.” *NDSS 2022* 2022.
+[28] Payman Mohassel, Peter Rindal. “ABY\({}^{\mbox{3}}\): A Mixed Protocol Framework for Machine Learning.” Proceedings of the 2018 {ACM} {SIGSAC} Conference on Computer and
+                  Communications Security, {CCS} 2018, Toronto, ON, Canada, October
+                  15-19, 2018 2018. DOI/URL: https://doi.org/10.1145/3243734.3243760.
 
-[29] Fengrun Liu, Xiang Xie, Yu Yu. “Scalable MPC for ML in the Honest-Majority Setting.” *USENIX Security 2024* 2024.
+[29] Fengrun Liu, Xiang Xie, Yu Yu. “Scalable Multi-Party Computation Protocols for Machine Learning in
+                  the Honest-Majority Setting.” 33rd {USENIX} Security Symposium, {USENIX} Security 2024, Philadelphia,
+                  PA, USA, August 14-16, 2024 2024. DOI/URL: https://www.usenix.org/conference/usenixsecurity24/presentation/liu-fengrun.
 
-[30] Daniel Escudero, Satrajit Ghosh, Marcel Keller, Rahul Rachuri, Peter Schoppmann. “Improved Primitives for Secure Multiparty Computation over Rings.” *CRYPTO 2020* 2020. DOI/URL: [https://doi.org/10.1007/978-3-030-56880-1_29](https://doi.org/10.1007/978-3-030-56880-1_29).
+[30] Daniel Escudero, Satrajit Ghosh, Marcel Keller, Rahul Rachuri, Peter Scholl. “Improved Primitives for {MPC} over Mixed Arithmetic-Binary Circuits.” Advances in Cryptology - {CRYPTO} 2020 - 40th Annual International
+                  Cryptology Conference, {CRYPTO} 2020, Santa Barbara, CA, USA, August
+                  17-21, 2020, Proceedings, Part {II} 2020. DOI/URL: https://doi.org/10.1007/978-3-030-56880-1\_29.
 
-[31] Boshi Yuan, Shixuan Yang, Yongxiang Zhang, Ning Ding, Dawu Gu, Zhenfeng Zhang. “MD-ML: Super Fast Privacy-Preserving Machine Learning for Malicious Security with a Dishonest Majority.” *USENIX Security 2024* 2024.
+[31] Boshi Yuan, Shixuan Yang, Yongxiang Zhang, Ning Ding, Dawu Gu, Shi{-}Feng Sun. “{MD-ML:} Super Fast Privacy-Preserving Machine Learning for Malicious
+                  Security with a Dishonest Majority.” 33rd {USENIX} Security Symposium, {USENIX} Security 2024, Philadelphia,
+                  PA, USA, August 14-16, 2024 2024. DOI/URL: https://www.usenix.org/conference/usenixsecurity24/presentation/yuan.
 
-[32] Yansong Zhang, Xiaojun Chen, Ye Dong, Qinghui Zhang, Rui Hou, Qiushi Li, Cong Wang. “MD-SONIC: Maliciously-Secure Outsourcing Neural Network Inference With Reduced Online Communication.” *IEEE Transactions on Information Forensics and Security* 2025. DOI/URL: [https://doi.org/10.1109/TIFS.2025.3550834](https://doi.org/10.1109/TIFS.2025.3550834).
+[32] Yansong Zhang, Xiaojun Chen, Ye Dong, Qinghui Zhang, Rui Hou, Qiang Liu, Xudong Chen. “{MD-SONIC:} Maliciously-Secure Outsourcing Neural Network Inference
+                  With Reduced Online Communication.” {IEEE} Trans. Inf. Forensics Secur. 2025. DOI/URL: https://doi.org/10.1109/TIFS.2025.3550834.
