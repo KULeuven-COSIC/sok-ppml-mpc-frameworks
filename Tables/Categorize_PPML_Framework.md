@@ -2,8 +2,8 @@
 
 | Work                    | Year | Ring                                       | Field              | DM        | HM     | Super HM | Online-only |   Pre-processing  |    Dealer   | Outsourcing | Client-Server | High Throughput | Low Latency | Mixed |
 | ----------------------- | ---: | ------------------------------------------ | ------------------ | --------- | ------ | -------- | :---------: | :---------------: | :---------: | :---------: | :-----------: | :-------------: | :---------: | :---: |
-| SecureML [1]            | 2017 | $\mathbb{Z}_{2^{\ell}}, \mathbb{Z}_{2}$ | ✗                  | SH        | ✗      | ✗        |      ✗      | $$f$$-independent |     TTP     |      ✓      |       ✗       |        ✓        |      ✗      |   ✗   |
-| DeepSecure [2]          | 2017 | $$\mathbb{Z}_{2}$$                         | ✗                  | SH        | ✗      | ✗        |      ✗      |  $$f$$-dependent  |      ✗      |      ✓      |       ✗       |        ✗        |      ✓      |   ✗   |
+| SecureML [1]            | 2017 | $\mathbb{Z}_{2^{\ell}},\ \mathbb{Z}_2$ | ✗                  | SH        | ✗      | ✗        |      ✗      | $$f$$-independent |     TTP     |      ✓      |       ✗       |        ✓        |      ✗      |   ✗   |
+| DeepSecure [2]          | 2017 | $\mathbb{Z}_2$                         | ✗                  | SH        | ✗      | ✗        |      ✗      |  $$f$$-dependent  |      ✗      |      ✓      |       ✗       |        ✗        |      ✓      |   ✗   |
 | MiniONN [3]             | 2017 | $$\mathbb{Z}*{2^{\ell}},\ \mathbb{Z}*{2}$$ | ✗                  | SH        | ✗      | ✗        |      ✗      | $$f$$-independent |      ✗      |      ✗      |       ✓       |        ✗        |      ✓      |   ✗   |
 | Chameleon [4]           | 2017 | $$\mathbb{Z}*{2^{\ell}},\ \mathbb{Z}*{2}$$ | ✗                  | SH        | ✗      | ✗        |      ✗      |         ✗         |     TTP     |      ✓      |       ✗       |        ✓        |      ✗      |   ✗   |
 | Gazelle [5]             | 2018 | $$\mathbb{Z}*{2^{\ell}},\ \mathbb{Z}*{2}$$ | ✗                  | SH        | ✗      | ✗        |      ✗      | $$f$$-independent |      ✗      |      ✗      |       ✓       |        ✗        |      ✓      |   ✗   |
@@ -290,3 +290,4 @@ https://doi.org/10.2478/popets-2019-0035.
 Yulong Shen, and Jiaheng Zhang. Mosformer: Maliciously Secure
 Three-Party Inference Framework for Large Transformers. IACR
 Cryptol. ePrint Arch., 2025.
+
