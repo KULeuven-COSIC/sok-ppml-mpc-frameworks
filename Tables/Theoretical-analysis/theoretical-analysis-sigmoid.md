@@ -1,4 +1,4 @@
-### Theoretical cost analysis in total bits for sigmoid functionality. Notation and abbreviations are defined in Table 2 of the paper.
+### Theoretical cost analysis in total bits for sigmoid functionality. Notation and abbreviations are defined in [Table of Notation](../notation.md).
 
 |  N | Sec. | Protocol         |      Offline Comm.      |         Online Comm.         |    Online Rounds   | Tech. |
 | -: | :--: | :--------------- | :---------------------: | :--------------------------: | :----------------: | :---: |

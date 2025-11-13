@@ -1,4 +1,4 @@
-### High-level protocol approach analysis to the normalization functionality. (✓) indicates a method is used; (✗) indicates it is not. Abbreviations are defined in Table 2 of the paper.
+### High-level protocol approach analysis to the normalization functionality. (✓) indicates a method is used; (✗) indicates it is not. Abbreviations are defined in [Table of Notation](../notation.md).
 
 |  N | Sec. | Protocol           | Iterative | LUT | Piecewise Pol. | Exact | Tech. |
 | -: | :--: | :----------------- | :-------: | :-: | :------------: | :---: | :---: |

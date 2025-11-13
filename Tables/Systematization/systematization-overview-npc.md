@@ -1,4 +1,4 @@
-### Systematic overview of $$N$$-party ML frameworks. (✓) denotes availability, (◐) partial availability, (✗) unavailability. Abbreviations: **O** = Outsourcing. Additional abbreviations are defined in Table 2 of the paper.
+### Systematic overview of $$N$$-party ML frameworks. (✓) denotes availability, (◐) partial availability, (✗) unavailability. Abbreviations: **O** = Outsourcing. Additional abbreviations are defined in [Table of Notation](../notation.md).
 
 | Scheme               | Year | HM/DM |  HE |  OT |  GC |  ZK |  SS | Setting | Sec. | Training | Inference | Theoretical | Experimental |
 | -------------------- | ---: | :---: | :-: | :-: | :-: | :-: | :-: | :-----: | :--: | :------: | :-------: | :---------: | :----------: |

@@ -1,4 +1,4 @@
-### Approximation of the GELU functionality expressed in terms of required MPC building block protocols. For LUTs, the number in brackets indicates the table size (entries). Abbreviations are defined in Table 2.
+### Approximation of the GELU functionality expressed in terms of required MPC building block protocols. For LUTs, the number in brackets indicates the table size (entries). Abbreviations are defined in [Table of Notation](../notation.md).
 
 |  N | Sec. | Protocol       |    LUT    | Multiplication | Truncation | Comparison | Multiplexer |
 | -: | :--: | :------------- | :-------: | :------------: | :--------: | :--------: | :---------: |
