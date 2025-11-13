@@ -2,77 +2,77 @@
 
 | Work | Year | Ring | Field | DM | HM | Super HM | Online-only | Pre-processing | Dealer | Outsourcing | Client-Server | High Throughput | Low Latency | Mixed |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| SecureML [1] | 2017 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-independent | TTP | ● | ○ | ● | ○ | ○ |
-| DeepSecure [2] | 2017 | $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | ○ | ● | ○ | ○ | ● | ○ |
-| MiniONN [3] | 2017 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-independent | ○ | ○ | ● | ○ | ● | ○ |
-| Chameleon [4] | 2017 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ● | ○ | ○ |
-| Gazelle [5] | 2018 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-independent | ○ | ○ | ● | ○ | ● | ○ |
-| ABY3 [6] | 2018 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | SH/A | ○ | ○ | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| SecureNN [7] | 2018 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ○ | SH/A | ○ | ● | ○ | ○ | ● | ○ | ● | ○ | ○ |
-| ASTRA [8] | 2019 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | SH/A/F | ○ | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| Cryptflow [9] | 2019 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ○ | SH/A | ○ | ● | ○ | ○ | ● | ○ | ● | ○ | ○ |
-| Trident [10] | 2019 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | ○ | F | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| PrivPy [11] | 2019 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | ○ | SH | ● | ○ | ○ | ● | ○ | ● | ○ | ○ |
-| Delphi [12] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-independent | ○ | ○ | ● | ○ | ○ | ● |
-| Cryptflow2 [13] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ○ | ● | ○ | ○ | ● |
-| Shen et al. [14] | 2020 | $\mathbb{Z}_{2^{\ell}}$ | ○ | ○ | SH | ○ | ● | ○ | ○ | ● | ● | ● | ○ | ○ |
-| Falcon [15] | 2020 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ○ | SH/A | ○ | ○ | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| BLAZE [16] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | A/F | ○ | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| FLASH [17] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | ○ | A/R | ● | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| SWIFT [18] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | R | R | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| MediSC [19] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | TTP | ○ | ● | ● | ○ | ○ |
-| COINN [20] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | ○ | ○ | ● | ○ | ○ | ● |
-| Muse [21] | 2021 | $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | $A^{C}$ | ○ | ○ | ○ | $f$-dependent | ○ | ○ | ● | ○ | ○ | ● |
-| AriaNN [22] | 2021 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ○ | ● | ○ |
-| Sirnn [23] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ● | ○ | ● | ○ | ○ |
-| ABY2 [24] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| Fantastic Four [25] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | ○ | A/R | ● | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| Tetrad [26] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | F/R | ○ | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| SONIC [27] | 2022 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ● | ○ | ○ |
-| Sphinx [28] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | ○ | ○ | ● | ○ | ● | ○ |
-| Simc [29] | 2022 | $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | $A^{C}$ | ○ | ○ | ○ | $f$-independent | ○ | ○ | ● | ○ | ○ | ● |
-| Cheetah [30] | 2022 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ○ | ● | ○ | ○ | ● |
-| Iron [31] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ○ | ● | ● | ○ | ○ |
-| Pika [32] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ○ | A | ○ | ○ | ○ | ○ | ● | ● | ○ | ○ | ● | ○ |
-| SecFloat [33] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ● | ○ | ● | ○ | ○ |
-| Llama [34] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ○ | ● | ○ |
-| pMPL [35] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ○ | ● | ○ |
-| AdamInPrivate [36] | 2022 | ○ | $\mathbb{F}_{p}$ | ○ | A | ○ | ○ | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| MPCFormer [37] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | $f$-independent | ○ | ○ | ● | ● | ○ | ○ |
-| Primer [38] | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | ○ | ○ | ● | ○ | ○ | ● |
-| FastSecNet [39] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ○ | ● | ○ | ● | ○ |
-| Rathee et al. [40] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ● | ○ | ● | ○ | ○ |
-| Orca [41] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ○ | ● | ○ |
-| FssNN [42] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | ○ | ● | ○ | ○ | ● | ○ |
-| Sigma [43] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ○ | ● | ○ |
-| BOLT [44] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ○ | ● | ○ | ○ | ● |
-| Meteor [45] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ○ | SH | ○ | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| PrivFormer [46] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ○ | SH | ○ | ○ | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| Baccarini et al. [47] | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | SH | ○ | ○ | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| MPClan [48] | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | SH/A | ○ | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| Force [49] | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | ○ | SH | ○ | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| Fusion [50] | 2023 | — | — | $A^{S}$ | ○ | ○ | — | — | — | ○ | ● | — | — | — |
-| Nimbus [51] | 2024 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | ○ | ○ | ● | ○ | ● | ○ |
-| SIMC2.0 [52] | 2024 | $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | $A^{C}$ | ○ | ○ | ○ | $f$-independent | ○ | ○ | ● | ○ | ○ | ● |
-| Fregata [53] | 2024 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ○ | $f$-dependent | ○ | ○ | ● | ○ | ● | ○ |
-| SecFromer [54] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ● | ○ | ○ |
-| MLFormer [55] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ● | ○ | ○ |
-| Trio [56] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | SH | ○ | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| Quad [56] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | ○ | A | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| Brüggemann et al. [57] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | ○ | A | ○ | ○ | $f$-dependent | ○ | ● | ● | ● | ○ | ○ |
-| Liu et al. [58] | 2024 | ○ | $\mathbb{F}_{p}$ | ○ | SH | ○ | ○ | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| MD-ML [59] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | A | ○ | ○ | ○ | $f$-dependent | ○ | ● | ○ | ● | ○ | ○ |
-| BumbleBee [60] | 2025 | $\mathbb{Z}_{2^{\ell}}$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ○ | ● | ○ | ● | ○ |
-| SHAFT [61] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ● | ○ | ○ |
-| Panther [62] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ○ | ● | ○ | ○ | ● |
-| Guo et al. [63] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ● | ○ | ○ | ● | ○ | ● | ○ | ○ |
-| Shark [64] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | A | ○ | ○ | ○ | ○ | TTP | ● | ○ | ○ | ● | ○ |
-| MD-SONIC [65] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | A | ○ | ○ | ○ | $f$-independent | ○ | ● | ○ | ● | ○ | ○ |
-| Fanng-MPC [66] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | A | A | A | ○ | ○ | Distributed | ● | ○ | ● | ● | ● |
-| Matchmaker [67] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ○ | SH | ○ | ○ | ○ | ○ | TTP | ● | ○ | ○ | ○ | ● |
-| Mosformer [68] | 2025 | $\mathbb{Z}_{2^{\ell}}$ | ○ | ○ | A | ○ | ○ | $f$-depdendent | ○ | ● | ○ | ○ | ● | ○ |
+| SecureML [1] | 2017 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-independent | TTP | ✓ | ✗ | ✓ | ✗ | ✗ |
+| DeepSecure [2] | 2017 | $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
+| MiniONN [3] | 2017 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ |
+| Chameleon [4] | 2017 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Gazelle [5] | 2018 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ |
+| ABY3 [6] | 2018 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | SH/A | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| SecureNN [7] | 2018 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ✗ | SH/A | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| ASTRA [8] | 2019 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | SH/A/F | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Cryptflow [9] | 2019 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ✗ | SH/A | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Trident [10] | 2019 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | ✗ | F | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| PrivPy [11] | 2019 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | ✗ | SH | ✓ | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Delphi [12] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Cryptflow2 [13] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Shen et al. [14] | 2020 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | ✗ | SH | ✗ | ✓ | ✗ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ |
+| Falcon [15] | 2020 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ✗ | SH/A | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| BLAZE [16] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | A/F | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| FLASH [17] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | ✗ | A/R | ✓ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| SWIFT [18] | 2020 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | R | R | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| MediSC [19] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | TTP | ✗ | ✓ | ✓ | ✗ | ✗ |
+| COINN [20] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Muse [21] | 2021 | $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | $A^{C}$ | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| AriaNN [22] | 2021 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✗ | ✓ | ✗ |
+| Sirnn [23] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| ABY2 [24] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Fantastic Four [25] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | ✗ | A/R | ✓ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Tetrad [26] | 2021 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | F/R | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| SONIC [27] | 2022 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Sphinx [28] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ |
+| Simc [29] | 2022 | $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | $A^{C}$ | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Cheetah [30] | 2022 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Iron [31] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ | ✗ |
+| Pika [32] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | A | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ |
+| SecFloat [33] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Llama [34] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✗ | ✓ | ✗ |
+| pMPL [35] | 2022 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✗ | ✓ | ✗ |
+| AdamInPrivate [36] | 2022 | ✗ | $\mathbb{F}_{p}$ | ✗ | A | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| MPCFormer [37] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✗ | ✓ | ✓ | ✗ | ✗ |
+| Primer [38] | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| FastSecNet [39] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✗ | ✓ | ✗ | ✓ | ✗ |
+| Rathee et al. [40] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Orca [41] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✗ | ✓ | ✗ |
+| FssNN [42] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
+| Sigma [43] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✗ | ✓ | ✗ |
+| BOLT [44] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Meteor [45] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ✗ | SH | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| PrivFormer [46] | 2023 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ✗ | SH | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Baccarini et al. [47] | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | SH | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| MPClan [48] | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | SH/A | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Force [49] | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | ✗ | SH | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Fusion [50] | 2023 | — | — | $A^{S}$ | ✗ | ✗ | — | — | — | ✗ | ✓ | — | — | — |
+| Nimbus [51] | 2024 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ |
+| SIMC2.0 [52] | 2024 | $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | $A^{C}$ | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓  |
+| Fregata [53] | 2024 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ |
+| SecFromer [54] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✓ | ✗ | ✗ |
+| MLFormer [55] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Trio [56] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | SH | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗  |
+| Quad [56] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | ✗ | A | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Brüggemann et al. [57] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | A | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ |
+| Liu et al. [58] | 2024 | ✗ | $\mathbb{F}_{p}$ | ✗ | SH | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| MD-ML [59] | 2024 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | A | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| BumbleBee [60] | 2025 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ |
+| SHAFT [61] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Panther [62] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓  |
+| Guo et al. [63] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Shark [64] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | A | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✗ | ✓ | ✗ |
+| MD-SONIC [65] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | A | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Fanng-MPC [66] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | A | A | A | ✗ | ✗ | Distributed | ✓ | ✗ | ✓ | ✓ | ✓ |
+| Matchmaker [67] | 2025 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | ✗ | TTP | ✓ | ✗ | ✗ | ✗ | ✓  |
+| Mosformer [68] | 2025 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | ✗ | A | ✗ | ✗ | $f$-depdendent | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
 
-Legend: ● = Yes, ○ = No, — = Not applicable.
+Legend: ✓ = Yes, ✗ = No, — = Not applicable.
 
 ### References 
 [1] Payman Mohassel, Yupeng Zhang. “SecureML: {A} System for Scalable Privacy-Preserving Machine Learning.” 2017 {IEEE} Symposium on Security and Privacy, {SP} 2017, San Jose,
