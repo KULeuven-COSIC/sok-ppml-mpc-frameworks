@@ -48,7 +48,7 @@ We further decompose PPML frameworks into their core **cryptographic primitives*
 - [Softmax](Tables/Theoretical-analysis/theoretical-analysis-softmax.md)
 - [Sigmoid](Tables/Theoretical-analysis/theoretical-analysis-sigmoid.md)
 - [GELU](Tables/Theoretical-analysis/theoretical-analysis-gelu.md)
-- [Normalization](Tables/Theoretical-analysis/theoretical-analysis-narmalization.md)
+- [Normalization](Tables/Theoretical-analysis/theoretical-analysis-normalization.md)
 
 ---
 
