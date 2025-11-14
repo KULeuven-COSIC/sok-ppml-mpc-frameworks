@@ -3,6 +3,7 @@
 |  N | Sec. | Protocol         |      Offline Comm.      |         Online Comm.         |    Online Rounds   | Tech. |
 | -: | :--: | :--------------- | :---------------------: | :--------------------------: | :----------------: | :---: |
 |  2 |  SH  | SecureML [[25]](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17) |            —            | $$\mathcal{O}(\Lambda\ell)$$ |        $$4$$       |   SS  |
+|  2 |  SH  | ABY2 [[51]](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21) |      $$\mathcal{O}(\Lambda)$$      |       $$460 + 4\ell$$        |    $$2 + \log_4\ell$$    |   SS  |
 |  2 |  SH  | Zheng et al. [[187]](../../Bibliography/references.md#SecureSoftmax/DBLP:conf/acsac/0021ZCPTLY23) |        $$10\ell$$       |          $$2(k+5)$$          |        $$1$$       |  STP  |
 |  2 |  SH  | pMPL [[225]](../../Bibliography/references.md#pMPL/DBLP:conf/ccs/SongWWTLRWH22) |            —            |  $$18\ell + 4\ell\log\ell$$  |  $$\log\ell + 5$$  |   SS  |
 |  3 |  SH  | pMPL [[225]](../../Bibliography/references.md#pMPL/DBLP:conf/ccs/SongWWTLRWH22) |            —            |  $$38\ell + 8\ell\log\ell$$  |  $$\log\ell + 6$$  |   SS  |
