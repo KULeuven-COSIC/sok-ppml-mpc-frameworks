@@ -29,6 +29,7 @@
 | Tech. | Technique |
 | Comm. | Communication |
 | SH | Semi-honest |
+| Cov | Covert Security |
 | HM / DM | Honest / Dishonest Majority |
 | TTP | Trusted Third Party |
 | BT | Beaver Triples |
