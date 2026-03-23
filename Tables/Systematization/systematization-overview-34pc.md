@@ -49,7 +49,7 @@
   - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
   - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
 
-**Theoretical Analysis:**
+**Theoretical Costs Analysis:**
 - [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
 - [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
 - [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)

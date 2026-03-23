@@ -32,6 +32,7 @@
 |  3 |   A  | Mosformer [[255]](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   FSS  |
 |  4 |   F  | Trident [[29]](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
 |  4 |   F  | Tetrad [[38]](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
+|  n |  SH  | Zhou [[259]](../../Bibliography/references.md#zhou2026scalable) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   |   SS   |
 
 ---
 

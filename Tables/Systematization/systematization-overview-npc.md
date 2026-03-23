@@ -12,6 +12,7 @@
 | MD-ML [[141]](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024)            | 2024 |   DM  |  ✗  |  ✓  |  ✗  |  ✗  |  ✓  |    O    |   A  |     ✗    |     ✓     |    ◐ [T2]    |       ✓      |
 | MD-SONIC [[195]](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25)         | 2025 |   DM  |  ✗  |  ✓  |  ✗  |  ✓  |  ✓  |    O    |   A  |     ✗    |     ✓     |    ◐ [T2]    |       ✓      |
 | FANNG-MPC [[242]](../../Bibliography/references.md#Fanng-MPC/DBLP:journals/tches/AarajAGMMPSSSSS25)        | 2025 |   DM  |  ✓  |  ✓  |  ✓  |  ✓  |  ✓  |    O    |   A  |     ✗    |     ✓     |      ✗      |       ✓      |
+| Zhou [[259]](../../Bibliography/references.md#zhou2026scalable) | 2026 | HM | ✗ | ✗ | ✗ | ✗ | ✓ | O | SH | ✓ | ✓ | ✗ | ◐ [T1] |
 
 ---
 **Tablenotes**

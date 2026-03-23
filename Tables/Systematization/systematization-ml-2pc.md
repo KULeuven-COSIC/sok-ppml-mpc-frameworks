@@ -67,7 +67,7 @@
 - Based on ML functionality support
   - [MPC ML Support](../Systematization/systematization-ml-mpc.md) *← Compare with 3PC & nPC results*
 
-**Theoretical Analysis:**
+**Theoretical Costs Analysis:**
 - [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
 - [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
 - [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)

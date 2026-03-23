@@ -34,6 +34,7 @@
 | MD-ML [141](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024)                          | 2024 |    n    |    ✓   |   ✓  | Probabilistic | ◐ [T1] |    ✗    |    ✗    |       ✗       |   ✗  |
 | MD-SONIC [195](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25)             | 2025 |    n    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
 | FANNG-MPC [242](../../Bibliography/references.md#Fanng-MPC/DBLP:journals/tches/AarajAGMMPSSSSS25)      | 2025 |    n    |    ✓   |   ✓  | Probabilistic |   ✓   |  ◐ [T1]  |    ✗    |     ◐ [T1]     |   ✗  |
+| Zhou [259](../../Bibliography/references.md#zhou2026scalable) | 2026 | n | ✓ | ✓ | Stochastic | ✓ | ◐ [T1] | ✗ | ◐ [T1] | ✗ |
 
 **Tablenotes**  
 [T1] Proposes underlying primitives needed for evaluation, but no dedicated protocol for the functionality.  
@@ -52,7 +53,7 @@
 - Based on ML functionality support
   - [2PC ML Support](../Systematization/systematization-ml-2pc.md) *← Compare with 2PC results*
 
-**Theoretical Analysis:**
+**Theoretical Costs Analysis:**
 - [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
 - [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
 - [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)

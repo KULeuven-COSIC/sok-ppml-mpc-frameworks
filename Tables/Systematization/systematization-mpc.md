@@ -77,30 +77,31 @@
 | Cavern [256](../../Bibliography/references.md#Cavern/cryptoeprint:2026/214) | 2026 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | A | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ |
 | ECHO [257](../../Bibliography/references.md#ECHO/cryptoeprint:2026/216) | 2026 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | Cov | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
 | CRISP [258](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG20) | 2020 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | $$A^C$$ | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| Zhou [259](../../Bibliography/references.md#zhou2026scalable) | 2026 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
 
 ---
 
 ## Related Tables & Navigation
 
-**Framework Overview by Party Count:**
-- [2PC Frameworks](Systematization/systematization-overview-2pc.md)
-- [3/4PC Frameworks](Systematization/systematization-overview-34pc.md)
-- [N-Party Frameworks](Systematization/systematization-overview-npc.md)
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
 
-**ML Functionality Support:**
-- [2PC ML Support](Systematization/systematization-ml-2pc.md)
-- [MPC ML Support](Systematization/systematization-ml-mpc.md)
-
-**Theoretical Analysis:**
-- [Dot-Product Costs](Theoretical-analysis/theoretical-analysis-dot-product.md)
-- [Truncation Costs](Theoretical-analysis/theoretical-analysis-truncation.md)
-- [ReLU Costs](Theoretical-analysis/theoretical-analysis-relu.md)
-- [Softmax Costs](Theoretical-analysis/theoretical-analysis-softmax.md)
-- [Sigmoid Costs](Theoretical-analysis/theoretical-analysis-sigmoid.md)
-- [GELU Costs](Theoretical-analysis/theoretical-analysis-gelu.md)
-- [Normalization Costs](Theoretical-analysis/theoretical-analysis-normalization.md)
+**Theoretical Costs Analysis:**
+- [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
+- [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
+- [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)
+- [Softmax Costs](../Theoretical-analysis/theoretical-analysis-softmax.md)
+- [Sigmoid Costs](../Theoretical-analysis/theoretical-analysis-sigmoid.md)
+- [GELU Costs](../Theoretical-analysis/theoretical-analysis-gelu.md)
+- [Normalization Costs](../Theoretical-analysis/theoretical-analysis-normalization.md)
 
 **Reference Materials:**
-- [Notation & Abbreviations](notation.md)
-- [Related Work Comparison](Related-work/related-work-comparison.md)
+- [Notation & Abbreviations](../notation.md)
 - [← Back to README](../../README.md)
