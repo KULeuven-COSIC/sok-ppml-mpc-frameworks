@@ -514,4 +514,6 @@
 
 257. <a id="ECHO/cryptoeprint:2026/216"></a>Yufei Duan and Yun Li and Zhicong Huang and Cheng Hong and Tao Wei and Chao Zhang. "ECHO: Efficient Covertly-Secure Three-party Computation with Applications to Private Machine Learning." *Cryptology ePrint Archive, Paper 2026/216* 2026. URL: [https://eprint.iacr.org/2026/216](https://eprint.iacr.org/2026/216)
 
-258. <a id="CRISP/DBLP:conf/ndss/FangZG20"></a>Xiaoyu Fang and Shihui Zheng and Lize Gu. "CRISP: An Efficient Cryptographic Framework for ML Inference Against Malicious Clients." *27th Annual Network and Distributed System Security Symposium, NDSS 2020, San Diego, California, USA, February 23-26, 2020* 2020.
+258. <a id="CRISP/DBLP:conf/ndss/FangZG20"></a>Xiaoyu Fang and Shihui Zheng and Lize Gu. "CRISP: An Efficient Cryptographic Framework for ML Inference Against Malicious Clients." *27th Annual Network and Distributed System Security Symposium, NDSS 2026, San Diego, California, USA, February 23-26, 2026* 2026.
+
+259. <a id="zhou2026scalable"></a>Hengcheng Zhou. "Scalable Privacy-Preserving Neural Network Training over $\mathbb{Z}_{2^k}$ via RMFE-Based Packing and Mixed-Circuit Computation." *AAAI* 2026.
