@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ## List of notation and abbreviations
 
 ### Notation
@@ -17,8 +21,6 @@
 | $s$ | slack in SPDZ2k; $s + \log s = \kappa$ |
 | $\mathsf{CT}$ | Size of an HE ciphertext |
 | $\mathsf{a / r / m}$ | additive / replicated / masked secret sharing |
-| A $^C$ / A $^S$ | Malicious client / server |
-| A / F / R | Abort / Fairness / Robustness |
 | $\xleftarrow{i,j} M$ | Uniform random sampling from a set $M$ from a shared PRNG seed between parties $P_i$ and $P_j$ |
 
 ### Abbreviations
@@ -29,9 +31,38 @@
 | Tech. | Technique |
 | Comm. | Communication |
 | SH | Semi-honest |
+| A $^C$ / A $^S$ | Malicious client / server |
+| A / F / R | Abort / Fairness / Robustness |
 | Cov | Covert Security |
 | HM / DM | Honest / Dishonest Majority |
 | TTP | Trusted Third Party |
 | BT | Beaver Triples |
 | A-B-G | Arithmetic-Boolean-Garbled |
 | PRNG | Pseudo-random number generator |
+
+---
+
+## Related Tables & Navigation
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Theoretical Costs Analysis:**
+- [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
+- [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
+- [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)
+- [Softmax Costs](../Theoretical-analysis/theoretical-analysis-softmax.md)
+- [Sigmoid Costs](../Theoretical-analysis/theoretical-analysis-sigmoid.md)
+- [GELU Costs](../Theoretical-analysis/theoretical-analysis-gelu.md)
+- [Normalization Costs](../Theoretical-analysis/theoretical-analysis-normalization.md)
+
+📚 **Related Resources:**
+- [Related Work Comparison](Related-work/related-work-comparison.md)
+- [← Back to README](../../README.md)

@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### Systematic overview of 2PC frameworks. (✓) denotes availability, (◐) partial availability, (✗) unavailability. Abbreviations: **O** = Outsourcing, **C-S** = Client–Server. Additional abbreviations are defined in [Table of Notation](../notation.md).
 
 | Scheme             | Year |  2  |   3   |  4  |  HE |  OT |  GC |  ZK |    SS   | Setting |   Sec.  | Training | Inference | Theoretical | Experimental |
@@ -41,6 +45,8 @@
 | Panther [[146]](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25) | 2025 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |    ◐ [T3]    |     ◐ [T2]    |
 | Guo et al. [[241]](../../Bibliography/references.md#Guo/DBLP:conf/uss/GuoPXPLH25) | 2025 |  ✓  |   ✗   |  ✗  |  ✗  |  ✓  |  ✗  |  ✗  |    ✓    |    O    |    SH   |     ✗    |     ✗     |      ✓      |       ✓      |
 | Shark [[240]](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025) | 2025 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  | **FSS** |    O    |    A    |     ✗    |     ✓     |      ✓      |       ✓      |
+| Cavern [[256]](../../Bibliography/references.md#Cavern/cryptoeprint:2026/214) | 2026 | ✓ | ◐ [T1] | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | O | A | ✗ | ✓ | ◐ [T3] | ◐ [T2] |
+| CRISP [[258]](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG20) | 2020 | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | **FSS** | C-S | $$A^C$$ | ✗ | ✓ | ✗ | ◐ [T2] |
 
 
 ### Tablenotes
@@ -48,3 +54,29 @@
 [T2] Implementation not public.
 [T3] Only primitives (no ML functionalities).
 [T4] No costs for offline phase.
+
+---
+
+## Related Tables & Navigation
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Theoretical Costs Analysis:**
+- [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
+- [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
+- [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)
+- [Softmax Costs](../Theoretical-analysis/theoretical-analysis-softmax.md)
+- [Sigmoid Costs](../Theoretical-analysis/theoretical-analysis-sigmoid.md)
+- [GELU Costs](../Theoretical-analysis/theoretical-analysis-gelu.md)
+- [Normalization Costs](../Theoretical-analysis/theoretical-analysis-normalization.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)

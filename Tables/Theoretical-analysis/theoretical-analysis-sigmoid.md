@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### Theoretical cost analysis in total bits for sigmoid functionality. Notation and abbreviations are defined in [Table of Notation](../notation.md).
 
 |  N | Sec. | Protocol         |      Offline Comm.      |         Online Comm.         |    Online Rounds   | Tech. |
@@ -14,4 +18,30 @@
 |  4 |   F  | Tetrad [[38]](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22) |      $20\ell+3$     |         $9\ell-4$        |  $\log\ell+2$  |   SS  |
 |  4 |   R  | FLASH [[21]](../../Bibliography/references.md#Flash/DBLP:journals/popets/ByaliCPS20) |        $26\ell$       |          $113\ell$         | $3\log\ell+20$ |   SS  |
 |  4 |   R  | SWIFT [[28]](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21) |      $23\ell-1$     |        $20\ell-9$        |  $\log\ell+2$  |   SS  |
+
+---
+
+## Related Theoretical Analyses
+
+**Other ML Functionalities:**
+- [Dot-Product Costs](theoretical-analysis-dot-product.md)
+- [Truncation Costs](theoretical-analysis-truncation.md)
+- [ReLU Costs](theoretical-analysis-relu.md)
+- [Softmax Costs](theoretical-analysis-softmax.md)
+- [GELU Costs](theoretical-analysis-gelu.md)
+- [Normalization Costs](theoretical-analysis-normalization.md)
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)
 

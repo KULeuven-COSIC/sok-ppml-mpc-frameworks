@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### Approximation of the GELU functionality expressed in terms of required MPC building block protocols. For LUTs, the number in brackets indicates the table size (entries). Abbreviations are defined in [Table of Notation](../notation.md).
 
 |  N | Sec. | Protocol       |    LUT    | Multiplication | Truncation | Comparison | Multiplexer |
@@ -14,3 +18,29 @@
 |  2 |  SH  | SHAFT [222](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25)             |    —     |       2        |     2      |     2       |     2       |
 |  3 |  SH  | PUMA [71](../../Bibliography/references.md#PUMA/DBLP:journals/corr/abs-2307-12533)    |    —     |       4        |     4      |     3       |     3       |
 |  3 |  A   | Mosformer [255](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25) | 1 ($2^8$) |       —        |     1      |     3       |     3       |
+
+---
+
+## Related Theoretical Analyses
+
+**Other ML Functionalities:**
+- [Dot-Product Costs](theoretical-analysis-dot-product.md)
+- [Truncation Costs](theoretical-analysis-truncation.md)
+- [ReLU Costs](theoretical-analysis-relu.md)
+- [Softmax Costs](theoretical-analysis-softmax.md)
+- [Sigmoid Costs](theoretical-analysis-sigmoid.md)
+- [Normalization Costs](theoretical-analysis-normalization.md)
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)

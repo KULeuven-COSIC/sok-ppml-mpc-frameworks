@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### Comparison of our SoK to related surveys and SoKs in the domain of PPML.
 
 | Reference                     |     Year | SoK/Survey |  MPC  |  FSS  |  FHE  |  TEE  | Hybrid |  C/S  |  TTP  | Outsourcing | Inference | Training | Added value                                            |
@@ -26,3 +30,30 @@
 | Njungle et al. [181](../../Bibliography/references.md#NjungleJWMSK25/10947759)           |     2025 |   Survey   |   ✓   |   ✗   |   ✓   |   ✓   |    ✓   |   ✓   |   ✓   |      ✓      |     ✓     |     ✓    | Recommendation system                                  |
 | Chen et al. [224](../../Bibliography/references.md#CongcongACM25/10.1145/3729234)              |     2025 |   Survey   |   ✓   |   ✓   |   ✗   |   ✗   |    ✓   |   ✓   |   ✓   |      ✓      |     ✓     |     ✓    | Holistic synthesis                                     |
 | **This Work**                 | **2025** |   **SoK**  | **✓** | **✓** | **✗** | **✗** |  **✓** | **✓** | **✓** |    **✓**    |   **✓**   |   **✓**  | **Low-level protocol analysis + conversion protocols** |
+
+---
+
+## Related Tables & Navigation
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Theoretical Costs Analysis:**
+- [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
+- [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
+- [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)
+- [Softmax Costs](../Theoretical-analysis/theoretical-analysis-softmax.md)
+- [Sigmoid Costs](../Theoretical-analysis/theoretical-analysis-sigmoid.md)
+- [GELU Costs](../Theoretical-analysis/theoretical-analysis-gelu.md)
+- [Normalization Costs](../Theoretical-analysis/theoretical-analysis-normalization.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)

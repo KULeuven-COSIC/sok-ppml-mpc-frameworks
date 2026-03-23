@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### Overview of supported ML functionalities in 2PC frameworks. (✓) indicates explicit protocol support; (◐) denotes availability of underlying primitives; (✗) denotes no support.
 
 | Scheme                                                 | Year | Parties | Linear |  Conv | Truncation    |  ReLU | SoftMax | Sigmoid | Normalisation |  GeLU |
@@ -43,7 +47,35 @@
 | Guo et al. [241](../../Bibliography/references.md#Guo/DBLP:conf/uss/GuoPXPLH25)        | 2025 |    2    |    ✗   |   ✗   | All           |   ✗   |    ✗    |    ✗    |       ✗       |   ✗   |
 | PriFFT [231](../../Bibliography/references.md#PriFFT/DBLP:journals/corr/abs-2503-03146) | 2025 |   2   |    ✓   |   ✓   | Probabilistic | ◐ [T1] |    ✓    |  ◐ [T1]  |     ◐ [T1]     | ◐ [T1] |
 | Shark [240](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025)           | 2025 |    2    |    ✓   |   ✓   | Faithful      |   ✓   |    ✓    |    ✓    |       ✗       |   ✓   |
+| Cavern [256](../../Bibliography/references.md#Cavern/cryptoeprint:2026/214) | 2026 | 2 | ✓ | ✗ | ✗ | ◐ [T1] | ✗ | ◐ [T1] | ◐ [T1] | ◐ [T1] |
+| CRISP [258](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG20) | 2020 | 2 | ✓ | ✓ | Not specified | ✓ | ✗ | ✗ | ✗ | ✗ |
 
 ### Tablenotes
 [T1] Proposes underlying primitives needed for evaluation, but no dedicated protocol for the functionality.  
 [T2] Garbled Circuits.
+
+---
+
+## Related Tables & Navigation
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md) *← Compare with 3PC & nPC results*
+
+**Theoretical Analysis:**
+- [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
+- [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
+- [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)
+- [Softmax Costs](../Theoretical-analysis/theoretical-analysis-softmax.md)
+- [Sigmoid Costs](../Theoretical-analysis/theoretical-analysis-sigmoid.md)
+- [GELU Costs](../Theoretical-analysis/theoretical-analysis-gelu.md)
+- [Normalization Costs](../Theoretical-analysis/theoretical-analysis-normalization.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)

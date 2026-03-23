@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### High-level protocol approach analysis to the Softmax functionality. The Max+Exp+Rec method refers to a partitioned approach for each primitive (Maximum, Exponential, Reciprocal) separately. (✓) indicates a method is used; (✗) indicates it is not. Additional abbreviations are defined in [Table of Notation](../notation.md).
 
 |  N | Sec. | Protocol                          | ReLU | Square | Iterative | LUT | Max+Exp+Rec | Piecewise Pol. | Exact |  Tech. |
@@ -28,4 +32,30 @@
 |  3 |   A  | Mosformer [[255]](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   FSS  |
 |  4 |   F  | Trident [[29]](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
 |  4 |   F  | Tetrad [[38]](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
+
+---
+
+## Related Theoretical Analyses
+
+**Other ML Functionalities:**
+- [Dot-Product Costs](theoretical-analysis-dot-product.md)
+- [Truncation Costs](theoretical-analysis-truncation.md)
+- [ReLU Costs](theoretical-analysis-relu.md)
+- [Sigmoid Costs](theoretical-analysis-sigmoid.md)
+- [GELU Costs](theoretical-analysis-gelu.md)
+- [Normalization Costs](theoretical-analysis-normalization.md)
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)
 

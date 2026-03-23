@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### Systematic overview of 3PC and 4PC frameworks. (✓) denotes availability, (◐) partial availability, (✗) unavailability. Abbreviations: **O** = Outsourcing, **C-S** = Client–Server. Additional abbreviations are defined in [Table of Notation](../notation.md).
 
 | Scheme                  | Year |   2   |   3   |  4  |  HE |  OT |  GC |  ZK |  SS | Setting |  Sec.  | Training | Inference | Theoretical | Experimental |
@@ -15,7 +19,6 @@
 | PrivFormer [[223]](../../Bibliography/references.md#PrivFormer/DBLP:conf/eurosp/AkimotoFAS23)         | 2023 |   ✗   |   ✓   |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  |  ✓  |    O    |   SH   |     ✗    |     ✓     |      ✓      |     ◐ [T3]    |
 | Trio [[238]](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25)               | 2024 |   ✗   |   ✓   |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  |  ✓  |    O    |   SH   |     ✗    |     ✓     |    ◐ [T4]    |       ✓      |
 | Brüggenmann et al. [[147]](../../Bibliography/references.md#Impostor/DBLP:conf/sp/BruggemannSSSY24) | 2024 |   ✗   |   ✓   |  ✗  |  ✗  |  ✗  |  ✗  |  ✓  |  ✓  |  C-S/O  |    A   |     ✗    |     ✓     |    ◐ [T4]    |     ◐ [T3]    |
-| Cavern [[256]](../../Bibliography/references.md#Cavern/cryptoeprint:2026/214) | 2026 | ◐ [T2] | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | O | A | ✗ | ✓ | ◐ [T4] | ◐ [T3] |
 | ECHO [[257]](../../Bibliography/references.md#ECHO/cryptoeprint:2026/216) | 2026 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | O | Cov | ✓ | ✓ | ✗ | ✓ |
 | Trident [[29]](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20)            | 2019 |   ✗   | ◐ [T2] |  ✓  |  ✗  |  ✓  |  ✓  |  ✗  |  ✓  |    O    |    F   |     ✓    |     ✓     |      ✓      |     ◐ [T3]    |
 | PrivPy [[86]](../../Bibliography/references.md#PrivPy/DBLP:conf/kdd/LiX19)             | 2019 |   ✗   |   ✗   |  ✓  |  ✗  |  ✓  |  ✗  |  ✗  |  ✓  |    O    |   SH   |     ✓    |     ✓     |      ✗      |     ◐ [T3]    |
@@ -32,3 +35,29 @@
 [T3] Implementation not public.
 [T4] Only primitives (no ML functionalities).
 [T5] No costs for offline phase.
+
+---
+
+## Related Tables & Navigation
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Theoretical Analysis:**
+- [Dot-Product Costs](../Theoretical-analysis/theoretical-analysis-dot-product.md)
+- [Truncation Costs](../Theoretical-analysis/theoretical-analysis-truncation.md)
+- [ReLU Costs](../Theoretical-analysis/theoretical-analysis-relu.md)
+- [Softmax Costs](../Theoretical-analysis/theoretical-analysis-softmax.md)
+- [Sigmoid Costs](../Theoretical-analysis/theoretical-analysis-sigmoid.md)
+- [GELU Costs](../Theoretical-analysis/theoretical-analysis-gelu.md)
+- [Normalization Costs](../Theoretical-analysis/theoretical-analysis-normalization.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)

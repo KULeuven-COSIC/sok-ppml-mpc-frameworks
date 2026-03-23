@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### Theoretical cost analysis in total bits for dot-product functionality. Superscript $\mathsf{Tr}$ denotes a cost for a protocol for dot-product with truncation. Notation and abbreviations are defined in [Table of Notation](../notation.md).
 
 |   N | Sec. | Protocol                            | Offline (bits)                            | Online (bits)                                 | Tech    |
@@ -65,3 +69,29 @@
 | $N$ |   A  | MPClan [107](../../Bibliography/references.md#MPClan/DBLP:journals/joc/KotiPPS23)                         | $3t\ell$                                  | $3t\ell$                                      | SS      |
 | $N$ |   A  | MD-ML [141](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024)                          | $\mathcal{O}\big(N^{2}(\ell+s)^{2}\big)$ | $N(\ell+s)$                                   | SS      |
 | $N$ |   A  | MD-SONIC [195](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25)                       | $\mathcal{O}\big(N^{2}(\ell+s)^{2}\big)$ | $N(\ell+s)$                                   | SS      |
+
+---
+
+## Related Theoretical Analyses
+
+**Other ML Functionalities:**
+- [Truncation Costs](theoretical-analysis-truncation.md)
+- [ReLU Costs](theoretical-analysis-relu.md)
+- [Softmax Costs](theoretical-analysis-softmax.md)
+- [Sigmoid Costs](theoretical-analysis-sigmoid.md)
+- [GELU Costs](theoretical-analysis-gelu.md)
+- [Normalization Costs](theoretical-analysis-normalization.md)
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)

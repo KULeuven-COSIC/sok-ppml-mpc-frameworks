@@ -1,3 +1,7 @@
+[← Back to README](../../README.md)
+
+---
+
 ### Theoretical cost analysis in total bits for truncation functionality. We depict the costs for truncation of $k$ bits in a ring $\mathbb{Z}_{\ell}$. SPDZ2k-style "slack" ($s + \log s = \kappa$). Notation and abbreviations are defined in [Table of Notation](../notation.md).
 
 |  N |   Sec.  | Protocol              |           Offline Comm.          |           Online Comm.           |           Online Rounds           |     Result    | Tech. |
@@ -15,7 +19,7 @@
 |  3 |    SH   | Dalskov et al. [[58]](../../Bibliography/references.md#dalskov2019secure) |          $4\ell-2k$          |             $4\ell$            |                 2                 |   Stochastic  |   SS  |
 |  3 |    SH   | ABY3 [[12]](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18) |                 —                |             $\ell$             |                 1                 | Probabilistic |   SS  |
 |  3 |    SH   | AdamInPrivate [[192]](../../Bibliography/references.md#AdamInPrivate/DBLP:journals/popets/AttrapadungHIKM22) |                 —                |           $5\ell+5$          |                 4                 |   Stochastic  |   SS  |
-|  3 |    A    | ABY3 [[12]](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18) |         $20\left(2\ell-k\right)$        |             $3\ell$            |                 1                 | Probabilistic |   SS  |
+|  3 |    A    | ABY3 [[12]](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18) |         $20(2\ell-k)$        |             $3\ell$            |                 1                 | Probabilistic |   SS  |
 |  3 |    A    | MaSTer [[127]](../../Bibliography/references.md#Master/DBLP:conf/cans/ZbudilaPAP24) |                 —                |             $3\ell$            |                 1                 | Probabilistic |   SS  |
 |  3 |    A    | AdamInPrivate [[192]](../../Bibliography/references.md#AdamInPrivate/DBLP:journals/popets/AttrapadungHIKM22) |                 —                |    $30\ell+21\kappa+15$    |                 5                 |   Stochastic  |   SS  |
 |  3 |    R    | SWIFT [[28]](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21) |            $12\ell$            |             $\ell$             |                 1                 | Probabilistic |   SS  |
@@ -27,9 +31,35 @@
 |  4 |    R    | Fantastic Four [[46]](../../Bibliography/references.md#fantasticfour/DBLP:conf/uss/Dalskov0K21) |             $\ell$             |             $3\ell$            |                 1                 | Probabilistic |   SS  |
 |  4 |    R    | Flash [[21]](../../Bibliography/references.md#Flash/DBLP:journals/popets/ByaliCPS20) |                 —                |            $14\ell$            |                 5                 | Probabilistic |   SS  |
 |  4 |    R    | SWIFT [[28]](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21) |             $\ell$             |             $\ell$             |                 1                 | Probabilistic |   SS  |
-|  N | SH (HM) | Baccarini et al. [[60]](../../Bibliography/references.md#baccarini2020multi) |        $\mathcal{O}(N)$        |         $Nt\left(2\ell+1\right)$        |                 2                 |   Stochastic  |   SS  |
+|  N | SH (HM) | Baccarini et al. [[60]](../../Bibliography/references.md#baccarini2020multi) |        $\mathcal{O}(N)$        |         $Nt(2\ell+1)$        |                 2                 |   Stochastic  |   SS  |
 |  N | SH (HM) | Liu et al. [[202]](../../Bibliography/references.md#ScalableMPCforML/DBLP:conf/uss/LiuX024) |          $3N\ell^{2}$          |            $2N\ell$            |                 1                 |   Stochastic  |   SS  |
 |  N |  A (DM) | Escudero et al. [[59]](../../Bibliography/references.md#escudero2020improved) |  $\mathcal{O}(t^{2}\log\ell)$ | $\mathcal{O}(Nt^{2}\log\ell)$ | $\mathcal{O}(\log t\log\ell)$ |   Stochastic  |   SS  |
 |  N |  A (DM) | MD-ML [[141]](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024) |  $\mathcal{O}(t^{2}\log\ell)$ |       $N(\ell+\sigma)$       |                 1                 | Probabilistic |   SS  |
 |  N |  A (DM) | MD-SONIC [[195]](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25) |  $\mathcal{O}(t^{2}\log\ell)$ |       $N(\ell+\sigma)$       |                 1                 | Probabilistic |   SS  |
+
+---
+
+## Related Theoretical Analyses
+
+**Other ML Functionalities:**
+- [Dot-Product Costs](theoretical-analysis-dot-product.md)
+- [ReLU Costs](theoretical-analysis-relu.md)
+- [Softmax Costs](theoretical-analysis-softmax.md)
+- [Sigmoid Costs](theoretical-analysis-sigmoid.md)
+- [GELU Costs](theoretical-analysis-gelu.md)
+- [Normalization Costs](theoretical-analysis-normalization.md)
+
+**Framework & Design Overviews:**
+- From MPC perspective
+  - [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
+  - [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
+  - [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
+  - [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+- Based on ML functionality support
+  - [2PC ML Support](../Systematization/systematization-ml-2pc.md)
+  - [MPC ML Support](../Systematization/systematization-ml-mpc.md)
+
+**Reference Materials:**
+- [Notation & Abbreviations](../notation.md)
+- [← Back to README](../../README.md)
 
