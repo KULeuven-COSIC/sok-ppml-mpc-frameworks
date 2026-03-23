@@ -38,10 +38,9 @@
 |  N |  A (DM) | MD-SONIC [[195]](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25) |  $\mathcal{O}(t^{2}\log\ell)$ |       $N(\ell+\sigma)$       |                 1                 | Probabilistic |   SS  |
 
 ---
+## Related Tables & Navigation
 
-## Related Theoretical Analyses
-
-**Other ML Functionalities:**
+**Analysis of Other ML Functionalities:**
 - [Dot-Product Costs](theoretical-analysis-dot-product.md)
 - [ReLU Costs](theoretical-analysis-relu.md)
 - [Softmax Costs](theoretical-analysis-softmax.md)

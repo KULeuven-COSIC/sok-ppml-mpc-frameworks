@@ -35,9 +35,9 @@
 
 ---
 
-## Related Theoretical Analyses
+## Related Tables & Navigation
 
-**Other ML Functionalities:**
+**Analysis of Other ML Functionalities:**
 - [Dot-Product Costs](theoretical-analysis-dot-product.md)
 - [Truncation Costs](theoretical-analysis-truncation.md)
 - [ReLU Costs](theoretical-analysis-relu.md)

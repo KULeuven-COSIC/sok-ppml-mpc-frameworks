@@ -72,9 +72,9 @@
 
 ---
 
-## Related Theoretical Analyses
+## Related Tables & Navigation
 
-**Other ML Functionalities:**
+**Analysis of Other ML Functionalities:**
 - [Truncation Costs](theoretical-analysis-truncation.md)
 - [ReLU Costs](theoretical-analysis-relu.md)
 - [Softmax Costs](theoretical-analysis-softmax.md)
