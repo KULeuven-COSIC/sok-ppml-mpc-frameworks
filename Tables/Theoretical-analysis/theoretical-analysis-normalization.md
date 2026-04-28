@@ -12,6 +12,7 @@
 |  2 |  SH  | AriaNN [[68]](../../Bibliography/references.md#ariann/DBLP:journals/popets/RyffelTPB22) |     ✓     |  ✗  |        ✗       |   ✗   |  FSS  |
 |  2 |  SH  | Sigma [[243]](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24) |     ✗     |  ✓  |        ✗       |   ✗   |  FSS  |
 |  2 |  SH  | SecFormer [[214]](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24) |     ✓     |  ✗  |        ✗       |   ✗   |   SS  |
+|  2 |  SH  | PrivTI [261](../../Bibliography/references.md#luo2026privti) |     ✓     |  ✗  |        ✗       |   ✗   |   SS  |
 |  2 |   A  | Pika [[75]](../../Bibliography/references.md#Pika/DBLP:journals/popets/Wagh22) |     ✗     |  ✓  |        ✗       |   ✗   |  FSS  |
 |  3 |  SH  | PrivFormer [[223]](../../Bibliography/references.md#PrivFormer/DBLP:conf/eurosp/AkimotoFAS23) |     ✓     |  ✗  |        ✗       |   ✗   |   SS  |
 |  3 |  SH  | SecureNN [[26]](../../Bibliography/references.md#SecureNN/DBLP:journals/popets/WaghGC19) |     ✓     |  ✗  |        ✗       |   ✗   |   SS  |

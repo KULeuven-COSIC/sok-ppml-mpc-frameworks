@@ -35,6 +35,7 @@
 | MD-SONIC [195](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25)             | 2025 |    n    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
 | FANNG-MPC [242](../../Bibliography/references.md#Fanng-MPC/DBLP:journals/tches/AarajAGMMPSSSSS25)      | 2025 |    n    |    ✓   |   ✓  | Probabilistic |   ✓   |  ◐ [T1]  |    ✗    |     ◐ [T1]     |   ✗  |
 | Zhou [259](../../Bibliography/references.md#zhou2026scalable) | 2026 | n | ✓ | ✓ | Stochastic | ✓ | ◐ [T1] | ✗ | ◐ [T1] | ✗ |
+| SMASH [260](../../Bibliography/references.md#lv2026smash) | 2026 | n | ✗ | ✗ | ✗ | ◐ [T1] | ◐ [T1] | ◐ [T1] | ◐ [T1] | ◐ [T1] |
 
 **Tablenotes**  
 [T1] Proposes underlying primitives needed for evaluation, but no dedicated protocol for the functionality.  

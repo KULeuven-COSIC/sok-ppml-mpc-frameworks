@@ -16,6 +16,7 @@
 |  2 |  SH  | SecFormer [214](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24) |    —     |       5        |     6      |     2       |     1       |
 |  2 |  SH  | BumbleBee [213](../../Bibliography/references.md#BumbleBee/DBLP:conf/ndss/LuHGL000WC25) |    —     |       4        |     6      |     3       |     3       |
 |  2 |  SH  | SHAFT [222](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25)             |    —     |       2        |     2      |     2       |     2       |
+|  2 |  SH  | PrivTI [261](../../Bibliography/references.md#luo2026privti) | 1 ($2^4$) |       3        |     1      |     —       |     —       |
 |  3 |  SH  | PUMA [71](../../Bibliography/references.md#PUMA/DBLP:journals/corr/abs-2307-12533)    |    —     |       4        |     4      |     3       |     3       |
 |  3 |  A   | Mosformer [255](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25) | 1 ($2^8$) |       —        |     1      |     3       |     3       |
 

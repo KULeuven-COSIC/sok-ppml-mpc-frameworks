@@ -517,3 +517,7 @@
 258. <a id="CRISP/DBLP:conf/ndss/FangZG20"></a>Xiaoyu Fang and Shihui Zheng and Lize Gu. "CRISP: An Efficient Cryptographic Framework for ML Inference Against Malicious Clients." *27th Annual Network and Distributed System Security Symposium, NDSS 2026, San Diego, California, USA, February 23-26, 2026* 2026.
 
 259. <a id="zhou2026scalable"></a>Hengcheng Zhou. "Scalable Privacy-Preserving Neural Network Training over $\mathbb{Z}_{2^k}$ via RMFE-Based Packing and Mixed-Circuit Computation." *AAAI* 2026.
+
+260. <a id="lv2026smash"></a>Lv, Yunlv and Zhang, Rui and Zhang, Zhiyuan and Wan, Ziyi and Zhang, Lanxue and Xue, Minhui and Li, Jiangtao and Cao, Yanan. "{SMASH:} Scalable Maliciously Secure Hybrid Multi-party Computation Framework for Privacy-Preserving Large Language Models." *{USENIX} Security* 2026.
+
+261. <a id="luo2026privti"></a>Luo, Mingshun and He, Haolei and Yang, Wenti and Li, Meng and Wu, Longfei and Zhang, Zijian and Guan, Zhitao. "{PrivTI:} Efficient End-to-End Privacy-Preserving Inference for Transformer-based Models in {MLaaS}." *{IEEE} Transactions on Services Computing* 2026.

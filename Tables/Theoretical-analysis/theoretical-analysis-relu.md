@@ -45,6 +45,7 @@
 |  N |  A (DM) | Escudero et al. [[59]](../../Bibliography/references.md#escudero2020improved) |            $7\ell\kappa$           |         $7\ell+3s$         | $\mathcal{O}(\log\ell)$ |   SS  |
 |  N |  A (DM) | MD-ML [[141]](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024) |    $\mathcal{O}(N^2(\ell+s)^2)$   |     $\mathcal{O}(\ell s)$    |      $\log\ell+2$     |   SS  |
 |  N |  A (DM) | MD-SONIC [[195]](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25) |    $\mathcal{O}(N^2(\ell+s)^2)$   |  $\mathcal{O}(N(\ell+s))$  |   $\log(\ell-1)+1$   |   SS  |
+|  N |  A (DM) | SMASH [260](../../Bibliography/references.md#lv2026smash) |    $\mathcal{O}(2^{\ell_x}N\log p + \ell)$   |  $\mathcal{O}(N\log p + \ell)$  |   1   |   LUT  |
 
 ---
 

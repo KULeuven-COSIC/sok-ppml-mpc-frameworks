@@ -26,6 +26,7 @@
 |  2 |  SH  | Zhang et al. (SecureSoftmax) [[187]](../../Bibliography/references.md#SecureSoftmax/DBLP:conf/acsac/0021ZCPTLY23) |   ✗  |    ✗   |     ✓     |  ✗  |      ✗      |        ✗       |   ✗   |   SS   |
 |  2 |  SH  | SHAFT [[222]](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25) |   ✗  |    ✗   |     ✓     |  ✗  |      ✗      |        ✗       |   ✗   |   SS   |
 |  2 |  SH  | Shark [[240]](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025) |   ✓  |    ✗   |     ✗     |  ✓  |      ✗      |        ✗       |   ✗   |   FSS  |
+|  2 |  SH  | PrivTI [261](../../Bibliography/references.md#luo2026privti) |   ✗  |    ✗   |     ✗     |  ✓  |      ✗      |        ✓       |   ✗   |   SS   |
 |  3 |  SH  | PUMA [[71]](../../Bibliography/references.md#PUMA/DBLP:journals/corr/abs-2307-12533) |   ✗  |    ✗   |     ✓     |  ✗  |      ✓      |        ✓       |   ✗   |   SS   |
 |  3 |  SH  | CryptGPU [[18]](../../Bibliography/references.md#Cryptgpu/DBLP:conf/sp/TanKTW21) |   ✗  |    ✗   |     ✓     |  ✗  |      ✓      |        ✗       |   ✗   |   SS   |
 |  3 |   A  | AdamInPrivate [[192]](../../Bibliography/references.md#AdamInPrivate/DBLP:journals/popets/AttrapadungHIKM22) |   ✗  |    ✗   |     ✓     |  ✓  |      ✓      |        ✗       |   ✗   | SS, OT |
@@ -33,6 +34,7 @@
 |  4 |   F  | Trident [[29]](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
 |  4 |   F  | Tetrad [[38]](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
 |  n |  SH  | Zhou [[259]](../../Bibliography/references.md#zhou2026scalable) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   |   SS   |
+|  n |   A  | SMASH [260](../../Bibliography/references.md#lv2026smash) |   ✗  |    ✗   |     ✗     |  ✓  |      ✗      |        ✗       |   ✗   | HE, SS |
 
 ---
 
