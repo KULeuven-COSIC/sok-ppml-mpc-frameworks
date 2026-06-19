@@ -3,11 +3,6 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches: [gh-pages]
-  push_main:
-    branches: [main]
-    paths:
-      - 'Tables/**'
-      - 'Bibliography/**'
   workflow_dispatch:
 
 # Allow only one concurrent deployment
