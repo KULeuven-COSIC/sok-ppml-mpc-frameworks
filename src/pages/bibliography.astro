@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+
+function parseRefs(filePath) {
+  const content = readFileSync(join(process.cwd(), filePath), 'utf-8')
+  const refs = []
+  // Each reference starts with: N. <a id="ANCHOR"></a>content
+  const lineRe = /^(\d+)\.\s*<a id="([^"]+)"><\/a>(.*)/
+  for (const line of content.split('\n')) {
+    const m = line.match(lineRe)
+    if (!m) continue
+    const [, num, anchor, rest] = m
+    // authors end at first "
+    const quoteIdx = rest.indexOf('"')
+    const authors = quoteIdx > 0 ? rest.slice(0, quoteIdx).replace(/\.$/, '').trim() : rest.trim()
+    // title: between first pair of " "
+    const titleM = rest.match(/"([^"]+)"/)
+    const title = titleM ? titleM[1] : ''
+    // venue: between * *
+    const venueM = rest.match(/\*([^*]+)\*/)
+    const venue = venueM ? venueM[1] : ''
+    // year: last 4-digit number before any URL
+    const yearM = rest.match(/\b(19|20)\d{2}\b/)
+    const year = yearM ? yearM[0] : ''
+    // DOI url
+    const doiM = rest.match(/DOI:\s*\[([^\]]+)\]\(([^)]+)\)/)
+    const urlM = rest.match(/URL:\s*\[([^\]]+)\]\(([^)]+)\)/)
+    const paperUrl = doiM ? doiM[2] : urlM ? urlM[2] : null
+    const paperLabel = doiM ? doiM[1] : urlM ? 'Link' : null
+    refs.push({ num: parseInt(num), anchor, authors, title, venue, year, paperUrl, paperLabel })
+  }
+  return refs
+}
+
+const refs = parseRefs('Bibliography/references.md')
+const refsJson = JSON.stringify(refs)
+const base = import.meta.env.BASE_URL
+---
+
+<Layout title="Bibliography">
+  <Navbar slot="navbar" />
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="section-heading">Bibliography</h1>
+      <p class="section-subheading">{refs.length} references — click any framework citation to jump here</p>
+    </div>
+
+    <script define:vars={{ refsJson }}>
+      window.__REFS__ = JSON.parse(refsJson)
+    </script>
+
+    <div x-data="{
+      refs: window.__REFS__,
+      query: '',
+      get filtered() {
+        const q = this.query.toLowerCase().trim()
+        if (!q) return this.refs
+        return this.refs.filter(r =>
+          r.authors.toLowerCase().includes(q) ||
+          r.title.toLowerCase().includes(q) ||
+          r.venue.toLowerCase().includes(q) ||
+          String(r.year).includes(q) ||
+          String(r.num).includes(q)
+        )
+      }
+    }" x-cloak>
+
+      <div class="mb-6 flex items-center gap-3">
+        <div class="relative flex-1 max-w-lg">
+          <i class="ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
+          <input
+            x-model="query"
+            type="text"
+            placeholder="Search by author, title, venue, or year…"
+            class="input-field pl-9 w-full"
+          />
+        </div>
+        <span class="text-xs text-slate-500 whitespace-nowrap" x-text="filtered.length + ' references'"></span>
+      </div>
+
+      <ol class="space-y-4">
+        <template x-for="r in filtered" :key="r.num">
+          <li
+            :id="r.anchor"
+            class="group flex gap-4 p-4 rounded-xl bg-navy-800/50 border border-slate-700/40 hover:border-slate-600 transition-colors scroll-mt-24"
+          >
+            <span class="flex-shrink-0 w-10 text-right font-mono text-slate-500 text-sm pt-0.5" x-text="'[' + r.num + ']'"></span>
+            <div class="min-w-0">
+              <div class="text-slate-300 text-sm leading-relaxed">
+                <span class="text-slate-400" x-text="r.authors + (r.authors ? '. ' : '')"></span>
+                <span class="text-white font-medium" x-text="r.title ? '“' + r.title + '.”' : ''"></span>
+                <template x-if="r.venue">
+                  <em class="text-slate-400 not-italic" x-text="' ' + r.venue + (r.year ? ' ' + r.year : '') + '.'"></em>
+                </template>
+                <template x-if="r.paperUrl">
+                  <a
+                    :href="r.paperUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="ml-2 inline-flex items-center gap-1 text-brand-400 hover:text-brand-300 text-xs transition-colors"
+                  >
+                    <i class="ph-arrow-square-out"></i>
+                    <span x-text="r.paperLabel || 'Link'"></span>
+                  </a>
+                </template>
+              </div>
+              <div class="mt-1 flex items-center gap-2">
+                <span class="text-xs text-slate-600 font-mono" x-text="r.anchor"></span>
+                <button
+                  x-on:click="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#' + r.anchor)"
+                  class="opacity-0 group-hover:opacity-100 transition-opacity text-slate-600 hover:text-slate-400"
+                  title="Copy link"
+                >
+                  <i class="ph-link text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </li>
+        </template>
+        <template x-if="filtered.length === 0">
+          <li class="text-center py-12 text-slate-500">No references match your search.</li>
+        </template>
+      </ol>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>

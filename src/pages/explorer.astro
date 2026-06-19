@@ -34,9 +34,10 @@ function cleanName(cell) {
     .split('[[')[0].split('[')[0].trim()
 }
 
+const base = import.meta.env.BASE_URL
 function getPaperUrl(cell) {
-  const m = (cell || '').match(/\(([^)]*references\.md#([^)]+))\)/)
-  if (m) return `https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks/blob/main/Bibliography/references.md#${m[2]}`
+  const m = (cell || '').match(/references\.md#([^)]+)/)
+  if (m) return `${base}/bibliography#${m[1]}`
   return null
 }
 
