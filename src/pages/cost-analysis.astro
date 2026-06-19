@@ -212,8 +212,8 @@ const opsJson = JSON.stringify(operations)
 </Layout>
 
 <script>
-window.costAnalysis = function costAnalysis() {
-  return {
+document.addEventListener('alpine:init', () => {
+  Alpine.data('costAnalysis', () => ({
     tables: window.__COST_TABLES__,
     ops: window.__OPERATIONS__,
     activeOp: 'relu',
@@ -280,6 +280,6 @@ window.costAnalysis = function costAnalysis() {
         }
       })
     }
-  }
-}
+  }))
+})
 </script>
