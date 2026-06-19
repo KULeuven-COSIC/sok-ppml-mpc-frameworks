@@ -28,10 +28,17 @@ function parseMdTable(filePath) {
 }
 
 function cleanName(cell) {
+  // Remove [[refnum]](url) and any remaining [text](url) links
   return (cell || '')
-    .replace(/\[\[([^\]]+)\]\]\([^)]+\)/g, (_, t) => t)
+    .replace(/\[\[\d+\]\]\([^)]+\)/g, '')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, (_, t) => t)
-    .split('[[')[0].split('[')[0].trim()
+    .replace(/\[\[.*/, '')
+    .trim()
+}
+
+function getRefNum(cell) {
+  const m = (cell || '').match(/\[\[(\d+)\]\]/)
+  return m ? m[1] : null
 }
 
 const base = import.meta.env.BASE_URL
@@ -58,6 +65,7 @@ function buildFramework(row, parties) {
   const nameCell = row['Scheme'] || row['Work'] || Object.values(row)[0] || ''
   return {
     name: cleanName(nameCell),
+    refNum: getRefNum(nameCell),
     paperUrl: getPaperUrl(nameCell),
     year: parseInt(row['Year'] || '0') || 0,
     parties,
@@ -245,10 +253,8 @@ const mlJson = JSON.stringify(mlData)
                 <td>
                   <div class="flex items-center gap-1.5">
                     <span x-text="f.name" class="font-medium text-slate-200"></span>
-                    <template x-if="f.paperUrl">
-                      <a :href="f.paperUrl" target="_blank" rel="noopener noreferrer" x-on:click.stop class="text-slate-500 hover:text-brand-400 transition-colors">
-                        <i class="ph-arrow-square-out text-xs"></i>
-                      </a>
+                    <template x-if="f.paperUrl && f.refNum">
+                      <a :href="f.paperUrl" x-on:click.stop class="text-brand-400 hover:text-brand-300 transition-colors text-xs font-mono" x-text="'[' + f.refNum + ']'"></a>
                     </template>
                   </div>
                 </td>
@@ -307,10 +313,8 @@ const mlJson = JSON.stringify(mlData)
                 <td>
                   <div class="flex items-center gap-1.5">
                     <span x-text="f.name" class="font-medium text-slate-200"></span>
-                    <template x-if="f.paperUrl">
-                      <a :href="f.paperUrl" target="_blank" rel="noopener noreferrer" x-on:click.stop class="text-slate-500 hover:text-brand-400 transition-colors">
-                        <i class="ph-arrow-square-out text-xs"></i>
-                      </a>
+                    <template x-if="f.paperUrl && f.refNum">
+                      <a :href="f.paperUrl" x-on:click.stop class="text-brand-400 hover:text-brand-300 transition-colors text-xs font-mono" x-text="'[' + f.refNum + ']'"></a>
                     </template>
                   </div>
                 </td>
@@ -354,8 +358,9 @@ const mlJson = JSON.stringify(mlData)
           </div>
           <div class="flex items-center gap-2">
             <template x-if="selectedFw?.paperUrl">
-              <a :href="selectedFw.paperUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-1.5 px-3">
-                <i class="ph-arrow-square-out"></i> View Reference
+              <a :href="selectedFw.paperUrl" class="btn-secondary text-xs py-1.5 px-3">
+                <i class="ph-books"></i>
+                <span x-text="selectedFw.refNum ? '[' + selectedFw.refNum + '] Bibliography' : 'Bibliography'"></span>
               </a>
             </template>
             <button x-on:click="selectedFw = null" class="p-1.5 rounded text-slate-500 hover:text-white hover:bg-slate-700">
