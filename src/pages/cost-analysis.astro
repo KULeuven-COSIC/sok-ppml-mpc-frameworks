@@ -211,7 +211,7 @@ const opsJson = JSON.stringify(operations)
   <Footer slot="footer" />
 </Layout>
 
-<script>
+<script is:inline>
 document.addEventListener('alpine:init', () => {
   Alpine.data('costAnalysis', () => ({
     tables: window.__COST_TABLES__,
