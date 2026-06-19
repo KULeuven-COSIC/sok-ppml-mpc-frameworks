@@ -1,0 +1,243 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+const base = import.meta.env.BASE_URL
+---
+
+<Layout title="MPC Puzzle">
+  <Navbar slot="navbar" />
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Header -->
+    <div class="mb-12 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium mb-6">
+        <i class="ph-puzzle-piece"></i>
+        Key Contribution
+      </div>
+      <h1 class="section-heading text-4xl">The MPC Puzzle</h1>
+      <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+        A unification of 2-, 3-, and 4-party secret-sharing schemes — showing how seemingly
+        separate frameworks share a common algebraic foundation and can convert between each other.
+      </p>
+    </div>
+
+    <!-- Main Puzzle Diagram -->
+    <div class="mb-16">
+      <div class="relative">
+        <!-- Triangle layout with connecting arrows -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 relative">
+
+          <!-- 2PC Node -->
+          <div class="bg-blue-950/40 border-2 border-blue-600/50 rounded-2xl p-6 relative">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 font-bold text-lg">2</div>
+              <div>
+                <h3 class="text-white font-bold text-lg">2-Party (2PC)</h3>
+                <div class="text-blue-400 text-xs font-medium">Dishonest Majority</div>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between items-center py-2 border-b border-blue-900/50">
+                <span class="text-slate-400">Algebraic Structure</span>
+                <span class="text-slate-200 font-mono text-xs" set:html="$\\mathbb{Z}_{2^\\ell}$, $\\mathbb{Z}_2$, $\\mathbb{F}_p$" />
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-blue-900/50">
+                <span class="text-slate-400">Security</span>
+                <span class="text-slate-200">SH / Active-Covert</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-blue-900/50">
+                <span class="text-slate-400">Techniques</span>
+                <span class="text-slate-200">OT, HE, GC, FSS, SS</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span class="text-slate-400">Representative</span>
+                <span class="text-slate-200">SecureML, CryptFlow2, Llama</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-blue-950/60 rounded-lg">
+              <p class="text-blue-300 text-xs leading-relaxed">
+                Largest class. Typically client-server or outsourcing setting. Relies on OT/HE for garbling and secret sharing between two mutually distrusting parties.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3PC Node -->
+          <div class="bg-teal-950/40 border-2 border-teal-600/50 rounded-2xl p-6 relative">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-teal-600/20 border border-teal-500/40 flex items-center justify-center text-teal-400 font-bold text-lg">3</div>
+              <div>
+                <h3 class="text-white font-bold text-lg">3-Party (3PC)</h3>
+                <div class="text-teal-400 text-xs font-medium">Honest Majority</div>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between items-center py-2 border-b border-teal-900/50">
+                <span class="text-slate-400">Algebraic Structure</span>
+                <span class="text-slate-200 font-mono text-xs" set:html="$\\mathbb{Z}_{2^\\ell}$, $\\mathbb{F}_p$" />
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-teal-900/50">
+                <span class="text-slate-400">Security</span>
+                <span class="text-slate-200">SH / A / F / R</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-teal-900/50">
+                <span class="text-slate-400">Techniques</span>
+                <span class="text-slate-200">Replicated SS, OT</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span class="text-slate-400">Representative</span>
+                <span class="text-slate-200">ABY3, Falcon, SecureNN</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-teal-950/60 rounded-lg">
+              <p class="text-teal-300 text-xs leading-relaxed">
+                Efficient semi-honest protocols with strong honest majority assumption. Replicated secret sharing enables cheap multiplications with low communication rounds.
+              </p>
+            </div>
+          </div>
+
+          <!-- 4PC Node -->
+          <div class="bg-purple-950/40 border-2 border-purple-600/50 rounded-2xl p-6 relative">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold text-lg">4</div>
+              <div>
+                <h3 class="text-white font-bold text-lg">4-Party (4PC)</h3>
+                <div class="text-purple-400 text-xs font-medium">Super Honest Majority</div>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between items-center py-2 border-b border-purple-900/50">
+                <span class="text-slate-400">Algebraic Structure</span>
+                <span class="text-slate-200 font-mono text-xs" set:html="$\\mathbb{Z}_{2^\\ell}$, $\\mathbb{Z}_2$" />
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-purple-900/50">
+                <span class="text-slate-400">Security</span>
+                <span class="text-slate-200">A/R / F/R</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-purple-900/50">
+                <span class="text-slate-400">Techniques</span>
+                <span class="text-slate-200">Replicated SS</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span class="text-slate-400">Representative</span>
+                <span class="text-slate-200">FLASH, Trident, Tetrad</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-purple-950/60 rounded-lg">
+              <p class="text-purple-300 text-xs leading-relaxed">
+                Strongest security guarantees — tolerates up to one active corruption with guaranteed output delivery (robustness). Higher communication but maximum resilience.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conversion arrows (visual connectors) -->
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-navy-800 border border-slate-700/50 rounded-xl p-4 text-center">
+            <div class="text-sm font-medium text-slate-300 mb-1 flex items-center justify-center gap-2">
+              <span class="text-blue-400">2PC</span>
+              <i class="ph-arrows-left-right text-slate-500"></i>
+              <span class="text-teal-400">3PC</span>
+            </div>
+            <p class="text-xs text-slate-500" set:html="Share conversion via OT or correlated randomness. Cost: $\\mathcal{O}(\\ell)$ comm. per element." />
+          </div>
+          <div class="bg-navy-800 border border-slate-700/50 rounded-xl p-4 text-center">
+            <div class="text-sm font-medium text-slate-300 mb-1 flex items-center justify-center gap-2">
+              <span class="text-teal-400">3PC</span>
+              <i class="ph-arrows-left-right text-slate-500"></i>
+              <span class="text-purple-400">4PC</span>
+            </div>
+            <p class="text-xs text-slate-500">Extend replicated shares with an additional party for robustness. Minimal overhead.</p>
+          </div>
+          <div class="bg-navy-800 border border-slate-700/50 rounded-xl p-4 text-center">
+            <div class="text-sm font-medium text-slate-300 mb-1 flex items-center justify-center gap-2">
+              <span class="text-blue-400">2PC</span>
+              <i class="ph-arrow-right text-slate-500"></i>
+              <span class="text-purple-400">4PC</span>
+            </div>
+            <p class="text-xs text-slate-500">Direct 2PC-to-4PC conversion for upgrading security level with added parties.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secret Sharing Schemes -->
+    <div class="mb-16">
+      <h2 class="section-heading">Secret Sharing Schemes</h2>
+      <p class="section-subheading">The algebraic building blocks underlying each party configuration</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {[
+          {
+            title: 'Additive Secret Sharing',
+            tag: 'Used in 2PC',
+            color: 'border-blue-700/50 bg-blue-950/20',
+            tagColor: 'bg-blue-900/40 text-blue-300',
+            desc: 'A secret $x$ is split into shares $x_0, x_1$ such that $x_0 + x_1 = x$ over a ring $\\mathbb{Z}_{2^\\ell}$. Supports linear operations for free; non-linear operations require interaction.',
+            props: ['Linear ops: free (no communication)', 'Multiplication: requires OT or Beaver triples', 'Suitable for: 2PC DM protocols'],
+          },
+          {
+            title: 'Replicated Secret Sharing',
+            tag: 'Used in 3PC/4PC',
+            color: 'border-teal-700/50 bg-teal-950/20',
+            tagColor: 'bg-teal-900/40 text-teal-300',
+            desc: 'Each party holds multiple additive shares. For 3PC: party $P_i$ holds $(x_{i}, x_{i-1})$. Enables constant-round multiplications without OT.',
+            props: ['Multiplication: ~2 rounds communication', 'No offline preprocessing needed (SH)', 'Suitable for: 3PC HM protocols'],
+          },
+          {
+            title: 'Boolean Secret Sharing ($\\mathbb{Z}_2$)',
+            tag: 'Cross-domain',
+            color: 'border-slate-700/50 bg-slate-900/20',
+            tagColor: 'bg-slate-800 text-slate-300',
+            desc: 'Shares are bits: $x_0 \\oplus x_1 = x$. Enables efficient non-linear operations (comparisons, ReLU) via garbled circuits or FSS.',
+            props: ['XOR: free', 'AND: requires interaction', 'Conversion from arithmetic: A2B protocol'],
+          },
+          {
+            title: 'Function Secret Sharing (FSS)',
+            tag: 'Emerging technique',
+            color: 'border-emerald-700/50 bg-emerald-950/20',
+            tagColor: 'bg-emerald-900/40 text-emerald-300',
+            desc: 'Distribute a function $f$ across parties such that each party evaluates their "key" independently on an input. Enables $O(1)$-round non-linear ops.',
+            props: ['Online comm: $O(\\ell)$ bits', 'Offline: $O(\\Lambda \\ell)$ bits', 'Used by: AriaNN, Llama, Sigma, Shark'],
+          },
+        ].map(s => (
+          <div class={`border rounded-xl p-5 ${s.color}`}>
+            <div class="flex items-center gap-2 mb-3">
+              <h3 class="text-white font-semibold" set:html={s.title}></h3>
+              <span class={`text-xs px-2 py-0.5 rounded-full font-medium ${s.tagColor}`}>{s.tag}</span>
+            </div>
+            <p class="text-slate-400 text-sm leading-relaxed mb-3" set:html={s.desc}></p>
+            <ul class="space-y-1">
+              {s.props.map(p => (
+                <li class="text-xs text-slate-500 flex items-start gap-1.5">
+                  <i class="ph-check-circle text-slate-600 mt-0.5 flex-shrink-0"></i>
+                  <span set:html={p}></span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Key Insight -->
+    <div class="mb-12">
+      <div class="bg-gradient-to-r from-purple-950/40 to-blue-950/40 border border-purple-700/30 rounded-2xl p-8 text-center">
+        <i class="ph-lightbulb text-4xl text-yellow-400 mb-4 block"></i>
+        <h2 class="text-white font-bold text-xl mb-3">The Unifying Insight</h2>
+        <p class="text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          The MPC Puzzle reveals that 2-, 3-, and 4-party frameworks are not isolated islands —
+          they share a common algebraic substrate and can be connected via efficient share conversion protocols.
+          This enables hybrid deployments that leverage the best properties of each configuration.
+        </p>
+        <a href="https://eprint.iacr.org/2025/1679" target="_blank" rel="noopener noreferrer" class="btn-primary mt-6 inline-flex">
+          <i class="ph-file-pdf"></i>
+          Full Details in the Paper
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>

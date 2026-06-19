@@ -1,0 +1,51 @@
+---
+const base = import.meta.env.BASE_URL
+---
+<footer class="border-t border-slate-800 bg-navy-950 mt-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs">S</div>
+          <span class="text-white font-bold text-sm">SoK PPML-MPC</span>
+        </div>
+        <p class="text-slate-500 text-sm leading-relaxed">
+          A living systematization of MPC-based privacy-preserving ML frameworks, maintained by KU Leuven COSIC.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-slate-300 font-semibold text-sm mb-3">Navigation</h3>
+        <ul class="space-y-2 text-sm text-slate-500">
+          <li><a href={base} class="hover:text-slate-300 transition-colors">Home</a></li>
+          <li><a href={base + 'explorer'} class="hover:text-slate-300 transition-colors">Framework Explorer</a></li>
+          <li><a href={base + 'cost-analysis'} class="hover:text-slate-300 transition-colors">Cost Analysis</a></li>
+          <li><a href={base + 'mpc-puzzle'} class="hover:text-slate-300 transition-colors">MPC Puzzle</a></li>
+          <li><a href={base + 'contribute'} class="hover:text-slate-300 transition-colors">Contribute</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-slate-300 font-semibold text-sm mb-3">Paper</h3>
+        <p class="text-slate-500 text-sm mb-3 leading-relaxed">
+          Zbudila, Suresh, Yalame, Mirzamohammadi, Abidin, Preneel (2025)
+        </p>
+        <div class="flex flex-col gap-2">
+          <a href="https://eprint.iacr.org/2025/1679" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-sm text-brand-400 hover:text-brand-300 transition-colors">
+            <i class="ph-file-pdf"></i> ePrint 2025/1679
+          </a>
+          <a href="https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-300 transition-colors">
+            <i class="ph-github-logo"></i> KULeuven-COSIC/sok-ppml-mpc-frameworks
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-slate-600 text-xs">
+        © KU Leuven COSIC. MIT License. Data sourced from the repository tables.
+      </p>
+      <a href={base + 'contribute'} class="flex items-center gap-1.5 text-xs text-slate-500 hover:text-brand-400 transition-colors">
+        <i class="ph-git-pull-request"></i>
+        Suggest a framework update
+      </a>
+    </div>
+  </div>
+</footer>

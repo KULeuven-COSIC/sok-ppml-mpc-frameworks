@@ -1,0 +1,41 @@
+---
+export interface Props {
+  title: string
+  description?: string
+}
+const {
+  title,
+  description = 'A living systematization of MPC-based privacy-preserving ML frameworks — tracking protocols, security models, and theoretical costs.',
+} = Astro.props
+const base = import.meta.env.BASE_URL
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | SoK PPML-MPC</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title + ' | SoK PPML-MPC'} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href={base + 'favicon.svg'} />
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})">
+  </script>
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+</head>
+<body class="min-h-screen bg-navy-950 text-slate-200 font-sans antialiased">
+  <slot name="navbar" />
+  <main>
+    <slot />
+  </main>
+  <slot name="footer" />
+</body>
+</html>

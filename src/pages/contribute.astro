@@ -1,0 +1,375 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+const base = import.meta.env.BASE_URL
+---
+
+<Layout title="Contribute">
+  <Navbar slot="navbar" />
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Header -->
+    <div class="mb-10">
+      <h1 class="section-heading">Contribute a Framework</h1>
+      <p class="text-slate-400 text-lg leading-relaxed max-w-2xl">
+        Help keep this resource current. Fill in the framework details below — we'll generate
+        a pre-formatted GitHub Issue that maintainers can review and merge as a pull request.
+      </p>
+    </div>
+
+    <!-- Process steps -->
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-10">
+      {[
+        { n: '01', icon: 'ph-pencil', label: 'Fill Form', desc: 'Enter framework details' },
+        { n: '02', icon: 'ph-eye', label: 'Preview Row', desc: 'See generated table entry' },
+        { n: '03', icon: 'ph-github-logo', label: 'Open Issue', desc: 'One click to GitHub' },
+        { n: '04', icon: 'ph-git-pull-request', label: 'PR Created', desc: 'Maintainers review' },
+        { n: '05', icon: 'ph-check-circle', label: 'Merged!', desc: 'Site auto-updates' },
+      ].map((step, i) => (
+        <div class="text-center">
+          <div class="w-10 h-10 rounded-full bg-brand-500/15 border border-brand-500/30 flex items-center justify-center mx-auto mb-2">
+            <i class={step.icon + ' text-brand-400 text-lg'}></i>
+          </div>
+          <div class="text-white text-xs font-semibold">{step.label}</div>
+          <div class="text-slate-600 text-xs mt-0.5">{step.desc}</div>
+        </div>
+      ))}
+    </div>
+
+    <div x-data="contributeForm()" x-cloak>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Form -->
+        <div class="space-y-6">
+          <!-- Basic info -->
+          <div class="card">
+            <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
+              <i class="ph-info text-brand-400"></i>
+              Basic Information
+            </h2>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-slate-400 text-xs font-medium mb-1.5">Framework Name *</label>
+                <input type="text" x-model="name" placeholder="e.g. SecureML" class="input-field" />
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-slate-400 text-xs font-medium mb-1.5">Year *</label>
+                  <input type="number" x-model="year" placeholder="2025" min="2015" max="2030" class="input-field" />
+                </div>
+                <div>
+                  <label class="block text-slate-400 text-xs font-medium mb-1.5">Your GitHub handle</label>
+                  <input type="text" x-model="submitter" placeholder="username" class="input-field" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-slate-400 text-xs font-medium mb-1.5">Paper URL (DOI / ePrint / arXiv) *</label>
+                <input type="url" x-model="paperUrl" placeholder="https://eprint.iacr.org/..." class="input-field" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Party config -->
+          <div class="card">
+            <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
+              <i class="ph-users text-teal-400"></i>
+              Party Configuration
+            </h2>
+            <div class="grid grid-cols-4 gap-2">
+              {[
+                { key: 'p2', label: '2PC', color: 'border-blue-600 bg-blue-900/40 text-blue-300' },
+                { key: 'p3', label: '3PC', color: 'border-teal-600 bg-teal-900/40 text-teal-300' },
+                { key: 'p4', label: '4PC', color: 'border-purple-600 bg-purple-900/40 text-purple-300' },
+                { key: 'pn', label: 'nPC', color: 'border-orange-600 bg-orange-900/40 text-orange-300' },
+              ].map(p => (
+                <label
+                  :class={`parties.${p.key} ? '${p.color}' : 'border-slate-700 bg-navy-900 text-slate-400'`}
+                  class="flex items-center justify-center gap-2 p-2.5 rounded-lg border cursor-pointer transition-colors text-sm font-medium"
+                >
+                  <input type="checkbox" x-model={`parties.${p.key}`} class="sr-only" />
+                  {p.label}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Primitives -->
+          <div class="card">
+            <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
+              <i class="ph-lock text-orange-400"></i>
+              Cryptographic Primitives
+            </h2>
+            <div class="grid grid-cols-3 gap-2">
+              {['HE', 'OT', 'GC', 'ZK', 'SS', 'FSS'].map(p => (
+                <label
+                  :class={`primitives.${p} ? 'border-brand-500/50 bg-brand-500/10 text-brand-300' : 'border-slate-700 bg-navy-900 text-slate-400'`}
+                  class="flex items-center gap-2 p-2 rounded-lg border cursor-pointer transition-colors text-sm"
+                >
+                  <input type="checkbox" x-model={`primitives.${p}`} class="sr-only" />
+                  <span
+                    :class={`primitives.${p} ? 'bg-brand-500 border-brand-400' : 'border-slate-600'`}
+                    class="w-3.5 h-3.5 rounded border flex items-center justify-center flex-shrink-0 transition-colors"
+                  >
+                    <template x-if={`primitives.${p}`}>
+                      <i class="ph-check text-white" style="font-size:8px"></i>
+                    </template>
+                  </span>
+                  {p}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Security & Setting -->
+          <div class="card">
+            <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
+              <i class="ph-shield text-red-400"></i>
+              Security &amp; Deployment
+            </h2>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-slate-400 text-xs font-medium mb-1.5">Security Model</label>
+                <select x-model="sec" class="input-field">
+                  <option value="SH">Semi-Honest (SH)</option>
+                  <option value="A">Active (A)</option>
+                  <option value="F">Full (F)</option>
+                  <option value="R">Robust (R)</option>
+                  <option value="SH/A">SH/A</option>
+                  <option value="SH/A/F">SH/A/F</option>
+                  <option value="A/F">A/F</option>
+                  <option value="A/R">A/R</option>
+                  <option value="F/R">F/R</option>
+                  <option value="AC">Active-Covert</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400 text-xs font-medium mb-1.5">Setting</label>
+                <select x-model="setting" class="input-field">
+                  <option value="O">Outsourcing (O)</option>
+                  <option value="C-S">Client-Server (C-S)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400 text-xs font-medium mb-1.5">Training Support</label>
+                <select x-model="training" class="input-field">
+                  <option value="✓">✓ Yes</option>
+                  <option value="✗">✗ No</option>
+                  <option value="◐">◐ Partial</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400 text-xs font-medium mb-1.5">Inference Support</label>
+                <select x-model="inference" class="input-field">
+                  <option value="✓">✓ Yes</option>
+                  <option value="✗">✗ No</option>
+                  <option value="◐">◐ Partial</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- ML Operations -->
+          <div class="card">
+            <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
+              <i class="ph-brain text-purple-400"></i>
+              ML Operation Support
+            </h2>
+            <div class="space-y-2">
+              {['Linear', 'Conv', 'Truncation', 'ReLU', 'SoftMax', 'Sigmoid', 'Normalisation', 'GeLU'].map(op => (
+                <div class="flex items-center justify-between py-1.5 border-b border-slate-800">
+                  <label class="text-slate-300 text-sm">{op}</label>
+                  <select x-model={`mlOps.${op}`} class="input-field w-32 py-1">
+                    <option value="✓">✓ Full</option>
+                    <option value="◐">◐ Partial</option>
+                    <option value="✗">✗ None</option>
+                    <option value="—">— N/A</option>
+                  </select>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="card">
+            <label class="block text-white font-semibold mb-2">Additional Notes</label>
+            <textarea
+              x-model="notes"
+              rows="3"
+              placeholder="Any context, footnotes, or clarifications..."
+              class="input-field"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Preview & Submit -->
+        <div class="lg:sticky lg:top-20 space-y-5 h-fit">
+          <!-- Preview -->
+          <div class="card">
+            <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
+              <i class="ph-eye text-emerald-400"></i>
+              Generated Row Preview
+            </h2>
+            <div class="overflow-x-auto">
+              <table class="text-xs w-full border-collapse mb-3">
+                <tr class="border-b border-slate-700">
+                  <td class="py-1 pr-3 text-slate-500 whitespace-nowrap">Overview:</td>
+                  <td class="py-1 font-mono text-slate-300">
+                    | <span x-text="overviewRow.join(' | ')"></span> |
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-1 pr-3 text-slate-500 whitespace-nowrap">ML Ops:</td>
+                  <td class="py-1 font-mono text-slate-300">
+                    | <span x-text="mlRow.join(' | ')"></span> |
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- Issue preview -->
+          <div class="card">
+            <h2 class="text-white font-semibold mb-3 flex items-center gap-2">
+              <i class="ph-github-logo text-slate-400"></i>
+              GitHub Issue Preview
+            </h2>
+            <pre class="text-xs text-slate-400 font-mono bg-navy-900 rounded-lg p-3 overflow-auto max-h-48 whitespace-pre-wrap" x-text="issueBody.substring(0, 500) + (issueBody.length > 500 ? '...' : '')"></pre>
+          </div>
+
+          <!-- Submit button -->
+          <div>
+            <a
+              :href="isValid ? issueUrl : '#'"
+              target="_blank"
+              rel="noopener noreferrer"
+              :class="isValid ? 'btn-primary w-full justify-center text-base' : 'btn-secondary w-full justify-center text-base opacity-50 cursor-not-allowed pointer-events-none'"
+            >
+              <i class="ph-github-logo text-lg"></i>
+              Open GitHub Issue
+            </a>
+            <p class="text-slate-600 text-xs text-center mt-2">
+              <template x-if="!isValid">
+                <span>Fill in Name, Year, and Paper URL to continue</span>
+              </template>
+              <template x-if="isValid">
+                <span>Opens a pre-filled GitHub issue — no login required on this page</span>
+              </template>
+            </p>
+          </div>
+
+          <!-- Direct PR path -->
+          <div class="card border-dashed">
+            <h3 class="text-slate-300 font-medium text-sm mb-2 flex items-center gap-2">
+              <i class="ph-git-fork text-slate-500"></i>
+              Experienced with Git?
+            </h3>
+            <p class="text-slate-500 text-xs leading-relaxed mb-3">
+              Fork the repo, edit the relevant .md file in Tables/Systematization/, and open a PR directly.
+            </p>
+            <a
+              href="https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks/blob/main/CONTRIBUTING.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-400 hover:text-brand-300 text-xs flex items-center gap-1.5 transition-colors"
+            >
+              <i class="ph-book-open"></i>
+              Read CONTRIBUTING.md →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>
+
+<script>
+function contributeForm() {
+  return {
+    name: '',
+    year: '',
+    paperUrl: '',
+    parties: { p2: false, p3: false, p4: false, pn: false },
+    primitives: { HE: false, OT: false, GC: false, ZK: false, SS: false, FSS: false },
+    setting: 'O',
+    sec: 'SH',
+    mlOps: { Linear: '✓', Conv: '✓', Truncation: '—', ReLU: '✗', SoftMax: '✗', Sigmoid: '✗', Normalisation: '✗', GeLU: '✗' },
+    training: '✓',
+    inference: '✓',
+    notes: '',
+    submitter: '',
+    get partiesStr() {
+      const p = []
+      if (this.parties.p2) p.push('2')
+      if (this.parties.p3) p.push('3')
+      if (this.parties.p4) p.push('4')
+      if (this.parties.pn) p.push('n')
+      return p.join('/') || '—'
+    },
+    get primitivesStr() {
+      return Object.entries(this.primitives).filter(function(e) { return e[1] }).map(function(e) { return e[0] }).join(', ') || '—'
+    },
+    get overviewRow() {
+      var prim = this.primitives
+      return [
+        this.name || 'Framework',
+        this.year || 'YYYY',
+        prim.HE ? '✓' : '✗',
+        prim.OT ? '✓' : '✗',
+        prim.GC ? '✓' : '✗',
+        prim.ZK ? '✓' : '✗',
+        prim.FSS ? 'FSS' : (prim.SS ? '✓' : '✗'),
+        this.setting || '—',
+        this.sec || '—',
+        this.training,
+        this.inference,
+        '◐',
+        '◐',
+      ]
+    },
+    get mlRow() {
+      var ops = this.mlOps
+      return [
+        this.name || 'Framework',
+        this.year || 'YYYY',
+        ops.Linear, ops.Conv, ops.Truncation, ops.ReLU, ops.SoftMax, ops.Sigmoid, ops.Normalisation, ops.GeLU
+      ]
+    },
+    get issueBody() {
+      var partyCategory = (this.parties.p4 || this.parties.pn) ? (this.parties.p4 ? '3/4PC' : 'nPC') : '2PC'
+      var overviewFile = 'systematization-overview-' + partyCategory.toLowerCase() + '.md'
+      var mlFile = 'systematization-ml-' + (partyCategory === '2PC' ? '2pc' : 'mpc') + '.md'
+      var submitterLine = this.submitter ? '@' + this.submitter : 'anonymous'
+      return '## Framework Suggestion: ' + (this.name || '(unnamed)') + '\n\n' +
+        '**Submitted by:** ' + submitterLine + '\n\n' +
+        '### Basic Information\n' +
+        '- **Name:** ' + this.name + '\n' +
+        '- **Year:** ' + this.year + '\n' +
+        '- **Paper URL:** ' + this.paperUrl + '\n' +
+        '- **Party configuration:** ' + this.partiesStr + '\n' +
+        '- **Primitives:** ' + this.primitivesStr + '\n' +
+        '- **Setting:** ' + this.setting + '\n' +
+        '- **Security model:** ' + this.sec + '\n' +
+        '- **Training:** ' + this.training + ' | **Inference:** ' + this.inference + '\n\n' +
+        '### Overview Table Row (' + overviewFile + ')\n' +
+        '```\n| ' + this.overviewRow.join(' | ') + ' |\n```\n\n' +
+        '### ML Support Row (' + mlFile + ')\n' +
+        '```\n| ' + this.mlRow.join(' | ') + ' |\n```\n\n' +
+        '### Additional Notes\n' + (this.notes || '(none)') + '\n\n' +
+        '---\n*Please verify the row format matches the existing table format before merging.*'
+    },
+    get issueUrl() {
+      var title = encodeURIComponent('Framework suggestion: ' + (this.name || 'unnamed'))
+      var body = encodeURIComponent(this.issueBody)
+      var labels = encodeURIComponent('framework-suggestion')
+      return 'https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks/issues/new?title=' + title + '&body=' + body + '&labels=' + labels
+    },
+    get isValid() {
+      return this.name.trim().length > 0 && String(this.year).trim().length === 4 && this.paperUrl.trim().length > 0
+    }
+  }
+}
+</script>

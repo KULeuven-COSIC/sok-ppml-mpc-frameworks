@@ -1,0 +1,414 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+
+function parseMdTable(filePath) {
+  try {
+    const content = readFileSync(join(process.cwd(), filePath), 'utf-8')
+    const lines = content.split('\n')
+    const tableLines = []
+    let inTable = false
+    for (const line of lines) {
+      if (line.trim().startsWith('|')) { inTable = true; tableLines.push(line.trim()) }
+      else if (inTable && line.trim() === '') break
+    }
+    if (tableLines.length < 3) return []
+    const headers = tableLines[0].split('|').slice(1, -1).map(h => h.trim())
+    return tableLines.slice(2).map(line => {
+      const cells = line.split('|').slice(1, -1).map(c => c.trim())
+      const obj = {}
+      headers.forEach((h, i) => { obj[h] = cells[i] || '' })
+      return obj
+    })
+  } catch { return [] }
+}
+
+function cleanName(cell) {
+  return (cell || '')
+    .replace(/\[\[([^\]]+)\]\]\([^)]+\)/g, (_, t) => t)
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, (_, t) => t)
+    .split('[[')[0].split('[')[0].trim()
+}
+
+function getPaperUrl(cell) {
+  const m = (cell || '').match(/\(([^)]*references\.md#([^)]+))\)/)
+  if (m) return `https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks/blob/main/Bibliography/references.md#${m[2]}`
+  return null
+}
+
+function norm(s) {
+  const t = (s || '').trim()
+  if (t === '✓' || t.startsWith('✓')) return '✓'
+  if (t === '✗') return '✗'
+  if (t.startsWith('◐') || t === '◐') return '◐'
+  if (t === '—' || t === '-') return '—'
+  return t || '—'
+}
+
+function cleanSec(s) {
+  return (s || '').replace(/\$[^$]*\$/g, m => m.replace(/[${}\\]/g, '').replace('A^C','AC').replace('A^S','AS')).trim() || '—'
+}
+
+function buildFramework(row, parties) {
+  const nameCell = row['Scheme'] || row['Work'] || Object.values(row)[0] || ''
+  return {
+    name: cleanName(nameCell),
+    paperUrl: getPaperUrl(nameCell),
+    year: parseInt(row['Year'] || '0') || 0,
+    parties,
+    has2: norm(row['2']),
+    has3: norm(row['3']),
+    has4: norm(row['4']),
+    he: norm(row['HE']),
+    ot: norm(row['OT']),
+    gc: norm(row['GC']),
+    zk: norm(row['ZK']),
+    ss: norm(row['SS']),
+    setting: (row['Setting'] || '—').trim(),
+    sec: cleanSec(row['Sec.'] || row['Sec'] || ''),
+    training: norm(row['Training']),
+    inference: norm(row['Inference']),
+    theoretical: norm(row['Theoretical']),
+    experimental: norm(row['Experimental']),
+  }
+}
+
+// Parse all tables
+const rows2pc = parseMdTable('Tables/Systematization/systematization-overview-2pc.md')
+const rows34pc = parseMdTable('Tables/Systematization/systematization-overview-34pc.md')
+const rowsNpc = parseMdTable('Tables/Systematization/systematization-overview-npc.md')
+const rowsML2pc = parseMdTable('Tables/Systematization/systematization-ml-2pc.md')
+const rowsMLMpc = parseMdTable('Tables/Systematization/systematization-ml-mpc.md')
+
+const frameworks2pc = rows2pc.map(r => buildFramework(r, '2PC'))
+const frameworks34pc = rows34pc.map(r => buildFramework(r, '3/4PC'))
+const frameworksNpc = rowsNpc.map(r => buildFramework(r, 'nPC'))
+const allFrameworks = [...frameworks2pc, ...frameworks34pc, ...frameworksNpc]
+
+// Build ML lookup keyed by framework name
+const mlData = {}
+for (const r of [...rowsML2pc, ...rowsMLMpc]) {
+  const name = cleanName(r['Scheme'] || r['Work'] || Object.values(r)[0] || '')
+  mlData[name] = {
+    linear: norm(r['Linear']),
+    conv: norm(r['Conv']),
+    trunc: (r['Truncation'] || '').replace(/\[[^\]]+\]/g, '').trim() || '—',
+    relu: norm(r['ReLU']),
+    softmax: norm(r['SoftMax']),
+    sigmoid: norm(r['Sigmoid']),
+    norm: norm(r['Normalisation']),
+    gelu: norm(r['GeLU']),
+  }
+}
+
+const frameworksJson = JSON.stringify(allFrameworks)
+const mlJson = JSON.stringify(mlData)
+---
+
+<Layout title="Framework Explorer">
+  <Navbar slot="navbar" />
+
+  <script define:vars={{ frameworksJson, mlJson }}>
+    window.__FRAMEWORKS__ = JSON.parse(frameworksJson)
+    window.__ML_DATA__ = JSON.parse(mlJson)
+  </script>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="section-heading">Framework Explorer</h1>
+      <p class="section-subheading !mb-4">
+        Browse {allFrameworks.length} PPML frameworks across cryptographic design, security models, and ML operation support.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-blue-900/40 text-blue-300 border-blue-800">{frameworks2pc.length} 2PC frameworks</span>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-teal-900/40 text-teal-300 border-teal-800">{frameworks34pc.length} 3/4PC frameworks</span>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-purple-900/40 text-purple-300 border-purple-800">{frameworksNpc.length} n-PC frameworks</span>
+      </div>
+    </div>
+
+    <!-- Alpine interactive section -->
+    <div
+      x-data="{
+        frameworks: window.__FRAMEWORKS__,
+        mlData: window.__ML_DATA__,
+        activeTab: 'overview',
+        search: '',
+        filterParty: 'all',
+        filterSec: 'all',
+        filterSetting: 'all',
+        filterYear: 'all',
+        selectedFw: null,
+        get filtered() {
+          return this.frameworks.filter(f => {
+            if (this.search && !f.name.toLowerCase().includes(this.search.toLowerCase())) return false
+            if (this.filterParty !== 'all' && f.parties !== this.filterParty) return false
+            if (this.filterSec !== 'all' && !f.sec.includes(this.filterSec)) return false
+            if (this.filterSetting !== 'all' && f.setting !== this.filterSetting) return false
+            if (this.filterYear === 'early' && f.year > 2019) return false
+            if (this.filterYear === 'mid' && (f.year < 2020 || f.year > 2022)) return false
+            if (this.filterYear === 'recent' && f.year < 2023) return false
+            return true
+          })
+        },
+        statusClass(s) {
+          if (s === '✓') return 'status-yes text-center'
+          if (s === '◐') return 'status-partial text-center'
+          if (s === '✗' || s === '—') return 'status-no text-center'
+          return 'text-slate-400 text-center text-xs'
+        },
+        mlForFw(name) {
+          return this.mlData[name] || null
+        }
+      }"
+      x-cloak
+    >
+      <!-- Filters -->
+      <div class="bg-navy-800 border border-slate-700/50 rounded-xl p-4 mb-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div class="lg:col-span-2">
+            <div class="relative">
+              <i class="ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
+              <input
+                type="text"
+                x-model="search"
+                placeholder="Search frameworks..."
+                class="input-field pl-9"
+              />
+            </div>
+          </div>
+          <select x-model="filterParty" class="input-field">
+            <option value="all">All parties</option>
+            <option value="2PC">2PC</option>
+            <option value="3/4PC">3/4PC</option>
+            <option value="nPC">n-Party</option>
+          </select>
+          <select x-model="filterSec" class="input-field">
+            <option value="all">All security</option>
+            <option value="SH">Semi-Honest</option>
+            <option value="A">Active</option>
+            <option value="F">Full</option>
+            <option value="R">Robust</option>
+            <option value="AC">Active-Covert</option>
+          </select>
+          <select x-model="filterYear" class="input-field">
+            <option value="all">All years</option>
+            <option value="early">Early (2017–2019)</option>
+            <option value="mid">Mid (2020–2022)</option>
+            <option value="recent">Recent (2023+)</option>
+          </select>
+        </div>
+        <div class="flex items-center justify-between mt-3">
+          <span class="text-slate-500 text-xs" x-text="`Showing ${filtered.length} of ${frameworks.length} frameworks`"></span>
+          <div class="flex gap-1">
+            <button
+              x-on:click="activeTab = 'overview'"
+              :class="activeTab === 'overview' ? 'tab-btn active' : 'tab-btn'"
+            >Design Overview</button>
+            <button
+              x-on:click="activeTab = 'ml-support'"
+              :class="activeTab === 'ml-support' ? 'tab-btn active' : 'tab-btn'"
+            >ML Support</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overview Tab -->
+      <div x-show="activeTab === 'overview'" class="overflow-x-auto rounded-xl border border-slate-700/50">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Framework</th>
+              <th>Year</th>
+              <th>Parties</th>
+              <th class="text-center">HE</th>
+              <th class="text-center">OT</th>
+              <th class="text-center">GC</th>
+              <th class="text-center">ZK</th>
+              <th class="text-center">SS</th>
+              <th>Setting</th>
+              <th>Security</th>
+              <th class="text-center">Train</th>
+              <th class="text-center">Infer</th>
+              <th class="text-center">Theory</th>
+              <th class="text-center">Exper</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="f in filtered" :key="f.name + f.year">
+              <tr x-on:click="selectedFw = selectedFw?.name === f.name ? null : f" class="cursor-pointer">
+                <td>
+                  <div class="flex items-center gap-1.5">
+                    <span x-text="f.name" class="font-medium text-slate-200"></span>
+                    <template x-if="f.paperUrl">
+                      <a :href="f.paperUrl" target="_blank" rel="noopener noreferrer" x-on:click.stop class="text-slate-500 hover:text-brand-400 transition-colors">
+                        <i class="ph-arrow-square-out text-xs"></i>
+                      </a>
+                    </template>
+                  </div>
+                </td>
+                <td class="text-slate-400" x-text="f.year || '—'"></td>
+                <td>
+                  <span
+                    :class="{
+                      'bg-blue-900/40 text-blue-300 border-blue-800': f.parties === '2PC',
+                      'bg-teal-900/40 text-teal-300 border-teal-800': f.parties === '3/4PC',
+                      'bg-purple-900/40 text-purple-300 border-purple-800': f.parties === 'nPC',
+                    }"
+                    class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border"
+                    x-text="f.parties"
+                  ></span>
+                </td>
+                <td :class="statusClass(f.he)" x-text="f.he"></td>
+                <td :class="statusClass(f.ot)" x-text="f.ot"></td>
+                <td :class="statusClass(f.gc)" x-text="f.gc"></td>
+                <td :class="statusClass(f.zk)" x-text="f.zk"></td>
+                <td :class="statusClass(f.ss)" x-text="f.ss"></td>
+                <td class="text-slate-400 text-xs" x-text="f.setting"></td>
+                <td class="text-slate-300 text-xs font-mono" x-text="f.sec"></td>
+                <td :class="statusClass(f.training)" x-text="f.training"></td>
+                <td :class="statusClass(f.inference)" x-text="f.inference"></td>
+                <td :class="statusClass(f.theoretical)" x-text="f.theoretical"></td>
+                <td :class="statusClass(f.experimental)" x-text="f.experimental"></td>
+              </tr>
+            </template>
+            <template x-if="filtered.length === 0">
+              <tr><td colspan="14" class="text-center py-8 text-slate-500">No frameworks match the current filters.</td></tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ML Support Tab -->
+      <div x-show="activeTab === 'ml-support'" class="overflow-x-auto rounded-xl border border-slate-700/50">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Framework</th>
+              <th>Year</th>
+              <th class="text-center">Linear</th>
+              <th class="text-center">Conv</th>
+              <th>Truncation</th>
+              <th class="text-center">ReLU</th>
+              <th class="text-center">SoftMax</th>
+              <th class="text-center">Sigmoid</th>
+              <th class="text-center">Norm</th>
+              <th class="text-center">GeLU</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="f in filtered" :key="f.name + '-ml'">
+              <tr>
+                <td>
+                  <div class="flex items-center gap-1.5">
+                    <span x-text="f.name" class="font-medium text-slate-200"></span>
+                    <template x-if="f.paperUrl">
+                      <a :href="f.paperUrl" target="_blank" rel="noopener noreferrer" x-on:click.stop class="text-slate-500 hover:text-brand-400 transition-colors">
+                        <i class="ph-arrow-square-out text-xs"></i>
+                      </a>
+                    </template>
+                  </div>
+                </td>
+                <td class="text-slate-400" x-text="f.year || '—'"></td>
+                <template x-if="mlForFw(f.name)">
+                  <td :class="statusClass(mlForFw(f.name).linear)" x-text="mlForFw(f.name).linear"></td>
+                  <td :class="statusClass(mlForFw(f.name).conv)" x-text="mlForFw(f.name).conv"></td>
+                  <td class="text-slate-400 text-xs" x-text="mlForFw(f.name).trunc"></td>
+                  <td :class="statusClass(mlForFw(f.name).relu)" x-text="mlForFw(f.name).relu"></td>
+                  <td :class="statusClass(mlForFw(f.name).softmax)" x-text="mlForFw(f.name).softmax"></td>
+                  <td :class="statusClass(mlForFw(f.name).sigmoid)" x-text="mlForFw(f.name).sigmoid"></td>
+                  <td :class="statusClass(mlForFw(f.name).norm)" x-text="mlForFw(f.name).norm"></td>
+                  <td :class="statusClass(mlForFw(f.name).gelu)" x-text="mlForFw(f.name).gelu"></td>
+                </template>
+                <template x-if="!mlForFw(f.name)">
+                  <td colspan="8" class="text-slate-600 text-center text-xs">ML data not available</td>
+                </template>
+              </tr>
+            </template>
+            <template x-if="filtered.length === 0">
+              <tr><td colspan="10" class="text-center py-8 text-slate-500">No frameworks match the current filters.</td></tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Selected framework detail panel -->
+      <div
+        x-show="selectedFw"
+        x-transition
+        class="mt-4 bg-navy-800 border border-brand-500/30 rounded-xl p-5"
+      >
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-white font-bold text-lg" x-text="selectedFw?.name"></h3>
+            <div class="flex items-center gap-3 mt-1 text-sm text-slate-400">
+              <span x-text="'Year: ' + (selectedFw?.year || '—')"></span>
+              <span x-text="'Parties: ' + (selectedFw?.parties || '—')"></span>
+              <span x-text="'Security: ' + (selectedFw?.sec || '—')"></span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <template x-if="selectedFw?.paperUrl">
+              <a :href="selectedFw.paperUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-1.5 px-3">
+                <i class="ph-arrow-square-out"></i> View Reference
+              </a>
+            </template>
+            <button x-on:click="selectedFw = null" class="p-1.5 rounded text-slate-500 hover:text-white hover:bg-slate-700">
+              <i class="ph-x"></i>
+            </button>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="bg-navy-900 rounded-lg p-3">
+            <div class="text-slate-500 text-xs mb-1">HE</div>
+            <div class="text-slate-200 font-medium text-sm" x-text="selectedFw?.he || '—'"></div>
+          </div>
+          <div class="bg-navy-900 rounded-lg p-3">
+            <div class="text-slate-500 text-xs mb-1">OT</div>
+            <div class="text-slate-200 font-medium text-sm" x-text="selectedFw?.ot || '—'"></div>
+          </div>
+          <div class="bg-navy-900 rounded-lg p-3">
+            <div class="text-slate-500 text-xs mb-1">GC</div>
+            <div class="text-slate-200 font-medium text-sm" x-text="selectedFw?.gc || '—'"></div>
+          </div>
+          <div class="bg-navy-900 rounded-lg p-3">
+            <div class="text-slate-500 text-xs mb-1">ZK</div>
+            <div class="text-slate-200 font-medium text-sm" x-text="selectedFw?.zk || '—'"></div>
+          </div>
+          <div class="bg-navy-900 rounded-lg p-3">
+            <div class="text-slate-500 text-xs mb-1">SS</div>
+            <div class="text-slate-200 font-medium text-sm" x-text="selectedFw?.ss || '—'"></div>
+          </div>
+          <div class="bg-navy-900 rounded-lg p-3">
+            <div class="text-slate-500 text-xs mb-1">Setting</div>
+            <div class="text-slate-200 font-medium text-sm" x-text="selectedFw?.setting || '—'"></div>
+          </div>
+          <div class="bg-navy-900 rounded-lg p-3">
+            <div class="text-slate-500 text-xs mb-1">Training</div>
+            <div class="text-slate-200 font-medium text-sm" x-text="selectedFw?.training || '—'"></div>
+          </div>
+          <div class="bg-navy-900 rounded-lg p-3">
+            <div class="text-slate-500 text-xs mb-1">Inference</div>
+            <div class="text-slate-200 font-medium text-sm" x-text="selectedFw?.inference || '—'"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-500">
+        <span class="font-medium text-slate-400">Legend:</span>
+        <span><span class="status-yes">✓</span> Available</span>
+        <span><span class="status-partial">◐</span> Partial / Primitives only</span>
+        <span><span class="status-no">✗</span> Not supported</span>
+        <span class="text-slate-600">— Not applicable</span>
+        <span class="ml-auto">Click a row to expand details</span>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>

@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+
+function parseCostTable(filePath) {
+  try {
+    const content = readFileSync(join(process.cwd(), filePath), 'utf-8')
+    const lines = content.split('\n')
+    const tableLines = []
+    let inTable = false
+    for (const line of lines) {
+      if (line.trim().startsWith('|')) { inTable = true; tableLines.push(line.trim()) }
+      else if (inTable && line.trim() === '') break
+    }
+    if (tableLines.length < 3) return { headers: [], rows: [] }
+    const headers = tableLines[0].split('|').slice(1, -1).map(h => h.trim())
+    const rows = tableLines.slice(2).map(line => {
+      const cells = line.split('|').slice(1, -1).map(c => c.trim())
+      const obj = {}
+      headers.forEach((h, i) => { obj[h] = cells[i] || '' })
+      return obj
+    })
+    return { headers, rows }
+  } catch { return { headers: [], rows: [] } }
+}
+
+function cleanProtocol(cell) {
+  return (cell || '')
+    .replace(/\[\[([^\]]+)\]\]\([^)]+\)/g, (_, t) => t)
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, (_, t) => t)
+    .split('[[')[0].split('[')[0].trim()
+}
+
+function getPaperUrl(cell) {
+  const m = (cell || '').match(/references\.md#([^)]+)/)
+  if (m) return `https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks/blob/main/Bibliography/references.md#${m[1]}`
+  return null
+}
+
+const operations = [
+  { id: 'relu', label: 'ReLU', icon: 'ph-lightning', color: 'text-orange-400', desc: 'Rectified Linear Unit activation' },
+  { id: 'dot-product', label: 'Dot Product', icon: 'ph-brackets-square', color: 'text-blue-400', desc: 'Linear layer computation' },
+  { id: 'truncation', label: 'Truncation', icon: 'ph-scissors', color: 'text-teal-400', desc: 'Fixed-point precision adjustment' },
+  { id: 'softmax', label: 'Softmax', icon: 'ph-chart-pie', color: 'text-purple-400', desc: 'Softmax activation function' },
+  { id: 'sigmoid', label: 'Sigmoid', icon: 'ph-wave-sine', color: 'text-pink-400', desc: 'Sigmoid activation function' },
+  { id: 'gelu', label: 'GELU', icon: 'ph-wave-triangle', color: 'text-emerald-400', desc: 'Gaussian Error Linear Unit' },
+  { id: 'normalization', label: 'Normalization', icon: 'ph-equalizer', color: 'text-amber-400', desc: 'Batch/Layer normalization' },
+]
+
+const tables = {}
+for (const op of operations) {
+  const { headers, rows } = parseCostTable(`Tables/Theoretical-analysis/theoretical-analysis-${op.id}.md`)
+  tables[op.id] = {
+    headers,
+    rows: rows.map(r => ({
+      N: r['N'] || '—',
+      sec: r['Sec.'] || r['Sec'] || '—',
+      protocol: cleanProtocol(r['Protocol'] || ''),
+      paperUrl: getPaperUrl(r['Protocol'] || ''),
+      offline: r['Offline Comm.'] || '—',
+      online: r['Online Comm.'] || '—',
+      rounds: r['Online Rounds'] || '—',
+      tech: r['Tech.'] || r['Tech'] || '—',
+    }))
+  }
+}
+
+const tablesJson = JSON.stringify(tables)
+const opsJson = JSON.stringify(operations)
+const base = import.meta.env.BASE_URL
+---
+
+<Layout title="Cost Analysis">
+  <Navbar slot="navbar" />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="section-heading">Theoretical Cost Analysis</h1>
+      <p class="section-subheading">
+        Communication costs in total bits. Select an operation to compare protocols.
+        Formulas are rendered with <a href="https://katex.org" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline">KaTeX</a>.
+      </p>
+    </div>
+
+    <script define:vars={{ tablesJson, opsJson }}>
+      window.__COST_TABLES__ = JSON.parse(tablesJson)
+      window.__OPERATIONS__ = JSON.parse(opsJson)
+    </script>
+
+    <div
+      x-data="{
+        tables: window.__COST_TABLES__,
+        ops: window.__OPERATIONS__,
+        activeOp: 'relu',
+        filterN: 'all',
+        filterSec: 'all',
+        get currentRows() {
+          const rows = this.tables[this.activeOp]?.rows || []
+          return rows.filter(r => {
+            if (this.filterN !== 'all' && String(r.N) !== this.filterN) return false
+            if (this.filterSec !== 'all' && !r.sec.includes(this.filterSec)) return false
+            return true
+          })
+        },
+        techClass(t) {
+          const map = { SS: 'tech-SS', OT: 'tech-OT', HE: 'tech-HE', GC: 'tech-GC', FSS: 'tech-FSS', LUT: 'tech-LUT' }
+          return 'tech-badge ' + (map[t] || 'bg-slate-700 text-slate-300')
+        }
+      }"
+      x-cloak
+    >
+      <!-- Operation selector -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 mb-6">
+        <template x-for="op in ops" :key="op.id">
+          <button
+            x-on:click="activeOp = op.id; filterN = 'all'; filterSec = 'all'"
+            :class="activeOp === op.id
+              ? 'bg-brand-500/15 border-brand-500/50 text-brand-400'
+              : 'bg-navy-800 border-slate-700/50 text-slate-400 hover:border-slate-500 hover:text-slate-200'"
+            class="border rounded-xl p-3 text-left transition-colors"
+          >
+            <i :class="op.icon + ' ' + op.color + ' text-lg block mb-1'"></i>
+            <div class="text-xs font-semibold" x-text="op.label"></div>
+            <div class="text-xs text-slate-600 mt-0.5 leading-tight hidden sm:block" x-text="op.desc"></div>
+          </button>
+        </template>
+      </div>
+
+      <!-- Filters -->
+      <div class="bg-navy-800 border border-slate-700/50 rounded-xl p-4 mb-4 flex flex-wrap gap-3 items-center">
+        <span class="text-slate-400 text-sm font-medium">Filter:</span>
+        <select x-model="filterN" class="input-field w-auto">
+          <option value="all">All parties</option>
+          <option value="2">2-Party</option>
+          <option value="3">3-Party</option>
+          <option value="4">4-Party</option>
+          <option value="N">N-Party</option>
+        </select>
+        <select x-model="filterSec" class="input-field w-auto">
+          <option value="all">All security</option>
+          <option value="SH">Semi-Honest</option>
+          <option value="A">Active</option>
+          <option value="F">Full</option>
+          <option value="R">Robust</option>
+        </select>
+        <span class="ml-auto text-xs text-slate-500" x-text="`${currentRows.length} protocols`"></span>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto rounded-xl border border-slate-700/50">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="text-center">N</th>
+              <th>Security</th>
+              <th>Protocol</th>
+              <th>Offline Comm.</th>
+              <th>Online Comm.</th>
+              <th>Online Rounds</th>
+              <th>Technique</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="(row, idx) in currentRows" :key="idx">
+              <tr>
+                <td class="text-center font-mono text-slate-300" x-text="row.N"></td>
+                <td>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700" x-text="row.sec"></span>
+                </td>
+                <td>
+                  <div class="flex items-center gap-1.5">
+                    <span class="font-medium text-slate-200" x-text="row.protocol"></span>
+                    <template x-if="row.paperUrl">
+                      <a :href="row.paperUrl" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-brand-400 transition-colors">
+                        <i class="ph-arrow-square-out text-xs"></i>
+                      </a>
+                    </template>
+                  </div>
+                </td>
+                <td class="font-mono text-xs text-slate-300" x-html="row.offline === '-' ? '<span class=&quot;text-slate-600&quot;>—</span>' : row.offline"></td>
+                <td class="font-mono text-xs text-slate-200" x-html="row.online"></td>
+                <td class="font-mono text-xs text-slate-300 text-center" x-html="row.rounds"></td>
+                <td class="text-center">
+                  <span :class="techClass(row.tech)" x-text="row.tech"></span>
+                </td>
+              </tr>
+            </template>
+            <template x-if="currentRows.length === 0">
+              <tr><td colspan="7" class="text-center py-8 text-slate-500">No protocols match the current filters.</td></tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Notation note -->
+      <div class="mt-6 bg-navy-800/60 border border-slate-700/40 rounded-xl p-5">
+        <h3 class="text-slate-300 font-semibold text-sm mb-3 flex items-center gap-2">
+          <i class="ph-info text-brand-400"></i>
+          Notation
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-xs text-slate-500">
+          <div set:html="$\\ell$ — bit length of secret-shared values" />
+          <div set:html="$\\Lambda$ — computational security parameter" />
+          <div set:html="$\\kappa$ — statistical security parameter" />
+          <div set:html="$s$ — output size" />
+          <div set:html="$p$ — field prime" />
+          <div set:html="$\\ell_x$ — bit length of input" />
+          <div set:html="$\\mathcal{O}(\\cdot)$ — asymptotic notation" />
+          <div>— denotes no offline phase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>

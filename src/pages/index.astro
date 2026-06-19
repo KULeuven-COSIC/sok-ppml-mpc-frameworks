@@ -1,0 +1,246 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+
+function parseMdTableRows(filePath) {
+  try {
+    const content = readFileSync(join(process.cwd(), filePath), 'utf-8')
+    const lines = content.split('\n')
+    const tableLines = []
+    let inTable = false
+    for (const line of lines) {
+      if (line.trim().startsWith('|')) { inTable = true; tableLines.push(line.trim()) }
+      else if (inTable && line.trim() === '') break
+    }
+    // subtract header row + separator row
+    return Math.max(0, tableLines.length - 2)
+  } catch { return 0 }
+}
+
+const count2pc = parseMdTableRows('Tables/Systematization/systematization-overview-2pc.md')
+const count34pc = parseMdTableRows('Tables/Systematization/systematization-overview-34pc.md')
+const countNpc = parseMdTableRows('Tables/Systematization/systematization-overview-npc.md')
+const totalFrameworks = count2pc + count34pc + countNpc
+const base = import.meta.env.BASE_URL
+
+const authors = [
+  { name: 'Martin Zbudila', affil: 'KU Leuven COSIC', initials: 'MZ' },
+  { name: 'Ajith Suresh', affil: 'TII / KU Leuven COSIC', initials: 'AS' },
+  { name: 'Mohammad Hossein Yalame', affil: 'KU Leuven COSIC', initials: 'MY' },
+  { name: 'Saeid Mirzamohammadi', affil: 'KU Leuven COSIC', initials: 'SM' },
+  { name: 'Aysajan Abidin', affil: 'KU Leuven COSIC', initials: 'AA' },
+  { name: 'Bart Preneel', affil: 'KU Leuven COSIC', initials: 'BP' },
+]
+
+const features = [
+  {
+    href: base + 'explorer',
+    icon: 'ph-table',
+    color: 'from-blue-500 to-blue-700',
+    title: 'Framework Explorer',
+    desc: 'Browse and filter all tracked frameworks. Search by protocol, year, security model, or ML operation support.',
+    cta: 'Explore frameworks →',
+  },
+  {
+    href: base + 'cost-analysis',
+    icon: 'ph-chart-bar',
+    color: 'from-teal-500 to-teal-700',
+    title: 'Cost Analysis',
+    desc: 'Compare theoretical communication costs across protocols for ReLU, Softmax, GELU, truncation, and more.',
+    cta: 'View cost tables →',
+  },
+  {
+    href: base + 'mpc-puzzle',
+    icon: 'ph-puzzle-piece',
+    color: 'from-purple-500 to-purple-700',
+    title: 'MPC Puzzle',
+    desc: 'Visualize how 2-, 3-, and 4-party secret-sharing schemes connect and convert between each other.',
+    cta: 'Explore diagram →',
+  },
+  {
+    href: base + 'contribute',
+    icon: 'ph-git-pull-request',
+    color: 'from-rose-500 to-rose-700',
+    title: 'Contribute',
+    desc: 'Know a framework we missed? Fill out the form to suggest an addition — it opens a GitHub PR automatically.',
+    cta: 'Submit a framework →',
+  },
+]
+
+const citation = `@misc{zbudila2025sok,
+  title  = {{SoK}: Connecting the Dots in Privacy-Preserving {ML} ---
+             Systematization of {MPC} Protocols and Conversions
+             Between Secret Sharing Schemes},
+  author = {Zbudila, Martin and Suresh, Ajith and Yalame, Mohammad Hossein
+             and Mirzamohammadi, Saeid and Abidin, Aysajan and Preneel, Bart},
+  year   = {2025},
+  note   = {Cryptology ePrint Archive, Report 2025/1679}
+}`
+---
+
+<Layout title="Home" description="A living systematization of MPC-based privacy-preserving ML frameworks.">
+  <Navbar slot="navbar" />
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-blue-950/30 via-navy-950 to-navy-950 pointer-events-none"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/5 blur-3xl rounded-full pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-medium mb-8">
+        <i class="ph-shield-check"></i>
+        ePrint 2025/1679 · KU Leuven COSIC
+      </div>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+        Connecting the Dots in<br />
+        <span class="bg-gradient-to-r from-brand-400 to-purple-400 bg-clip-text text-transparent">
+          Privacy-Preserving ML
+        </span>
+      </h1>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+        A systematization of MPC protocols and secret-sharing scheme conversions for
+        privacy-preserving machine learning — continuously maintained as a living resource.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href={base + 'explorer'} class="btn-primary text-base px-7 py-3">
+          <i class="ph-table"></i>
+          Explore Frameworks
+        </a>
+        <a href="https://eprint.iacr.org/2025/1679" target="_blank" rel="noopener noreferrer" class="btn-secondary text-base px-7 py-3">
+          <i class="ph-file-pdf"></i>
+          Read the Paper
+        </a>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+        {[
+          { value: totalFrameworks + '+', label: 'Frameworks' },
+          { value: '2017–2026', label: 'Years Covered' },
+          { value: '7', label: 'ML Operations' },
+          { value: '5', label: 'Security Models' },
+        ].map(s => (
+          <div class="bg-navy-800/60 border border-slate-700/40 rounded-xl p-4 text-center">
+            <div class="text-2xl font-bold text-white mb-1">{s.value}</div>
+            <div class="text-slate-500 text-xs">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature cards -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <h2 class="section-heading">Explore the Resource</h2>
+      <p class="section-subheading">Everything you need to navigate the PPML-MPC landscape</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {features.map(f => (
+        <a href={f.href} class="card group hover:border-slate-600 transition-all hover:-translate-y-0.5">
+          <div class={`w-10 h-10 rounded-lg bg-gradient-to-br ${f.color} flex items-center justify-center mb-4`}>
+            <i class={f.icon + ' text-xl text-white'}></i>
+          </div>
+          <h3 class="text-white font-semibold mb-2">{f.title}</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">{f.desc}</p>
+          <span class="text-brand-400 text-sm font-medium group-hover:text-brand-300 transition-colors">{f.cta}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- About / Abstract -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <div>
+        <h2 class="section-heading">About the SoK</h2>
+        <p class="text-slate-400 leading-relaxed mb-4">
+          This systematization organizes MPC-based PPML frameworks across key dimensions: algebraic structures,
+          threat models, execution phases, deployment modes, and network configurations.
+        </p>
+        <p class="text-slate-400 leading-relaxed mb-4">
+          We decompose PPML systems into core cryptographic primitives and provide theoretical cost analyses
+          for all major neural network operations — from dot products and truncation to ReLU, GeLU, and normalization.
+        </p>
+        <p class="text-slate-400 leading-relaxed mb-6">
+          A central contribution is the <strong class="text-slate-200">MPC Puzzle</strong> — a unification of 2-, 3-,
+          and 4-party secret-sharing schemes with a complete mapping of conversion protocols and their overhead.
+        </p>
+        <a href="https://eprint.iacr.org/2025/1679" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <i class="ph-file-pdf"></i>
+          Full Paper on ePrint
+        </a>
+      </div>
+      <div>
+        <h3 class="text-slate-300 font-semibold text-sm mb-3">BibTeX Citation</h3>
+        <div class="relative">
+          <pre class="bg-navy-900 border border-slate-700 rounded-xl p-4 text-xs text-slate-400 font-mono overflow-x-auto leading-relaxed" id="citation-block">{citation}</pre>
+          <button
+            id="copy-citation"
+            class="absolute top-3 right-3 p-1.5 rounded bg-slate-700 hover:bg-slate-600 text-slate-400 hover:text-white transition-colors"
+            title="Copy citation"
+          >
+            <i class="ph-copy text-sm"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authors -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="section-heading text-center">Authors</h2>
+    <p class="section-subheading text-center">KU Leuven COSIC, Belgium</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      {authors.map(a => (
+        <div class="card text-center hover:border-slate-600 transition-colors">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500/30 to-purple-600/30 border border-brand-500/30 flex items-center justify-center text-brand-400 font-bold text-sm mx-auto mb-3">
+            {a.initials}
+          </div>
+          <div class="text-white text-sm font-medium leading-snug mb-1">{a.name}</div>
+          <div class="text-slate-500 text-xs leading-snug">{a.affil}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Contribute CTA -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-gradient-to-r from-brand-500/10 to-purple-600/10 border border-brand-500/20 rounded-2xl p-8 sm:p-12 text-center">
+      <i class="ph-git-pull-request text-4xl text-brand-400 mb-4 block"></i>
+      <h2 class="text-2xl font-bold text-white mb-3">Help Keep This Resource Current</h2>
+      <p class="text-slate-400 max-w-xl mx-auto mb-8 leading-relaxed">
+        Know a framework we missed or have updated data? The community drives this resource.
+        Fill out the contribution form — it guides you through opening a GitHub pull request.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href={base + 'contribute'} class="btn-primary">
+          <i class="ph-plus"></i>
+          Suggest a Framework
+        </a>
+        <a href="https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks/issues" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          <i class="ph-bug"></i>
+          Report an Issue
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<script>
+  document.getElementById('copy-citation')?.addEventListener('click', () => {
+    const text = document.getElementById('citation-block')?.textContent || ''
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-citation')
+      if (btn) {
+        btn.innerHTML = '<i class="ph-check text-sm text-emerald-400"></i>'
+        setTimeout(() => { btn.innerHTML = '<i class="ph-copy text-sm"></i>' }, 2000)
+      }
+    })
+  })
+</script>
