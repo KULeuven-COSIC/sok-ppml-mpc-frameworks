@@ -21,7 +21,7 @@ function parseCostTable(filePath) {
     const rows = tableLines.slice(2).map(line => {
       const cells = line.split('|').slice(1, -1).map(c => c.trim())
       const obj = {}
-      headers.forEach((h, i) => { obj[h] = cells[i] || '' })
+      headers.forEach((h, i) => { obj[h] = cells[i] ?? '' })
       return obj
     })
     return { headers, rows }
@@ -32,7 +32,8 @@ function cleanProtocol(cell) {
   return (cell || '')
     .replace(/\[\[([^\]]+)\]\]\([^)]+\)/g, (_, t) => t)
     .replace(/\[([^\]]+)\]\([^)]+\)/g, (_, t) => t)
-    .split('[[')[0].split('[')[0].trim()
+    .replace(/\[[^\]]*\]\([^)]*\)/g, '')
+    .trim()
 }
 
 function getPaperUrl(cell) {
@@ -42,36 +43,38 @@ function getPaperUrl(cell) {
 }
 
 const operations = [
-  { id: 'relu', label: 'ReLU', icon: 'ph-lightning', color: 'text-orange-400', desc: 'Rectified Linear Unit activation' },
-  { id: 'dot-product', label: 'Dot Product', icon: 'ph-brackets-square', color: 'text-blue-400', desc: 'Linear layer computation' },
-  { id: 'truncation', label: 'Truncation', icon: 'ph-scissors', color: 'text-teal-400', desc: 'Fixed-point precision adjustment' },
-  { id: 'softmax', label: 'Softmax', icon: 'ph-chart-pie', color: 'text-purple-400', desc: 'Softmax activation function' },
-  { id: 'sigmoid', label: 'Sigmoid', icon: 'ph-wave-sine', color: 'text-pink-400', desc: 'Sigmoid activation function' },
-  { id: 'gelu', label: 'GELU', icon: 'ph-wave-triangle', color: 'text-emerald-400', desc: 'Gaussian Error Linear Unit' },
-  { id: 'normalization', label: 'Normalization', icon: 'ph-equalizer', color: 'text-amber-400', desc: 'Batch/Layer normalization' },
+  { id: 'relu', label: 'ReLU', icon: 'ph-lightning', color: 'text-orange-400', desc: 'Rectified Linear Unit' },
+  { id: 'dot-product', label: 'Dot Product', icon: 'ph-brackets-square', color: 'text-blue-400', desc: 'Linear layer' },
+  { id: 'truncation', label: 'Truncation', icon: 'ph-scissors', color: 'text-teal-400', desc: 'Fixed-point rounding' },
+  { id: 'softmax', label: 'Softmax', icon: 'ph-chart-pie', color: 'text-purple-400', desc: 'Softmax activation' },
+  { id: 'sigmoid', label: 'Sigmoid', icon: 'ph-wave-sine', color: 'text-pink-400', desc: 'Sigmoid activation' },
+  { id: 'gelu', label: 'GELU', icon: 'ph-wave-triangle', color: 'text-emerald-400', desc: 'Gaussian ELU' },
+  { id: 'normalization', label: 'Norm.', icon: 'ph-equalizer', color: 'text-amber-400', desc: 'Normalization' },
 ]
+
+const FIXED_COLS = ['N', 'Sec.', 'Protocol']
 
 const tables = {}
 for (const op of operations) {
   const { headers, rows } = parseCostTable(`Tables/Theoretical-analysis/theoretical-analysis-${op.id}.md`)
+  const dataHeaders = headers.filter(h => !FIXED_COLS.includes(h))
   tables[op.id] = {
-    headers,
-    rows: rows.map(r => ({
-      N: r['N'] || '—',
-      sec: r['Sec.'] || r['Sec'] || '—',
-      protocol: cleanProtocol(r['Protocol'] || ''),
-      paperUrl: getPaperUrl(r['Protocol'] || ''),
-      offline: r['Offline Comm.'] || '—',
-      online: r['Online Comm.'] || '—',
-      rounds: r['Online Rounds'] || '—',
-      tech: r['Tech.'] || r['Tech'] || '—',
-    }))
+    dataHeaders,
+    rows: rows.map(r => {
+      const obj = {
+        _N: r['N'] || '—',
+        _sec: r['Sec.'] || '—',
+        _protocol: cleanProtocol(r['Protocol'] || ''),
+        _paperUrl: getPaperUrl(r['Protocol'] || ''),
+      }
+      dataHeaders.forEach(h => { obj[h] = r[h] || '—' })
+      return obj
+    })
   }
 }
 
 const tablesJson = JSON.stringify(tables)
 const opsJson = JSON.stringify(operations)
-const base = import.meta.env.BASE_URL
 ---
 
 <Layout title="Cost Analysis">
@@ -82,7 +85,7 @@ const base = import.meta.env.BASE_URL
       <h1 class="section-heading">Theoretical Cost Analysis</h1>
       <p class="section-subheading">
         Communication costs in total bits. Select an operation to compare protocols.
-        Formulas are rendered with <a href="https://katex.org" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline">KaTeX</a>.
+        Formulas rendered with <a href="https://katex.org" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline">KaTeX</a>.
       </p>
     </div>
 
@@ -92,25 +95,7 @@ const base = import.meta.env.BASE_URL
     </script>
 
     <div
-      x-data="{
-        tables: window.__COST_TABLES__,
-        ops: window.__OPERATIONS__,
-        activeOp: 'relu',
-        filterN: 'all',
-        filterSec: 'all',
-        get currentRows() {
-          const rows = this.tables[this.activeOp]?.rows || []
-          return rows.filter(r => {
-            if (this.filterN !== 'all' && String(r.N) !== this.filterN) return false
-            if (this.filterSec !== 'all' && !r.sec.includes(this.filterSec)) return false
-            return true
-          })
-        },
-        techClass(t) {
-          const map = { SS: 'tech-SS', OT: 'tech-OT', HE: 'tech-HE', GC: 'tech-GC', FSS: 'tech-FSS', LUT: 'tech-LUT' }
-          return 'tech-badge ' + (map[t] || 'bg-slate-700 text-slate-300')
-        }
-      }"
+      x-data="costAnalysis()"
       x-cloak
     >
       <!-- Operation selector -->
@@ -147,7 +132,7 @@ const base = import.meta.env.BASE_URL
           <option value="F">Full</option>
           <option value="R">Robust</option>
         </select>
-        <span class="ml-auto text-xs text-slate-500" x-text="`${currentRows.length} protocols`"></span>
+        <span class="ml-auto text-xs text-slate-500" x-text="currentRows.length + ' protocols'"></span>
       </div>
 
       <!-- Table -->
@@ -155,62 +140,69 @@ const base = import.meta.env.BASE_URL
         <table class="data-table">
           <thead>
             <tr>
-              <th class="text-center">N</th>
-              <th>Security</th>
+              <th class="text-center w-10">N</th>
+              <th class="w-20">Security</th>
               <th>Protocol</th>
-              <th>Offline Comm.</th>
-              <th>Online Comm.</th>
-              <th>Online Rounds</th>
-              <th>Technique</th>
+              <template x-for="h in currentDataHeaders" :key="h">
+                <th x-text="h"></th>
+              </template>
             </tr>
           </thead>
           <tbody>
             <template x-for="(row, idx) in currentRows" :key="idx">
               <tr>
-                <td class="text-center font-mono text-slate-300" x-text="row.N"></td>
+                <td class="text-center font-mono text-slate-300 text-sm" x-text="row._N"></td>
                 <td>
-                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700" x-text="row.sec"></span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700" x-text="row._sec"></span>
                 </td>
                 <td>
                   <div class="flex items-center gap-1.5">
-                    <span class="font-medium text-slate-200" x-text="row.protocol"></span>
-                    <template x-if="row.paperUrl">
-                      <a :href="row.paperUrl" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-brand-400 transition-colors">
+                    <span class="font-medium text-slate-200 text-sm" x-html="renderProtocol(row._protocol)"></span>
+                    <template x-if="row._paperUrl">
+                      <a :href="row._paperUrl" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-brand-400 transition-colors flex-shrink-0">
                         <i class="ph-arrow-square-out text-xs"></i>
                       </a>
                     </template>
                   </div>
                 </td>
-                <td class="font-mono text-xs text-slate-300" x-html="row.offline === '-' ? '<span class=&quot;text-slate-600&quot;>—</span>' : row.offline"></td>
-                <td class="font-mono text-xs text-slate-200" x-html="row.online"></td>
-                <td class="font-mono text-xs text-slate-300 text-center" x-html="row.rounds"></td>
-                <td class="text-center">
-                  <span :class="techClass(row.tech)" x-text="row.tech"></span>
-                </td>
+                <template x-for="h in currentDataHeaders" :key="h">
+                  <td class="text-xs">
+                    <template x-if="isTechCol(h)">
+                      <span x-html="techClass(row[h])"></span>
+                    </template>
+                    <template x-if="!isTechCol(h)">
+                      <span class="font-mono text-slate-300" x-html="renderLatex(row[h])"></span>
+                    </template>
+                  </td>
+                </template>
               </tr>
             </template>
             <template x-if="currentRows.length === 0">
-              <tr><td colspan="7" class="text-center py-8 text-slate-500">No protocols match the current filters.</td></tr>
+              <tr>
+                <td :colspan="3 + currentDataHeaders.length" class="text-center py-8 text-slate-500">
+                  No protocols match the current filters.
+                </td>
+              </tr>
             </template>
           </tbody>
         </table>
       </div>
 
-      <!-- Notation note -->
+      <!-- Notation -->
       <div class="mt-6 bg-navy-800/60 border border-slate-700/40 rounded-xl p-5">
         <h3 class="text-slate-300 font-semibold text-sm mb-3 flex items-center gap-2">
           <i class="ph-info text-brand-400"></i>
           Notation
         </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-xs text-slate-500">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-xs text-slate-500" id="notation-grid">
           <div set:html="$\\ell$ — bit length of secret-shared values" />
+          <div set:html="$n$ — number of elements (e.g. vector length)" />
           <div set:html="$\\Lambda$ — computational security parameter" />
           <div set:html="$\\kappa$ — statistical security parameter" />
-          <div set:html="$s$ — output size" />
-          <div set:html="$p$ — field prime" />
-          <div set:html="$\\ell_x$ — bit length of input" />
+          <div set:html="$\\mu, \\nu$ — mantissa/exponent bit lengths" />
+          <div set:html="$CT_{\\text{BFV}}, CT_{\\text{CKKS}}, CT_{\\text{Pai}}$ — ciphertext sizes" />
           <div set:html="$\\mathcal{O}(\\cdot)$ — asymptotic notation" />
-          <div>— denotes no offline phase</div>
+          <div>&#8212; denotes no offline phase / not applicable</div>
         </div>
       </div>
     </div>
@@ -218,3 +210,76 @@ const base = import.meta.env.BASE_URL
 
   <Footer slot="footer" />
 </Layout>
+
+<script>
+function costAnalysis() {
+  return {
+    tables: window.__COST_TABLES__,
+    ops: window.__OPERATIONS__,
+    activeOp: 'relu',
+    filterN: 'all',
+    filterSec: 'all',
+
+    get currentDataHeaders() {
+      return this.tables[this.activeOp]?.dataHeaders || []
+    },
+
+    get currentRows() {
+      const rows = this.tables[this.activeOp]?.rows || []
+      return rows.filter(r => {
+        if (this.filterN !== 'all' && String(r._N).trim() !== this.filterN) return false
+        if (this.filterSec !== 'all' && !r._sec.includes(this.filterSec)) return false
+        return true
+      })
+    },
+
+    renderLatex(str) {
+      if (!str || str === '—' || str === '-' || str === '') {
+        return '<span class="text-slate-600">—</span>'
+      }
+      if (typeof window.katex === 'undefined') return str
+      try {
+        return str.replace(/\$([^$]+)\$/g, (_, tex) =>
+          window.katex.renderToString(tex, { throwOnError: false, displayMode: false })
+        )
+      } catch (e) { return str }
+    },
+
+    renderProtocol(str) {
+      if (!str) return ''
+      if (typeof window.katex === 'undefined') return str
+      try {
+        return str.replace(/\$([^$]+)\$/g, (_, tex) =>
+          window.katex.renderToString(tex, { throwOnError: false, displayMode: false })
+        )
+      } catch (e) { return str }
+    },
+
+    isTechCol(h) {
+      return h.toLowerCase().startsWith('tech')
+    },
+
+    techClass(t) {
+      const techMap = { SS: 'tech-SS', OT: 'tech-OT', HE: 'tech-HE', GC: 'tech-GC', FSS: 'tech-FSS', LUT: 'tech-LUT' }
+      const parts = (t || '').split(/[,\s]+/).map(p => p.trim()).filter(Boolean)
+      if (parts.length === 0) return 'tech-badge bg-slate-700 text-slate-300'
+      const badges = parts.map(p => {
+        const cls = techMap[p] || 'bg-slate-700 text-slate-300'
+        return '<span class="tech-badge ' + cls + '">' + p + '</span>'
+      })
+      return badges.join(' ')
+    },
+
+    init() {
+      this.$nextTick(() => {
+        if (typeof window.renderMathInElement !== 'undefined') {
+          renderMathInElement(document.getElementById('notation-grid'), {
+            delimiters: [{ left: '$', right: '$', display: false }],
+            throwOnError: false
+          })
+        }
+      })
+    }
+  }
+}
+</script>
