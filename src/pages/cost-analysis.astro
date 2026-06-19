@@ -212,7 +212,7 @@ const opsJson = JSON.stringify(operations)
 </Layout>
 
 <script>
-function costAnalysis() {
+window.costAnalysis = function costAnalysis() {
   return {
     tables: window.__COST_TABLES__,
     ops: window.__OPERATIONS__,
