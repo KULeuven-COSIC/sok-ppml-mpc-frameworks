@@ -15,10 +15,16 @@ try {
 } catch (e) {}
 
 const dataJson = JSON.stringify(genealogyData)
+const baseUrl = base
 ---
 
 <Layout title="Protocol Genealogy" description="Lineage and evolution of MPC-based PPML frameworks from 2015 to 2025.">
   <Navbar slot="navbar" />
+
+  <script define:vars={{ dataJson, baseUrl }}>
+    window.__GENEALOGY__ = JSON.parse(dataJson)
+    window.__BASE__ = baseUrl
+  </script>
 
   <section class="pt-24 pb-6 px-4 max-w-7xl mx-auto">
     <h1 class="section-heading flex items-center gap-3">
@@ -33,7 +39,7 @@ const dataJson = JSON.stringify(genealogyData)
 
   <section
     class="px-4 pb-24 max-w-7xl mx-auto"
-    x-data={`genealogy(${dataJson}, '${base}')`}
+    x-data="genealogy()"
     x-init="init()"
   >
     <!-- Controls -->
@@ -234,12 +240,12 @@ const dataJson = JSON.stringify(genealogyData)
   <Footer slot="footer" />
 </Layout>
 
-<script>
-function genealogy(data, base) {
-  return {
-    nodes: data.nodes,
-    edges: data.edges,
-    base,
+<script is:inline>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('genealogy', () => ({
+    nodes: (window.__GENEALOGY__ || {}).nodes || [],
+    edges: (window.__GENEALOGY__ || {}).edges || [],
+    base: window.__BASE__ || '',
     showEdges: true,
     hoveredNode: null,
     computedEdges: [],
@@ -398,6 +404,6 @@ function genealogy(data, base) {
         })
       }
     },
-  }
-}
+  }))
+})
 </script>
