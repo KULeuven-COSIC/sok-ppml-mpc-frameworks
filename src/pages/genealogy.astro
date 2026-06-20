@@ -1,0 +1,403 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+
+const base = import.meta.env.BASE_URL
+
+let genealogyData = { nodes: [], edges: [] }
+try {
+  const raw = readFileSync(join(process.cwd(), 'src/data/genealogy.json'), 'utf-8')
+  genealogyData = JSON.parse(raw)
+} catch (e) {}
+
+const dataJson = JSON.stringify(genealogyData)
+---
+
+<Layout title="Protocol Genealogy" description="Lineage and evolution of MPC-based PPML frameworks from 2015 to 2025.">
+  <Navbar slot="navbar" />
+
+  <section class="pt-24 pb-6 px-4 max-w-7xl mx-auto">
+    <h1 class="section-heading flex items-center gap-3">
+      <i class="ph-tree-structure text-brand-400"></i>
+      Protocol Genealogy
+    </h1>
+    <p class="section-subheading max-w-2xl">
+      How MPC-based PPML frameworks have evolved and influenced each other from 2015 to 2025.
+      Arrows show lineage — <em>extends</em> (solid) or <em>inspires</em> (dashed).
+    </p>
+  </section>
+
+  <section
+    class="px-4 pb-24 max-w-7xl mx-auto"
+    x-data={`genealogy(${dataJson}, '${base}')`}
+    x-init="init()"
+  >
+    <!-- Controls -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <!-- Party filters -->
+      <div class="flex items-center gap-1 bg-navy-800 border border-slate-700/50 rounded-lg p-1">
+        <template x-for="p in partyTypes" :key="p.id">
+          <button
+            class="px-3 py-1.5 rounded-md text-xs font-semibold transition-all"
+            :class="activeParties.has(p.id)
+              ? 'text-white shadow-sm ' + p.activeBg
+              : 'text-slate-500 hover:text-slate-300'"
+            @click="toggleParty(p.id)"
+            x-text="p.label"
+          ></button>
+        </template>
+      </div>
+
+      <!-- Edge toggle -->
+      <button
+        class="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all"
+        :class="showEdges
+          ? 'bg-brand-500/20 border-brand-500/50 text-brand-300'
+          : 'bg-navy-800 border-slate-700/50 text-slate-400 hover:text-slate-200'"
+        @click="showEdges = !showEdges"
+      >
+        <i class="ph-graph"></i>
+        <span x-text="showEdges ? 'Hide lineage' : 'Show lineage'"></span>
+      </button>
+
+      <!-- Legend -->
+      <div class="flex items-center gap-4 ml-auto text-xs text-slate-500">
+        <span class="flex items-center gap-1.5">
+          <span class="inline-block w-6 border-t-2 border-slate-300"></span>
+          extends
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="inline-block w-6 border-t-2 border-dashed border-slate-500"></span>
+          inspires
+        </span>
+      </div>
+    </div>
+
+    <!-- Timeline grid wrapper (scrollable) -->
+    <div class="relative overflow-x-auto rounded-xl border border-slate-700/50 bg-navy-900/40">
+
+      <!-- SVG overlay for edges -->
+      <svg
+        id="genealogy-svg"
+        class="absolute inset-0 pointer-events-none"
+        style="width:100%;height:100%;overflow:visible;"
+        x-show="showEdges"
+      >
+        <defs>
+          <marker id="arrow-extends" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#64748b" />
+          </marker>
+          <marker id="arrow-inspires" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8" opacity="0.6" />
+          </marker>
+          <marker id="arrow-extends-hi" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#38bdf8" />
+          </marker>
+          <marker id="arrow-inspires-hi" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#38bdf8" opacity="0.8" />
+          </marker>
+        </defs>
+        <template x-for="edge in computedEdges" :key="edge.key">
+          <path
+            :d="edge.d"
+            :stroke="edge.highlighted ? '#38bdf8' : (edge.type === 'extends' ? '#64748b' : '#64748b')"
+            :stroke-width="edge.highlighted ? 2 : 1"
+            :stroke-dasharray="edge.type === 'inspires' ? '5,3' : 'none'"
+            :opacity="edge.highlighted ? 1 : (hoveredNode ? 0.1 : 0.5)"
+            fill="none"
+            :marker-end="edge.highlighted
+              ? (edge.type === 'extends' ? 'url(#arrow-extends-hi)' : 'url(#arrow-inspires-hi)')
+              : (edge.type === 'extends' ? 'url(#arrow-extends)' : 'url(#arrow-inspires)')"
+            style="transition: opacity 0.2s, stroke 0.2s;"
+          />
+        </template>
+      </svg>
+
+      <!-- Column headers -->
+      <div class="grid sticky top-0 z-20 bg-navy-950/95 backdrop-blur border-b border-slate-700/50"
+           style="grid-template-columns: 56px repeat(4, 1fr);">
+        <div class="px-3 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Year</div>
+        <template x-for="col in columns" :key="col.id">
+          <div
+            class="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-center"
+            :class="col.headerClass"
+            x-text="col.label"
+          ></div>
+        </template>
+      </div>
+
+      <!-- Year rows -->
+      <template x-for="year in years" :key="year">
+        <div
+          class="grid border-b border-slate-800/40 last:border-0"
+          style="grid-template-columns: 56px repeat(4, 1fr); min-height: 64px;"
+          :class="year % 2 === 0 ? 'bg-navy-900/20' : ''"
+        >
+          <!-- Year label -->
+          <div class="flex items-center justify-center px-2 py-3">
+            <span
+              class="text-xs font-bold tabular-nums"
+              :class="hasNodesInYear(year) ? 'text-slate-400' : 'text-slate-700'"
+              x-text="year"
+            ></span>
+          </div>
+
+          <!-- Party columns -->
+          <template x-for="col in columns" :key="col.id">
+            <div class="flex flex-wrap items-center justify-center gap-1.5 px-2 py-2">
+              <template x-for="node in nodesInCell(year, col.id)" :key="node.id">
+                <button
+                  :id="'node-' + node.id"
+                  class="node-pill relative inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all border"
+                  :class="[
+                    col.pillClass,
+                    hoveredNode === node.id ? 'ring-2 ring-sky-400 scale-110 z-10' : '',
+                    hoveredNode && hoveredNode !== node.id && !connectedTo(node.id) ? 'opacity-30' : '',
+                    node.category === 'transformer' ? 'border-dashed' : 'border-transparent',
+                    !activeParties.has(node.parties) ? 'opacity-20 pointer-events-none' : '',
+                  ]"
+                  @mouseenter="hoverNode(node.id)"
+                  @mouseleave="unhoverNode()"
+                  @click="goToExplorer(node.name)"
+                  :title="node.name + ' (' + node.year + ', ' + node.parties + ')'"
+                >
+                  <span x-text="node.name"></span>
+                  <template x-if="node.category === 'transformer'">
+                    <i class="ph-sparkle text-[9px] opacity-70"></i>
+                  </template>
+                  <template x-if="node.category === 'foundation'">
+                    <i class="ph-anchor text-[9px] opacity-70"></i>
+                  </template>
+                </button>
+              </template>
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+
+    <!-- Category legend -->
+    <div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-slate-500">
+      <span class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-blue-500/40 border border-blue-400"></span>
+        2-party (2PC)
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-teal-500/40 border border-teal-400"></span>
+        3-party (3PC)
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-purple-500/40 border border-purple-400"></span>
+        4-party (4PC)
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-slate-500/40 border border-slate-400"></span>
+        n-party (nPC)
+      </span>
+      <span class="flex items-center gap-1.5 ml-4">
+        <span class="inline-block px-2 py-0.5 rounded-full border border-dashed border-sky-400 text-sky-300 text-[10px]">
+          <i class="ph-sparkle"></i> LLM
+        </span>
+        transformer-focused
+      </span>
+    </div>
+
+    <!-- Tooltip -->
+    <div
+      x-show="hoveredNode && tooltip.visible"
+      x-cloak
+      class="fixed z-50 pointer-events-none bg-navy-800 border border-slate-600 rounded-lg px-3 py-2 shadow-xl text-xs"
+      :style="`left: ${tooltip.x}px; top: ${tooltip.y}px; transform: translate(-50%, -110%);`"
+    >
+      <template x-if="tooltipNode">
+        <div>
+          <div class="font-bold text-white mb-0.5" x-text="tooltipNode.name"></div>
+          <div class="text-slate-400 flex items-center gap-2">
+            <span x-text="tooltipNode.year"></span>
+            <span class="text-slate-600">·</span>
+            <span x-text="tooltipNode.parties"></span>
+            <span class="text-slate-600">·</span>
+            <span x-text="tooltipNode.category"></span>
+          </div>
+          <template x-if="edgeSummary.length">
+            <div class="mt-1.5 text-slate-400 border-t border-slate-700 pt-1.5" x-text="edgeSummary"></div>
+          </template>
+        </div>
+      </template>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<script>
+function genealogy(data, base) {
+  return {
+    nodes: data.nodes,
+    edges: data.edges,
+    base,
+    showEdges: true,
+    hoveredNode: null,
+    computedEdges: [],
+    tooltip: { x: 0, y: 0, visible: false },
+
+    years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+
+    columns: [
+      { id: '2PC', label: '2-Party (2PC)', headerClass: 'text-blue-400',  pillClass: 'bg-blue-900/40 text-blue-300 border-blue-700/50 hover:bg-blue-800/60' },
+      { id: '3PC', label: '3-Party (3PC)', headerClass: 'text-teal-400',  pillClass: 'bg-teal-900/40 text-teal-300 border-teal-700/50 hover:bg-teal-800/60' },
+      { id: '4PC', label: '4-Party (4PC)', headerClass: 'text-purple-400',pillClass: 'bg-purple-900/40 text-purple-300 border-purple-700/50 hover:bg-purple-800/60' },
+      { id: 'nPC', label: 'n-Party (nPC)', headerClass: 'text-slate-400', pillClass: 'bg-slate-700/40 text-slate-300 border-slate-600/50 hover:bg-slate-700/60' },
+    ],
+
+    partyTypes: [
+      { id: '2PC', label: '2PC', activeBg: 'bg-blue-600' },
+      { id: '3PC', label: '3PC', activeBg: 'bg-teal-600' },
+      { id: '4PC', label: '4PC', activeBg: 'bg-purple-600' },
+      { id: 'nPC', label: 'nPC', activeBg: 'bg-slate-600' },
+    ],
+
+    activeParties: new Set(['2PC','3PC','4PC','nPC']),
+
+    toggleParty(id) {
+      if (this.activeParties.has(id)) {
+        this.activeParties.delete(id)
+      } else {
+        this.activeParties.add(id)
+      }
+      this.activeParties = new Set(this.activeParties)
+      this.$nextTick(() => this.recalcEdges())
+    },
+
+    nodesInCell(year, party) {
+      return this.nodes.filter(n => n.year === year && n.parties === party)
+    },
+
+    hasNodesInYear(year) {
+      return this.nodes.some(n => n.year === year)
+    },
+
+    get tooltipNode() {
+      if (!this.hoveredNode) return null
+      return this.nodes.find(n => n.id === this.hoveredNode) || null
+    },
+
+    get edgeSummary() {
+      if (!this.hoveredNode) return ''
+      const outgoing = this.edges.filter(e => e.from === this.hoveredNode).map(e => {
+        const t = this.nodes.find(n => n.id === e.to)
+        return t ? t.name : e.to
+      })
+      const incoming = this.edges.filter(e => e.to === this.hoveredNode).map(e => {
+        const f = this.nodes.find(n => n.id === e.from)
+        return f ? f.name : e.from
+      })
+      const parts = []
+      if (incoming.length) parts.push(`From: ${incoming.join(', ')}`)
+      if (outgoing.length) parts.push(`To: ${outgoing.join(', ')}`)
+      return parts.join(' · ')
+    },
+
+    connectedTo(nodeId) {
+      if (!this.hoveredNode) return false
+      return this.edges.some(e =>
+        (e.from === this.hoveredNode && e.to === nodeId) ||
+        (e.to === this.hoveredNode && e.from === nodeId)
+      )
+    },
+
+    hoverNode(id) {
+      this.hoveredNode = id
+      const el = document.getElementById('node-' + id)
+      if (el) {
+        const r = el.getBoundingClientRect()
+        this.tooltip.x = r.left + r.width / 2
+        this.tooltip.y = r.top + window.scrollY
+        this.tooltip.visible = true
+      }
+      this.recalcEdges()
+    },
+
+    unhoverNode() {
+      this.hoveredNode = null
+      this.tooltip.visible = false
+      this.recalcEdges()
+    },
+
+    nodeCenter(id) {
+      const el = document.getElementById('node-' + id)
+      if (!el) return null
+      const svg = document.getElementById('genealogy-svg')
+      if (!svg) return null
+      const er = el.getBoundingClientRect()
+      const sr = svg.getBoundingClientRect()
+      return {
+        x: er.left + er.width / 2 - sr.left,
+        y: er.top + er.height / 2 - sr.top,
+      }
+    },
+
+    recalcEdges() {
+      const result = []
+      for (const edge of this.edges) {
+        const fromNode = this.nodes.find(n => n.id === edge.from)
+        const toNode = this.nodes.find(n => n.id === edge.to)
+        if (!fromNode || !toNode) continue
+        if (!this.activeParties.has(fromNode.parties) || !this.activeParties.has(toNode.parties)) continue
+
+        const from = this.nodeCenter(edge.from)
+        const to   = this.nodeCenter(edge.to)
+        if (!from || !to) continue
+
+        // Bezier control points
+        const dy = to.y - from.y
+        const dx = to.x - from.x
+        const cx1 = from.x + dx * 0.2
+        const cy1 = from.y + dy * 0.6
+        const cx2 = to.x - dx * 0.2
+        const cy2 = to.y - dy * 0.4
+
+        const highlighted = this.hoveredNode
+          ? (edge.from === this.hoveredNode || edge.to === this.hoveredNode)
+          : false
+
+        result.push({
+          key: edge.from + '-' + edge.to,
+          d: `M ${from.x} ${from.y} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${to.x} ${to.y}`,
+          type: edge.type,
+          highlighted,
+        })
+      }
+      this.computedEdges = result
+    },
+
+    goToExplorer(name) {
+      // URL encode and navigate to explorer filtered by protocol name
+      const url = this.base + '/explorer?q=' + encodeURIComponent(name)
+      window.location.href = url
+    },
+
+    init() {
+      // Wait for DOM to settle then draw edges
+      setTimeout(() => this.recalcEdges(), 150)
+      // Redraw on resize
+      window.addEventListener('resize', () => {
+        clearTimeout(this._resizeTimer)
+        this._resizeTimer = setTimeout(() => this.recalcEdges(), 100)
+      })
+      // Redraw on scroll (SVG is absolute inside scroller)
+      const scroller = document.querySelector('[id="genealogy-svg"]')?.closest('.overflow-x-auto')
+      if (scroller) {
+        scroller.addEventListener('scroll', () => {
+          clearTimeout(this._scrollTimer)
+          this._scrollTimer = setTimeout(() => this.recalcEdges(), 30)
+        })
+      }
+    },
+  }
+}
+</script>

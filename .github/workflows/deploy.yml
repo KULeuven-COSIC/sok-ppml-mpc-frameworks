@@ -42,6 +42,73 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Generate frameworks JSON
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          function walk(dir) {
+            return fs.readdirSync(dir).flatMap(f => {
+              const full = path.join(dir, f);
+              return fs.statSync(full).isDirectory() ? walk(full) : (f.endsWith('.md') ? [full] : []);
+            });
+          }
+
+          const frameworks = {};
+
+          for (const file of walk('Tables')) {
+            const content = fs.readFileSync(file, 'utf8');
+            const lines = content.split('\n');
+            let headers = null;
+            for (const line of lines) {
+              if (!/^\s*\|/.test(line)) { headers = null; continue; }
+              if (/^\s*\|[-:| ]+\|/.test(line)) continue;
+              const cells = line.split('|').slice(1, -1).map(c => c.trim());
+              if (!headers) { headers = cells; continue; }
+              if (cells.length < 2) continue;
+
+              // Extract scheme name and refNum from first cell
+              const cell0 = cells[0];
+              const nameMatch = cell0.match(/^([^\[]+)/);
+              const refMatch = cell0.match(/\[+(\d+)\]+/);
+              if (!nameMatch) continue;
+              const name = nameMatch[1].trim();
+              if (!name || name === 'Scheme') continue;
+              const refNum = refMatch ? parseInt(refMatch[1]) : null;
+
+              // Extract paper URL from citation link
+              const urlMatch = cell0.match(/\[+\d+\]+\(([^)]+)\)/);
+              const paperUrl = urlMatch ? urlMatch[1] : null;
+
+              const key = name + (refNum ? '_' + refNum : '');
+              if (!frameworks[key]) frameworks[key] = { name, refNum, paperUrl };
+              const fw = frameworks[key];
+
+              const hi = (k) => headers.findIndex(h => h.toLowerCase().includes(k));
+              const get = (k) => { const i = hi(k); return i >= 0 && cells[i] ? cells[i] : null; };
+
+              if (!fw.year && get('year')) fw.year = parseInt(get('year')) || null;
+              if (!fw.parties) fw.parties = get('parties') || get('2') || null;
+              if (!fw.setting) fw.setting = get('setting') || null;
+              if (!fw.security) fw.security = get('sec') || null;
+              if (!fw.training) fw.training = get('training') || null;
+              if (!fw.inference) fw.inference = get('inference') || null;
+
+              const tech = {};
+              for (const t of ['HE','OT','GC','ZK','SS']) {
+                const i = headers.findIndex(h => h === t);
+                if (i >= 0 && cells[i]) tech[t] = cells[i];
+              }
+              if (Object.keys(tech).length) fw.techniques = tech;
+            }
+          }
+
+          const out = Object.values(frameworks).sort((a,b) => (a.year||9999)-(b.year||9999)||(a.name<b.name?-1:1));
+          fs.writeFileSync('dist/frameworks.json', JSON.stringify(out, null, 2));
+          console.log('Generated dist/frameworks.json with ' + out.length + ' frameworks.');
+          "
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

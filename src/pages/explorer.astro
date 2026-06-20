@@ -38,7 +38,10 @@ function cleanName(cell) {
 
 function getRefNum(cell) {
   const m = (cell || '').match(/\[\[(\d+)\]\]/)
-  return m ? m[1] : null
+  if (m) return m[1]
+  // Also handle [N](url) style references without double brackets
+  const m2 = (cell || '').match(/\[(\d+)\]\([^)]+\)/)
+  return m2 ? m2[1] : null
 }
 
 const base = import.meta.env.BASE_URL
@@ -86,12 +89,91 @@ function buildFramework(row, parties) {
   }
 }
 
+function cleanRingField(ring, field) {
+  // Simplify LaTeX for display — strip $\mathbb{...} patterns to readable text
+  function simplify(s) {
+    if (!s || s === '✗' || s === '—') return s || '—'
+    return s
+      .replace(/\$\\mathbb\{Z\}_\{2\^\{\\ell\}\}\$/g, 'Z_{2^ℓ}')
+      .replace(/\$\\mathbb\{Z\}_\{2\^\{\\ell\}\}/g, 'Z_{2^ℓ}')
+      .replace(/\$\\mathbb\{Z\}_2\$/g, 'Z_2')
+      .replace(/\$\\mathbb\{Z\}_2/g, 'Z_2')
+      .replace(/\$\\mathbb\{F\}_\{p\}\$/g, 'F_p')
+      .replace(/\$\\mathbb\{F\}_\{p\}/g, 'F_p')
+      .replace(/\$[^$]*\$/g, m => m.replace(/[${}\\mathbb]/g, '').replace('Z_', 'Z_').trim())
+      .trim()
+  }
+  const r = simplify(ring)
+  const f = simplify(field)
+  if (r === '✗' && f === '✗') return '—'
+  if (r === '✗' || r === '—') return f
+  if (f === '✗' || f === '—') return r
+  return r + ' / ' + f
+}
+
+function parsePartiesFromMpc(row) {
+  // DM = direct/2PC style, HM = honest majority 3PC, Super HM = super honest majority 4PC
+  const dm = (row['DM'] || '').trim()
+  const hm = (row['HM'] || '').trim()
+  const superhm = (row['Super HM'] || '').trim()
+  if (superhm && superhm !== '✗' && superhm !== '—') return 'SuperHM'
+  if (hm && hm !== '✗' && hm !== '—') return 'HM'
+  if (dm && dm !== '✗' && dm !== '—') return 'DM'
+  return '—'
+}
+
+function buildDesignRow(row) {
+  const nameCell = row['Work'] || Object.values(row)[0] || ''
+  const dm = (row['DM'] || '').trim()
+  const hm = (row['HM'] || '').trim()
+  const superhm = (row['Super HM'] || '').trim()
+
+  // Determine parties label
+  let partiesLabel = '—'
+  if (dm && dm !== '✗' && dm !== '—') partiesLabel = dm
+  if (hm && hm !== '✗' && hm !== '—') {
+    partiesLabel = partiesLabel === '—' ? hm : partiesLabel + '/' + hm
+  }
+  if (superhm && superhm !== '✗' && superhm !== '—') {
+    partiesLabel = partiesLabel === '—' ? superhm : partiesLabel + '/' + superhm
+  }
+
+  function boolNorm(s) {
+    const t = (s || '').trim()
+    if (t === '✓') return 'yes'
+    if (t === '✗' || t === '—' || t === '') return 'no'
+    // Non-empty, non-symbol value — show as text
+    return t
+  }
+
+  return {
+    name: cleanName(nameCell),
+    refNum: getRefNum(nameCell),
+    paperUrl: getPaperUrl(nameCell),
+    year: parseInt(row['Year'] || '0') || 0,
+    ringField: cleanRingField(row['Ring'] || '', row['Field'] || ''),
+    dm: dm,
+    hm: hm,
+    superhm: superhm,
+    partiesLabel,
+    onlineOnly: boolNorm(row['Online-only']),
+    preprocessing: boolNorm(row['Pre-processing']),
+    dealer: boolNorm(row['Dealer']),
+    outsourcing: boolNorm(row['Outsourcing']),
+    clientServer: boolNorm(row['Client-Server']),
+    highThroughput: boolNorm(row['High Throughput']),
+    lowLatency: boolNorm(row['Low Latency']),
+    mixed: boolNorm(row['Mixed']),
+  }
+}
+
 // Parse all tables
 const rows2pc = parseMdTable('Tables/Systematization/systematization-overview-2pc.md')
 const rows34pc = parseMdTable('Tables/Systematization/systematization-overview-34pc.md')
 const rowsNpc = parseMdTable('Tables/Systematization/systematization-overview-npc.md')
 const rowsML2pc = parseMdTable('Tables/Systematization/systematization-ml-2pc.md')
 const rowsMLMpc = parseMdTable('Tables/Systematization/systematization-ml-mpc.md')
+const rowsMpcDesign = parseMdTable('Tables/Systematization/systematization-mpc.md')
 
 const frameworks2pc = rows2pc.map(r => buildFramework(r, '2PC'))
 const frameworks34pc = rows34pc.map(r => buildFramework(r, '3/4PC'))
@@ -114,16 +196,21 @@ for (const r of [...rowsML2pc, ...rowsMLMpc]) {
   }
 }
 
+// Build design data
+const designRows = rowsMpcDesign.map(r => buildDesignRow(r))
+
 const frameworksJson = JSON.stringify(allFrameworks)
 const mlJson = JSON.stringify(mlData)
+const designJson = JSON.stringify(designRows)
 ---
 
 <Layout title="Framework Explorer">
   <Navbar slot="navbar" />
 
-  <script define:vars={{ frameworksJson, mlJson }}>
+  <script define:vars={{ frameworksJson, mlJson, designJson }}>
     window.__FRAMEWORKS__ = JSON.parse(frameworksJson)
     window.__ML_DATA__ = JSON.parse(mlJson)
+    window.__DESIGN_DATA__ = JSON.parse(designJson)
   </script>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -137,6 +224,7 @@ const mlJson = JSON.stringify(mlData)
         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-blue-900/40 text-blue-300 border-blue-800">{frameworks2pc.length} 2PC frameworks</span>
         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-teal-900/40 text-teal-300 border-teal-800">{frameworks34pc.length} 3/4PC frameworks</span>
         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-purple-900/40 text-purple-300 border-purple-800">{frameworksNpc.length} n-PC frameworks</span>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border bg-orange-900/40 text-orange-300 border-orange-800">{designRows.length} MPC design entries</span>
       </div>
     </div>
 
@@ -145,6 +233,7 @@ const mlJson = JSON.stringify(mlData)
       x-data="{
         frameworks: window.__FRAMEWORKS__,
         mlData: window.__ML_DATA__,
+        designData: window.__DESIGN_DATA__,
         activeTab: 'overview',
         search: '',
         filterParty: 'all',
@@ -164,11 +253,30 @@ const mlJson = JSON.stringify(mlData)
             return true
           })
         },
+        get filteredDesign() {
+          return this.designData.filter(d => {
+            if (this.search && !d.name.toLowerCase().includes(this.search.toLowerCase())) return false
+            if (this.filterYear === 'early' && d.year > 2019) return false
+            if (this.filterYear === 'mid' && (d.year < 2020 || d.year > 2022)) return false
+            if (this.filterYear === 'recent' && d.year < 2023) return false
+            if (this.filterParty !== 'all') {
+              if (this.filterParty === '2PC' && !(d.dm && d.dm !== '✗' && d.dm !== '—')) return false
+              if (this.filterParty === '3/4PC' && !(d.hm && d.hm !== '✗' && d.hm !== '—')) return false
+              if (this.filterParty === 'nPC' && !(d.superhm && d.superhm !== '✗' && d.superhm !== '—')) return false
+            }
+            return true
+          })
+        },
         statusClass(s) {
           if (s === '✓') return 'status-yes text-center'
           if (s === '◐') return 'status-partial text-center'
           if (s === '✗' || s === '—') return 'status-no text-center'
           return 'text-slate-400 text-center text-xs'
+        },
+        boolClass(v) {
+          if (v === 'yes') return 'text-center text-emerald-400'
+          if (v === 'no') return 'text-center text-slate-600'
+          return 'text-center text-slate-300 text-xs'
         },
         mlForFw(name) {
           return this.mlData[name] || null
@@ -192,11 +300,11 @@ const mlJson = JSON.stringify(mlData)
           </div>
           <select x-model="filterParty" class="input-field">
             <option value="all">All parties</option>
-            <option value="2PC">2PC</option>
-            <option value="3/4PC">3/4PC</option>
-            <option value="nPC">n-Party</option>
+            <option value="2PC">2PC / DM</option>
+            <option value="3/4PC">3/4PC / HM</option>
+            <option value="nPC">n-Party / Super HM</option>
           </select>
-          <select x-model="filterSec" class="input-field">
+          <select x-model="filterSec" class="input-field" x-show="activeTab !== 'design'">
             <option value="all">All security</option>
             <option value="SH">Semi-Honest</option>
             <option value="A">Active</option>
@@ -212,7 +320,10 @@ const mlJson = JSON.stringify(mlData)
           </select>
         </div>
         <div class="flex items-center justify-between mt-3">
-          <span class="text-slate-500 text-xs" x-text="`Showing ${filtered.length} of ${frameworks.length} frameworks`"></span>
+          <span class="text-slate-500 text-xs">
+            <span x-show="activeTab !== 'design'" x-text="`Showing ${filtered.length} of ${frameworks.length} frameworks`"></span>
+            <span x-show="activeTab === 'design'" x-text="`Showing ${filteredDesign.length} of ${designData.length} MPC design entries`"></span>
+          </span>
           <div class="flex gap-1">
             <button
               x-on:click="activeTab = 'overview'"
@@ -222,6 +333,10 @@ const mlJson = JSON.stringify(mlData)
               x-on:click="activeTab = 'ml-support'"
               :class="activeTab === 'ml-support' ? 'tab-btn active' : 'tab-btn'"
             >ML Support</button>
+            <button
+              x-on:click="activeTab = 'design'"
+              :class="activeTab === 'design' ? 'tab-btn active' : 'tab-btn'"
+            >MPC Design</button>
           </div>
         </div>
       </div>
@@ -341,6 +456,88 @@ const mlJson = JSON.stringify(mlData)
         </table>
       </div>
 
+      <!-- MPC Design Tab -->
+      <div x-show="activeTab === 'design'" class="overflow-x-auto rounded-xl border border-slate-700/50">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Framework</th>
+              <th>Year</th>
+              <th>Ring/Field</th>
+              <th>Parties</th>
+              <th class="text-center" title="Online-only protocol">Online-only</th>
+              <th class="text-center" title="Pre-processing phase">Pre-proc</th>
+              <th class="text-center" title="Trusted dealer setup">Dealer</th>
+              <th class="text-center" title="Outsourcing model">Outsrc</th>
+              <th class="text-center" title="Client-Server setting">C-S</th>
+              <th class="text-center" title="High Throughput optimized">Hi-Tput</th>
+              <th class="text-center" title="Low Latency optimized">Lo-Lat</th>
+              <th class="text-center" title="Mixed optimization">Mixed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="d in filteredDesign" :key="d.name + d.year + '-design'">
+              <tr>
+                <td>
+                  <div class="flex items-center gap-1.5">
+                    <span x-text="d.name" class="font-medium text-slate-200"></span>
+                    <template x-if="d.paperUrl && d.refNum">
+                      <a :href="d.paperUrl" x-on:click.stop class="text-brand-400 hover:text-brand-300 transition-colors text-xs font-mono" x-text="'[' + d.refNum + ']'"></a>
+                    </template>
+                  </div>
+                </td>
+                <td class="text-slate-400" x-text="d.year || '—'"></td>
+                <td class="text-slate-400 text-xs font-mono" x-text="d.ringField"></td>
+                <td class="text-slate-300 text-xs" x-text="d.partiesLabel"></td>
+                <td :class="boolClass(d.onlineOnly)">
+                  <template x-if="d.onlineOnly === 'yes'"><span class="text-emerald-400">✓</span></template>
+                  <template x-if="d.onlineOnly === 'no'"><span class="text-slate-600">—</span></template>
+                  <template x-if="d.onlineOnly !== 'yes' && d.onlineOnly !== 'no'"><span class="text-slate-300 text-xs" x-text="d.onlineOnly"></span></template>
+                </td>
+                <td :class="boolClass(d.preprocessing)">
+                  <template x-if="d.preprocessing === 'yes'"><span class="text-emerald-400">✓</span></template>
+                  <template x-if="d.preprocessing === 'no'"><span class="text-slate-600">—</span></template>
+                  <template x-if="d.preprocessing !== 'yes' && d.preprocessing !== 'no'"><span class="text-slate-300 text-xs" x-text="d.preprocessing"></span></template>
+                </td>
+                <td :class="boolClass(d.dealer)">
+                  <template x-if="d.dealer === 'yes'"><span class="text-emerald-400">✓</span></template>
+                  <template x-if="d.dealer === 'no'"><span class="text-slate-600">—</span></template>
+                  <template x-if="d.dealer !== 'yes' && d.dealer !== 'no'"><span class="text-slate-300 text-xs" x-text="d.dealer"></span></template>
+                </td>
+                <td :class="boolClass(d.outsourcing)">
+                  <template x-if="d.outsourcing === 'yes'"><span class="text-emerald-400">✓</span></template>
+                  <template x-if="d.outsourcing === 'no'"><span class="text-slate-600">—</span></template>
+                  <template x-if="d.outsourcing !== 'yes' && d.outsourcing !== 'no'"><span class="text-slate-300 text-xs" x-text="d.outsourcing"></span></template>
+                </td>
+                <td :class="boolClass(d.clientServer)">
+                  <template x-if="d.clientServer === 'yes'"><span class="text-emerald-400">✓</span></template>
+                  <template x-if="d.clientServer === 'no'"><span class="text-slate-600">—</span></template>
+                  <template x-if="d.clientServer !== 'yes' && d.clientServer !== 'no'"><span class="text-slate-300 text-xs" x-text="d.clientServer"></span></template>
+                </td>
+                <td :class="boolClass(d.highThroughput)">
+                  <template x-if="d.highThroughput === 'yes'"><span class="text-emerald-400">✓</span></template>
+                  <template x-if="d.highThroughput === 'no'"><span class="text-slate-600">—</span></template>
+                  <template x-if="d.highThroughput !== 'yes' && d.highThroughput !== 'no'"><span class="text-slate-300 text-xs" x-text="d.highThroughput"></span></template>
+                </td>
+                <td :class="boolClass(d.lowLatency)">
+                  <template x-if="d.lowLatency === 'yes'"><span class="text-emerald-400">✓</span></template>
+                  <template x-if="d.lowLatency === 'no'"><span class="text-slate-600">—</span></template>
+                  <template x-if="d.lowLatency !== 'yes' && d.lowLatency !== 'no'"><span class="text-slate-300 text-xs" x-text="d.lowLatency"></span></template>
+                </td>
+                <td :class="boolClass(d.mixed)">
+                  <template x-if="d.mixed === 'yes'"><span class="text-emerald-400">✓</span></template>
+                  <template x-if="d.mixed === 'no'"><span class="text-slate-600">—</span></template>
+                  <template x-if="d.mixed !== 'yes' && d.mixed !== 'no'"><span class="text-slate-300 text-xs" x-text="d.mixed"></span></template>
+                </td>
+              </tr>
+            </template>
+            <template x-if="filteredDesign.length === 0">
+              <tr><td colspan="12" class="text-center py-8 text-slate-500">No entries match the current filters.</td></tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+
       <!-- Selected framework detail panel -->
       <div
         x-show="selectedFw"
@@ -411,7 +608,8 @@ const mlJson = JSON.stringify(mlData)
         <span><span class="status-partial">◐</span> Partial / Primitives only</span>
         <span><span class="status-no">✗</span> Not supported</span>
         <span class="text-slate-600">— Not applicable</span>
-        <span class="ml-auto">Click a row to expand details</span>
+        <span x-show="activeTab !== 'design'" class="ml-auto">Click a row to expand details</span>
+        <span x-show="activeTab === 'design'" class="ml-auto">DM = Dishonest Majority · HM = Honest Majority · SuperHM = Super Honest Majority</span>
       </div>
     </div>
   </div>

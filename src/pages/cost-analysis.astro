@@ -142,8 +142,27 @@ const opsJson = JSON.stringify(operations)
         <span class="ml-auto text-xs text-slate-500" x-text="currentRows.length + ' protocols'"></span>
       </div>
 
+      <!-- View toggle -->
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-slate-500 text-xs font-medium">View:</span>
+        <button
+          x-on:click="chartMode = false"
+          :class="!chartMode ? 'bg-brand-500/15 border-brand-500/50 text-brand-400' : 'bg-navy-800 border-slate-700/50 text-slate-400 hover:border-slate-500 hover:text-slate-200'"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors"
+        >
+          <i class="ph-table text-sm"></i> Table
+        </button>
+        <button
+          x-on:click="chartMode = true"
+          :class="chartMode ? 'bg-brand-500/15 border-brand-500/50 text-brand-400' : 'bg-navy-800 border-slate-700/50 text-slate-400 hover:border-slate-500 hover:text-slate-200'"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors"
+        >
+          <i class="ph-chart-bar-horizontal text-sm"></i> Chart
+        </button>
+      </div>
+
       <!-- Table -->
-      <div class="overflow-x-auto rounded-xl border border-slate-700/50">
+      <div x-show="!chartMode" class="overflow-x-auto rounded-xl border border-slate-700/50">
         <table class="data-table">
           <thead>
             <tr>
@@ -195,6 +214,51 @@ const opsJson = JSON.stringify(operations)
         </table>
       </div>
 
+      <!-- Chart -->
+      <div x-show="chartMode" class="overflow-x-auto rounded-xl border border-slate-700/50 bg-navy-800/60 p-5">
+        <div class="mb-3 flex items-center gap-2 text-xs text-slate-500">
+          <i class="ph-chart-bar-horizontal text-brand-400"></i>
+          <span>Online communication cost — bar width proportional to cost expression length (rough proxy). Color indicates tech type.</span>
+        </div>
+        <template x-if="currentRows.length === 0">
+          <div class="text-center py-8 text-slate-500 text-sm">No protocols match the current filters.</div>
+        </template>
+        <template x-if="currentRows.length > 0">
+          <div class="space-y-2.5 min-w-[480px]">
+            <template x-for="(row, idx) in chartRows" :key="idx">
+              <div class="flex items-center gap-3">
+                <!-- N badge -->
+                <span
+                  class="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border border-slate-600 bg-slate-800 text-slate-300"
+                  x-text="row._N"
+                ></span>
+                <!-- Protocol name -->
+                <span
+                  class="flex-shrink-0 w-36 text-xs text-slate-300 font-medium truncate"
+                  :title="row._protocol"
+                  x-text="row._protocol.length > 22 ? row._protocol.slice(0, 22) + '…' : row._protocol"
+                ></span>
+                <!-- Bar track -->
+                <div class="flex-1 flex items-center gap-2 min-w-0">
+                  <div class="flex-1 bg-slate-800 rounded-full h-5 overflow-hidden relative">
+                    <div
+                      class="h-full rounded-full transition-all duration-500"
+                      :style="'width:' + row._barPct + '%;' + 'background-color:' + row._barColor + ';opacity:0.85'"
+                    ></div>
+                  </div>
+                  <!-- Cost label -->
+                  <span
+                    class="flex-shrink-0 text-xs font-mono text-slate-400 w-48 truncate"
+                    :title="row._onlineCost"
+                    x-html="renderLatex(row._onlineCost)"
+                  ></span>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+
       <!-- Notation -->
       <div class="mt-6 bg-navy-800/60 border border-slate-700/40 rounded-xl p-5">
         <h3 class="text-slate-300 font-semibold text-sm mb-3 flex items-center gap-2">
@@ -226,6 +290,7 @@ document.addEventListener('alpine:init', () => {
     activeOp: 'relu',
     filterN: 'all',
     filterSec: 'all',
+    chartMode: false,
 
     get currentDataHeaders() {
       return this.tables[this.activeOp]?.dataHeaders || []
@@ -260,6 +325,38 @@ document.addEventListener('alpine:init', () => {
           window.katex.renderToString(tex, { throwOnError: false, displayMode: false })
         )
       } catch (e) { return str }
+    },
+
+    get chartRows() {
+      const rows = this.currentRows
+      // Find the online cost column (prefer "Online" or first non-tech, non-N, non-Sec, non-Protocol col)
+      const headers = this.currentDataHeaders
+      const onlineHeader = headers.find(h => /online/i.test(h)) || headers.find(h => !this.isTechCol(h)) || headers[0]
+      if (!onlineHeader) return []
+
+      // Tech type color map
+      const techColorMap = { SS: '#3b82f6', OT: '#a855f7', HE: '#f97316', GC: '#ec4899', FSS: '#10b981', LUT: '#f59e0b' }
+      const defaultColor = '#64748b'
+
+      const techHeader = headers.find(h => this.isTechCol(h))
+
+      // Compute bar widths based on cost string length as rough proxy
+      const lengths = rows.map(r => {
+        const cost = r[onlineHeader] || '—'
+        // Strip LaTeX markup for length heuristic
+        const raw = cost.replace(/\$[^$]*\$/g, m => m.slice(1, -1)).replace(/\\[a-zA-Z]+\{[^}]*\}/g, s => s).replace(/[\\{}$]/g, '')
+        return raw === '—' ? 1 : Math.max(raw.length, 1)
+      })
+      const maxLen = Math.max(...lengths, 1)
+
+      return rows.map((r, i) => {
+        const cost = r[onlineHeader] || '—'
+        const techVal = techHeader ? (r[techHeader] || '') : ''
+        const firstTech = techVal.split(/[,\s]+/).map(p => p.trim()).find(p => p in techColorMap)
+        const barColor = firstTech ? techColorMap[firstTech] : defaultColor
+        const barPct = Math.max(Math.round((lengths[i] / maxLen) * 100), 4)
+        return { ...r, _onlineCost: cost, _barPct: barPct, _barColor: barColor }
+      })
     },
 
     isTechCol(h) {
