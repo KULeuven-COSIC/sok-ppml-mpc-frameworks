@@ -8,10 +8,43 @@ import { join } from 'path'
 
 const base = import.meta.env.BASE_URL
 
-let genealogyData = { nodes: [], edges: [] }
+function parseGenealogyMd(content: string) {
+  const nodes: { id: string; name: string; year: number; parties: string; category: string }[] = []
+  const edges: { from: string; to: string; type: string }[] = []
+
+  let section = ''
+  for (const raw of content.split('\n')) {
+    const line = raw.trim()
+    if (line.startsWith('#### Nodes')) { section = 'nodes'; continue }
+    if (line.startsWith('#### Edges')) { section = 'edges'; continue }
+    if (!line.startsWith('|') || /^\|\s*[-:]+/.test(line)) continue
+
+    const cells = line.split('|').slice(1, -1).map(c => c.trim())
+    if (section === 'nodes' && cells.length >= 4 && cells[0] !== 'Framework') {
+      // Extract name and strip citation: "ABY [[10]](url)" -> "ABY"
+      const nameRaw = cells[0]
+      const name = nameRaw.replace(/\s*\[\[\d+\]\]\([^)]+\)/, '').trim()
+      if (!name) continue
+      const id = name.replace(/\s+/g, '')  // "Fantastic Four" -> "FantasticFour"
+      const year = parseInt(cells[1]) || 0
+      const parties = cells[2]
+      const category = cells[3]
+      nodes.push({ id, name, year, parties, category })
+    } else if (section === 'edges' && cells.length >= 3 && cells[0] !== 'From') {
+      const fromName = cells[0].trim()
+      const toName   = cells[1].trim()
+      const fromId = fromName.replace(/\s+/g, '')
+      const toId   = toName.replace(/\s+/g, '')
+      edges.push({ from: fromId, to: toId, type: cells[2].trim() })
+    }
+  }
+  return { nodes, edges }
+}
+
+let genealogyData = { nodes: [] as any[], edges: [] as any[] }
 try {
-  const raw = readFileSync(join(process.cwd(), 'src/data/genealogy.json'), 'utf-8')
-  genealogyData = JSON.parse(raw)
+  const raw = readFileSync(join(process.cwd(), 'Tables/Genealogy/genealogy.md'), 'utf-8')
+  genealogyData = parseGenealogyMd(raw)
 } catch (e) {}
 
 const dataJson = JSON.stringify(genealogyData)
@@ -89,7 +122,7 @@ const baseUrl = base
       <!-- SVG overlay for edges -->
       <svg
         id="genealogy-svg"
-        class="absolute inset-0 pointer-events-none"
+        class="absolute inset-0 pointer-events-none z-10"
         style="width:100%;height:100%;overflow:visible;"
         x-show="showEdges"
       >
@@ -107,20 +140,7 @@ const baseUrl = base
             <path d="M0,0 L0,6 L8,3 z" fill="#38bdf8" opacity="0.8" />
           </marker>
         </defs>
-        <template x-for="edge in computedEdges" :key="edge.key">
-          <path
-            :d="edge.d"
-            :stroke="edge.highlighted ? '#38bdf8' : (edge.type === 'extends' ? '#64748b' : '#64748b')"
-            :stroke-width="edge.highlighted ? 2 : 1"
-            :stroke-dasharray="edge.type === 'inspires' ? '5,3' : 'none'"
-            :opacity="edge.highlighted ? 1 : (hoveredNode ? 0.1 : 0.5)"
-            fill="none"
-            :marker-end="edge.highlighted
-              ? (edge.type === 'extends' ? 'url(#arrow-extends-hi)' : 'url(#arrow-inspires-hi)')
-              : (edge.type === 'extends' ? 'url(#arrow-extends)' : 'url(#arrow-inspires)')"
-            style="transition: opacity 0.2s, stroke 0.2s;"
-          />
-        </template>
+        <g id="genealogy-edges"></g>
       </svg>
 
       <!-- Column headers -->
@@ -141,7 +161,7 @@ const baseUrl = base
         <div
           class="grid border-b border-slate-800/40 last:border-0"
           style="grid-template-columns: 56px repeat(4, 1fr); min-height: 64px;"
-          :class="year % 2 === 0 ? 'bg-navy-900/20' : ''"
+          :class="year % 2 === 0 ? 'bg-navy-900/20' : 'bg-transparent'"
         >
           <!-- Year label -->
           <div class="flex items-center justify-center px-2 py-3">
@@ -341,14 +361,24 @@ document.addEventListener('alpine:init', () => {
       if (!svg) return null
       const er = el.getBoundingClientRect()
       const sr = svg.getBoundingClientRect()
+      // Account for scroll offset of the overflow-x-auto container
+      const scroller = svg.closest('.overflow-x-auto')
+      const scrollX = scroller ? scroller.scrollLeft : 0
+      const scrollY = scroller ? scroller.scrollTop : 0
       return {
-        x: er.left + er.width / 2 - sr.left,
-        y: er.top + er.height / 2 - sr.top,
+        x: er.left + er.width / 2 - sr.left + scrollX,
+        y: er.top + er.height / 2 - sr.top + scrollY,
       }
     },
 
     recalcEdges() {
-      const result = []
+      const NS = 'http://www.w3.org/2000/svg'
+      const g = document.getElementById('genealogy-edges')
+      if (!g) return
+      // Clear previous paths
+      while (g.firstChild) g.removeChild(g.firstChild)
+
+      let drawn = 0, missing = 0
       for (const edge of this.edges) {
         const fromNode = this.nodes.find(n => n.id === edge.from)
         const toNode = this.nodes.find(n => n.id === edge.to)
@@ -357,9 +387,8 @@ document.addEventListener('alpine:init', () => {
 
         const from = this.nodeCenter(edge.from)
         const to   = this.nodeCenter(edge.to)
-        if (!from || !to) continue
+        if (!from || !to) { missing++; continue }
 
-        // Bezier control points
         const dy = to.y - from.y
         const dx = to.x - from.x
         const cx1 = from.x + dx * 0.2
@@ -371,14 +400,20 @@ document.addEventListener('alpine:init', () => {
           ? (edge.from === this.hoveredNode || edge.to === this.hoveredNode)
           : false
 
-        result.push({
-          key: edge.from + '-' + edge.to,
-          d: `M ${from.x} ${from.y} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${to.x} ${to.y}`,
-          type: edge.type,
-          highlighted,
-        })
+        const path = document.createElementNS(NS, 'path')
+        path.setAttribute('d', `M ${from.x} ${from.y} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${to.x} ${to.y}`)
+        path.setAttribute('stroke', highlighted ? '#38bdf8' : '#64748b')
+        path.setAttribute('stroke-width', highlighted ? '2' : '1.5')
+        path.setAttribute('stroke-dasharray', edge.type === 'inspires' ? '5,3' : 'none')
+        path.setAttribute('opacity', highlighted ? '1' : (this.hoveredNode ? '0.1' : '0.6'))
+        path.setAttribute('fill', 'none')
+        const markerSuffix = highlighted ? '-hi' : ''
+        path.setAttribute('marker-end', `url(#arrow-${edge.type}${markerSuffix})`)
+        path.style.transition = 'opacity 0.2s, stroke 0.2s'
+        g.appendChild(path)
+        drawn++
       }
-      this.computedEdges = result
+      this.computedEdges = [] // kept for compat; actual rendering is imperative
     },
 
     goToExplorer(name) {
@@ -387,16 +422,34 @@ document.addEventListener('alpine:init', () => {
       window.location.href = url
     },
 
+    fitSvg() {
+      const svg = document.getElementById('genealogy-svg')
+      if (!svg) return
+      const container = svg.closest('.overflow-x-auto') || svg.parentElement
+      if (container) {
+        svg.setAttribute('width', container.scrollWidth)
+        svg.setAttribute('height', container.scrollHeight)
+        svg.style.width = container.scrollWidth + 'px'
+        svg.style.height = container.scrollHeight + 'px'
+      }
+    },
+
     init() {
-      // Wait for DOM to settle then draw edges
-      setTimeout(() => this.recalcEdges(), 150)
-      // Redraw on resize
+      // Double-RAF after $nextTick ensures x-for nodes are painted before measuring
+      const tryDraw = (attempts) => {
+        this.fitSvg()
+        this.recalcEdges()
+        if (attempts > 0 && this.computedEdges.length === 0) {
+          requestAnimationFrame(() => requestAnimationFrame(() => tryDraw(attempts - 1)))
+        }
+      }
+      this.$nextTick(() => requestAnimationFrame(() => requestAnimationFrame(() => tryDraw(8))))
+
       window.addEventListener('resize', () => {
         clearTimeout(this._resizeTimer)
-        this._resizeTimer = setTimeout(() => this.recalcEdges(), 100)
+        this._resizeTimer = setTimeout(() => { this.fitSvg(); this.recalcEdges() }, 100)
       })
-      // Redraw on scroll (SVG is absolute inside scroller)
-      const scroller = document.querySelector('[id="genealogy-svg"]')?.closest('.overflow-x-auto')
+      const scroller = document.getElementById('genealogy-svg')?.closest('.overflow-x-auto')
       if (scroller) {
         scroller.addEventListener('scroll', () => {
           clearTimeout(this._scrollTimer)
