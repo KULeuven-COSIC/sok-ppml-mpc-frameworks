@@ -64,7 +64,7 @@ jobs:
           EOF
           node capture.js
 
-      - name: Scrub author-identifying content from README.md
+      - name: Scrub and adjust README.md for the anonymous branch
         run: |
           cat > scrub.js <<'EOF'
           const fs = require('fs');
@@ -97,22 +97,61 @@ jobs:
 
           // 3. Any link to this specific paper's eprint entry (not eprint.iacr.org in general,
           //    which is used throughout Bibliography/references.md for unrelated citations).
-          //    Stop at markdown-special characters, not just whitespace -- "[URL](URL)" has
-          //    no whitespace between the two URL occurrences, and the trailing "}" in the
-          //    bibtex url field is not part of the URL either.
-          readme = readme.replace(/https:\/\/eprint\.iacr\.org\/2025\/1679[^\s)\]}]*/g, 'OMITTED_FOR_REVIEW');
+          //    Stop at markdown-special characters AND a trailing "." (sentence-ending
+          //    punctuation directly after the URL, e.g. "...org/2025/1679." with no space),
+          //    not just whitespace -- "[URL](URL)" has no whitespace between the two URL
+          //    occurrences, and the trailing "}" in the bibtex url field is not part of the URL.
+          readme = readme.replace(/https:\/\/eprint\.iacr\.org\/2025\/1679[^\s)\]}.]*/g, 'OMITTED_FOR_REVIEW');
           readme = readme.replace(/\[OMITTED_FOR_REVIEW\]\(OMITTED_FOR_REVIEW\)/g, 'the full version (omitted for double-blind review)');
           readme = readme.replace(/\[([^\]]*)\]\(OMITTED_FOR_REVIEW\)/g, '$1 (link omitted for double-blind review)');
           readme = readme.replace(/OMITTED_FOR_REVIEW/g, 'the full version (omitted for double-blind review)');
           readme = readme.replace(
-            'The full version of our paper is available as a preprint on the Cryptology ePrint Archive: the full version (omitted for double-blind review).',
+            'The full version of our paper is available on the Cryptology ePrint Archive: the full version (omitted for double-blind review).',
             'The full version of this paper is omitted from this repository for double-blind review.'
+          );
+          readme = readme.replace(
+            '— (see the full paper: the full version (omitted for double-blind review))',
+            '(omitted for double-blind review)'
           );
 
           // 4. Redact the citation block's author list and drop the identifying url field.
           readme = readme.replace(/author\s*=\s*\{[^}]*\}/, 'author       = {Anonymous Author(s)}');
           readme = readme.replace(/\s*url\s*=\s*\{[^}]*\}\n/, '\n');
           readme = readme.replace('@article{ZbudilaSYMAP25,', '@article{AnonymousSubmission,');
+
+          // 5. Reinsert a "Paper appendix" column into the Contents table. main dropped this
+          //    column deliberately (it's redundant for casual browsing), but reviewers on the
+          //    anonymous branch are cross-referencing against the submitted paper and benefit
+          //    from the appendix pointer, so this branch keeps it.
+          const APPENDIX_MAP = [
+            ['Notation', null],
+            ['Related Work', 'Appendix A'],
+            ['Decision Graph', 'Appendix C'],
+            ['Design & Deployment Dimensions', 'Appendix C'],
+            ['Genealogy', 'Appendix C'],
+            ['ML-Based Systematization', 'Appendix D'],
+            ['Theoretical Costs Analysis', 'Appendix D'],
+            ['Unification and Conversions', 'Appendix E'],
+            ['Bibliography', null],
+          ];
+          readme = readme.split('\n').map(line => {
+            if (line.startsWith('| Topic | What it answers |')) {
+              return line.replace('| Topic | What it answers |', '| Topic | What it answers | Paper appendix |');
+            }
+            if (/^\|\s*---\s*\|\s*---\s*\|\s*---\s*\|\s*:---:\s*\|\s*$/.test(line)) {
+              return '| --- | --- | :---: | --- | :---: |';
+            }
+            if (line.startsWith('|')) {
+              for (const [keyword, appendix] of APPENDIX_MAP) {
+                if (line.includes(keyword)) {
+                  const cells = line.split('|');
+                  cells.splice(3, 0, appendix ? ` ${appendix} ` : ' — ');
+                  return cells.join('|');
+                }
+              }
+            }
+            return line;
+          }).join('\n');
 
           fs.writeFileSync('README.md', readme);
           console.log('README.md scrubbed.');

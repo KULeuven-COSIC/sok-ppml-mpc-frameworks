@@ -14,7 +14,7 @@ Beyond reproducing the paper's content, this repository is actively maintained t
 
 ## Full Version
 
-The full version of our paper is available as a preprint on the Cryptology ePrint Archive: [https://eprint.iacr.org/2025/1679](https://eprint.iacr.org/2025/1679).
+The full version of our paper is available on the Cryptology ePrint Archive: https://eprint.iacr.org/2025/1679.
 
 ---
 
@@ -32,17 +32,17 @@ New to this SoK? A suggested reading path:
 
 ## Contents
 
-| Topic | What it answers | Paper appendix | Repo tables | Live site |
-| --- | --- | :---: | --- | :---: |
-| 🧭 [Decision Graph](Tables/Decision-graph/decision-graph.md) | Which framework fits my application's requirements? | Appendix C | [Decision Graph](Tables/Decision-graph/decision-graph.md) | — |
-| 📚 [Related Work](Tables/Related-work/related-work-comparison.md) | How does this SoK differ from prior surveys? | Appendix A | [Related Work Comparison](Tables/Related-work/related-work-comparison.md) | [Related Work](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/related-work) |
-| ⚙️ Design & Deployment Dimensions | How are frameworks classified (algebraic structure, threat model, execution phase, deployment mode, network)? | Appendix C | [Comprehensive MPC Design](Tables/Systematization/systematization-mpc.md), [2PC](Tables/Systematization/systematization-overview-2pc.md) / [3-4PC](Tables/Systematization/systematization-overview-34pc.md) / [nPC](Tables/Systematization/systematization-overview-npc.md) overviews | [Explorer](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/explorer) |
-| 🌳 [Genealogy](Tables/Genealogy/genealogy.md) | How have frameworks evolved over time, and what influenced what? | Appendix C | [Genealogy](Tables/Genealogy/genealogy.md) | [Genealogy](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/genealogy) |
-| 🤖 ML-Based Systematization | Which ML functionalities (NN layers, transformer ops) does a framework support? | Appendix D | [2PC](Tables/Systematization/systematization-ml-2pc.md) / [MPC](Tables/Systematization/systematization-ml-mpc.md) ML support | [Explorer](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/explorer) |
-| 🔐 Theoretical Costs Analysis | What's the concrete communication/round cost for a specific operation? | Appendix D | [Dot-Product](Tables/Theoretical-analysis/theoretical-analysis-dot-product.md), [Truncation](Tables/Theoretical-analysis/theoretical-analysis-truncation.md), [ReLU](Tables/Theoretical-analysis/theoretical-analysis-relu.md), [Softmax](Tables/Theoretical-analysis/theoretical-analysis-softmax.md), [Sigmoid](Tables/Theoretical-analysis/theoretical-analysis-sigmoid.md), [GELU](Tables/Theoretical-analysis/theoretical-analysis-gelu.md), [Normalization](Tables/Theoretical-analysis/theoretical-analysis-normalization.md) | [Cost Analysis](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/cost-analysis) |
-| 🧩 Unification and Conversions | How do I convert between 2-, 3-, and 4-party secret-sharing schemes (the MPC Puzzle)? | Appendix E | — (see the [full paper](https://eprint.iacr.org/2025/1679)) | [MPC Puzzle](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/mpc-puzzle) |
-| 📖 Bibliography | Where do I find the full citation for a referenced work? | — | [Bibliography](Bibliography/references.md) | [Bibliography](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/bibliography) |
-| 🗂️ Notation | What do the symbols and abbreviations mean? | — | [Notation & Abbreviations](Tables/notation.md) | — |
+| Topic | What it answers | Repo tables | Live site |
+| --- | --- | --- | :---: |
+| 🗂️ [Notation](Tables/notation.md) | What do the symbols and abbreviations mean? | [Notation & Abbreviations](Tables/notation.md) | — |
+| 📚 [Related Work](Tables/Related-work/related-work-comparison.md) | How does this SoK differ from prior surveys? | [Related Work Comparison](Tables/Related-work/related-work-comparison.md) | [Related Work](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/related-work) |
+| 🧭 [Decision Graph](Tables/Decision-graph/decision-graph.md) | Which framework fits my application's requirements? | [Decision Graph](Tables/Decision-graph/decision-graph.md) | — |
+| ⚙️ Design & Deployment Dimensions | How are frameworks classified (algebraic structure, threat model, execution phase, deployment mode, network)? | [Comprehensive MPC Design](Tables/Systematization/systematization-mpc.md), [2PC](Tables/Systematization/systematization-overview-2pc.md) / [3-4PC](Tables/Systematization/systematization-overview-34pc.md) / [nPC](Tables/Systematization/systematization-overview-npc.md) overviews | [Explorer](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/explorer) |
+| 🌳 [Genealogy](Tables/Genealogy/genealogy.md) | How have frameworks evolved over time, and what influenced what? | [Genealogy](Tables/Genealogy/genealogy.md) | [Genealogy](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/genealogy) |
+| 🤖 ML-Based Systematization | Which ML functionalities (NN layers, transformer ops) does a framework support? | [2PC](Tables/Systematization/systematization-ml-2pc.md) / [MPC](Tables/Systematization/systematization-ml-mpc.md) ML support | [Explorer](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/explorer) |
+| 🔐 Theoretical Costs Analysis | What's the concrete communication/round cost for a specific operation? | [Dot-Product](Tables/Theoretical-analysis/theoretical-analysis-dot-product.md), [Truncation](Tables/Theoretical-analysis/theoretical-analysis-truncation.md), [ReLU](Tables/Theoretical-analysis/theoretical-analysis-relu.md), [Softmax](Tables/Theoretical-analysis/theoretical-analysis-softmax.md), [Sigmoid](Tables/Theoretical-analysis/theoretical-analysis-sigmoid.md), [GELU](Tables/Theoretical-analysis/theoretical-analysis-gelu.md), [Normalization](Tables/Theoretical-analysis/theoretical-analysis-normalization.md) | [Cost Analysis](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/cost-analysis) |
+| 🧩 Unification and Conversions | How do I convert between 2-, 3-, and 4-party secret-sharing schemes (the MPC Puzzle)? | — (see the full paper: https://eprint.iacr.org/2025/1679) | [MPC Puzzle](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/mpc-puzzle) |
+| 📖 Bibliography | Where do I find the full citation for a referenced work? | [Bibliography](Bibliography/references.md) | [Bibliography](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/bibliography) |
 
 ---
 
