@@ -11,7 +11,177 @@ Lineage and evolution of MPC-based PPML frameworks, organized top-to-bottom into
 3. **Hybrid MPC-HE** — HE (with packing) for arithmetic/linear layers, MPC for non-linear operations, in a client–server setting.
 4. **Transformer-specific** — MPC (often with FSS) adapted to transformer architectures and attention mechanisms.
 
-Arrows (in the Edges table below) show which works influenced or directly extended others. **Legend:** ✓ under Malicious = designed for a malicious security model (frameworks supporting both semi-honest and malicious are shown as malicious); Parties = number of computing parties; superscript **†** = uses a helper/dealer in the offline phase; **D** = dishonest-majority setting; **C** = a known corrupted party in an asymmetric setting.
+Arrows show which works influenced or directly extended others. **Legend:** 🛡️ = designed for a malicious security model (frameworks supporting both semi-honest and malicious are shown as malicious); superscript **†** = uses a helper/dealer in the offline phase; **D** = dishonest-majority setting; **C** = a known corrupted party in an asymmetric setting.
+
+---
+
+#### At a glance
+
+```mermaid
+flowchart TD
+    subgraph CAT0 ["Additive, function-independent SS"]
+    direction LR
+    ABY_F["ABY (2015)<br/>2-party"]
+    SecureML_F["SecureML (2017)<br/>2-party"]
+    FANNG_MPC_F["🛡️ FANNG-MPC (2025)<br/>N<sup>D</sup>-party"]
+    ABY3_F["🛡️ ABY3 (2018)<br/>3-party"]
+    FALCON_F["🛡️ FALCON (2021)<br/>3-party"]
+    pMPL_F["pMPL (2022)<br/>3-party"]
+    AdamInPrivate_F["🛡️ AdamInPrivate (2022)<br/>3-party"]
+    Fantastic4_F["🛡️ Fantastic 4 (2021)<br/>4-party"]
+    SecureNN_F["🛡️ SecureNN (2019)<br/>3-party"]
+    CrypTFlow_F["CrypTFlow (2020)<br/>2/3-party"]
+    Crypten_F["Crypten (2021)<br/>N<sup>†</sup>-party"]
+    Piranha_F["🛡️ Piranha (2022)<br/>3/4-party"]
+    CryptGPU_F["CryptGPU (2021)<br/>3-party"]
+    QuantizedNN_F["🛡️ QuantizedNN (2020)<br/>2/3-party"]
+    Chameleon_F["Chameleon (2018)<br/>2<sup>†</sup>-party"]
+    MediSC_F["MediSC (2021)<br/>2<sup>†</sup>-party"]
+    SONIC_F["SONIC (2023)<br/>2<sup>†</sup>-party"]
+    SiRnn_F["SiRnn (2021)<br/>2-party"]
+    SecFloat_F["SecFloat (2022)<br/>2-party"]
+    FastSecNet_F["FastSecNet (2023)<br/>2<sup>†</sup>-party"]
+    Rathee_F["Rathee et al. (2023)<br/>2-party"]
+    CECILIA_F["CECILIA (2022)<br/>3-party"]
+    Gordon_F["🛡️ Gordon et al. (2018)<br/>4-party"]
+    Baccarini_F["Baccarini et al. (2023)<br/>N-party"]
+    Liu_F["Liu et al. (2024)<br/>N-party"]
+    Helix_F["🛡️ Helix (2025)<br/>N-party"]
+    MD_ML_F["🛡️ MD-ML (2024)<br/>N<sup>D</sup>-party"]
+    MD_SONIC_F["🛡️ MD-SONIC (2025)<br/>N<sup>D</sup>-party"]
+    QUOTIENT_F["QUOTIENT (2019)<br/>2-party"]
+    Fregata_F["Fregata (2024)<br/>2-party"]
+    Panther_F["Panther (2025)<br/>2-party"]
+    ABY_F --> SecureML_F
+    ABY_F --> FANNG_MPC_F
+    SecureML_F --> ABY3_F
+    ABY3_F --> FALCON_F
+    ABY3_F --> pMPL_F
+    FALCON_F --> AdamInPrivate_F
+    FALCON_F --> Fantastic4_F
+    SecureML_F --> SecureNN_F
+    SecureNN_F --> FALCON_F
+    SecureNN_F --> CrypTFlow_F
+    CrypTFlow_F --> Crypten_F
+    Crypten_F --> Piranha_F
+    Crypten_F --> CryptGPU_F
+    SecureML_F --> QuantizedNN_F
+    SecureML_F --> Chameleon_F
+    Chameleon_F --> MediSC_F
+    Chameleon_F --> SONIC_F
+    SecureML_F --> SiRnn_F
+    SecureML_F --> Gordon_F
+    SecureML_F --> Baccarini_F
+    SiRnn_F --> SecFloat_F
+    MediSC_F --> FastSecNet_F
+    SecFloat_F --> Rathee_F
+    MediSC_F --> CECILIA_F
+    Baccarini_F --> Liu_F
+    Baccarini_F --> MD_ML_F
+    Baccarini_F --> Helix_F
+    MD_ML_F --> MD_SONIC_F
+    SecureML_F --> QUOTIENT_F
+    SecureML_F --> Fregata_F
+    Fregata_F --> Panther_F
+    end
+    subgraph CAT1 ["Masking-based, function-dependent SS"]
+    direction LR
+    ABY2_F["ABY2.0 (2021)<br/>2-party"]
+    ASTRA_F["🛡️ ASTRA (2019)<br/>3-party"]
+    Trident_F["🛡️ Trident (2020)<br/>4-party"]
+    Flash_F["🛡️ Flash (2020)<br/>4-party"]
+    Blaze_F["🛡️ Blaze (2020)<br/>3-party"]
+    Swift_F["🛡️ Swift (2021)<br/>3/4-party"]
+    Meteor_F["Meteor (2023)<br/>3-party"]
+    Tetrad_F["🛡️ Tetrad (2022)<br/>4-party"]
+    DETI_F["🛡️ DETI (2024)<br/>3<sup>C</sup>-party"]
+    HPMPC_F["🛡️ HPMPC (2025)<br/>3/4-party"]
+    ABY2_F --> ASTRA_F
+    ASTRA_F --> Trident_F
+    Trident_F --> Flash_F
+    ASTRA_F --> Blaze_F
+    Blaze_F --> Swift_F
+    ASTRA_F --> Meteor_F
+    Swift_F --> Tetrad_F
+    Swift_F --> DETI_F
+    ASTRA_F --> HPMPC_F
+    end
+    subgraph CAT2 ["Hybrid MPC-HE"]
+    direction LR
+    MiniONN_F["MiniONN (2017)<br/>2-party"]
+    Gazelle_F["Gazelle (2018)<br/>2-party"]
+    Delphi_F["Delphi (2020)<br/>2-party"]
+    CrypTFlow2_F["CrypTFlow2 (2020)<br/>2-party"]
+    COINN_F["COINN (2021)<br/>2-party"]
+    Cheetah_F["Cheetah (2022)<br/>2-party"]
+    Sphinx_F["Sphinx (2022)<br/>2-party"]
+    MUSE_F["🛡️ MUSE (2021)<br/>2<sup>C</sup>-party"]
+    SIMC_F["🛡️ SIMC (2022)<br/>2<sup>C</sup>-party"]
+    FUSION_F["🛡️ FUSION (2023)<br/>2<sup>C</sup>-party"]
+    CRISP_F["🛡️ CRISP (2026)<br/>2<sup>C</sup>-party"]
+    HELiKs_F["HELiKs (2023)<br/>2-party"]
+    MiniONN_F --> Gazelle_F
+    Gazelle_F --> Delphi_F
+    Gazelle_F --> CrypTFlow2_F
+    Delphi_F --> COINN_F
+    Delphi_F --> Cheetah_F
+    Cheetah_F --> Sphinx_F
+    COINN_F --> HELiKs_F
+    Delphi_F --> MUSE_F
+    MUSE_F --> SIMC_F
+    Sphinx_F --> FUSION_F
+    SIMC_F --> CRISP_F
+    end
+    subgraph CAT3 ["Transformer-specific"]
+    direction LR
+    AriaNN_F["AriaNN (2022)<br/>2<sup>†</sup>-party"]
+    Iron_F["Iron (2022)<br/>2-party"]
+    Llama_F["Llama (2022)<br/>2<sup>†</sup>-party"]
+    Primer_F["Primer (2023)<br/>2-party"]
+    FssNN_F["FssNN (2025)<br/>2-party"]
+    Sigma_F["Sigma (2024)<br/>2<sup>†</sup>-party"]
+    Bolt_F["Bolt (2024)<br/>2-party"]
+    MPCFormer_F["MPCFormer (2023)<br/>2-party"]
+    SecFormer_F["SecFormer (2024)<br/>2<sup>†</sup>-party"]
+    Privformer_F["Privformer (2023)<br/>3-party"]
+    Nimbus_F["Nimbus (2024)<br/>2-party"]
+    BumbleBee_F["BumbleBee (2025)<br/>2-party"]
+    CipherGPT_F["CipherGPT (2023)<br/>2-party"]
+    PUMA_F["PUMA (2023)<br/>3-party"]
+    Mosformer_F["🛡️ Mosformer (2025)<br/>3-party"]
+    MLFormer_F["MLFormer (2025)<br/>2-party"]
+    Shark_F["🛡️ Shark (2025)<br/>2<sup>†</sup>-party"]
+    Orca_F["Orca (2024)<br/>2<sup>†</sup>-party"]
+    SHAFT_F["SHAFT (2025)<br/>2<sup>†</sup>-party"]
+    AriaNN_F --> Iron_F
+    Iron_F --> Llama_F
+    AriaNN_F --> Primer_F
+    AriaNN_F --> FssNN_F
+    Llama_F --> Sigma_F
+    Primer_F --> Bolt_F
+    AriaNN_F --> MPCFormer_F
+    MPCFormer_F --> Privformer_F
+    AriaNN_F --> SecFormer_F
+    Primer_F --> Nimbus_F
+    Bolt_F --> BumbleBee_F
+    Privformer_F --> CipherGPT_F
+    Privformer_F --> PUMA_F
+    CipherGPT_F --> MLFormer_F
+    Sigma_F --> Shark_F
+    Sigma_F --> Orca_F
+    Nimbus_F --> SHAFT_F
+    PUMA_F --> Mosformer_F
+    end
+
+    classDef cat0 fill:#eef4ff,stroke:#4a6fa5,stroke-width:1px;
+    classDef cat1 fill:#fff7e6,stroke:#b5860b,stroke-width:1px;
+    classDef cat2 fill:#eefaf0,stroke:#3f9142,stroke-width:1px;
+    classDef cat3 fill:#fdeef0,stroke:#b5384a,stroke-width:1px;
+    class ABY_F,SecureML_F,FANNG_MPC_F,ABY3_F,FALCON_F,pMPL_F,AdamInPrivate_F,Fantastic4_F,SecureNN_F,CrypTFlow_F,Crypten_F,Piranha_F,CryptGPU_F,QuantizedNN_F,Chameleon_F,MediSC_F,SONIC_F,SiRnn_F,SecFloat_F,FastSecNet_F,Rathee_F,CECILIA_F,Gordon_F,Baccarini_F,Liu_F,Helix_F,MD_ML_F,MD_SONIC_F,QUOTIENT_F,Fregata_F,Panther_F cat0;
+    class ABY2_F,ASTRA_F,Trident_F,Flash_F,Blaze_F,Swift_F,Meteor_F,Tetrad_F,DETI_F,HPMPC_F cat1;
+    class MiniONN_F,Gazelle_F,Delphi_F,CrypTFlow2_F,COINN_F,Cheetah_F,Sphinx_F,MUSE_F,SIMC_F,FUSION_F,CRISP_F,HELiKs_F cat2;
+    class AriaNN_F,Iron_F,Llama_F,Primer_F,FssNN_F,Sigma_F,Bolt_F,MPCFormer_F,SecFormer_F,Privformer_F,Nimbus_F,BumbleBee_F,CipherGPT_F,PUMA_F,Mosformer_F,MLFormer_F,Shark_F,Orca_F,SHAFT_F cat3;
+```
 
 ---
 
