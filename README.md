@@ -13,6 +13,13 @@ The full version of our paper is available as a preprint on the Cryptology ePrin
 
 ## Contents
 
+### 🧭 Decision Graph — Choosing a Framework
+Not sure where to start? This heuristic decision graph maps high-level application requirements (client–server vs. outsourcing, throughput vs. latency, honest vs. dishonest majority, preprocessing constraints, ...) to the relevant region of frameworks below.
+- Detailed discussion is provided in **Appendix C** of the [full paper](https://eprint.iacr.org/2025/1679), which also has the full decision-graph figure.
+- Start here: [Decision Graph](Tables/Decision-graph/decision-graph.md)
+
+---
+
 ### 📚 Comprehensive Survey of Related Work
 We highlight the main differences between existing surveys and SoKs in the domain of privacy-preserving machine learning (PPML).  
 - Detailed discussion is provided in **Appendix A** of the [full paper](https://eprint.iacr.org/2025/1679).  
