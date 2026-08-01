@@ -8,12 +8,15 @@ const navLinks = [
   { href: base + '/genealogy', label: 'Genealogy', icon: 'ph ph-tree-structure' },
   { href: base + '/mpc-puzzle', label: 'MPC Puzzle', icon: 'ph ph-puzzle-piece' },
   { href: base + '/related-work', label: 'Related Work', icon: 'ph ph-books' },
+]
+// Shown in the mobile menu (which stacks vertically, so has more room) but not
+// in the crowded desktop row. Contribute lives in the overlay everywhere else.
+const mobileOnlyLinks = [
   { href: base + '/bibliography', label: 'Bibliography', icon: 'ph ph-books' },
-  { href: base + '/contribute', label: 'Contribute', icon: 'ph ph-git-pull-request' },
 ]
 const currentPath = Astro.url.pathname
 ---
-<nav class="sticky top-0 z-50 bg-navy-950/90 backdrop-blur-md border-b border-slate-800">
+<nav x-data="{}" class="sticky top-0 z-50 bg-navy-950/90 backdrop-blur-md border-b border-slate-800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -53,14 +56,21 @@ const currentPath = Astro.url.pathname
           <i class="ph ph-file-pdf text-sm"></i>
           Paper
         </a>
+        <button
+          @click="$store.contribute.open = true"
+          class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-slate-700 rounded-lg text-slate-400 hover:border-brand-500 hover:text-brand-400 transition-colors"
+        >
+          <i class="ph ph-git-pull-request text-sm"></i>
+          Contribute
+        </button>
         <a
           href="https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-slate-700 rounded-lg text-slate-400 hover:border-slate-500 hover:text-slate-200 transition-colors"
+          class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border border-slate-700 rounded-lg text-slate-400 hover:border-amber-500 hover:text-amber-400 transition-colors"
         >
-          <i class="ph ph-github-logo text-sm"></i>
-          <span class="hidden sm:inline">GitHub</span>
+          <i class="ph ph-star text-sm"></i>
+          <span class="hidden sm:inline">Star on GitHub</span>
         </a>
         <!-- Mobile menu button -->
         <button
@@ -85,6 +95,22 @@ const currentPath = Astro.url.pathname
           {link.label}
         </a>
       ))}
+      {mobileOnlyLinks.map(link => (
+        <a
+          href={link.href}
+          class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-slate-800"
+        >
+          <i class={link.icon}></i>
+          {link.label}
+        </a>
+      ))}
+      <button
+        @click="$store.contribute.open = true"
+        class="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-slate-800"
+      >
+        <i class="ph ph-git-pull-request"></i>
+        Contribute
+      </button>
       <a href="https://eprint.iacr.org/2025/1679" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-slate-800">
         <i class="ph ph-file-pdf"></i> Read Paper
       </a>
