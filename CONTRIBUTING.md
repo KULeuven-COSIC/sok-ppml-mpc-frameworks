@@ -12,7 +12,8 @@ When a framework is added, removed, or re-cited in the paper, work through all o
 4. **Decision Graph** — check [`Tables/Decision-graph/decision-graph.md`](Tables/Decision-graph/decision-graph.md) against `Sections/a3-1-decision-graph-new.tex` and `Tables/decision-tree.tex` in the paper: does the framework belong in one of the leaf categories there?
 5. **Genealogy** — check [`Tables/Genealogy/genealogy.md`](Tables/Genealogy/genealogy.md) against `Figures/genealogy.tikz` in the paper: does the framework appear as a node there, and does it have any lineage edges to add?
 6. **MPC Puzzle** — if the paper's Appendix E (`Sections/a5-MPC-Puzzle.tex`) adds or changes a secret-sharing conversion cost, or adds a new party-count combination, update the matching table in [`Tables/MPC-Puzzle/mpc-puzzle.md`](Tables/MPC-Puzzle/mpc-puzzle.md). This one isn't per-framework, so it only needs a check when the conversion protocols themselves change, not on every new framework.
-7. **Open a PR** — the "Validate Tables" GitHub Action runs automatically and will catch broken citation anchors and mismatched table column counts before merge.
+7. **New table page** — if you're adding an entirely new page under `Tables/` (not just a row to an existing one), add it to the standardized "Related Tables & Navigation" footer table (see Style below) — both in the new file itself, *and* as a row/entry in every other `Tables/*.md` file's footer, so every page keeps linking to every other page. This footer previously drifted into inconsistent, incomplete per-file link lists; keep it as one identical block, adjusted only for relative path depth.
+8. **Open a PR** — the "Validate Tables" GitHub Action runs automatically and will catch broken citation anchors and mismatched table column counts before merge.
 
 ## Checking for drift periodically
 
@@ -22,4 +23,5 @@ Even with the checklist above, entries can go stale silently (e.g. a citation ke
 
 - Follow the existing Markdown table format and citation link style already used throughout `Tables/`: `Name [N](../../Bibliography/references.md#key)`.
 - Keep the `[N]` reference numbers consistent with existing entries in `Bibliography/references.md` — they don't need to match the paper's own compiled PDF numbering, only each other.
-- Every table file starts with `[← Back to README](../../README.md)` and ends with a "Related Tables & Navigation" section — match that structure in new tables.
+- Every table file starts with `[← Back to README](../../README.md)` and ends with a "Related Tables & Navigation" section.
+- That footer is a single standardized table — same 9 rows, same emoji and labels as the README's own Contents table (🗂️ Notation, 📚 Related Work, 🧭 Decision Graph, ⚙️ Design & Deployment, 🌳 Genealogy, 🤖 ML Support, 🔐 Theoretical Costs, 🧩 MPC Puzzle, 📖 Bibliography) — identical across every file under `Tables/`, with relative paths adjusted only for how deep the file sits (`Tables/notation.md` is one level shallower than everything else, which lives under `Tables/<Subdir>/`). Copy an existing file's footer verbatim rather than hand-writing a new one, to avoid reintroducing the drift this was built to fix.
