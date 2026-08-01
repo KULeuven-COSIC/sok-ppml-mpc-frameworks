@@ -5,9 +5,14 @@ import Footer from '../components/Footer.astro'
 import '../styles/global.css'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { cleanName } from '../scripts/parseTable.mjs'
+import { cleanName, getRefNum } from '../scripts/parseTable.mjs'
 
 const base = import.meta.env.BASE_URL
+function getPaperUrl(cell) {
+  const m = (cell || '').match(/references\.md#([^)]+)/)
+  if (m) return `${base}/bibliography#${m[1]}`
+  return null
+}
 
 function parseMdTable(filePath) {
   try {
@@ -48,11 +53,14 @@ const rawRows = parseMdTable('Tables/Related-work/related-work-comparison.md')
 const boolCols = ['MPC', 'FSS', 'FHE', 'TEE', 'Hybrid', 'C/S', 'TTP', 'Outsourcing', 'Inference', 'Training']
 
 const rows = rawRows.map((r, idx) => {
-  const ref = cleanRef(r['Reference'] || '')
-  const isOurs = ref === 'This Work' || (r['Reference'] || '').includes('**This Work**') || (r['Reference'] || '').includes('This Work')
+  const rawRef = r['Reference'] || ''
+  const ref = cleanRef(rawRef)
+  const isOurs = ref === 'This Work' || rawRef.includes('**This Work**') || rawRef.includes('This Work')
   const obj = {
     idx: idx + 1,
     reference: ref,
+    refNum: getRefNum(rawRef),
+    paperUrl: getPaperUrl(rawRef),
     year: (r['Year'] || '').replace(/\*\*/g, '').trim(),
     sokSurvey: (r['SoK/Survey'] || '').replace(/\*\*/g, '').trim(),
     addedValue: (r['Added value'] || '').replace(/\*\*/g, '').trim(),
@@ -167,10 +175,15 @@ const relatedJson = JSON.stringify(rows)
               >
                 <td class="text-center text-slate-500 text-xs" x-text="r.idx"></td>
                 <td>
-                  <span
-                    :class="r.isOurs ? 'font-bold text-brand-300' : 'font-medium text-slate-200'"
-                    x-text="r.reference"
-                  ></span>
+                  <div class="flex items-center gap-1.5">
+                    <span
+                      :class="r.isOurs ? 'font-bold text-brand-300' : 'font-medium text-slate-200'"
+                      x-text="r.reference"
+                    ></span>
+                    <template x-if="r.paperUrl && r.refNum">
+                      <a :href="r.paperUrl" class="text-brand-400 hover:text-brand-300 transition-colors text-xs font-mono" x-text="'[' + r.refNum + ']'"></a>
+                    </template>
+                  </div>
                 </td>
                 <td class="text-center text-slate-400 text-xs" x-text="r.year"></td>
                 <td class="text-center">
