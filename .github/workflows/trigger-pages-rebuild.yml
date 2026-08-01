@@ -6,6 +6,8 @@ on:
     paths:
       - 'Tables/**'
       - 'Bibliography/**'
+      - 'README.md'
+      - 'CONTRIBUTING.md'
 
 permissions:
   actions: write
