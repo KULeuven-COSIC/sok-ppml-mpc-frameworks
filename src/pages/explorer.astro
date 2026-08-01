@@ -41,11 +41,14 @@ function norm(s) {
   if (t === '✗') return '✗'
   if (t.startsWith('◐') || t === '◐') return '◐'
   if (t === '—' || t === '-') return '—'
-  return t || '—'
+  return t.replace(/^\*\*(.+)\*\*$/, '$1') || '—'
 }
 
 function cleanSec(s) {
-  return (s || '').replace(/\$[^$]*\$/g, m => m.replace(/[${}\\]/g, '').replace('A^C','AC').replace('A^S','AS')).trim() || '—'
+  // Keep the raw LaTeX (e.g. $$A^C$$) as-is - it's rendered with KaTeX at display
+  // time. Normalize display-math $$..$$ to inline $..$ so the shared renderLatex()
+  // splitter (which expects a single pair of $ per expression) handles it correctly.
+  return (s || '').trim().replace(/\$\$/g, '$') || '—'
 }
 
 function buildFramework(row, parties) {
@@ -384,7 +387,7 @@ const designJson = JSON.stringify(designRows)
                 <td :class="statusClass(f.zk)" x-text="f.zk"></td>
                 <td :class="statusClass(f.ss)" x-text="f.ss"></td>
                 <td class="text-slate-400 text-xs" x-text="f.setting"></td>
-                <td class="text-slate-300 text-xs font-mono" x-text="f.sec"></td>
+                <td class="text-slate-300 text-xs font-mono" x-html="renderLatex(f.sec)"></td>
                 <td :class="statusClass(f.training)" x-text="f.training"></td>
                 <td :class="statusClass(f.inference)" x-text="f.inference"></td>
                 <td :class="statusClass(f.theoretical)" x-text="f.theoretical"></td>
