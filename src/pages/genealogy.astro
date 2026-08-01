@@ -8,8 +8,35 @@ import { join } from 'path'
 
 const base = import.meta.env.BASE_URL
 
+// Maps a raw "Parties" cell (e.g. "2", "3/4", "N<sup>D</sup>") to the grid's
+// party-count buckets. Superscript annotations (†/D/C) are stripped first —
+// they mark security-model nuances, not party counts.
+function partyBuckets(raw: string): string[] {
+  const stripped = raw.replace(/<sup>.*?<\/sup>/g, '')
+  const tokens = stripped.match(/\d+|N/g) || []
+  const buckets = new Set<string>()
+  for (const t of tokens) {
+    if (t === '2') buckets.add('2PC')
+    else if (t === '3') buckets.add('3PC')
+    else if (t === '4') buckets.add('4PC')
+    else buckets.add('nPC')
+  }
+  return buckets.size ? [...buckets] : ['nPC']
+}
+
+// Maps the table's long descriptive Category strings to short slugs used for
+// styling (e.g. the transformer sparkle badge).
+function categorySlug(raw: string): string {
+  const c = raw.toLowerCase()
+  if (c.includes('transformer')) return 'transformer'
+  if (c.includes('hybrid')) return 'hybrid'
+  if (c.includes('masking')) return 'masking'
+  if (c.includes('additive')) return 'additive'
+  return 'other'
+}
+
 function parseGenealogyMd(content: string) {
-  const nodes: { id: string; name: string; year: number; parties: string; category: string }[] = []
+  const nodes: { id: string; name: string; year: number; parties: string; partyBuckets: string[]; malicious: boolean; category: string; categorySlug: string }[] = []
   const edges: { from: string; to: string; type: string }[] = []
 
   let section = ''
@@ -20,22 +47,33 @@ function parseGenealogyMd(content: string) {
     if (!line.startsWith('|') || /^\|\s*[-:]+/.test(line)) continue
 
     const cells = line.split('|').slice(1, -1).map(c => c.trim())
-    if (section === 'nodes' && cells.length >= 4 && cells[0] !== 'Framework') {
-      // Extract name and strip citation: "ABY [[10]](url)" -> "ABY"
+    if (section === 'nodes' && cells.length >= 5 && cells[0] !== 'Framework') {
+      // Extract name and strip citation: "ABY [57](url)" -> "ABY"
       const nameRaw = cells[0]
-      const name = nameRaw.replace(/\s*\[\[\d+\]\]\([^)]+\)/, '').trim()
+      const name = nameRaw.replace(/\s*\[+\d+\]+\([^)]+\)/, '').trim()
       if (!name) continue
       const id = name.replace(/\s+/g, '')  // "Fantastic Four" -> "FantasticFour"
       const year = parseInt(cells[1]) || 0
-      const parties = cells[2]
-      const category = cells[3]
-      nodes.push({ id, name, year, parties, category })
-    } else if (section === 'edges' && cells.length >= 3 && cells[0] !== 'From') {
+      const rawParties = cells[2]
+      const parties = rawParties.replace(/<\/?sup>/g, '') // keep annotation letter, drop the tag
+      const category = cells[4]
+      nodes.push({
+        id, name, year,
+        parties,
+        partyBuckets: partyBuckets(rawParties),
+        malicious: cells[3] === '✓',
+        category,
+        categorySlug: categorySlug(category),
+      })
+    } else if (section === 'edges' && cells.length >= 2 && cells[0] !== 'From') {
       const fromName = cells[0].trim()
       const toName   = cells[1].trim()
       const fromId = fromName.replace(/\s+/g, '')
       const toId   = toName.replace(/\s+/g, '')
-      edges.push({ from: fromId, to: toId, type: cells[2].trim() })
+      // No "type" column currently exists in the source table; default to 'extends'
+      // so the arrow still renders, and pick up a real value if one is added later.
+      const type = cells[2] ? cells[2].trim().toLowerCase() : 'extends'
+      edges.push({ from: fromId, to: toId, type })
     }
   }
   return { nodes, edges }
@@ -49,9 +87,13 @@ try {
 
 const dataJson = JSON.stringify(genealogyData)
 const baseUrl = base
+
+const nodeYears = genealogyData.nodes.map(n => n.year).filter(Boolean)
+const minYear = nodeYears.length ? Math.min(...nodeYears) : 2015
+const maxYear = nodeYears.length ? Math.max(...nodeYears) : new Date().getFullYear()
 ---
 
-<Layout title="Protocol Genealogy" description="Lineage and evolution of MPC-based PPML frameworks from 2015 to 2025.">
+<Layout title="Protocol Genealogy" description={`Lineage and evolution of MPC-based PPML frameworks from ${minYear} to ${maxYear}.`}>
   <Navbar slot="navbar" />
 
   <script define:vars={{ dataJson, baseUrl }}>
@@ -65,7 +107,7 @@ const baseUrl = base
       Protocol Genealogy
     </h1>
     <p class="section-subheading max-w-2xl">
-      How MPC-based PPML frameworks have evolved and influenced each other from 2015 to 2025.
+      How MPC-based PPML frameworks have evolved and influenced each other from {minYear} to {maxYear}.
       Arrows show lineage — <em>extends</em> (solid) or <em>inspires</em> (dashed).
     </p>
   </section>
@@ -183,20 +225,20 @@ const baseUrl = base
                     col.pillClass,
                     hoveredNode === node.id ? 'ring-2 ring-sky-400 scale-110 z-10' : '',
                     hoveredNode && hoveredNode !== node.id && !connectedTo(node.id) ? 'opacity-30' : '',
-                    node.category === 'transformer' ? 'border-dashed' : 'border-transparent',
-                    !activeParties.has(node.parties) ? 'opacity-20 pointer-events-none' : '',
+                    node.categorySlug === 'transformer' ? 'border-dashed' : 'border-transparent',
+                    !activeParties.has(col.id) ? 'opacity-20 pointer-events-none' : '',
                   ]"
                   @mouseenter="hoverNode(node.id)"
                   @mouseleave="unhoverNode()"
                   @click="goToExplorer(node.name)"
-                  :title="node.name + ' (' + node.year + ', ' + node.parties + ')'"
+                  :title="node.name + ' (' + node.year + ', ' + node.parties + ')' + (node.malicious ? ' · malicious security model' : '')"
                 >
                   <span x-text="node.name"></span>
-                  <template x-if="node.category === 'transformer'">
-                    <i class="ph ph-sparkle text-[9px] opacity-70"></i>
+                  <template x-if="node.malicious">
+                    <i class="ph ph-shield-check text-[9px] opacity-70"></i>
                   </template>
-                  <template x-if="node.category === 'foundation'">
-                    <i class="ph ph-anchor text-[9px] opacity-70"></i>
+                  <template x-if="node.categorySlug === 'transformer'">
+                    <i class="ph ph-sparkle text-[9px] opacity-70"></i>
                   </template>
                 </button>
               </template>
@@ -229,6 +271,10 @@ const baseUrl = base
           <i class="ph ph-sparkle"></i> LLM
         </span>
         transformer-focused
+      </span>
+      <span class="flex items-center gap-1.5">
+        <i class="ph ph-shield-check text-slate-400"></i>
+        malicious security model
       </span>
     </div>
 
@@ -271,7 +317,13 @@ document.addEventListener('alpine:init', () => {
     computedEdges: [],
     tooltip: { x: 0, y: 0, visible: false },
 
-    years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+    get years() {
+      if (!this.nodes.length) return []
+      const allYears = this.nodes.map(n => n.year)
+      const min = Math.min(...allYears)
+      const max = Math.max(...allYears)
+      return Array.from({ length: max - min + 1 }, (_, i) => min + i)
+    },
 
     columns: [
       { id: '2PC', label: '2-Party (2PC)', headerClass: 'text-blue-400',  pillClass: 'bg-blue-900/40 text-blue-300 border-blue-700/50 hover:bg-blue-800/60' },
@@ -300,7 +352,7 @@ document.addEventListener('alpine:init', () => {
     },
 
     nodesInCell(year, party) {
-      return this.nodes.filter(n => n.year === year && n.parties === party)
+      return this.nodes.filter(n => n.year === year && n.partyBuckets.includes(party))
     },
 
     hasNodesInYear(year) {
@@ -383,7 +435,7 @@ document.addEventListener('alpine:init', () => {
         const fromNode = this.nodes.find(n => n.id === edge.from)
         const toNode = this.nodes.find(n => n.id === edge.to)
         if (!fromNode || !toNode) continue
-        if (!this.activeParties.has(fromNode.parties) || !this.activeParties.has(toNode.parties)) continue
+        if (!fromNode.partyBuckets.some(b => this.activeParties.has(b)) || !toNode.partyBuckets.some(b => this.activeParties.has(b))) continue
 
         const from = this.nodeCenter(edge.from)
         const to   = this.nodeCenter(edge.to)
