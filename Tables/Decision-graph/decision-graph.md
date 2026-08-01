@@ -66,7 +66,7 @@ flowchart TD
 #### 2. Which performance objective dominates?
 
 - **Low-latency** → **Low-latency hybrid protocols**: HE for linear layers; GC/FSS/SS for non-linearities.
-  Panther [[72]](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25), Cheetah [[91]](../../Bibliography/references.md#Cheetah/DBLP:conf/uss/HuangLHD22), BumbleBee [[124]](../../Bibliography/references.md#BumbleBee/DBLP:conf/ndss/LuHGL000WC25), Zhou [[204]](../../Bibliography/references.md#zhou2026scalable), COINN [[92]](../../Bibliography/references.md#COINN/DBLP:conf/ccs/HussainJSK21)
+  Panther [72](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25), Cheetah [91](../../Bibliography/references.md#Cheetah/DBLP:conf/uss/HuangLHD22), BumbleBee [124](../../Bibliography/references.md#BumbleBee/DBLP:conf/ndss/LuHGL000WC25), Zhou [204](../../Bibliography/references.md#zhou2026scalable), COINN [92](../../Bibliography/references.md#COINN/DBLP:conf/ccs/HussainJSK21)
 - **High-throughput/Mixed** → continue to [4. Is semi-honest security sufficient?](#4-is-semi-honest-security-sufficient)
 
 ---
@@ -84,7 +84,7 @@ Reached either from a client–server deployment prioritizing throughput (step 2
 
 - **Yes** → continue to [6. Are the MPC parties computationally constrained?](#6-are-the-mpc-parties-computationally-constrained)
 - **No** → **MAC-based protocols**: dishonest majority with authenticated shares; distributed preprocessing; one-sided malicious security possible.
-  MD-ML [[192]](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024), MD-SONIC [[199]](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25), Muse [[109]](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21), SIMC [[38]](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22)
+  MD-ML [192](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024), MD-SONIC [199](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25), Muse [109](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21), SIMC [38](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22)
 
 ---
 
@@ -93,9 +93,9 @@ Reached either from a client–server deployment prioritizing throughput (step 2
 Reached from an outsourcing deployment with an honest majority (step 3).
 
 - **No** → **Online-only or f-independent preprocessing**: security varies.
-  Falcon [[180]](../../Bibliography/references.md#Falcon/DBLP:journals/popets/WaghTBKMR21), Fantastic Four [[50]](../../Bibliography/references.md#fantasticfour/DBLP:conf/uss/Dalskov0K21), Zhou [[204]](../../Bibliography/references.md#zhou2026scalable), Trio/Quad [[84]](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25), ABY3 [[133]](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18)
+  Falcon [180](../../Bibliography/references.md#Falcon/DBLP:journals/popets/WaghTBKMR21), Fantastic Four [50](../../Bibliography/references.md#fantasticfour/DBLP:conf/uss/Dalskov0K21), Zhou [204](../../Bibliography/references.md#zhou2026scalable), Trio/Quad [84](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25), ABY3 [133](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18)
 - **Yes** → **f-dependent preprocessing**: security varies.
-  SWIFT [[104]](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21), Tetrad [[106]](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22), FLASH [[34]](../../Bibliography/references.md#Flash/DBLP:journals/popets/ByaliCPS20)
+  SWIFT [104](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21), Tetrad [106](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22), FLASH [34](../../Bibliography/references.md#Flash/DBLP:journals/popets/ByaliCPS20)
 
 ---
 
@@ -104,7 +104,7 @@ Reached from an outsourcing deployment with an honest majority (step 3).
 Reached from the semi-honest branch (step 4).
 
 - **No** → **FSS-based protocols**: computational overhead, constant-round communication; dealer-based preprocessing possible.
-  Sigma [[79]](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24), FssNN [[186]](../../Bibliography/references.md#FSSNN/ProvSec24/10.1007/978-981-96-0957-4_8), Matchmaker [[93]](../../Bibliography/references.md#Matchmaker/cryptoeprint:2025/424), Shark [[78]](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025), CRISP [[71]](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26)
+  Sigma [79](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24), FssNN [186](../../Bibliography/references.md#FSSNN/ProvSec24/10.1007/978-981-96-0957-4_8), Matchmaker [93](../../Bibliography/references.md#Matchmaker/cryptoeprint:2025/424), Shark [78](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025), CRISP [71](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26)
 - **Yes** → continue to [7. Can the protocol rely on a preprocessing dealer?](#7-can-the-protocol-rely-on-a-preprocessing-dealer)
 
 ---
@@ -114,9 +114,9 @@ Reached from the semi-honest branch (step 4).
 Reached from the computationally-constrained branch (step 6).
 
 - **Yes** → **Commodity-based protocols**: dealer-based preprocessing.
-  Crypten [[102]](../../Bibliography/references.md#Crypten/DBLP:conf/nips/KnottVHSIM21), Chameleon [[155]](../../Bibliography/references.md#Chameleon/DBLP:conf/ccs/RiaziWTS0K18), SHAFT [[97]](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25), SecFormer [[126]](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24)
+  Crypten [102](../../Bibliography/references.md#Crypten/DBLP:conf/nips/KnottVHSIM21), Chameleon [155](../../Bibliography/references.md#Chameleon/DBLP:conf/ccs/RiaziWTS0K18), SHAFT [97](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25), SecFormer [126](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24)
 - **No** → **SS-based protocols**: lightweight computation, heavier communication.
-  ABY2 [[139]](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21), SecureML [[134]](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17), MPCFORMER [[110]](../../Bibliography/references.md#MPCFORMER/DBLP:conf/iclr/LiWSGXZ23)
+  ABY2 [139](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21), SecureML [134](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17), MPCFORMER [110](../../Bibliography/references.md#MPCFORMER/DBLP:conf/iclr/LiWSGXZ23)
 
 ---
 
