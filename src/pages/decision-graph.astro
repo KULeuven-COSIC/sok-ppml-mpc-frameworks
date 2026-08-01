@@ -1,0 +1,257 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Navbar from '../components/Navbar.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+
+const base = import.meta.env.BASE_URL
+
+function parseFrameworkList(line) {
+  if (!line) return []
+  return line.split(/,\s+/).map(entry => {
+    const m = entry.match(/^(.+?)\s*\[+(\d+)\]+\(([^)]+)\)$/)
+    if (!m) return { name: entry.trim(), ref: null, anchor: null }
+    const urlMatch = m[3].match(/references\.md#(.+)$/)
+    return { name: m[1].trim(), ref: m[2], anchor: urlMatch ? urlMatch[1] : null }
+  })
+}
+
+function parseDecisionGraph(content) {
+  const blocks = content.split(/\n#### /)
+  const questions = {}
+  for (let idx = 1; idx < blocks.length; idx++) {
+    const lines = blocks[idx].split('\n')
+    const headerMatch = lines[0].trim().match(/^(\d+)\.\s*(.+)$/)
+    if (!headerMatch) continue
+    const qNum = parseInt(headerMatch[1])
+    const qText = headerMatch[2].trim()
+    const options = []
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i].trim()
+      if (!line.startsWith('- ')) continue
+      const arrowIdx = line.indexOf('→')
+      if (arrowIdx === -1) continue
+      const before = line.slice(2, arrowIdx)
+      const after = line.slice(arrowIdx + 1).trim()
+      const labelMatch = before.match(/\*\*(.+?)\*\*/)
+      const label = labelMatch ? labelMatch[1] : before.trim()
+
+      const branchMatch = after.match(/^continue to \[(\d+)\./)
+      if (branchMatch) {
+        options.push({ label, type: 'branch', target: parseInt(branchMatch[1]) })
+        continue
+      }
+      const leafMatch = after.match(/^\*\*(.+?)\*\*:\s*(.+)$/)
+      if (leafMatch) {
+        let fwLine = ''
+        for (let j = i + 1; j < lines.length; j++) {
+          const t = lines[j].trim()
+          if (t === '') continue
+          if (t.startsWith('- ') || t.startsWith('#')) break
+          fwLine = t
+          break
+        }
+        options.push({
+          label,
+          type: 'leaf',
+          name: leafMatch[1],
+          description: leafMatch[2].replace(/\.$/, ''),
+          frameworks: parseFrameworkList(fwLine),
+        })
+      }
+    }
+    questions[qNum] = { num: qNum, text: qText, options }
+  }
+  return questions
+}
+
+let questions = {}
+try {
+  const raw = readFileSync(join(process.cwd(), 'Tables/Decision-graph/decision-graph.md'), 'utf-8')
+  questions = parseDecisionGraph(raw)
+} catch (e) {}
+
+const questionList = Object.values(questions).sort((a, b) => a.num - b.num)
+const dataJson = JSON.stringify(questions)
+const baseUrl = base
+---
+
+<Layout title="Decision Graph" description="An interactive heuristic decision graph for narrowing down which MPC-based PPML framework fits your application.">
+  <Navbar slot="navbar" />
+
+  <script define:vars={{ dataJson, baseUrl }}>
+    window.__DECISION_GRAPH__ = JSON.parse(dataJson)
+    window.__BASE__ = baseUrl
+  </script>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Header -->
+    <div class="mb-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-medium mb-6">
+        <i class="ph ph-flow-arrow"></i>
+        Choosing a Framework
+      </div>
+      <h1 class="section-heading text-4xl">Decision Graph</h1>
+      <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+        A heuristic, first-stage filter for narrowing down which region of the taxonomy fits your
+        application — answer a few questions about your deployment to see representative frameworks.
+      </p>
+    </div>
+
+    <!-- Interactive wizard -->
+    <div x-data="decisionWizard()" x-cloak class="mb-16">
+
+      <!-- Breadcrumb -->
+      <div class="flex flex-wrap items-center gap-2 mb-6 min-h-[28px]" x-show="history.length">
+        <template x-for="(step, i) in history" :key="i">
+          <span class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-navy-800 border border-slate-700/50 text-xs text-slate-300" x-text="step.label"></span>
+            <i class="ph ph-arrow-right text-slate-600 text-xs"></i>
+          </span>
+        </template>
+      </div>
+
+      <!-- Question card -->
+      <div x-show="!result" class="bg-navy-800 border border-slate-700/50 rounded-2xl p-8">
+        <div class="text-xs font-semibold text-teal-400 uppercase tracking-wider mb-3" x-text="'Question ' + currentQ"></div>
+        <h2 class="text-2xl font-bold text-white mb-6" x-text="currentQuestion?.text"></h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <template x-for="opt in currentQuestion?.options || []" :key="opt.label">
+            <button
+              @click="answer(opt)"
+              class="text-left p-5 rounded-xl border border-slate-700/50 bg-navy-900/50 hover:border-teal-500/50 hover:bg-teal-500/5 transition-colors group"
+            >
+              <span class="flex items-center justify-between">
+                <span class="font-semibold text-white group-hover:text-teal-300" x-text="opt.label"></span>
+                <i class="ph ph-arrow-right text-slate-600 group-hover:text-teal-400"></i>
+              </span>
+              <span x-show="opt.type === 'leaf'" class="block mt-1 text-xs text-slate-500" x-text="opt.type === 'leaf' ? 'Leads to: ' + opt.name : ''"></span>
+            </button>
+          </template>
+        </div>
+        <button x-show="history.length" @click="goBack()" class="mt-6 flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-300 transition-colors">
+          <i class="ph ph-arrow-left"></i> Back
+        </button>
+      </div>
+
+      <!-- Result card -->
+      <div x-show="result" class="bg-teal-950/20 border border-teal-500/30 rounded-2xl p-8">
+        <div class="flex items-center gap-2 text-xs font-semibold text-teal-400 uppercase tracking-wider mb-3">
+          <i class="ph ph-flag-checkered"></i>
+          Recommended region
+        </div>
+        <h2 class="text-2xl font-bold text-white mb-2" x-text="result?.name"></h2>
+        <p class="text-slate-400 leading-relaxed mb-6" x-text="result?.description"></p>
+        <div class="flex flex-wrap gap-2 mb-6">
+          <template x-for="fw in result?.frameworks || []" :key="fw.name">
+            <a
+              :href="fw.anchor ? base + '/bibliography#' + fw.anchor : (base + '/explorer?q=' + encodeURIComponent(fw.name))"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-navy-800 border border-slate-700/50 text-sm text-slate-200 hover:border-teal-500/50 hover:text-teal-300 transition-colors"
+            >
+              <span x-text="fw.name"></span>
+              <span x-show="fw.ref" class="text-teal-400 font-mono text-xs" x-text="'[' + fw.ref + ']'"></span>
+            </a>
+          </template>
+        </div>
+        <p class="text-xs text-slate-500 mb-6">
+          This is a first-stage filter, not a final answer — check the
+          <a :href="base + '/explorer'" class="text-teal-400 hover:underline">Framework Explorer</a>
+          and <a :href="base + '/cost-analysis'" class="text-teal-400 hover:underline">Cost Analysis</a>
+          tables for party count, supported operations, and communication cost detail.
+        </p>
+        <div class="flex items-center gap-4">
+          <button @click="goBack()" class="flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-200 transition-colors">
+            <i class="ph ph-arrow-left"></i> Back
+          </button>
+          <button @click="reset()" class="flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-200 transition-colors">
+            <i class="ph ph-arrow-counter-clockwise"></i> Start over
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full reference walkthrough -->
+    <div class="border-t border-slate-800 pt-10">
+      <h2 class="section-heading">Full Decision Graph (All Paths)</h2>
+      <p class="section-subheading">
+        Every question and outcome in the graph above, for reference or linking directly to a specific branch.
+      </p>
+      <div class="space-y-6">
+        {questionList.map(q => (
+          <div id={`q${q.num}`} class="bg-navy-800/50 border border-slate-700/40 rounded-xl p-6">
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Question {q.num}</div>
+            <h3 class="text-lg font-bold text-white mb-4">{q.text}</h3>
+            <ul class="space-y-3">
+              {q.options.map(opt => (
+                <li class="text-sm">
+                  <span class="text-slate-200 font-medium">{opt.label}</span>
+                  {opt.type === 'branch' ? (
+                    <span class="text-slate-500"> → continue to <a href={`#q${opt.target}`} class="text-teal-400 hover:underline">Question {opt.target}</a></span>
+                  ) : (
+                    <>
+                      <span class="text-slate-500"> → <span class="text-teal-300 font-medium">{opt.name}</span>: {opt.description}.</span>
+                      <div class="flex flex-wrap gap-1.5 mt-2">
+                        {opt.frameworks.map(fw => (
+                          <a
+                            href={fw.anchor ? `${base}/bibliography#${fw.anchor}` : `${base}/explorer?q=${encodeURIComponent(fw.name)}`}
+                            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-navy-900/60 border border-slate-700/50 text-xs text-slate-300 hover:border-teal-500/50 hover:text-teal-300 transition-colors"
+                          >
+                            {fw.name}{fw.ref && <span class="text-teal-400 font-mono">[{fw.ref}]</span>}
+                          </a>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+
+  <script is:inline>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('decisionWizard', () => ({
+        questions: window.__DECISION_GRAPH__ || {},
+        base: window.__BASE__ || '',
+        currentQ: 1,
+        history: [],
+        result: null,
+
+        get currentQuestion() {
+          return this.questions[this.currentQ] || null
+        },
+
+        answer(opt) {
+          this.history.push({ qNum: this.currentQ, label: opt.label })
+          if (opt.type === 'branch') {
+            this.currentQ = opt.target
+            this.result = null
+          } else {
+            this.result = opt
+          }
+        },
+
+        goBack() {
+          if (!this.history.length) return
+          const last = this.history.pop()
+          this.currentQ = last.qNum
+          this.result = null
+        },
+
+        reset() {
+          this.currentQ = 1
+          this.history = []
+          this.result = null
+        },
+      }))
+    })
+  </script>
+</Layout>
