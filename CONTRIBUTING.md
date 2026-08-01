@@ -11,7 +11,8 @@ When a framework is added, removed, or re-cited in the paper, work through all o
 3. **Theoretical cost tables** — if the paper analyzes concrete costs for this framework, add rows to the relevant table(s) under [`Tables/Theoretical-analysis/`](Tables/Theoretical-analysis/).
 4. **Decision Graph** — check [`Tables/Decision-graph/decision-graph.md`](Tables/Decision-graph/decision-graph.md) against `Sections/a3-1-decision-graph-new.tex` and `Tables/decision-tree.tex` in the paper: does the framework belong in one of the leaf categories there?
 5. **Genealogy** — check [`Tables/Genealogy/genealogy.md`](Tables/Genealogy/genealogy.md) against `Figures/genealogy.tikz` in the paper: does the framework appear as a node there, and does it have any lineage edges to add?
-6. **Open a PR** — the "Validate Tables" GitHub Action runs automatically and will catch broken citation anchors and mismatched table column counts before merge.
+6. **MPC Puzzle** — if the paper's Appendix E (`Sections/a5-MPC-Puzzle.tex`) adds or changes a secret-sharing conversion cost, or adds a new party-count combination, update the matching table in [`Tables/MPC-Puzzle/mpc-puzzle.md`](Tables/MPC-Puzzle/mpc-puzzle.md). This one isn't per-framework, so it only needs a check when the conversion protocols themselves change, not on every new framework.
+7. **Open a PR** — the "Validate Tables" GitHub Action runs automatically and will catch broken citation anchors and mismatched table column counts before merge.
 
 ## Checking for drift periodically
 
