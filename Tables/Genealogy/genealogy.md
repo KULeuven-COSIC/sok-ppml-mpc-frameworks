@@ -173,6 +173,10 @@ flowchart TD
     PUMA_F --> Mosformer_F
     end
 
+    CAT0 ~~~ CAT1
+    CAT1 ~~~ CAT2
+    CAT2 ~~~ CAT3
+
     classDef cat0 fill:#eef4ff,stroke:#4a6fa5,stroke-width:1px;
     classDef cat1 fill:#fff7e6,stroke:#b5860b,stroke-width:1px;
     classDef cat2 fill:#eefaf0,stroke:#3f9142,stroke-width:1px;
