@@ -23,11 +23,11 @@ const base = import.meta.env.BASE_URL
     <!-- Process steps -->
     <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-10">
       {[
-        { n: '01', icon: 'ph-pencil', label: 'Fill Form', desc: 'Enter framework details' },
-        { n: '02', icon: 'ph-eye', label: 'Preview Row', desc: 'See generated table entry' },
-        { n: '03', icon: 'ph-github-logo', label: 'Open Issue', desc: 'One click to GitHub' },
-        { n: '04', icon: 'ph-git-pull-request', label: 'PR Created', desc: 'Maintainers review' },
-        { n: '05', icon: 'ph-check-circle', label: 'Merged!', desc: 'Site auto-updates' },
+        { n: '01', icon: 'ph ph-pencil', label: 'Fill Form', desc: 'Enter framework details' },
+        { n: '02', icon: 'ph ph-eye', label: 'Preview Row', desc: 'See generated table entry' },
+        { n: '03', icon: 'ph ph-github-logo', label: 'Open Issue', desc: 'One click to GitHub' },
+        { n: '04', icon: 'ph ph-git-pull-request', label: 'PR Created', desc: 'Maintainers review' },
+        { n: '05', icon: 'ph ph-check-circle', label: 'Merged!', desc: 'Site auto-updates' },
       ].map((step, i) => (
         <div class="text-center">
           <div class="w-10 h-10 rounded-full bg-brand-500/15 border border-brand-500/30 flex items-center justify-center mx-auto mb-2">
@@ -46,7 +46,7 @@ const base = import.meta.env.BASE_URL
           <!-- Basic info -->
           <div class="card">
             <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
-              <i class="ph-info text-brand-400"></i>
+              <i class="ph ph-info text-brand-400"></i>
               Basic Information
             </h2>
             <div class="space-y-4">
@@ -74,7 +74,7 @@ const base = import.meta.env.BASE_URL
           <!-- Party config -->
           <div class="card">
             <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
-              <i class="ph-users text-teal-400"></i>
+              <i class="ph ph-users text-teal-400"></i>
               Party Configuration
             </h2>
             <div class="grid grid-cols-4 gap-2">
@@ -98,7 +98,7 @@ const base = import.meta.env.BASE_URL
           <!-- Primitives -->
           <div class="card">
             <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
-              <i class="ph-lock text-orange-400"></i>
+              <i class="ph ph-lock text-orange-400"></i>
               Cryptographic Primitives
             </h2>
             <div class="grid grid-cols-3 gap-2">
@@ -113,7 +113,7 @@ const base = import.meta.env.BASE_URL
                     class="w-3.5 h-3.5 rounded border flex items-center justify-center flex-shrink-0 transition-colors"
                   >
                     <template x-if={`primitives.${p}`}>
-                      <i class="ph-check text-white" style="font-size:8px"></i>
+                      <i class="ph ph-check text-white" style="font-size:8px"></i>
                     </template>
                   </span>
                   {p}
@@ -125,7 +125,7 @@ const base = import.meta.env.BASE_URL
           <!-- Security & Setting -->
           <div class="card">
             <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
-              <i class="ph-shield text-red-400"></i>
+              <i class="ph ph-shield text-red-400"></i>
               Security &amp; Deployment
             </h2>
             <div class="grid grid-cols-2 gap-4">
@@ -173,7 +173,7 @@ const base = import.meta.env.BASE_URL
           <!-- ML Operations -->
           <div class="card">
             <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
-              <i class="ph-brain text-purple-400"></i>
+              <i class="ph ph-brain text-purple-400"></i>
               ML Operation Support
             </h2>
             <div class="space-y-2">
@@ -208,7 +208,7 @@ const base = import.meta.env.BASE_URL
           <!-- Preview -->
           <div class="card">
             <h2 class="text-white font-semibold mb-4 flex items-center gap-2">
-              <i class="ph-eye text-emerald-400"></i>
+              <i class="ph ph-eye text-emerald-400"></i>
               Generated Row Preview
             </h2>
             <div class="overflow-x-auto">
@@ -232,7 +232,7 @@ const base = import.meta.env.BASE_URL
           <!-- Issue preview -->
           <div class="card">
             <h2 class="text-white font-semibold mb-3 flex items-center gap-2">
-              <i class="ph-github-logo text-slate-400"></i>
+              <i class="ph ph-github-logo text-slate-400"></i>
               GitHub Issue Preview
             </h2>
             <pre class="text-xs text-slate-400 font-mono bg-navy-900 rounded-lg p-3 overflow-auto max-h-48 whitespace-pre-wrap" x-text="issueBody.substring(0, 500) + (issueBody.length > 500 ? '...' : '')"></pre>
@@ -246,7 +246,7 @@ const base = import.meta.env.BASE_URL
               rel="noopener noreferrer"
               :class="isValid ? 'btn-primary w-full justify-center text-base' : 'btn-secondary w-full justify-center text-base opacity-50 cursor-not-allowed pointer-events-none'"
             >
-              <i class="ph-github-logo text-lg"></i>
+              <i class="ph ph-github-logo text-lg"></i>
               Open GitHub Issue
             </a>
             <p class="text-slate-600 text-xs text-center mt-2">
@@ -262,7 +262,7 @@ const base = import.meta.env.BASE_URL
           <!-- Direct PR path -->
           <div class="card border-dashed">
             <h3 class="text-slate-300 font-medium text-sm mb-2 flex items-center gap-2">
-              <i class="ph-git-fork text-slate-500"></i>
+              <i class="ph ph-git-fork text-slate-500"></i>
               Experienced with Git?
             </h3>
             <p class="text-slate-500 text-xs leading-relaxed mb-3">
@@ -274,7 +274,7 @@ const base = import.meta.env.BASE_URL
               rel="noopener noreferrer"
               class="text-brand-400 hover:text-brand-300 text-xs flex items-center gap-1.5 transition-colors"
             >
-              <i class="ph-book-open"></i>
+              <i class="ph ph-book-open"></i>
               Read CONTRIBUTING.md →
             </a>
           </div>

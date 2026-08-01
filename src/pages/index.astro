@@ -39,7 +39,7 @@ const authors = [
 const features = [
   {
     href: base + '/explorer',
-    icon: 'ph-table',
+    icon: 'ph ph-table',
     color: 'from-blue-500 to-blue-700',
     title: 'Framework Explorer',
     desc: 'Browse and filter all tracked frameworks. Search by protocol, year, security model, or ML operation support.',
@@ -47,7 +47,7 @@ const features = [
   },
   {
     href: base + '/cost-analysis',
-    icon: 'ph-chart-bar',
+    icon: 'ph ph-chart-bar',
     color: 'from-teal-500 to-teal-700',
     title: 'Cost Analysis',
     desc: 'Compare theoretical communication costs across protocols for ReLU, Softmax, GELU, truncation, and more.',
@@ -55,7 +55,7 @@ const features = [
   },
   {
     href: base + '/mpc-puzzle',
-    icon: 'ph-puzzle-piece',
+    icon: 'ph ph-puzzle-piece',
     color: 'from-purple-500 to-purple-700',
     title: 'MPC Puzzle',
     desc: 'Visualize how 2-, 3-, and 4-party secret-sharing schemes connect and convert between each other.',
@@ -63,7 +63,7 @@ const features = [
   },
   {
     href: base + '/contribute',
-    icon: 'ph-git-pull-request',
+    icon: 'ph ph-git-pull-request',
     color: 'from-rose-500 to-rose-700',
     title: 'Contribute',
     desc: 'Know a framework we missed? Fill out the form to suggest an addition — it opens a GitHub PR automatically.',
@@ -102,11 +102,11 @@ const citation = `@misc{zbudila2025sok,
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href={base + '/explorer'} class="btn-primary text-base px-7 py-3">
-          <i class="ph-table"></i>
+          <i class="ph ph-table"></i>
           Explore Frameworks
         </a>
         <a href="https://eprint.iacr.org/2025/1679" target="_blank" rel="noopener noreferrer" class="btn-secondary text-base px-7 py-3">
-          <i class="ph-file-pdf"></i>
+          <i class="ph ph-file-pdf"></i>
           Read the Paper
         </a>
       </div>
@@ -166,7 +166,7 @@ const citation = `@misc{zbudila2025sok,
           and 4-party secret-sharing schemes with a complete mapping of conversion protocols and their overhead.
         </p>
         <a href="https://eprint.iacr.org/2025/1679" target="_blank" rel="noopener noreferrer" class="btn-primary">
-          <i class="ph-file-pdf"></i>
+          <i class="ph ph-file-pdf"></i>
           Full Paper on ePrint
         </a>
       </div>
@@ -179,7 +179,7 @@ const citation = `@misc{zbudila2025sok,
             class="absolute top-3 right-3 p-1.5 rounded bg-slate-700 hover:bg-slate-600 text-slate-400 hover:text-white transition-colors"
             title="Copy citation"
           >
-            <i class="ph-copy text-sm"></i>
+            <i class="ph ph-copy text-sm"></i>
           </button>
         </div>
       </div>
@@ -206,7 +206,7 @@ const citation = `@misc{zbudila2025sok,
   <!-- Contribute CTA -->
   <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="bg-gradient-to-r from-brand-500/10 to-purple-600/10 border border-brand-500/20 rounded-2xl p-8 sm:p-12 text-center">
-      <i class="ph-git-pull-request text-4xl text-brand-400 mb-4 block"></i>
+      <i class="ph ph-git-pull-request text-4xl text-brand-400 mb-4 block"></i>
       <h2 class="text-2xl font-bold text-white mb-3">Help Keep This Resource Current</h2>
       <p class="text-slate-400 max-w-xl mx-auto mb-8 leading-relaxed">
         Know a framework we missed or have updated data? The community drives this resource.
@@ -214,11 +214,11 @@ const citation = `@misc{zbudila2025sok,
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href={base + '/contribute'} class="btn-primary">
-          <i class="ph-plus"></i>
+          <i class="ph ph-plus"></i>
           Suggest a Framework
         </a>
         <a href="https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks/issues" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-          <i class="ph-bug"></i>
+          <i class="ph ph-bug"></i>
           Report an Issue
         </a>
       </div>
@@ -234,8 +234,8 @@ const citation = `@misc{zbudila2025sok,
     navigator.clipboard.writeText(text).then(() => {
       const btn = document.getElementById('copy-citation')
       if (btn) {
-        btn.innerHTML = '<i class="ph-check text-sm text-emerald-400"></i>'
-        setTimeout(() => { btn.innerHTML = '<i class="ph-copy text-sm"></i>' }, 2000)
+        btn.innerHTML = '<i class="ph ph-check text-sm text-emerald-400"></i>'
+        setTimeout(() => { btn.innerHTML = '<i class="ph ph-copy text-sm"></i>' }, 2000)
       }
     })
   })
