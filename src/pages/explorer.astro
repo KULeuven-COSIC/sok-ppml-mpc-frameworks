@@ -264,6 +264,10 @@ const designJson = JSON.stringify(designRows)
         },
         mlForFw(name) {
           return this.mlData[name] || null
+        },
+        mlCell(name, field) {
+          const d = this.mlData[name]
+          return d ? (d[field] || '—') : '—'
         }
       }"
       x-cloak
@@ -273,7 +277,7 @@ const designJson = JSON.stringify(designRows)
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           <div class="lg:col-span-2">
             <div class="relative">
-              <i class="ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
+              <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
               <input
                 type="text"
                 x-model="search"
@@ -418,19 +422,14 @@ const designJson = JSON.stringify(designRows)
                   </div>
                 </td>
                 <td class="text-slate-400" x-text="f.year || '—'"></td>
-                <template x-if="mlForFw(f.name)">
-                  <td :class="statusClass(mlForFw(f.name).linear)" x-text="mlForFw(f.name).linear"></td>
-                  <td :class="statusClass(mlForFw(f.name).conv)" x-text="mlForFw(f.name).conv"></td>
-                  <td class="text-slate-400 text-xs" x-text="mlForFw(f.name).trunc"></td>
-                  <td :class="statusClass(mlForFw(f.name).relu)" x-text="mlForFw(f.name).relu"></td>
-                  <td :class="statusClass(mlForFw(f.name).softmax)" x-text="mlForFw(f.name).softmax"></td>
-                  <td :class="statusClass(mlForFw(f.name).sigmoid)" x-text="mlForFw(f.name).sigmoid"></td>
-                  <td :class="statusClass(mlForFw(f.name).norm)" x-text="mlForFw(f.name).norm"></td>
-                  <td :class="statusClass(mlForFw(f.name).gelu)" x-text="mlForFw(f.name).gelu"></td>
-                </template>
-                <template x-if="!mlForFw(f.name)">
-                  <td colspan="8" class="text-slate-600 text-center text-xs">ML data not available</td>
-                </template>
+                <td :class="statusClass(mlCell(f.name, 'linear'))" x-text="mlCell(f.name, 'linear')"></td>
+                <td :class="statusClass(mlCell(f.name, 'conv'))" x-text="mlCell(f.name, 'conv')"></td>
+                <td class="text-slate-400 text-xs" x-text="mlCell(f.name, 'trunc')"></td>
+                <td :class="statusClass(mlCell(f.name, 'relu'))" x-text="mlCell(f.name, 'relu')"></td>
+                <td :class="statusClass(mlCell(f.name, 'softmax'))" x-text="mlCell(f.name, 'softmax')"></td>
+                <td :class="statusClass(mlCell(f.name, 'sigmoid'))" x-text="mlCell(f.name, 'sigmoid')"></td>
+                <td :class="statusClass(mlCell(f.name, 'norm'))" x-text="mlCell(f.name, 'norm')"></td>
+                <td :class="statusClass(mlCell(f.name, 'gelu'))" x-text="mlCell(f.name, 'gelu')"></td>
               </tr>
             </template>
             <template x-if="filtered.length === 0">
@@ -540,12 +539,12 @@ const designJson = JSON.stringify(designRows)
           <div class="flex items-center gap-2">
             <template x-if="selectedFw?.paperUrl">
               <a :href="selectedFw.paperUrl" class="btn-secondary text-xs py-1.5 px-3">
-                <i class="ph-books"></i>
+                <i class="ph ph-books"></i>
                 <span x-text="selectedFw.refNum ? '[' + selectedFw.refNum + '] Bibliography' : 'Bibliography'"></span>
               </a>
             </template>
             <button x-on:click="selectedFw = null" class="p-1.5 rounded text-slate-500 hover:text-white hover:bg-slate-700">
-              <i class="ph-x"></i>
+              <i class="ph ph-x"></i>
             </button>
           </div>
         </div>

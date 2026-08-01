@@ -37,13 +37,13 @@ function getPaperUrl(cell) {
 }
 
 const operations = [
-  { id: 'relu', label: 'ReLU', icon: 'ph-lightning', color: 'text-orange-400', desc: 'Rectified Linear Unit' },
-  { id: 'dot-product', label: 'Dot Product', icon: 'ph-brackets-square', color: 'text-blue-400', desc: 'Linear layer' },
-  { id: 'truncation', label: 'Truncation', icon: 'ph-scissors', color: 'text-teal-400', desc: 'Fixed-point rounding' },
-  { id: 'softmax', label: 'Softmax', icon: 'ph-chart-pie', color: 'text-purple-400', desc: 'Softmax activation' },
-  { id: 'sigmoid', label: 'Sigmoid', icon: 'ph-wave-sine', color: 'text-pink-400', desc: 'Sigmoid activation' },
-  { id: 'gelu', label: 'GELU', icon: 'ph-wave-triangle', color: 'text-emerald-400', desc: 'Gaussian ELU' },
-  { id: 'normalization', label: 'Norm.', icon: 'ph-equalizer', color: 'text-amber-400', desc: 'Normalization' },
+  { id: 'relu', label: 'ReLU', icon: 'ph ph-lightning', color: 'text-orange-400', desc: 'Rectified Linear Unit' },
+  { id: 'dot-product', label: 'Dot Product', icon: 'ph ph-brackets-square', color: 'text-blue-400', desc: 'Linear layer' },
+  { id: 'truncation', label: 'Truncation', icon: 'ph ph-scissors', color: 'text-teal-400', desc: 'Fixed-point rounding' },
+  { id: 'softmax', label: 'Softmax', icon: 'ph ph-chart-pie', color: 'text-purple-400', desc: 'Softmax activation' },
+  { id: 'sigmoid', label: 'Sigmoid', icon: 'ph ph-wave-sine', color: 'text-pink-400', desc: 'Sigmoid activation' },
+  { id: 'gelu', label: 'GELU', icon: 'ph ph-wave-triangle', color: 'text-emerald-400', desc: 'Gaussian ELU' },
+  { id: 'normalization', label: 'Norm.', icon: 'ph ph-equalizer', color: 'text-amber-400', desc: 'Normalization' },
 ]
 
 const FIXED_COLS = ['N', 'Sec.', 'Protocol']
@@ -138,14 +138,14 @@ const opsJson = JSON.stringify(operations)
           :class="!chartMode ? 'bg-brand-500/15 border-brand-500/50 text-brand-400' : 'bg-navy-800 border-slate-700/50 text-slate-400 hover:border-slate-500 hover:text-slate-200'"
           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors"
         >
-          <i class="ph-table text-sm"></i> Table
+          <i class="ph ph-table text-sm"></i> Table
         </button>
         <button
           x-on:click="chartMode = true"
           :class="chartMode ? 'bg-brand-500/15 border-brand-500/50 text-brand-400' : 'bg-navy-800 border-slate-700/50 text-slate-400 hover:border-slate-500 hover:text-slate-200'"
           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors"
         >
-          <i class="ph-chart-bar-horizontal text-sm"></i> Chart
+          <i class="ph ph-chart-bar-horizontal text-sm"></i> Chart
         </button>
       </div>
 
@@ -205,7 +205,7 @@ const opsJson = JSON.stringify(operations)
       <!-- Chart -->
       <div x-show="chartMode" class="overflow-x-auto rounded-xl border border-slate-700/50 bg-navy-800/60 p-5">
         <div class="mb-3 flex items-center gap-2 text-xs text-slate-500">
-          <i class="ph-chart-bar-horizontal text-brand-400"></i>
+          <i class="ph ph-chart-bar-horizontal text-brand-400"></i>
           <span>Online communication cost — bar width proportional to cost expression length (rough proxy). Color indicates tech type.</span>
         </div>
         <template x-if="currentRows.length === 0">
@@ -250,7 +250,7 @@ const opsJson = JSON.stringify(operations)
       <!-- Notation -->
       <div class="mt-6 bg-navy-800/60 border border-slate-700/40 rounded-xl p-5">
         <h3 class="text-slate-300 font-semibold text-sm mb-3 flex items-center gap-2">
-          <i class="ph-info text-brand-400"></i>
+          <i class="ph ph-info text-brand-400"></i>
           Notation
         </h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-xs text-slate-500" id="notation-grid">
