@@ -63,17 +63,31 @@ jobs:
               await page.evaluate(() => {
                 // Shared footer on every page: full author list, eprint ID, org/repo name.
                 document.querySelectorAll('footer').forEach(el => { el.style.display = 'none'; });
-                // Homepage-only "Authors" section: institutions + full plaintext BibTeX citation.
+                // Homepage-only "Citation" section: has a stable id on the <pre> block itself,
+                // which is a more reliable hook than text-matching -- hide its nearest <section>.
+                const citationBlock = document.getElementById('citation-block');
+                if (citationBlock) {
+                  const section = citationBlock.closest('section');
+                  if (section) section.style.display = 'none';
+                }
+                // Homepage-only "Authors" section: institutions + author cards (a separate
+                // section from the citation block above, not nested inside it).
                 document.querySelectorAll('section').forEach(el => {
                   const text = el.textContent || '';
                   if (text.includes('KU Leuven COSIC') && text.includes('Technology Innovation Institute')) {
                     el.style.display = 'none';
                   }
                 });
-                // Homepage hero badge, e.g. "ePrint 2025/1679 · KU Leuven COSIC".
+                // Homepage hero badge, e.g. "ePrint 2025/1679 · KU Leuven COSIC". Not a pure
+                // leaf (it wraps an icon element), so match the deepest element whose own
+                // text contains the full pattern -- i.e. none of its children match it too.
                 document.querySelectorAll('body *').forEach(el => {
-                  if (el.children.length === 0 && /ePrint\s+\d{4}\/\d+\s*·\s*KU Leuven/i.test(el.textContent || '')) {
-                    el.style.display = 'none';
+                  const text = el.textContent || '';
+                  if (/ePrint\s+\d{4}\/\d+\s*·\s*KU Leuven/i.test(text)) {
+                    const childMatches = Array.from(el.children).some(
+                      c => /ePrint\s+\d{4}\/\d+\s*·\s*KU Leuven/i.test(c.textContent || '')
+                    );
+                    if (!childMatches) el.style.display = 'none';
                   }
                 });
               });
