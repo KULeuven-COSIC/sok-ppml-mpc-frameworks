@@ -46,6 +46,12 @@ New to this SoK? A suggested reading path:
 
 ---
 
+## Contributing
+
+Found a framework the paper covers but this repo doesn't yet, or a stale citation? See [CONTRIBUTING.md](CONTRIBUTING.md) for the checklist we use to keep this repo in sync with the paper.
+
+---
+
 ## Citation
 
 Please cite as:
