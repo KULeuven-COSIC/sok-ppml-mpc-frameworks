@@ -6,6 +6,11 @@ import '../styles/global.css'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
+// BibTeX wraps words in {braces} to protect their capitalization at compile time
+// (e.g. "{ABY} - {A} Framework..."); those braces carry no meaning once rendered
+// as plain text, so strip them.
+const stripBraces = (s) => s.replace(/[{}]/g, '')
+
 function parseRefs(filePath) {
   const content = readFileSync(join(process.cwd(), filePath), 'utf-8')
   const refs = []
@@ -15,15 +20,25 @@ function parseRefs(filePath) {
     const m = line.match(lineRe)
     if (!m) continue
     const [, num, anchor, rest] = m
-    // authors end at first "
-    const quoteIdx = rest.indexOf('"')
-    const authors = quoteIdx > 0 ? rest.slice(0, quoteIdx).replace(/\.$/, '').trim() : rest.trim()
-    // title: between first pair of " "
-    const titleM = rest.match(/"([^"]+)"/)
-    const title = titleM ? titleM[1] : ''
+    // Most entries use curly quotes (" ") but a handful of newer ones use straight
+    // quotes ("); authors end at whichever opening quote character appears first.
+    const straightIdx = rest.indexOf('"')
+    const curlyIdx = rest.indexOf('“')
+    const quoteIdx = [straightIdx, curlyIdx].filter(i => i > 0).sort((a, b) => a - b)[0] ?? -1
+    // .trim() before stripping the trailing "." -- the raw text has a space before
+    // the opening quote ("...Rabin. “How..."), so a trailing-period regex run
+    // before trimming never matched (the last character was a space, not a period),
+    // leaving every entry's authors ending in a stray period that then combined with
+    // the template's own separator into "Rabin..".
+    const authors = stripBraces(quoteIdx > 0 ? rest.slice(0, quoteIdx).trim().replace(/\.$/, '') : rest.trim())
+    // title: between the first pair of quotes, curly or straight. Titles in the source
+    // already end with their own "." inside the closing quote, so strip it here too --
+    // the template appends its own "." unconditionally when rendering.
+    const titleM = rest.match(/“([^”]+)”/) || rest.match(/"([^"]+)"/)
+    const title = titleM ? stripBraces(titleM[1].replace(/\.$/, '')) : ''
     // venue: between * *
     const venueM = rest.match(/\*([^*]+)\*/)
-    const venue = venueM ? venueM[1] : ''
+    const venue = venueM ? stripBraces(venueM[1]) : ''
     // year: last 4-digit number before any URL
     const yearM = rest.match(/\b(19|20)\d{2}\b/)
     const year = yearM ? yearM[0] : ''
