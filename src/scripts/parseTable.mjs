@@ -22,11 +22,22 @@ export function parseMarkdownTable(content) {
   return { headers, rows }
 }
 
+// Tables/*.md cite frameworks inconsistently as "Name [N](url)" or "Name [[N]](url)"
+// (single- vs double-bracket ref numbers, mixed across different files with no fixed
+// convention). The bracketed content is always just the bibliography reference number
+// -- never part of the actual name -- so it must be removed entirely, not inlined as
+// display text. `\[+` / `\]+` (one-or-more) matches both bracket styles with one regex.
 export function cleanName(cell) {
   return (cell || '')
-    .replace(/\[\[([^\]]+)\]\]\([^)]+\)/g, (_, t) => t)
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, (_, t) => t)
-    .split('[[')[0].split('[')[0].trim()
+    .replace(/\[+\d+\]+\([^)]+\)/g, '')
+    .trim()
+}
+
+// Extract the reference number from a "[N](url)" or "[[N]](url)" citation, regardless
+// of bracket style.
+export function getRefNum(cell) {
+  const m = (cell || '').match(/\[+(\d+)\]+\(/)
+  return m ? m[1] : null
 }
 
 export function getPaperUrl(cell) {

@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro'
 import '../styles/global.css'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { cleanName as cleanProtocol, getRefNum } from '../scripts/parseTable.mjs'
 
 function parseCostTable(filePath) {
   try {
@@ -26,19 +27,6 @@ function parseCostTable(filePath) {
     })
     return { headers, rows }
   } catch { return { headers: [], rows: [] } }
-}
-
-function cleanProtocol(cell) {
-  return (cell || '')
-    .replace(/\[\[\d+\]\]\([^)]+\)/g, '')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, (_, t) => t)
-    .replace(/\[\[.*/, '')
-    .trim()
-}
-
-function getRefNum(cell) {
-  const m = (cell || '').match(/\[\[(\d+)\]\]/)
-  return m ? m[1] : null
 }
 
 const base = import.meta.env.BASE_URL
