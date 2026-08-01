@@ -39,6 +39,8 @@
 | BT | Beaver Triples |
 | A-B-G | Arithmetic-Boolean-Garbled |
 | PRNG | Pseudo-random number generator |
+| O | Outsourcing Model |
+| C-S | Client-Server Model |
 
 ---
 

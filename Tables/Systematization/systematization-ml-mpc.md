@@ -18,7 +18,7 @@
 | Meteor [62](../../Bibliography/references.md#meteor/DBLP:conf/www/DongCJLW23)                          | 2023 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
 | PrivFormer [7](../../Bibliography/references.md#PrivFormer/DBLP:conf/eurosp/AkimotoFAS23)            | 2023 |    3    |    ✓   |   ✗  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✓       |   ✗  |
 | Trio [84](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25)           | 2024 |    3    |    ✓   |   ✗  | Probabilistic | ◐ [T1] |    ✗    |    ✗    |       ✗       |   ✗  |
-| Brüggenmann et al. [32](../../Bibliography/references.md#Impostor/DBLP:conf/sp/BruggemannSSSY24)      | 2024 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
+| Brüggemann et al. [32](../../Bibliography/references.md#Impostor/DBLP:conf/sp/BruggemannSSSY24)      | 2024 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
 | Mosformer [43](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25)                     | 2025 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✓    |    ✗    |       ✓       |   ✓  |
 | ECHO [65](../../Bibliography/references.md#duan2026echo) | 2026 | 3 | ✓ | ✗ | Stochastic | ◐ [T1] | ✗ | ✗ | ✗ | ✗ |
 | Trident [40](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20)                    | 2019 |    4    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✓    |    ✓    |     ◐ [T2]     |   ✗  |
@@ -29,7 +29,7 @@
 | Tetrad [106](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22)                          | 2021 |    4    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✓    |    ✓    |     ◐ [T2]     |   ✗  |
 | Quad [84](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25)           | 2024 |    4    |    ✓   |   ✗  | Probabilistic | ◐ [T1] |    ✗    |    ✗    |       ✗       |   ✗  |
 | MPClan [105](../../Bibliography/references.md#MPClan/DBLP:journals/joc/KotiPPS23)                      | 2023 |    n    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
-| Baccarini et al. [16](../../Bibliography/references.md#baccarini2020multi)                             | 2023 |    n    |    ✓   |   ✓  | Probabilistic |   ✗   |    ✗    |    ✗    |       ✗       |   ✗  |
+| Baccarini et al. [15](../../Bibliography/references.md#DBLP:journals/popets/BaccariniBY23)                             | 2023 |    n    |    ✓   |   ✓  | Probabilistic |   ✗   |    ✗    |    ✗    |       ✗       |   ✗  |
 | Liu et al. [116](../../Bibliography/references.md#ScalableMPCforML/DBLP:conf/uss/LiuX024)              | 2024 |    n    |    ✓   |   ✓  | Stochastic    |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
 | MD-ML [192](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024)                          | 2024 |    n    |    ✓   |   ✓  | Probabilistic | ◐ [T1] |    ✗    |    ✗    |       ✗       |   ✗  |
 | MD-SONIC [199](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25)             | 2025 |    n    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
