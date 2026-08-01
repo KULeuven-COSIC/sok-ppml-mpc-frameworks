@@ -36,7 +36,7 @@ New to this SoK? A suggested reading path:
 | --- | --- | --- | :---: |
 | 🗂️ [Notation](Tables/notation.md) | What do the symbols and abbreviations mean? | [Notation & Abbreviations](Tables/notation.md) | — |
 | 📚 [Related Work](Tables/Related-work/related-work-comparison.md) | How does this SoK differ from prior surveys? | [Related Work Comparison](Tables/Related-work/related-work-comparison.md) | [Related Work](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/related-work) |
-| 🧭 [Decision Graph](Tables/Decision-graph/decision-graph.md) | Which framework fits my application's requirements? | [Decision Graph](Tables/Decision-graph/decision-graph.md) | — |
+| 🧭 [Decision Graph](Tables/Decision-graph/decision-graph.md) | Which framework fits my application's requirements? | [Decision Graph](Tables/Decision-graph/decision-graph.md) | [Decision Graph](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/decision-graph) |
 | ⚙️ Design & Deployment Dimensions | How are frameworks classified (algebraic structure, threat model, execution phase, deployment mode, network)? | [Comprehensive MPC Design](Tables/Systematization/systematization-mpc.md), [2PC](Tables/Systematization/systematization-overview-2pc.md) / [3-4PC](Tables/Systematization/systematization-overview-34pc.md) / [nPC](Tables/Systematization/systematization-overview-npc.md) overviews | [Explorer](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/explorer) |
 | 🌳 [Genealogy](Tables/Genealogy/genealogy.md) | How have frameworks evolved over time, and what influenced what? | [Genealogy](Tables/Genealogy/genealogy.md) | [Genealogy](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/genealogy) |
 | 🤖 ML-Based Systematization | Which ML functionalities (NN layers, transformer ops) does a framework support? | [2PC](Tables/Systematization/systematization-ml-2pc.md) / [MPC](Tables/Systematization/systematization-ml-mpc.md) ML support | [Explorer](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/explorer) |
@@ -48,7 +48,9 @@ New to this SoK? A suggested reading path:
 
 ## Contributing
 
-Found a framework the paper covers but this repo doesn't yet, or a stale citation? See [CONTRIBUTING.md](CONTRIBUTING.md) for the checklist we use to keep this repo in sync with the paper.
+Know a framework this repo doesn't cover yet? Use the [live suggestion form](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/contribute) — fill in the details and it opens a pre-formatted GitHub issue for you, no need to edit any files by hand.
+
+Prefer to edit the tables directly, or found a stale citation? See [CONTRIBUTING.md](CONTRIBUTING.md) for the checklist we use to keep this repo in sync with the paper.
 
 ---
 
