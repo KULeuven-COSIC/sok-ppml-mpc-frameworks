@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro'
 import '../styles/global.css'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { cleanName } from '../scripts/parseTable.mjs'
 
 const base = import.meta.env.BASE_URL
 
@@ -30,11 +31,9 @@ function parseMdTable(filePath) {
 }
 
 function cleanRef(cell) {
-  // Remove bold markers and links, keep the display text
-  return (cell || '')
-    .replace(/\*\*/g, '')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, (_, t) => t)
-    .trim()
+  // Remove bold markers, then strip the citation-ref link entirely (its bracketed
+  // content is just the bibliography reference number, not part of the display text).
+  return cleanName((cell || '').replace(/\*\*/g, ''))
 }
 
 function norm(s) {
