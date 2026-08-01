@@ -83,8 +83,28 @@ const base = import.meta.env.BASE_URL
           String(r.year).includes(q) ||
           String(r.num).includes(q)
         )
+      },
+      scrollToHash() {
+        if (!location.hash) return
+        const id = decodeURIComponent(location.hash.slice(1))
+        // Double-RAF: the browser's own hash-scroll already ran (and found nothing,
+        // since these ids only exist once Alpine's x-for paints them), so wait for
+        // the next two paints before looking the element up ourselves.
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          const el = document.getElementById(id)
+          if (!el) return
+          // No explicit `behavior` - <html> already has Tailwind's scroll-smooth
+          // class, and forcing behavior:'smooth' here didn't reliably animate.
+          el.scrollIntoView({ block: 'center' })
+          // Direct DOM manipulation rather than a reactive :class binding, since
+          // x-for elements can be numerous and this only needs to touch one node.
+          el.classList.add('border-brand-500', 'ring-2', 'ring-brand-500/50')
+          setTimeout(() => {
+            el.classList.remove('border-brand-500', 'ring-2', 'ring-brand-500/50')
+          }, 2500)
+        }))
       }
-    }" x-cloak>
+    }" x-init="$nextTick(() => scrollToHash())" x-cloak>
 
       <div class="mb-6 flex items-center gap-3">
         <div class="relative flex-1 max-w-lg">
