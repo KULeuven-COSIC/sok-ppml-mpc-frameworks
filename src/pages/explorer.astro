@@ -74,24 +74,13 @@ function buildFramework(row, parties) {
 }
 
 function cleanRingField(ring, field) {
-  // Simplify LaTeX for display — strip $\mathbb{...} patterns to readable text
-  function simplify(s) {
-    if (!s || s === '✗' || s === '—') return s || '—'
-    return s
-      .replace(/\$\\mathbb\{Z\}_\{2\^\{\\ell\}\}\$/g, 'Z_{2^ℓ}')
-      .replace(/\$\\mathbb\{Z\}_\{2\^\{\\ell\}\}/g, 'Z_{2^ℓ}')
-      .replace(/\$\\mathbb\{Z\}_2\$/g, 'Z_2')
-      .replace(/\$\\mathbb\{Z\}_2/g, 'Z_2')
-      .replace(/\$\\mathbb\{F\}_\{p\}\$/g, 'F_p')
-      .replace(/\$\\mathbb\{F\}_\{p\}/g, 'F_p')
-      .replace(/\$[^$]*\$/g, m => m.replace(/[${}\\mathbb]/g, '').replace('Z_', 'Z_').trim())
-      .trim()
-  }
-  const r = simplify(ring)
-  const f = simplify(field)
-  if (r === '✗' && f === '✗') return '—'
-  if (r === '✗' || r === '—') return f
-  if (f === '✗' || f === '—') return r
+  // Keep the raw $...$-delimited LaTeX as-is — it's rendered with KaTeX at display time.
+  const isEmpty = s => !s || s === '✗' || s === '—'
+  const r = (ring || '').trim()
+  const f = (field || '').trim()
+  if (isEmpty(r) && isEmpty(f)) return '—'
+  if (isEmpty(r)) return f
+  if (isEmpty(f)) return r
   return r + ' / ' + f
 }
 
@@ -261,6 +250,22 @@ const designJson = JSON.stringify(designRows)
           if (v === 'yes') return 'text-center text-emerald-400'
           if (v === 'no') return 'text-center text-slate-600'
           return 'text-center text-slate-300 text-xs'
+        },
+        renderLatex(str) {
+          if (!str || str === '—' || str === '-' || str === '') {
+            return '<span class=text-slate-600>—</span>'
+          }
+          if (typeof window.katex === 'undefined') return str
+          try {
+            const parts = str.split('$')
+            if (parts.length < 3) return str
+            let out = parts[0]
+            for (let i = 1; i + 1 < parts.length; i += 2) {
+              out += window.katex.renderToString(parts[i], { throwOnError: false, displayMode: false })
+              out += parts[i + 1] || ''
+            }
+            return out
+          } catch (e) { return str }
         },
         mlForFw(name) {
           return this.mlData[name] || null
@@ -470,7 +475,7 @@ const designJson = JSON.stringify(designRows)
                   </div>
                 </td>
                 <td class="text-slate-400" x-text="d.year || '—'"></td>
-                <td class="text-slate-400 text-xs font-mono" x-text="d.ringField"></td>
+                <td class="text-slate-400 text-xs font-mono" x-html="renderLatex(d.ringField)"></td>
                 <td class="text-slate-300 text-xs" x-text="d.partiesLabel"></td>
                 <td :class="boolClass(d.onlineOnly)">
                   <template x-if="d.onlineOnly === 'yes'"><span class="text-emerald-400">✓</span></template>
@@ -480,7 +485,7 @@ const designJson = JSON.stringify(designRows)
                 <td :class="boolClass(d.preprocessing)">
                   <template x-if="d.preprocessing === 'yes'"><span class="text-emerald-400">✓</span></template>
                   <template x-if="d.preprocessing === 'no'"><span class="text-slate-600">—</span></template>
-                  <template x-if="d.preprocessing !== 'yes' && d.preprocessing !== 'no'"><span class="text-slate-300 text-xs" x-text="d.preprocessing"></span></template>
+                  <template x-if="d.preprocessing !== 'yes' && d.preprocessing !== 'no'"><span class="text-slate-300 text-xs" x-html="renderLatex(d.preprocessing)"></span></template>
                 </td>
                 <td :class="boolClass(d.dealer)">
                   <template x-if="d.dealer === 'yes'"><span class="text-emerald-400">✓</span></template>
