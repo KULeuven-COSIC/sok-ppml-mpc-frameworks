@@ -15,7 +15,7 @@
 |  2 |  SH  | Sigma [[243]](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   FSS  |
 |  2 |  SH  | Iron [[210]](../../Bibliography/references.md#Iron/DBLP:conf/nips/HaoLCXXZ22) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   FSS  |
 |  2 |  SH  | CipherGPT [[211]](../../Bibliography/references.md#CipherGPT/DBLP:journals/iacr/Hou0LLLH023) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   FSS  |
-|  2 |  SH  | MPCViT [[73]](../../Bibliography/references.md#zeng2023mpcvit) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
+|  2 |  SH  | MPCViT [[73]](../../Bibliography/references.md#DBLP:conf/iccv/ZengL0TLTWH23) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
 |  2 |  SH  | Primer [[220]](../../Bibliography/references.md#Primer/DBLP:conf/dac/ZhengLJ23) |   ✗  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✓   |   GC   |
 |  2 |  SH  | PriFFT [[231]](../../Bibliography/references.md#PriFFT/DBLP:journals/corr/abs-2503-03146) |   ✗  |    ✗   |     ✓     |  ✗  |      ✗      |        ✗       |   ✗   |   SS   |
 |  2 |  SH  | SecFormer [[214]](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24) |   ✗  |    ✓   |     ✓     |  ✗  |      ✓      |        ✗       |   ✗   |   SS   |

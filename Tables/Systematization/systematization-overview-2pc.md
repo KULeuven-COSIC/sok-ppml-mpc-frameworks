@@ -45,7 +45,7 @@
 | Panther [[146]](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25) | 2025 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |    ◐ [T3]    |     ◐ [T2]    |
 | Guo et al. [[241]](../../Bibliography/references.md#Guo/DBLP:conf/uss/GuoPXPLH25) | 2025 |  ✓  |   ✗   |  ✗  |  ✗  |  ✓  |  ✗  |  ✗  |    ✓    |    O    |    SH   |     ✗    |     ✗     |      ✓      |       ✓      |
 | Shark [[240]](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025) | 2025 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  | **FSS** |    O    |    A    |     ✗    |     ✓     |      ✓      |       ✓      |
-| Cavern [[256]](../../Bibliography/references.md#Cavern/cryptoeprint:2026/214) | 2026 | ✓ | ◐ [T1] | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | O | A | ✗ | ✓ | ◐ [T3] | ◐ [T2] |
+| Cavern [[256]](../../Bibliography/references.md#Cavern/sp/YZF26) | 2026 | ✓ | ◐ [T1] | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | O | A | ✗ | ✓ | ◐ [T3] | ◐ [T2] |
 | CRISP [[258]](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26) | 2026 | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | **FSS** | C-S | $$A^C$$ | ✗ | ✓ | ✗ | ◐ [T2] |
 | PrivTI [[261]](../../Bibliography/references.md#luo2026privti) | 2026 | ✓ | ✗ | ✗ | ✓ | ✓ | ✗ | ✗ | ✓ | C-S | SH | ✗ | ✓ | ✗ | ✓ |
 
