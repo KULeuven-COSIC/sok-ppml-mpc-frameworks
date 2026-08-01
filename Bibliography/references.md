@@ -415,5 +415,3 @@
 207. <a id="Bicoptor2/DBLP:conf/aaai/ZhouZWLSZC025"></a>Lijing Zhou and Bingsheng Zhang and Ziyu Wang and Tianpei Lu and Qingrui Song and Su Zhang and Hongrui Cui and Yu Yu. “On Probabilistic Truncation in Privacy-preserving Machine Learning.” *{AAAI}* 2025.
 
 208. <a id="zou2023semi"></a>Huan Zou and Yuting Xiao and Rui Zhang. “Semi-Honest 2-Party Faithful Truncation from Two-Bit Extraction.” *{IACR} Cryptol. ePrint Arch.* 2023. URL: [https://eprint.iacr.org/2023/1159](https://eprint.iacr.org/2023/1159)
-
-209. <a id="anonrepo2025"></a>Anonymous. “Anonymous GitHub Repository.” 2025. URL: [https://anonymous.4open.science/r/sok-ppml-mpc-frameworks-922](https://anonymous.4open.science/r/sok-ppml-mpc-frameworks-922)
