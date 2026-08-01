@@ -1,0 +1,86 @@
+name: Validate Tables
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Tables/**'
+      - 'Bibliography/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Tables/**'
+      - 'Bibliography/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate tables and citations
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          let errors = [];
+
+          // Collect all anchors from Bibliography/references.md
+          const refPath = 'Bibliography/references.md';
+          const refContent = fs.readFileSync(refPath, 'utf8');
+          const anchorSet = new Set();
+          for (const m of refContent.matchAll(/^#+\s+(.+)|<a\s+(?:name|id)=\"([^\"]+)\"/gm)) {
+            const heading = m[1], attr = m[2];
+            if (attr) anchorSet.add(attr.toLowerCase());
+            if (heading) anchorSet.add(heading.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, ''));
+          }
+          for (const m of refContent.matchAll(/\{#([^}]+)\}/g)) anchorSet.add(m[1].toLowerCase());
+
+          // Walk Tables/ recursively
+          function walk(dir) {
+            return fs.readdirSync(dir).flatMap(f => {
+              const full = path.join(dir, f);
+              return fs.statSync(full).isDirectory() ? walk(full) : (f.endsWith('.md') ? [full] : []);
+            });
+          }
+
+          for (const file of walk('Tables')) {
+            const lines = fs.readFileSync(file, 'utf8').split('\n');
+            let tableLines = [], inTable = false;
+            for (let i = 0; i < lines.length; i++) {
+              const ln = lines[i];
+              const isRow = /^\s*\|/.test(ln);
+              if (isRow) { inTable = true; tableLines.push({ n: i+1, ln }); }
+              else if (inTable) {
+                // validate accumulated table
+                const rows = tableLines.filter(r => !/^\s*\|[-:| ]+\|/.test(r.ln));
+                if (rows.length > 1) {
+                  const colCount = (rows[0].ln.match(/(?<!\|)\|(?!\|)/g)||[]).length - 1;
+                  for (const r of rows.slice(1)) {
+                    const c = (r.ln.match(/(?<!\|)\|(?!\|)/g)||[]).length - 1;
+                    if (Math.abs(c - colCount) > 1) errors.push(file+':'+r.n+': column count '+c+' expected ~'+colCount);
+                  }
+                }
+                // check citations in all table rows
+                for (const r of tableLines) {
+                  for (const m of r.ln.matchAll(/\[\[?\d+\]?\]\(([^)]+)\)/g)) {
+                    const url = m[1]; const hash = url.split('#')[1];
+                    if (hash && !anchorSet.has(hash.toLowerCase()))
+                      errors.push(file+':'+r.n+': broken citation anchor #'+hash);
+                  }
+                }
+                tableLines = []; inTable = false;
+              }
+            }
+          }
+
+          if (errors.length) { console.error('ERRORS:\n' + errors.join('\n')); process.exit(1); }
+          console.log('All tables valid.');
+          "
