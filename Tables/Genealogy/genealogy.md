@@ -346,13 +346,16 @@ flowchart TD
 
 ## Related Tables & Navigation
 
-**Framework & Design Overviews:**
-- [Comprehensive MPC Design](../Systematization/systematization-mpc.md)
-- [2PC Frameworks](../Systematization/systematization-overview-2pc.md)
-- [3/4PC Frameworks](../Systematization/systematization-overview-34pc.md)
-- [N-Party Frameworks](../Systematization/systematization-overview-npc.md)
+| Topic | Table(s) |
+| --- | --- |
+| 🗂️ Notation | [Notation & Abbreviations](../notation.md) |
+| 📚 Related Work | [Related Work Comparison](../Related-work/related-work-comparison.md) |
+| 🧭 Decision Graph | [Decision Graph](../Decision-graph/decision-graph.md) |
+| ⚙️ Design & Deployment | [Comprehensive MPC Design](../Systematization/systematization-mpc.md), [2PC](../Systematization/systematization-overview-2pc.md), [3/4PC](../Systematization/systematization-overview-34pc.md), [nPC](../Systematization/systematization-overview-npc.md) |
+| 🌳 Genealogy | [Genealogy](../Genealogy/genealogy.md) |
+| 🤖 ML Support | [2PC](../Systematization/systematization-ml-2pc.md), [MPC](../Systematization/systematization-ml-mpc.md) |
+| 🔐 Theoretical Costs | [Dot-Product](../Theoretical-analysis/theoretical-analysis-dot-product.md), [Truncation](../Theoretical-analysis/theoretical-analysis-truncation.md), [ReLU](../Theoretical-analysis/theoretical-analysis-relu.md), [Softmax](../Theoretical-analysis/theoretical-analysis-softmax.md), [Sigmoid](../Theoretical-analysis/theoretical-analysis-sigmoid.md), [GELU](../Theoretical-analysis/theoretical-analysis-gelu.md), [Normalization](../Theoretical-analysis/theoretical-analysis-normalization.md) |
+| 🧩 MPC Puzzle | [MPC Puzzle](../MPC-Puzzle/mpc-puzzle.md) |
+| 📖 Bibliography | [Bibliography](../../Bibliography/references.md) |
 
-**Reference Materials:**
-- [Decision Graph](../Decision-graph/decision-graph.md)
-- [Notation & Abbreviations](../notation.md)
-- [← Back to README](../../README.md)
+[← Back to README](../../README.md)
