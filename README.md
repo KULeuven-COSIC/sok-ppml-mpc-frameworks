@@ -42,6 +42,13 @@ This analysis highlights the trade-offs between efficiency and security.
 
 ---
 
+### 🌳 Genealogy
+We trace how MPC-based PPML frameworks have evolved, from generic secret-sharing approaches to function-dependent schemes, hybrid MPC–HE constructions, and transformer-specific optimizations.
+- Detailed discussion is provided in **Appendix C** of the [full paper](https://eprint.iacr.org/2025/1679).
+- The full lineage, with every framework and its influences, can be viewed [here](Tables/Genealogy/genealogy.md).
+
+---
+
 ### 🤖 ML-Based Systematization and 🔐 Low-Level Protocol Analysis
 We categorize frameworks based on their support for different ML functionalities in Neural Networks and Transformer models. 
 - Detailed discussion is provided in **Appendix D** of the [full paper](https://eprint.iacr.org/2025/1679). 
