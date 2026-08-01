@@ -33,7 +33,10 @@ jobs:
           npx playwright install --with-deps chromium
 
           mkdir -p docs/website-preview
-          cat > /tmp/capture.js <<'EOF'
+          # Written into the repo working directory (not /tmp) so that Node's module
+          # resolution can find ./node_modules/playwright -- a script outside the
+          # repo tree has no relation to where `npm install` put the package.
+          cat > capture.js <<'EOF'
           const { chromium } = require('playwright');
 
           const BASE = 'https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks';
@@ -59,11 +62,11 @@ jobs:
             await browser.close();
           })().catch(err => { console.error(err); process.exit(1); });
           EOF
-          node /tmp/capture.js
+          node capture.js
 
       - name: Scrub author-identifying content from README.md
         run: |
-          cat > /tmp/scrub.js <<'EOF'
+          cat > scrub.js <<'EOF'
           const fs = require('fs');
 
           const SLUGS = ['explorer', 'cost-analysis', 'genealogy', 'mpc-puzzle', 'related-work', 'bibliography'];
@@ -114,11 +117,13 @@ jobs:
           fs.writeFileSync('README.md', readme);
           console.log('README.md scrubbed.');
           EOF
-          node /tmp/scrub.js
+          node scrub.js
 
           # This repo's own CI/workflow config isn't relevant to reviewers and is
-          # excluded rather than audited line-by-line.
-          rm -rf .github
+          # excluded rather than audited line-by-line. The npm/Playwright install
+          # artifacts and these helper scripts themselves must also not end up in
+          # the orphan commit -- only docs/website-preview/*.png should survive.
+          rm -rf .github node_modules package.json package-lock.json capture.js scrub.js
 
       - name: Safety net -- fail if any author/org fingerprint remains
         run: |
