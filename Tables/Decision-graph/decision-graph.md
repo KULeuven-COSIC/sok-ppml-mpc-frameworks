@@ -12,120 +12,117 @@ This is a **first-stage filter**, not a final answer: once you've narrowed down 
 
 #### At a glance
 
+This mirrors the paper's Figure ("Heuristic decision graph for narrowing the choice of an MPC-based PPML framework"), using the same questions, the same edge labels, and the same representative (non-exhaustive) frameworks per leaf.
+
 ```mermaid
 flowchart TD
-    A{"1. Deployment mode?"}
-    B{"2a. Throughput or latency?"}
-    C{"2b. Honest majority possible?"}
-    D["Hybrid: HE for linear layers +<br/>FSS/GC for non-linear layers"]
-    D1["Linear-layer focus:<br/>Panther, Jaguar"]
-    D2["Non-linear / transformer focus:<br/>BumbleBee, PrivTI"]
-    E{"3. Malicious or semi-honest?"}
-    F{"4. Preprocessing model?"}
-    F1["Online-only / reusable:<br/>ABY3, Falcon, Fantastic Four, AdamInPrivate"]
-    F2["Function-dependent:<br/>ASTRA, BLAZE, SWIFT, Tetrad, Trident"]
-    G1["Malicious, general:<br/>MD-ML, MD-SONIC, SMASH, FANNG-MPC"]
-    G2["Malicious, one-sided (client–server):<br/>Muse, SIMC (malicious client), Fusion (malicious server)"]
-    H{"5. Computationally constrained?"}
-    H1["FSS-based:<br/>Orca, AriaNN, CRISP<br/>(+ dealer: Shark)"]
-    I{"6. Preprocessing dealer available?"}
-    I1["SS-based, no dealer:<br/>ABY2, SecureML (dealer-free)"]
-    I2["Dealer permitted:<br/>SHAFT, SecFormer, SecureML (with dealer)"]
+    ROOT{"Which deployment model best<br/>matches the application?"}
+    THROUGHPUT{"Which performance objective<br/>dominates?"}
+    HM{"Can the computing parties<br/>assume an honest majority?"}
+    HYBRID["Low-latency hybrid protocols<br/><i>HE for linear layers; GC/FSS/SS for non-linearities</i><br/>Panther [146], Cheetah [17], BumbleBee [213], Zhou [259], COINN [184]"]
+    SH{"Is semi-honest security<br/>sufficient?"}
+    OFFLINE{"Can the application support<br/>function-dependent preprocessing?"}
+    RESTRICTED{"Are the MPC parties<br/>computationally constrained?"}
+    MAC["MAC-based protocols<br/><i>Dishonest majority, authenticated shares;<br/>distributed preprocessing;<br/>one-sided malicious security possible</i><br/>MD-ML [141], MD-SONIC [195], Muse [24], SIMC [130]"]
+    LOWSEC["Online-only or f-independent preprocessing<br/><i>Security varies</i><br/>Falcon [20], Fantastic Four [46], Zhou [259], Trio/Quad [238], ABY3 [12]"]
+    AFR["f-dependent preprocessing<br/><i>Security varies</i><br/>SWIFT [28], Tetrad [38], FLASH [21]"]
+    DEALER{"Can the protocol rely on a<br/>preprocessing dealer?"}
+    FSS["FSS-based protocols<br/><i>Computational overhead, constant-round communication;<br/>dealer-based preprocessing possible</i><br/>Sigma [243], FssNN [245], Matchmaker [149], Shark [240], CRISP [258]"]
+    COMMODITY["Commodity-based protocols<br/><i>Dealer-based preprocessing</i><br/>Crypten [19], Chameleon [16], SHAFT [222], SecFormer [214]"]
+    SS["SS-based protocols<br/><i>Lightweight computation, heavier communication</i><br/>ABY2 [11], SecureML [25], MPCFORMER [72]"]
 
-    A -->|Client–Server| B
-    A -->|Outsourcing| C
-    B -->|Latency| D
-    B -->|Throughput| E
-    D --> D1
-    D --> D2
-    C -->|Yes| F
-    C -->|No| E
-    F -->|"Online-only / reusable"| F1
-    F -->|"Function-dependent"| F2
-    E -->|Malicious| G1
-    E -->|"Malicious, client–server"| G2
-    E -->|"Semi-honest, 2PC"| H
-    H -->|"Not constrained"| H1
-    H -->|Constrained| I
-    I -->|"No dealer"| I1
-    I -->|"Dealer permitted"| I2
-    I -->|"Dealer impractical"| F
+    ROOT -->|Client-Server| THROUGHPUT
+    ROOT -->|Outsourcing| HM
+    THROUGHPUT -->|Low-latency| HYBRID
+    THROUGHPUT -->|"High-throughput/Mixed"| SH
+    HM -->|No| SH
+    HM -->|Yes| OFFLINE
+    SH -->|Yes| RESTRICTED
+    SH -->|No| MAC
+    OFFLINE -->|No| LOWSEC
+    OFFLINE -->|Yes| AFR
+    RESTRICTED -->|No| FSS
+    RESTRICTED -->|Yes| DEALER
+    DEALER -->|Yes| COMMODITY
+    DEALER -->|No| SS
 
     classDef decision fill:#eef4ff,stroke:#4a6fa5,stroke-width:1px;
     classDef leaf fill:#eefaf0,stroke:#3f9142,stroke-width:1px;
-    class A,B,C,E,F,H,I decision;
-    class D,D1,D2,F1,F2,G1,G2,H1,I1,I2 leaf;
+    class ROOT,THROUGHPUT,HM,SH,OFFLINE,RESTRICTED,DEALER decision;
+    class HYBRID,MAC,LOWSEC,AFR,FSS,COMMODITY,SS leaf;
 ```
 
-*(This is a hand-drawn summary of the branching logic below — for the full figure with exact styling, see the paper's own decision graph in Appendix C. The "Dealer impractical" branch loops back to step 4, since distributing the dealer's role among the computing parties leads back to the function-dependent, honest-majority designs.)*
+*Leaf nodes show representative, non-exhaustive protocol families and frameworks. The final choice must additionally account for the party count, supported ML functionality, arithmetic domain, network and hardware characteristics, and implementation maturity — see below.*
 
 ---
 
-#### 1. Is this a client–server or an outsourcing deployment?
+#### 1. Which deployment model best matches the application?
 
-- In a **client–server** deployment, the client supplies private input and the server provides a model or computational service.
-- In an **outsourcing** deployment, multiple computing parties instead jointly evaluate the function over secret-shared inputs.
-
-These imply different party roles and trust assumptions, so they're the first branch.
+- In a **Client-Server** deployment, the client supplies private input and the server provides a model or computational service → continue to [2. Which performance objective dominates?](#2-which-performance-objective-dominates)
+- In an **Outsourcing** deployment, multiple computing parties instead jointly evaluate the function over secret-shared inputs → continue to [3. Can the computing parties assume an honest majority?](#3-can-the-computing-parties-assume-an-honest-majority)
 
 ---
 
-#### 2a. Client–server: is throughput or latency the priority?
+#### 2. Which performance objective dominates?
 
-Client–server frameworks commonly operate under a **dishonest-majority** assumption and target low-latency, single-query workloads.
-
-- **Low latency is the priority** → typically a **hybrid** design: HE for linear layers (keeps round count low) combined with FSS or garbled circuits (rather than SS-based methods) for non-linear layers, trading extra communication for fewer rounds.
-  - Frameworks focused on optimizing the **linear-layer** component: Panther [[146]](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25), Jaguar [[262]](../../Bibliography/references.md#jeong2026jaguar)
-  - Frameworks focused on the **non-linear** component (esp. transformers): BumbleBee [[213]](../../Bibliography/references.md#BumbleBee/DBLP:conf/ndss/LuHGL000WC25), PrivTI [[261]](../../Bibliography/references.md#luo2026privti)
-- **Throughput is the priority** → continue to [step 3 (malicious vs. semi-honest)](#3-malicious-or-semi-honest).
+- **Low-latency** → **Low-latency hybrid protocols**: HE for linear layers; GC/FSS/SS for non-linearities.
+  Panther [[146]](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25), Cheetah [[17]](../../Bibliography/references.md#Cheetah/DBLP:conf/uss/HuangLHD22), BumbleBee [[213]](../../Bibliography/references.md#BumbleBee/DBLP:conf/ndss/LuHGL000WC25), Zhou [[259]](../../Bibliography/references.md#zhou2026scalable), COINN [[184]](../../Bibliography/references.md#COINN/DBLP:conf/ccs/HussainJSK21)
+- **High-throughput/Mixed** → continue to [4. Is semi-honest security sufficient?](#4-is-semi-honest-security-sufficient)
 
 ---
 
-#### 2b. Outsourcing: can the computing parties assume an honest majority?
+#### 3. Can the computing parties assume an honest majority?
 
-- **Yes, honest majority** → continue to [step 4 (preprocessing model)](#4-honest-majority-which-preprocessing-model).
-- **No** → continue to [step 3 (malicious vs. semi-honest)](#3-malicious-or-semi-honest).
-
----
-
-#### 3. Malicious or semi-honest?
-
-This question applies whenever an honest majority can't be assumed — either because the outsourcing parties lack that guarantee, or because a client–server deployment prioritized throughput over the low-latency hybrid design in step 2a.
-
-- **Malicious dishonest-majority** frameworks commonly authenticate secret shares with MACs or related integrity mechanisms: MD-ML [[141]](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024), MD-SONIC [[195]](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25), SMASH [[260]](../../Bibliography/references.md#lv2026smash), FANNG-MPC [[242]](../../Bibliography/references.md#Fanng-MPC/DBLP:journals/tches/AarajAGMMPSSSSS25).
-  - In the **client–server** setting specifically, some solutions provide **one-sided** malicious security instead: Muse [[24]](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21) and SIMC [[130]](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22) protect against a malicious *client*, while Fusion [[145]](../../Bibliography/references.md#Fusion/DBLP:conf/ndss/Dong0L0TYCH23) is statistically secure against a malicious *server*.
-- **Semi-honest, throughput-oriented 2PC** → continue to [step 5 (compute constraints)](#5-semi-honest-2pc-are-the-computing-parties-computationally-constrained).
+- **No** → continue to [4. Is semi-honest security sufficient?](#4-is-semi-honest-security-sufficient)
+- **Yes** → continue to [5. Can the application support function-dependent preprocessing?](#5-can-the-application-support-function-dependent-preprocessing)
 
 ---
 
-#### 4. Honest majority: which preprocessing model?
+#### 4. Is semi-honest security sufficient?
 
-- **Online-only, or reusable function-independent** preprocessing (generic preprocessed shares, not tied to a specific function — broadly applicable, but often higher online communication): ABY3 [[12]](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18), Falcon [[20]](../../Bibliography/references.md#Falcon/DBLP:journals/popets/WaghTBKMR21), Fantastic Four [[46]](../../Bibliography/references.md#fantasticfour/DBLP:conf/uss/Dalskov0K21), AdamInPrivate [[192]](../../Bibliography/references.md#AdamInPrivate/DBLP:journals/popets/AttrapadungHIKM22)
-- **Function-dependent** preprocessing (tailored to the target function — extra offline cost/storage for a faster online phase): ASTRA [[239]](../../Bibliography/references.md#astra/DBLP:conf/ccs/ChaudhariCPS19), BLAZE [[15]](../../Bibliography/references.md#BLAZE/DBLP:conf/ndss/PatraS20), SWIFT [[28]](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21), Tetrad [[38]](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22), Trident [[29]](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20)
+Reached either from a client–server deployment prioritizing throughput (step 2), or from an outsourcing deployment without an honest majority (step 3).
 
-> The preprocessing model alone doesn't fix the security level — semi-honest, active, fair, and robust guarantees still need to be checked separately for each framework (see the [Comprehensive MPC Design table](../Systematization/systematization-mpc.md)).
-
----
-
-#### 5. Semi-honest 2PC: are the computing parties computationally constrained?
-
-- **Not compute-constrained** → FSS-based protocols are attractive despite high computational cost and large precomputed keys: Orca [[244]](../../Bibliography/references.md#Orca/DBLP:conf/sp/JawalkarGBCGS24), AriaNN [[68]](../../Bibliography/references.md#ariann/DBLP:journals/popets/RyffelTPB22), CRISP [[258]](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26).
-  - When a **preprocessing dealer is additionally available**, FSS-based protocols can even support malicious security cost-effectively: Shark [[240]](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025).
-- **Compute-constrained** → FSS's online cost makes it unattractive regardless of dealer availability (a dealer only removes the preprocessing cost, not the cost of evaluating FSS keys online) → continue to [step 6 (dealer availability)](#6-compute-constrained-is-a-preprocessing-dealer-available).
+- **Yes** → continue to [6. Are the MPC parties computationally constrained?](#6-are-the-mpc-parties-computationally-constrained)
+- **No** → **MAC-based protocols**: dishonest majority with authenticated shares; distributed preprocessing; one-sided malicious security possible.
+  MD-ML [[141]](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024), MD-SONIC [[195]](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25), Muse [[24]](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21), SIMC [[130]](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22)
 
 ---
 
-#### 6. Compute-constrained: is a preprocessing dealer available?
+#### 5. Can the application support function-dependent preprocessing?
 
-- **No dealer** → SS-based protocols offer a lighter-weight alternative: simpler preprocessing, but more communication/rounds during the offline phase. ABY2 [[11]](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21), and the dealer-free variant of SecureML [[25]](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17).
-- **Trusted dealer permitted** → correlated randomness can be precomputed to speed up execution: SHAFT [[222]](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25), SecFormer [[214]](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24). SecureML's two-party variant [[25]](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17) can equally be instantiated with a dealer to generate Beaver triples.
-- **Dealer not permitted, and preprocessing overhead is impractical** → the dealer's role can instead be distributed among the computing parties rather than delegated to a single trusted third party (this loops back toward the function-dependent, honest-majority designs in [step 4](#4-honest-majority-which-preprocessing-model)).
+Reached from an outsourcing deployment with an honest majority (step 3).
+
+- **No** → **Online-only or f-independent preprocessing**: security varies.
+  Falcon [[20]](../../Bibliography/references.md#Falcon/DBLP:journals/popets/WaghTBKMR21), Fantastic Four [[46]](../../Bibliography/references.md#fantasticfour/DBLP:conf/uss/Dalskov0K21), Zhou [[259]](../../Bibliography/references.md#zhou2026scalable), Trio/Quad [[238]](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25), ABY3 [[12]](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18)
+- **Yes** → **f-dependent preprocessing**: security varies.
+  SWIFT [[28]](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21), Tetrad [[38]](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22), FLASH [[21]](../../Bibliography/references.md#Flash/DBLP:journals/popets/ByaliCPS20)
+
+---
+
+#### 6. Are the MPC parties computationally constrained?
+
+Reached from the semi-honest branch (step 4).
+
+- **No** → **FSS-based protocols**: computational overhead, constant-round communication; dealer-based preprocessing possible.
+  Sigma [[243]](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24), FssNN [[245]](../../Bibliography/references.md#FSSNN/ProvSec24/10.1007/978-981-96-0957-4_8), Matchmaker [[149]](../../Bibliography/references.md#Matchmaker/cryptoeprint:2025/424), Shark [[240]](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025), CRISP [[258]](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26)
+- **Yes** → continue to [7. Can the protocol rely on a preprocessing dealer?](#7-can-the-protocol-rely-on-a-preprocessing-dealer)
+
+---
+
+#### 7. Can the protocol rely on a preprocessing dealer?
+
+Reached from the computationally-constrained branch (step 6).
+
+- **Yes** → **Commodity-based protocols**: dealer-based preprocessing.
+  Crypten [[19]](../../Bibliography/references.md#Crypten/DBLP:conf/nips/KnottVHSIM21), Chameleon [[16]](../../Bibliography/references.md#Chameleon/DBLP:conf/ccs/RiaziWTS0K18), SHAFT [[222]](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25), SecFormer [[214]](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24)
+- **No** → **SS-based protocols**: lightweight computation, heavier communication.
+  ABY2 [[11]](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21), SecureML [[25]](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17), MPCFORMER [[72]](../../Bibliography/references.md#MPCFORMER/DBLP:conf/iclr/LiWSGXZ23)
 
 ---
 
 ### A note on scope
 
-No single procedure can select the right framework for every application — this decision graph is a first-stage filter. The final choice must still account for the number of parties, the supported training or inference operations, the arithmetic domain, model architecture, network topology, hardware availability, implementation maturity, engineering effort, and operational cost.
+No single procedure can select the right framework for every application — this decision graph is a first-stage filter, and the leaves above show representative, non-exhaustive protocol families. The final choice must still account for the number of parties, the supported ML functionality, the arithmetic domain, network and hardware characteristics, and implementation maturity.
 
 ---
 
