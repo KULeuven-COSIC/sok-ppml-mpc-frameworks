@@ -1,59 +1,54 @@
 # Connecting the Dots in Privacy-Preserving ML
 
-This repository contains supplementary material for the paper  
-**“SoK: Connecting the Dots in Privacy-Preserving ML — Systematization of MPC Protocols and Conversions Between Secret Sharing Schemes.”**
+[![Paper](https://img.shields.io/badge/Paper-ePrint%202025%2F1679-blue)](https://eprint.iacr.org/2025/1679)
+[![Live Site](https://img.shields.io/badge/Live%20Site-kuleuven--cosic.github.io-7c3aed)](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+This repository contains resources accompanying the paper **"SoK: Connecting the Dots in Privacy-Preserving ML — Systematization of MPC Protocols and Conversions Between Secret Sharing Schemes."** It includes comparison tables, protocol genealogy diagrams, decision graphs, and cost analyses from the paper, so that beginners can look up the systematization directly without reading the full paper.
+
+Beyond reproducing the paper's content, this repository is actively maintained to track new MPC protocols and secret-sharing conversions as the field evolves post-publication.
+
+> 👉 **Explore interactively:** [kuleuven-cosic.github.io/sok-ppml-mpc-frameworks](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/) — a filterable framework explorer, cost-analysis charts, and a genealogy graph, all built directly from the tables below. The Markdown tables in this repo are the raw, citable source data behind it.
 
 ---
 
 ## Full Version
 
-The full version of our paper is available as a preprint on the Cryptology ePrint Archive: [https://eprint.iacr.org/2025/1679](https://eprint.iacr.org/2025/1679).
+The full version of our paper is available on the Cryptology ePrint Archive: https://eprint.iacr.org/2025/1679.
+
+---
+
+## Start here
+
+New to this SoK? A suggested reading path:
+
+1. **Skim the glossary** — [Notation & Abbreviations](Tables/notation.md), since the tables below assume you know the symbols.
+2. **Not sure which framework fits your setting?** Walk through the [Decision Graph](Tables/Decision-graph/decision-graph.md) — a few high-level questions about your deployment (client–server vs. outsourcing, throughput vs. latency, honest vs. dishonest majority, ...) narrow down the relevant frameworks.
+3. **Look up your candidates** in the systematization table matching your party count: [2PC](Tables/Systematization/systematization-overview-2pc.md), [3/4PC](Tables/Systematization/systematization-overview-34pc.md), or [nPC](Tables/Systematization/systematization-overview-npc.md).
+4. **Need concrete costs** for a specific operation (dot-product, truncation, ReLU, ...)? See the [Theoretical Costs Analysis](Tables/Theoretical-analysis/theoretical-analysis-dot-product.md) tables.
+5. **Want the full picture?** Browse the index below, or use the [live site](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/) to filter and compare interactively.
 
 ---
 
 ## Contents
 
-### 📚 Comprehensive Survey of Related Work
-We highlight the main differences between existing surveys and SoKs in the domain of privacy-preserving machine learning (PPML).  
-- Detailed discussion is provided in **Appendix A** of the [full paper](https://eprint.iacr.org/2025/1679).  
-- A consolidated overview can be found [here](Tables/Related-work/related-work-comparison.md).
+| Topic | What it answers | Repo tables | Live site |
+| --- | --- | --- | :---: |
+| 🗂️ [Notation](Tables/notation.md) | What do the symbols and abbreviations mean? | [Notation & Abbreviations](Tables/notation.md) | — |
+| 📚 [Related Work](Tables/Related-work/related-work-comparison.md) | How does this SoK differ from prior surveys? | [Related Work Comparison](Tables/Related-work/related-work-comparison.md) | [Related Work](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/related-work) |
+| 🧭 [Decision Graph](Tables/Decision-graph/decision-graph.md) | Which framework fits my application's requirements? | [Decision Graph](Tables/Decision-graph/decision-graph.md) | — |
+| ⚙️ Design & Deployment Dimensions | How are frameworks classified (algebraic structure, threat model, execution phase, deployment mode, network)? | [Comprehensive MPC Design](Tables/Systematization/systematization-mpc.md), [2PC](Tables/Systematization/systematization-overview-2pc.md) / [3-4PC](Tables/Systematization/systematization-overview-34pc.md) / [nPC](Tables/Systematization/systematization-overview-npc.md) overviews | [Explorer](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/explorer) |
+| 🌳 [Genealogy](Tables/Genealogy/genealogy.md) | How have frameworks evolved over time, and what influenced what? | [Genealogy](Tables/Genealogy/genealogy.md) | [Genealogy](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/genealogy) |
+| 🤖 ML-Based Systematization | Which ML functionalities (NN layers, transformer ops) does a framework support? | [2PC](Tables/Systematization/systematization-ml-2pc.md) / [MPC](Tables/Systematization/systematization-ml-mpc.md) ML support | [Explorer](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/explorer) |
+| 🔐 Theoretical Costs Analysis | What's the concrete communication/round cost for a specific operation? | [Dot-Product](Tables/Theoretical-analysis/theoretical-analysis-dot-product.md), [Truncation](Tables/Theoretical-analysis/theoretical-analysis-truncation.md), [ReLU](Tables/Theoretical-analysis/theoretical-analysis-relu.md), [Softmax](Tables/Theoretical-analysis/theoretical-analysis-softmax.md), [Sigmoid](Tables/Theoretical-analysis/theoretical-analysis-sigmoid.md), [GELU](Tables/Theoretical-analysis/theoretical-analysis-gelu.md), [Normalization](Tables/Theoretical-analysis/theoretical-analysis-normalization.md) | [Cost Analysis](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/cost-analysis) |
+| 🧩 Unification and Conversions | How do I convert between 2-, 3-, and 4-party secret-sharing schemes (the MPC Puzzle)? | — (see the full paper: https://eprint.iacr.org/2025/1679) | [MPC Puzzle](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/mpc-puzzle) |
+| 📖 Bibliography | Where do I find the full citation for a referenced work? | [Bibliography](Bibliography/references.md) | [Bibliography](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/bibliography) |
 
 ---
 
-### ⚙️ Design & Deployment Dimensions
-We systematize MPC-based PPML protocols along key dimensions:
-- **Algebraic structure**
-- **Threat model**
-- **Execution phase**
-- **Deployment mode**
-- **Network**
+## Contributing
 
-This analysis highlights the trade-offs between efficiency and security.  
-- Detailed discussion is provided in **Appendix C** of the [full paper](https://eprint.iacr.org/2025/1679). 
-- A comprehensive table classifying considered frameworks across all dimensions can be viewed [here](Tables/Systematization/systematization-mpc.md).  
-- We further provide high-level categorization based on the MPC techniques used, support for ML training or inference, or availability of either theoretical or experimental evaluation. We split the tables based on the number of parties: [2PC](Tables/Systematization/systematization-overview-2pc.md), [3/4PC](Tables/Systematization/systematization-overview-34pc.md), [nPC](Tables/Systematization/systematization-overview-npc.md)
-
----
-
-### 🤖 ML-Based Systematization and 🔐 Low-Level Protocol Analysis
-We categorize frameworks based on their support for different ML functionalities in Neural Networks and Transformer models. 
-- Detailed discussion is provided in **Appendix D** of the [full paper](https://eprint.iacr.org/2025/1679). 
-- The overview of supported functionalities is split based on the number of parties: [2PC](Tables/Systematization/systematization-ml-2pc.md) and [MPC](Tables/Systematization/systematization-ml-mpc.md)
-
-We further decompose PPML frameworks into their core **cryptographic primitives** and provide a comprehensive overview of the theoretical costs for different ML functionalities. We focus on the most common functionalities, with concrete costs and approaches detailed in corresponding tables:
-- [Dot-Product](Tables/Theoretical-analysis/theoretical-analysis-dot-product.md)
-- [Truncation](Tables/Theoretical-analysis/theoretical-analysis-truncation.md)
-- [ReLU](Tables/Theoretical-analysis/theoretical-analysis-relu.md)
-- [Softmax](Tables/Theoretical-analysis/theoretical-analysis-softmax.md)
-- [Sigmoid](Tables/Theoretical-analysis/theoretical-analysis-sigmoid.md)
-- [GELU](Tables/Theoretical-analysis/theoretical-analysis-gelu.md)
-- [Normalization](Tables/Theoretical-analysis/theoretical-analysis-normalization.md)
-
----
-
-### 🧩 Unification and Conversions
-Through the **MPC Puzzle**, we unify **2-, 3-, and 4-party** secret-sharing schemes and present **conversion protocols** among them, including an analysis of their communication costs.  
-- Detailed discussion is provided in **Appendix E** of the [full paper](https://eprint.iacr.org/2025/1679). 
+Found a framework the paper covers but this repo doesn't yet, or a stale citation? See [CONTRIBUTING.md](CONTRIBUTING.md) for the checklist we use to keep this repo in sync with the paper.
 
 ---
 
@@ -75,3 +70,4 @@ Please cite as:
   year         = {2025},
   url          = {https://eprint.iacr.org/2025/1679}
 }
+```
