@@ -1,6 +1,6 @@
 # Contributing
 
-This repository mirrors the tables, bibliography, and systematization from the paper **"SoK: Connecting the Dots in Privacy-Preserving ML."** The paper and this repo are edited separately, so they can drift out of sync unless every paper revision is deliberately propagated here. This document is that checklist.
+This repository mirrors the tables, bibliography, and systematization from the paper **"SoK: Connecting the Dots in Privacy-Preserving ML — Systematization of MPC Protocols and Conversions Between Secret Sharing Schemes."** The paper and this repo are edited separately, so they can drift out of sync unless every paper revision is deliberately propagated here. This document is that checklist.
 
 ## Syncing a new paper revision
 
