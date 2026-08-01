@@ -20,7 +20,7 @@
 | Trio [238](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25)           | 2024 |    3    |    ✓   |   ✗  | Probabilistic | ◐ [T1] |    ✗    |    ✗    |       ✗       |   ✗  |
 | Brüggenmann et al. [147](../../Bibliography/references.md#Impostor/DBLP:conf/sp/BruggemannSSSY24)      | 2024 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
 | Mosformer [[255]](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25)                     | 2025 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✓    |    ✗    |       ✓       |   ✓  |
-| ECHO [257](../../Bibliography/references.md#ECHO/cryptoeprint:2026/216) | 2026 | 3 | ✓ | ✗ | Stochastic | ◐ [T1] | ✗ | ✗ | ✗ | ✗ |
+| ECHO [257](../../Bibliography/references.md#duan2026echo) | 2026 | 3 | ✓ | ✗ | Stochastic | ◐ [T1] | ✗ | ✗ | ✗ | ✗ |
 | Trident [29](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20)                    | 2019 |    4    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✓    |    ✓    |     ◐ [T2]     |   ✗  |
 | PrivPy [86](../../Bibliography/references.md#PrivPy/DBLP:conf/kdd/LiX19)                               | 2019 |    4    |    ✓   |   ✓  | Probabilistic | ◐ [T1] |    ✗    |    ✓    |       ✓       |   ✗  |
 | FLASH [21](../../Bibliography/references.md#Flash/DBLP:journals/popets/ByaliCPS20)                     | 2020 |    4    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✓    |       ✗       |   ✗  |
