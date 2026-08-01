@@ -4,9 +4,9 @@
 [![Live Site](https://img.shields.io/badge/Live%20Site-kuleuven--cosic.github.io-7c3aed)](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-This repository contains supplementary material for the paper
-**“SoK: Connecting the Dots in Privacy-Preserving ML — Systematization of MPC Protocols and Conversions Between Secret Sharing Schemes.”**
-It exists so that beginners can look up the tables and systematization directly, without reading the full paper.
+This repository contains resources accompanying the paper **"SoK: Connecting the Dots in Privacy-Preserving ML — Systematization of MPC Protocols and Conversions Between Secret Sharing Schemes."** It includes comparison tables, protocol genealogy diagrams, decision graphs, and cost analyses from the paper, so that beginners can look up the systematization directly without reading the full paper.
+
+Beyond reproducing the paper's content, this repository is actively maintained to track new MPC protocols and secret-sharing conversions as the field evolves post-publication.
 
 > 👉 **Explore interactively:** [kuleuven-cosic.github.io/sok-ppml-mpc-frameworks](https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks/) — a filterable framework explorer, cost-analysis charts, and a genealogy graph, all built directly from the tables below. The Markdown tables in this repo are the raw, citable source data behind it.
 
