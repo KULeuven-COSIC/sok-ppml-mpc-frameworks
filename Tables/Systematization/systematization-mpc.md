@@ -53,7 +53,7 @@
 | PrivFormer [223](../../Bibliography/references.md#PrivFormer/DBLP:conf/eurosp/AkimotoFAS23) | 2023 | $\mathbb{Z}_{2^{\ell}}$ | $\mathbb{F}_{p}$ | ✗ | SH | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
 | Baccarini et al. [60](../../Bibliography/references.md#baccarini2020multi) | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | SH | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
 | MPClan [107](../../Bibliography/references.md#MPClan/DBLP:journals/joc/KotiPPS23) | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | SH/A | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
-| Force [43](../../Bibliography/references.md#Force/DBLP:journals/iacr/DaiDJLMS23) | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | ✗ | SH | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
+| Force [43](../../Bibliography/references.md#Force/DBLP:conf/nordsec/DaiDJLMS23) | 2023 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | ✗ | SH | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
 | Fusion [145](../../Bibliography/references.md#Fusion/DBLP:conf/ndss/Dong0L0TYCH23) | 2023 | — | — | $A^{S}$ | ✗ | ✗ | — | — | — | ✗ | ✓ | — | — | — |
 | Nimbus [207](../../Bibliography/references.md#Nimbus/DBLP:conf/nips/LiYTLWWYZZGL24) | 2024 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✓ | ✗ |
 | SIMC2.0 [131](../../Bibliography/references.md#Simc2/DBLP:journals/tdsc/XuHZXNHLD24) | 2024 | $\mathbb{Z}_2$ | $\mathbb{F}_{p}$ | $A^{C}$ | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓  |
@@ -76,7 +76,7 @@
 | Mosformer [255](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25) | 2025 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | ✗ | A | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
 | Cavern [256](../../Bibliography/references.md#Cavern/cryptoeprint:2026/214) | 2026 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | A | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ |
 | ECHO [257](../../Bibliography/references.md#ECHO/cryptoeprint:2026/216) | 2026 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | ✗ | Cov | ✗ | ✗ | $f$-dependent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
-| CRISP [258](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG20) | 2020 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | $$A^C$$ | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
+| CRISP [258](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26) | 2026 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | $$A^C$$ | ✗ | ✗ | ✗ | $f$-dependent | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |
 | Zhou [259](../../Bibliography/references.md#zhou2026scalable) | 2026 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | SH | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✓ | ✗ | ✗ |
 | SMASH [260](../../Bibliography/references.md#lv2026smash) | 2026 | $\mathbb{Z}_{2^{\ell}}$, $\mathbb{Z}_2$ | ✗ | A | ✗ | ✗ | ✗ | $f$-independent | ✗ | ✓ | ✗ | ✗ | ✓ | ✗ |
 | PrivTI [261](../../Bibliography/references.md#luo2026privti) | 2026 | $\mathbb{Z}_{2^{\ell}}$ | ✗ | SH | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✓ |

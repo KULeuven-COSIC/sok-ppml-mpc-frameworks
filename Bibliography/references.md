@@ -68,7 +68,7 @@
 
 34. <a id="Xu/DBLP:journals/corr/abs-2108-04417"></a>Runhua Xu and Nathalie Baracaldo and James Joshi. “Privacy-Preserving Machine Learning: Methods, Challenges and Directions.” *CoRR* 2021. URL: [https://arxiv.org/abs/2108.04417](https://arxiv.org/abs/2108.04417)
 
-35. <a id="DBLP:journals/iacr/MannWCB22"></a>Zolt{\'{a}}n {\'{A}}d{\'{a}}m Mann and Christian Weinert and Daphnee Chabal and Joppe W. Bos. “Towards Practical Secure Neural Network Inference: The Journey So Far and the Road Ahead.” *{IACR} Cryptol. ePrint Arch.* 2022. URL: [https://eprint.iacr.org/2022/1483](https://eprint.iacr.org/2022/1483)
+35. <a id="DBLP:journals/csur/MannWCB24"></a>Zolt{\'{A}}n {\'{A}}d{\'{a}}m Mann and Christian Weinert and Daphnee Chabal and Joppe W. Bos. “Towards Practical Secure Neural Network Inference: The Journey So Far and the Road Ahead.” *{ACM} Comput. Surv.* 2024.
 
 36. <a id="DBLP:journals/popets/Cabrero-Holgueras21"></a>Jos{\'{e}} Cabrero{-}Holgueras and Sergio Pastrana. “SoK: Privacy-Preserving Computation Techniques for Deep Learning.” *Proc. Priv. Enhancing Technol.* 2021. DOI: [10.2478/POPETS-2021-0064](https://doi.org/10.2478/POPETS-2021-0064)
 
@@ -84,7 +84,7 @@
 
 42. <a id="Gazelle/DBLP:conf/uss/JuvekarVC18"></a>Chiraag Juvekar and Vinod Vaikuntanathan and Anantha P. Chandrakasan. “{GAZELLE:} {A} Low Latency Framework for Secure Neural Network Inference.” *27th {USENIX} Security Symposium, {USENIX} Security 2018, Baltimore, MD, USA, August 15-17, 2018* 2018. URL: [https://www.usenix.org/conference/usenixsecurity18/presentation/juvekar](https://www.usenix.org/conference/usenixsecurity18/presentation/juvekar)
 
-43. <a id="Force/DBLP:journals/iacr/DaiDJLMS23"></a>Tianxiang Dai and Li Duan and Yufan Jiang and Yong Li and Fei Mei and Yulian Sun. “Force: Making 4PC {\textgreater} 4 {\texttimes} {PC} in Privacy Preserving Machine Learning on {GPU}.” *{IACR} Cryptol. ePrint Arch.* 2023. URL: [https://eprint.iacr.org/2023/493](https://eprint.iacr.org/2023/493)
+43. <a id="Force/DBLP:conf/nordsec/DaiDJLMS23"></a>Tianxiang Dai and Li Duan and Yufan Jiang and Yong Li and Fei Mei and Yulian Sun. “Force: Highly Efficient Four-Party Privacy-Preserving Machine Learning on {GPU}.” *NordSec* 2023.
 
 44. <a id="he2024rhombus"></a>He, Jiaxing and Yang, Kang and Tang, Guofeng and Huang, Zhangjie and Lin, Li and Wei, Changzheng and Yan, Ying and Wang, Wei. “Rhombus: Fast Homomorphic Matrix-Vector Multiplication for Secure Two-Party Inference.” *CCS* 2024.
 
@@ -150,7 +150,7 @@
 
 75. <a id="Pika/DBLP:journals/popets/Wagh22"></a>Sameer Wagh. “Pika: Secure Computation using Function Secret Sharing over Rings.” *Proc. Priv. Enhancing Technol.* 2022. DOI: [10.56553/POPETS-2022-0113](https://doi.org/10.56553/POPETS-2022-0113)
 
-76. <a id="Bicoptor2/DBLP:journals/corr/abs-2309-04909"></a>Lijing Zhou and Qingrui Song and Su Zhang and Ziyu Wang and Xianggui Wang and Yong Li. “Bicoptor 2.0: Addressing Challenges in Probabilistic Truncation for Enhanced Privacy-Preserving Machine Learning.” *CoRR* 2023. DOI: [10.48550/ARXIV.2309.04909](https://doi.org/10.48550/ARXIV.2309.04909)
+76. <a id="Bicoptor2/DBLP:conf/aaai/ZhouZWLSZC025"></a>Lijing Zhou and Bingsheng Zhang and Ziyu Wang and Tianpei Lu and Qingrui Song and Su Zhang and Hongrui Cui and Yu Yu. “On Probabilistic Truncation in Privacy-preserving Machine Learning.” *{AAAI}* 2025.
 
 77. <a id="DBLP:conf/asiacrypt/GordonR018"></a>S. Dov Gordon and Samuel Ranellucci and Xiao Wang. “Secure Computation with Low Communication from Cross-Checking.” *Advances in Cryptology - {ASIACRYPT} 2018 - 24th International Conference on the Theory and Application of Cryptology and Information Security, Brisbane, QLD, Australia, December 2-6, 2018, Proceedings, Part {III}* 2018. DOI: [10.1007/978-3-030-03332-3\_3](https://doi.org/10.1007/978-3-030-03332-3\_3)
 
@@ -422,7 +422,7 @@
 
 211. <a id="CipherGPT/DBLP:journals/iacr/Hou0LLLH023"></a>Xiaoyang Hou and Jian Liu and Jingyu Li and Yuhan Li and Wen{-}jie Lu and Cheng Hong and Kui Ren. “CipherGPT: Secure Two-Party {GPT} Inference.” *{IACR} Cryptol. ePrint Arch.* 2023. URL: [https://eprint.iacr.org/2023/1147](https://eprint.iacr.org/2023/1147)
 
-212. <a id="East/DBLP:journals/corr/abs-2308-09923"></a>Yuanchao Ding and Hua Guo and Yewei Guan and Weixin Liu and Jiarong Huo and Zhenyu Guan and Xiyong Zhang. “East: Efficient and Accurate Secure Transformer Framework for Inference.” *CoRR* 2023. DOI: [10.48550/ARXIV.2308.09923](https://doi.org/10.48550/ARXIV.2308.09923)
+212. <a id="East/DBLP:journals/tsc/DingGGLHGZ25"></a>Yuanchao Ding and Hua Guo and Yewei Guan and Weixin Liu and Jiarong Huo and Zhenyu Guan and Xiyong Zhang. “East: Efficient and Accurate Secure Inference Framework for Transformer.” *{IEEE} Trans. Serv. Comput.* 2025.
 
 213. <a id="BumbleBee/DBLP:conf/ndss/LuHGL000WC25"></a>Wen{-}jie Lu and Zhicong Huang and Zhen Gu and Jingyu Li and Jian Liu and Cheng Hong and Kui Ren and Tao Wei and Wenguang Chen. “BumbleBee: Secure Two-party Inference Framework for Large Transformers.” *32nd Annual Network and Distributed System Security Symposium, {NDSS} 2025, San Diego, California, USA, February 24-28, 2025* 2025. URL: [https://www.ndss-symposium.org/ndss-paper/bumblebee-secure-two-party-inference-framework-for-large-transformers/](https://www.ndss-symposium.org/ndss-paper/bumblebee-secure-two-party-inference-framework-for-large-transformers/)
 
@@ -514,10 +514,12 @@
 
 257. <a id="ECHO/cryptoeprint:2026/216"></a>Yufei Duan and Yun Li and Zhicong Huang and Cheng Hong and Tao Wei and Chao Zhang. "ECHO: Efficient Covertly-Secure Three-party Computation with Applications to Private Machine Learning." *Cryptology ePrint Archive, Paper 2026/216* 2026. URL: [https://eprint.iacr.org/2026/216](https://eprint.iacr.org/2026/216)
 
-258. <a id="CRISP/DBLP:conf/ndss/FangZG20"></a>Xiaoyu Fang and Shihui Zheng and Lize Gu. "CRISP: An Efficient Cryptographic Framework for ML Inference Against Malicious Clients." *27th Annual Network and Distributed System Security Symposium, NDSS 2026, San Diego, California, USA, February 23-26, 2026* 2026.
+258. <a id="CRISP/DBLP:conf/ndss/FangZG26"></a>Xiaoyu Fang and Shihui Zheng and Lize Gu. "CRISP: An Efficient Cryptographic Framework for ML Inference Against Malicious Clients." *27th Annual Network and Distributed System Security Symposium, NDSS 2026, San Diego, California, USA, February 23-26, 2026* 2026.
 
 259. <a id="zhou2026scalable"></a>Hengcheng Zhou. "Scalable Privacy-Preserving Neural Network Training over $\mathbb{Z}_{2^k}$ via RMFE-Based Packing and Mixed-Circuit Computation." *AAAI* 2026.
 
 260. <a id="lv2026smash"></a>Lv, Yunlv and Zhang, Rui and Zhang, Zhiyuan and Wan, Ziyi and Zhang, Lanxue and Xue, Minhui and Li, Jiangtao and Cao, Yanan. "{SMASH:} Scalable Maliciously Secure Hybrid Multi-party Computation Framework for Privacy-Preserving Large Language Models." *{USENIX} Security* 2026.
 
 261. <a id="luo2026privti"></a>Luo, Mingshun and He, Haolei and Yang, Wenti and Li, Meng and Wu, Longfei and Zhang, Zijian and Guan, Zhitao. "{PrivTI:} Efficient End-to-End Privacy-Preserving Inference for Transformer-based Models in {MLaaS}." *{IEEE} Transactions on Services Computing* 2026.
+
+262. <a id="jeong2026jaguar"></a>Jeong, Yewon and Jung, Nayoung and Roh, Hyeri and Choi, Woo-Seok. "Jaguar: Fast Private CNN Inference with Power-of-Two Homomorphic Arithmetic." *arXiv preprint arXiv:2606.11827* 2026.

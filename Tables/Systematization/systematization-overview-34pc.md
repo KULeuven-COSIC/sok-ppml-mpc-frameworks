@@ -19,6 +19,7 @@
 | PrivFormer [[223]](../../Bibliography/references.md#PrivFormer/DBLP:conf/eurosp/AkimotoFAS23)         | 2023 |   ✗   |   ✓   |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  |  ✓  |    O    |   SH   |     ✗    |     ✓     |      ✓      |     ◐ [T3]    |
 | Trio [[238]](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25)               | 2024 |   ✗   |   ✓   |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  |  ✓  |    O    |   SH   |     ✗    |     ✓     |    ◐ [T4]    |       ✓      |
 | Brüggenmann et al. [[147]](../../Bibliography/references.md#Impostor/DBLP:conf/sp/BruggemannSSSY24) | 2024 |   ✗   |   ✓   |  ✗  |  ✗  |  ✗  |  ✗  |  ✓  |  ✓  |  C-S/O  |    A   |     ✗    |     ✓     |    ◐ [T4]    |     ◐ [T3]    |
+| Mosformer [[255]](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25) | 2025 |   ✗   |   ✓   |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  |  ✓  |    O    |    A   |     ✗    |     ✓     |      ✓      |       ✓      |
 | ECHO [[257]](../../Bibliography/references.md#ECHO/cryptoeprint:2026/216) | 2026 | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✓ | ✓ | O | Cov | ✓ | ✓ | ✗ | ✓ |
 | Trident [[29]](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20)            | 2019 |   ✗   | ◐ [T2] |  ✓  |  ✗  |  ✓  |  ✓  |  ✗  |  ✓  |    O    |    F   |     ✓    |     ✓     |      ✓      |     ◐ [T3]    |
 | PrivPy [[86]](../../Bibliography/references.md#PrivPy/DBLP:conf/kdd/LiX19)             | 2019 |   ✗   |   ✗   |  ✓  |  ✗  |  ✓  |  ✗  |  ✗  |  ✓  |    O    |   SH   |     ✓    |     ✓     |      ✗      |     ◐ [T3]    |

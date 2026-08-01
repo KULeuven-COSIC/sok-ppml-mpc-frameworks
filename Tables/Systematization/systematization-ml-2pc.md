@@ -48,7 +48,7 @@
 | PriFFT [231](../../Bibliography/references.md#PriFFT/DBLP:journals/corr/abs-2503-03146) | 2025 |   2   |    ✓   |   ✓   | Probabilistic | ◐ [T1] |    ✓    |  ◐ [T1]  |     ◐ [T1]     | ◐ [T1] |
 | Shark [240](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025)           | 2025 |    2    |    ✓   |   ✓   | Faithful      |   ✓   |    ✓    |    ✓    |       ✗       |   ✓   |
 | Cavern [256](../../Bibliography/references.md#Cavern/cryptoeprint:2026/214) | 2026 | 2 | ✓ | ✗ | ✗ | ◐ [T1] | ✗ | ◐ [T1] | ◐ [T1] | ◐ [T1] |
-| CRISP [258](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG20) | 2026 | 2 | ✓ | ✓ | Not specified | ✓ | ✗ | ✗ | ✗ | ✗ |
+| CRISP [258](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26) | 2026 | 2 | ✓ | ✓ | Not specified | ✓ | ✗ | ✗ | ✗ | ✗ |
 | PrivTI [261](../../Bibliography/references.md#luo2026privti) | 2026 | 2 | ✓ | ✗ | Probabilistic | ✗ | ✓ | ✗ | ✓ | ✓ |
 
 ### Tablenotes
