@@ -186,6 +186,10 @@ jobs:
           EOF
           node scrub.js
 
+          # LICENSE carries the real copyright holder on main; redact it back to a
+          # placeholder for double-blind review.
+          sed -i 's/Copyright (c) 2026 KU Leuven - COSIC/Copyright (c) 2026 XXXX/' LICENSE
+
           # This repo's own CI/workflow config isn't relevant to reviewers and is
           # excluded rather than audited line-by-line. The npm/Playwright install
           # artifacts and these helper scripts themselves must also not end up in
@@ -201,20 +205,21 @@ jobs:
           # citation keys often embed author surnames as substrings.
           AUTHOR_PATTERN='Zbudila|Suresh|Yalame|Mirzamohammadi|Abidin|Preneel'
           AUTHOR_MATCHES=$(grep -rniE "$AUTHOR_PATTERN" . \
-            --include='*.md' --include='*.yml' --include='*.yaml' \
+            --include='*.md' --include='*.yml' --include='*.yaml' --include='LICENSE' \
             --exclude-dir='.git' --exclude-dir='docs' --exclude-dir='Tables' \
             | grep -v '^\./Bibliography/references\.md:' || true)
 
-          # Org name: checked everywhere. Deliberately NOT a bare "github.io" check, which
-          # would false-positive on unrelated citations that happen to link to other
-          # *.github.io sites (e.g. a CS231n course-notes citation in the bibliography).
-          ORG_MATCHES=$(grep -rniE 'KULeuven|kuleuven-cosic' . \
-            --include='*.md' --include='*.yml' --include='*.yaml' \
+          # Org name: checked everywhere, including LICENSE (real copyright holder on main).
+          # Matches "KU Leuven" with or without a space/hyphen, and "kuleuven-cosic" for the
+          # domain -- deliberately NOT a bare "github.io" check, which would false-positive
+          # on unrelated citations that happen to link to other *.github.io sites.
+          ORG_MATCHES=$(grep -rniE 'KU[ -]?Leuven|kuleuven-cosic' . \
+            --include='*.md' --include='*.yml' --include='*.yaml' --include='LICENSE' \
             --exclude-dir='.git' --exclude-dir='docs' || true)
 
           # This specific paper's eprint link only, not eprint.iacr.org in general.
           EPRINT_MATCHES=$(grep -rniE 'eprint\.iacr\.org/2025/1679' . \
-            --include='*.md' --include='*.yml' --include='*.yaml' \
+            --include='*.md' --include='*.yml' --include='*.yaml' --include='LICENSE' \
             --exclude-dir='.git' --exclude-dir='docs' || true)
 
           ALL_MATCHES=$(printf '%s\n%s\n%s\n' "$AUTHOR_MATCHES" "$ORG_MATCHES" "$EPRINT_MATCHES" | sed '/^$/d')
