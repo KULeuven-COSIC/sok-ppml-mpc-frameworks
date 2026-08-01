@@ -19,7 +19,7 @@
 | PrivFormer [7](../../Bibliography/references.md#PrivFormer/DBLP:conf/eurosp/AkimotoFAS23)            | 2023 |    3    |    ✓   |   ✗  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✓       |   ✗  |
 | Trio [84](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25)           | 2024 |    3    |    ✓   |   ✗  | Probabilistic | ◐ [T1] |    ✗    |    ✗    |       ✗       |   ✗  |
 | Brüggenmann et al. [32](../../Bibliography/references.md#Impostor/DBLP:conf/sp/BruggemannSSSY24)      | 2024 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
-| Mosformer [[43]](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25)                     | 2025 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✓    |    ✗    |       ✓       |   ✓  |
+| Mosformer [43](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25)                     | 2025 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✓    |    ✗    |       ✓       |   ✓  |
 | ECHO [65](../../Bibliography/references.md#duan2026echo) | 2026 | 3 | ✓ | ✗ | Stochastic | ◐ [T1] | ✗ | ✗ | ✗ | ✗ |
 | Trident [40](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20)                    | 2019 |    4    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✓    |    ✓    |     ◐ [T2]     |   ✗  |
 | PrivPy [111](../../Bibliography/references.md#PrivPy/DBLP:conf/kdd/LiX19)                               | 2019 |    4    |    ✓   |   ✓  | Probabilistic | ◐ [T1] |    ✗    |    ✓    |       ✓       |   ✗  |
