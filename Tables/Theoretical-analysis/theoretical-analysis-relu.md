@@ -25,7 +25,7 @@
 |  3 |    SH   | pMPL [[225]](../../Bibliography/references.md#pMPL/DBLP:conf/ccs/SongWWTLRWH22) |                   -                   |  $18\ell+4\ell\log\ell$  |      $\log\ell+5$     |   SS  |
 |  3 |    SH   | AdamInPrivate [[192]](../../Bibliography/references.md#AdamInPrivate/DBLP:journals/popets/AttrapadungHIKM22) |                   -                   |     $5\ell_x+6\ell+5$    |        $\ell+5$        |   SS  |
 |  3 |    SH   | Bicoptor [[14]](../../Bibliography/references.md#Bicoptor/DBLP:conf/sp/ZhouWCSY23) |                   -                   |    $(\ell_x+2)\ell+2$    |            $2$           |   SS  |
-|  3 |    SH   | Bicoptor2 [[76]](../../Bibliography/references.md#Bicoptor2/DBLP:journals/corr/abs-2309-04909) |                   -                   | $(\ell_x+1)^2+2\ell+2$ |            $2$           |   SS  |
+|  3 |    SH   | Bicoptor2 [[76]](../../Bibliography/references.md#Bicoptor2/DBLP:conf/aaai/ZhouZWLSZC025) |                   -                   | $(\ell_x+1)^2+2\ell+2$ |            $2$           |   SS  |
 |  3 |    SH   | Meteor [[41]](../../Bibliography/references.md#meteor/DBLP:conf/www/DongCJLW23) |        $\mathcal{O}(\ell)$        |    $(4\ell+1)\log p+3\ell$    |      $\log_4\ell+3$       |   SS  |
 |  3 |    SH   | Falcon [[20]](../../Bibliography/references.md#Falcon/DBLP:journals/popets/WaghTBKMR21) |         $\mathcal{O}(\ell)$         |    $3\ell\log p+3\ell$    |      $3+\log\ell$     |   SS  |
 |  3 |    SH   | CECILIA [[193]](../../Bibliography/references.md#Cecilia/DBLP:journals/corr/abs-2202-03023) |         $\mathcal{O}(\ell)$         |      $\mathcal{O}(\ell)$     |     $\mathcal{O}(1)$     |   SS  |

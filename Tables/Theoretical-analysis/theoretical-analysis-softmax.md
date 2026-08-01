@@ -11,14 +11,14 @@
 |  2 |  SH  | DeepSecure [[62]](../../Bibliography/references.md#Deepsecure/DBLP:conf/dac/RouhaniRK18) |   ✗  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✓   |   GC   |
 |  2 |  SH  | Pika [[75]](../../Bibliography/references.md#Pika/DBLP:journals/popets/Wagh22) |   ✗  |    ✗   |     ✗     |  ✓  |      ✗      |        ✗       |   ✗   |   FSS  |
 |  2 |  SH  | MPCFormer [[72]](../../Bibliography/references.md#MPCFORMER/DBLP:conf/iclr/LiWSGXZ23) |   ✗  |    ✓   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
-|  2 |  SH  | East [[212]](../../Bibliography/references.md#East/DBLP:journals/corr/abs-2308-09923) |   ✗  |    ✗   |     ✓     |  ✗  |      ✓      |        ✗       |   ✗   |   SS   |
+|  2 |  SH  | East [[212]](../../Bibliography/references.md#East/DBLP:journals/tsc/DingGGLHGZ25) |   ✗  |    ✗   |     ✓     |  ✗  |      ✓      |        ✗       |   ✗   |   SS   |
 |  2 |  SH  | Sigma [[243]](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   FSS  |
 |  2 |  SH  | Iron [[210]](../../Bibliography/references.md#Iron/DBLP:conf/nips/HaoLCXXZ22) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   FSS  |
 |  2 |  SH  | CipherGPT [[211]](../../Bibliography/references.md#CipherGPT/DBLP:journals/iacr/Hou0LLLH023) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   FSS  |
-|  2 |  SH  | MPCViT [[73]](../../Bibliography/references.md#zeng2023mpcvit) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
+|  2 |  SH  | MPCViT [[73]](../../Bibliography/references.md#DBLP:conf/iccv/ZengL0TLTWH23) |   ✓  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✗   | SS, GC |
 |  2 |  SH  | Primer [[220]](../../Bibliography/references.md#Primer/DBLP:conf/dac/ZhengLJ23) |   ✗  |    ✗   |     ✗     |  ✗  |      ✗      |        ✗       |   ✓   |   GC   |
 |  2 |  SH  | PriFFT [[231]](../../Bibliography/references.md#PriFFT/DBLP:journals/corr/abs-2503-03146) |   ✗  |    ✗   |     ✓     |  ✗  |      ✗      |        ✗       |   ✗   |   SS   |
-|  2 |  SH  | SecFormer [[214]](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMWYX24) |   ✗  |    ✓   |     ✓     |  ✗  |      ✓      |        ✗       |   ✗   |   SS   |
+|  2 |  SH  | SecFormer [[214]](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24) |   ✗  |    ✓   |     ✓     |  ✗  |      ✓      |        ✗       |   ✗   |   SS   |
 |  2 |  SH  | SirNN [[63]](../../Bibliography/references.md#Sirnn/DBLP:conf/sp/RatheeRGGSCR21) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✗       |   ✗   |   OT   |
 |  2 |  SH  | Nimbus [[207]](../../Bibliography/references.md#Nimbus/DBLP:conf/nips/LiYTLWWYZZGL24) |   ✗  |    ✗   |     ✓     |  ✗  |      ✓      |        ✓       |   ✗   |   SS   |
 |  2 |  SH  | Bolt [[209]](../../Bibliography/references.md#BOLT/DBLP:conf/sp/PangZMZS24) |   ✗  |    ✗   |     ✗     |  ✓  |      ✓      |        ✓       |   ✗   |   FSS  |

@@ -21,7 +21,7 @@
 | Podschwadt et al. [150](../../Bibliography/references.md#DBLP:journals/access/PodschwadtTHRC22)        |     2022 |   Survey   |   ✗   |   ✗   |   ✓   |   ✗   |    ✗   |   ✗   |   ✗   |      ✓      |     ✓     |     ✓    | HE taxonomy                                            |
 | Rechberger et al. [151](../../Bibliography/references.md#DBLP:series/lncs/RechbergerW22)        |     2022 |   Survey   |   ✓   |   ✗   |   ✓   |   ✗   |    ✓   |   ✓   |   ✗   |      ✓      |     ✓     |     ✓    | End-to-end ML view                                     |
 | Kuzniewski et al. [155](../../Bibliography/references.md#kuzniewski2022high)        |     2022 |   Survey   |   ✓   |   ✗   |   ✓   |   ✓   |    ✗   |   ✗   |   ✓   |      ✓      |     ✓     |     ✗    | Limited benchmarks                                     |
-| Mann et al. [35](../../Bibliography/references.md#DBLP:journals/iacr/MannWCB22)              |     2022 |   Survey   |   ✓   |   ✗   |   ✓   |   ✗   |    ✓   |   ✓   |   ✗   |      ✓      |     ✓     |     ✓    | Integrated view                                        |
+| Mann et al. [35](../../Bibliography/references.md#DBLP:journals/csur/MannWCB24)              |     2022 |   Survey   |   ✓   |   ✗   |   ✓   |   ✗   |    ✓   |   ✓   |   ✗   |      ✓      |     ✓     |     ✓    | Integrated view                                        |
 | Ng et al. [56](../../Bibliography/references.md#DBLP:conf/sp/NgC23)                |     2023 |     SoK    |   ✓   |   ✗   |   ✓   |   ✗   |    ✓   |   ✓   |   ✗   |      ✓      |     ✓     |     ✓    | Genealogy                                              |
 | Khan et al. [173](../../Bibliography/references.md#DBLP:journals/popets/KhanBNM24)              |     2024 |     SoK    |   ✓   |   ✗   |   ✓   |   ✗   |    ✗   |   ✗   |   ✗   |      ✓      |     ✗     |     ✓    | Experimental evaluation                                |
 | Qin et al. [176](../../Bibliography/references.md#DBLP:journals/tkde/QinHFKLC24)               |     2024 |   Survey   |   ✓   |   ✗   |   ✓   |   ✓   |    ✓   |   ✓   |   ✓   |      ✓      |     ✓     |     ✓    | Crypto primitives mapping                              |
@@ -29,7 +29,7 @@
 | Allaart et al. [178](../../Bibliography/references.md#DBLP:journals/csur/AllaartABBGHK25)           |     2025 |   Survey   |   ✓   |   ✗   |   ✓   |   ✗   |    ✓   |   ✓   |   ✓   |      ✓      |     ✓     |     ✓    | Distributed DL challenges                              |
 | Njungle et al. [181](../../Bibliography/references.md#NjungleJWMSK25/10947759)           |     2025 |   Survey   |   ✓   |   ✗   |   ✓   |   ✓   |    ✓   |   ✓   |   ✓   |      ✓      |     ✓     |     ✓    | Recommendation system                                  |
 | Chen et al. [224](../../Bibliography/references.md#CongcongACM25/10.1145/3729234)              |     2025 |   Survey   |   ✓   |   ✓   |   ✗   |   ✗   |    ✓   |   ✓   |   ✓   |      ✓      |     ✓     |     ✓    | Holistic synthesis                                     |
-| **This Work**                 | **2025** |   **SoK**  | **✓** | **✓** | **✗** | **✗** |  **✓** | **✓** | **✓** |    **✓**    |   **✓**   |   **✓**  | **Low-level protocol analysis + conversion protocols** |
+| **This Work**                 | **2026** |   **SoK**  | **✓** | **✓** | **✗** | **✗** |  **✓** | **✓** | **✓** |    **✓**    |   **✓**   |   **✓**  | **Low-level protocol analysis + conversion protocols** |
 
 ---
 
