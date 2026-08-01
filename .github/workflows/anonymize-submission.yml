@@ -56,6 +56,27 @@ jobs:
             for (const [slug, file] of Object.entries(PAGES)) {
               const url = `${BASE}/${slug}`;
               await page.goto(url, { waitUntil: 'networkidle' });
+              // The live site is the real, non-anonymized deployment -- these elements
+              // bake author names / institution / eprint ID directly into the rendered
+              // page, so they have to be hidden before the screenshot is taken, not
+              // after (a PNG has no text to scrub once captured).
+              await page.evaluate(() => {
+                // Shared footer on every page: full author list, eprint ID, org/repo name.
+                document.querySelectorAll('footer').forEach(el => { el.style.display = 'none'; });
+                // Homepage-only "Authors" section: institutions + full plaintext BibTeX citation.
+                document.querySelectorAll('section').forEach(el => {
+                  const text = el.textContent || '';
+                  if (text.includes('KU Leuven COSIC') && text.includes('Technology Innovation Institute')) {
+                    el.style.display = 'none';
+                  }
+                });
+                // Homepage hero badge, e.g. "ePrint 2025/1679 · KU Leuven COSIC".
+                document.querySelectorAll('body *').forEach(el => {
+                  if (el.children.length === 0 && /ePrint\s+\d{4}\/\d+\s*·\s*KU Leuven/i.test(el.textContent || '')) {
+                    el.style.display = 'none';
+                  }
+                });
+              });
               await page.screenshot({ path: `docs/website-preview/${file}.png`, fullPage: true });
               console.log(`captured ${url} -> docs/website-preview/${file}.png`);
             }
@@ -114,10 +135,17 @@ jobs:
             '(omitted for double-blind review)'
           );
 
-          // 4. Redact the citation block's author list and drop the identifying url field.
+          // 4. Reduce the citation block to just author (redacted) and title -- drop
+          //    journal/year/url entirely, since venue + year + eprint report number
+          //    together are still enough to look this specific paper up.
           readme = readme.replace(/author\s*=\s*\{[^}]*\}/, 'author       = {Anonymous Author(s)}');
-          readme = readme.replace(/\s*url\s*=\s*\{[^}]*\}\n/, '\n');
           readme = readme.replace('@article{ZbudilaSYMAP25,', '@article{AnonymousSubmission,');
+          readme = readme.split('\n').filter(l =>
+            !/^\s*journal\s*=/.test(l) && !/^\s*year\s*=/.test(l) && !/^\s*url\s*=/.test(l)
+          ).join('\n');
+          // Whichever field ends up last (title, after journal/year/url are dropped) is left
+          // with a dangling trailing comma before the entry's closing brace -- strip it.
+          readme = readme.replace(/,(\n\}\n)/, '$1');
 
           // 5. Reinsert a "Paper appendix" column into the Contents table. main dropped this
           //    column deliberately (it's redundant for casual browsing), but reviewers on the
@@ -158,6 +186,10 @@ jobs:
           EOF
           node scrub.js
 
+          # LICENSE carries the real copyright holder on main; redact it back to a
+          # placeholder for double-blind review.
+          sed -i 's/Copyright (c) 2026 KU Leuven - COSIC/Copyright (c) 2026 XXXX/' LICENSE
+
           # This repo's own CI/workflow config isn't relevant to reviewers and is
           # excluded rather than audited line-by-line. The npm/Playwright install
           # artifacts and these helper scripts themselves must also not end up in
@@ -173,20 +205,21 @@ jobs:
           # citation keys often embed author surnames as substrings.
           AUTHOR_PATTERN='Zbudila|Suresh|Yalame|Mirzamohammadi|Abidin|Preneel'
           AUTHOR_MATCHES=$(grep -rniE "$AUTHOR_PATTERN" . \
-            --include='*.md' --include='*.yml' --include='*.yaml' \
+            --include='*.md' --include='*.yml' --include='*.yaml' --include='LICENSE' \
             --exclude-dir='.git' --exclude-dir='docs' --exclude-dir='Tables' \
             | grep -v '^\./Bibliography/references\.md:' || true)
 
-          # Org name: checked everywhere. Deliberately NOT a bare "github.io" check, which
-          # would false-positive on unrelated citations that happen to link to other
-          # *.github.io sites (e.g. a CS231n course-notes citation in the bibliography).
-          ORG_MATCHES=$(grep -rniE 'KULeuven|kuleuven-cosic' . \
-            --include='*.md' --include='*.yml' --include='*.yaml' \
+          # Org name: checked everywhere, including LICENSE (real copyright holder on main).
+          # Matches "KU Leuven" with or without a space/hyphen, and "kuleuven-cosic" for the
+          # domain -- deliberately NOT a bare "github.io" check, which would false-positive
+          # on unrelated citations that happen to link to other *.github.io sites.
+          ORG_MATCHES=$(grep -rniE 'KU[ -]?Leuven|kuleuven-cosic' . \
+            --include='*.md' --include='*.yml' --include='*.yaml' --include='LICENSE' \
             --exclude-dir='.git' --exclude-dir='docs' || true)
 
           # This specific paper's eprint link only, not eprint.iacr.org in general.
           EPRINT_MATCHES=$(grep -rniE 'eprint\.iacr\.org/2025/1679' . \
-            --include='*.md' --include='*.yml' --include='*.yaml' \
+            --include='*.md' --include='*.yml' --include='*.yaml' --include='LICENSE' \
             --exclude-dir='.git' --exclude-dir='docs' || true)
 
           ALL_MATCHES=$(printf '%s\n%s\n%s\n' "$AUTHOR_MATCHES" "$ORG_MATCHES" "$EPRINT_MATCHES" | sed '/^$/d')
@@ -218,6 +251,6 @@ jobs:
             echo "## Anonymous submission branch updated"
             echo ""
             echo "- Pushed a single squashed commit to \`anonymous-submission\`, authored by a generic \`Anonymous\` identity (no real names or personal emails in the git history)."
-            echo "- Scrubbed: README citation block, eprint link, live-site badge/links (replaced with freshly captured screenshots under \`docs/website-preview/\`), and \`.github/\` workflow config."
+            echo "- Scrubbed: README citation block (author + title only, no venue/year/link), eprint link, live-site badge/links (replaced with freshly captured screenshots under \`docs/website-preview/\`, with the site's footer and homepage author/citation section hidden before capture), and \`.github/\` workflow config."
             echo "- **This repo still lives under the \`KULeuven-COSIC\` GitHub org** -- sharing this branch's raw GitHub URL with reviewers would still reveal the affiliation. Submit via a URL-masking proxy such as https://anonymous.4open.science/ pointed at this repo + the \`anonymous-submission\` branch instead."
           } >> "$GITHUB_STEP_SUMMARY"
