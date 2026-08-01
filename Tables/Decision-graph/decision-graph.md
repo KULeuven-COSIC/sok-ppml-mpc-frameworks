@@ -10,6 +10,57 @@ This is a **first-stage filter**, not a final answer: once you've narrowed down 
 
 ---
 
+#### At a glance
+
+```mermaid
+flowchart TD
+    A{"1. Deployment mode?"}
+    B{"2a. Throughput or latency?"}
+    C{"2b. Honest majority possible?"}
+    D["Hybrid: HE for linear layers +<br/>FSS/GC for non-linear layers"]
+    D1["Linear-layer focus:<br/>Panther, Jaguar"]
+    D2["Non-linear / transformer focus:<br/>BumbleBee, PrivTI"]
+    E{"3. Malicious or semi-honest?"}
+    F{"4. Preprocessing model?"}
+    F1["Online-only / reusable:<br/>ABY3, Falcon, Fantastic Four, AdamInPrivate"]
+    F2["Function-dependent:<br/>ASTRA, BLAZE, SWIFT, Tetrad, Trident"]
+    G1["Malicious, general:<br/>MD-ML, MD-SONIC, SMASH, FANNG-MPC"]
+    G2["Malicious, one-sided (client–server):<br/>Muse, SIMC (malicious client), Fusion (malicious server)"]
+    H{"5. Computationally constrained?"}
+    H1["FSS-based:<br/>Orca, AriaNN, CRISP<br/>(+ dealer: Shark)"]
+    I{"6. Preprocessing dealer available?"}
+    I1["SS-based, no dealer:<br/>ABY2, SecureML (dealer-free)"]
+    I2["Dealer permitted:<br/>SHAFT, SecFormer, SecureML (with dealer)"]
+
+    A -->|Client–Server| B
+    A -->|Outsourcing| C
+    B -->|Latency| D
+    B -->|Throughput| E
+    D --> D1
+    D --> D2
+    C -->|Yes| F
+    C -->|No| E
+    F -->|"Online-only / reusable"| F1
+    F -->|"Function-dependent"| F2
+    E -->|Malicious| G1
+    E -->|"Malicious, client–server"| G2
+    E -->|"Semi-honest, 2PC"| H
+    H -->|"Not constrained"| H1
+    H -->|Constrained| I
+    I -->|"No dealer"| I1
+    I -->|"Dealer permitted"| I2
+    I -->|"Dealer impractical"| F
+
+    classDef decision fill:#eef4ff,stroke:#4a6fa5,stroke-width:1px;
+    classDef leaf fill:#eefaf0,stroke:#3f9142,stroke-width:1px;
+    class A,B,C,E,F,H,I decision;
+    class D,D1,D2,F1,F2,G1,G2,H1,I1,I2 leaf;
+```
+
+*(This is a hand-drawn summary of the branching logic below — for the full figure with exact styling, see the paper's own decision graph in Appendix C. The "Dealer impractical" branch loops back to step 4, since distributing the dealer's role among the computing parties leads back to the function-dependent, honest-majority designs.)*
+
+---
+
 #### 1. Is this a client–server or an outsourcing deployment?
 
 - In a **client–server** deployment, the client supplies private input and the server provides a model or computational service.
