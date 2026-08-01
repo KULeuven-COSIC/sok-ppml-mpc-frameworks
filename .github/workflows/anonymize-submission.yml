@@ -1,0 +1,179 @@
+name: Create Anonymous Submission Branch
+
+# Manually triggered only. Builds a scrubbed, single-commit snapshot of
+# main's current content on the `anonymous-submission` branch, for sharing
+# with reviewers via a URL-masking proxy (e.g. anonymous.4open.science) --
+# NOT by sharing the raw GitHub URL of this repo, since that alone would
+# reveal the KULeuven-COSIC affiliation regardless of what this workflow
+# scrubs from the file content.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  anonymize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Capture live-site screenshots for the anonymized README
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --no-save playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium
+
+          mkdir -p docs/website-preview
+          cat > /tmp/capture.js <<'EOF'
+          const { chromium } = require('playwright');
+
+          const BASE = 'https://kuleuven-cosic.github.io/sok-ppml-mpc-frameworks';
+          const PAGES = {
+            '': 'home',
+            'explorer': 'explorer',
+            'cost-analysis': 'cost-analysis',
+            'genealogy': 'genealogy',
+            'mpc-puzzle': 'mpc-puzzle',
+            'related-work': 'related-work',
+            'bibliography': 'bibliography',
+          };
+
+          (async () => {
+            const browser = await chromium.launch();
+            const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+            for (const [slug, file] of Object.entries(PAGES)) {
+              const url = `${BASE}/${slug}`;
+              await page.goto(url, { waitUntil: 'networkidle' });
+              await page.screenshot({ path: `docs/website-preview/${file}.png`, fullPage: true });
+              console.log(`captured ${url} -> docs/website-preview/${file}.png`);
+            }
+            await browser.close();
+          })().catch(err => { console.error(err); process.exit(1); });
+          EOF
+          node /tmp/capture.js
+
+      - name: Scrub author-identifying content from README.md
+        run: |
+          cat > /tmp/scrub.js <<'EOF'
+          const fs = require('fs');
+
+          const SLUGS = ['explorer', 'cost-analysis', 'genealogy', 'mpc-puzzle', 'related-work', 'bibliography'];
+          // Matches the live-site domain whether written as a full https:// URL or as
+          // bare display text, with or without the repo path segment / a page slug.
+          const SITE_RE = /(?:https?:\/\/)?kuleuven-cosic\.github\.io(?:\/sok-ppml-mpc-frameworks)?\/?([a-z-]*)/g;
+
+          let readme = fs.readFileSync('README.md', 'utf8');
+
+          // 1. Drop badge lines whose own image text bakes in identifying info
+          //    (Paper badge spells out the eprint ID; Live Site badge spells out the domain).
+          readme = readme.split('\n').filter(l => !l.includes('Live%20Site') && !l.includes('Paper-ePrint')).join('\n');
+
+          // 2. Replace every occurrence of the live-site domain with a local screenshot path.
+          readme = readme.replace(SITE_RE, (match, slug) => {
+            const file = slug && SLUGS.includes(slug) ? slug : 'home';
+            return `docs/website-preview/${file}.png`;
+          });
+          // 2b. Tidy up the resulting self-referential links into readable "preview screenshot" links.
+          readme = readme.replace(
+            /\[docs\/website-preview\/([a-z-]+)\.png\]\(docs\/website-preview\/\1\.png\)/g,
+            '[preview screenshot](docs/website-preview/$1.png)'
+          );
+          readme = readme.replace(
+            '[live site](docs/website-preview/home.png)',
+            '[captured screenshots](docs/website-preview/)'
+          );
+
+          // 3. Any link to this specific paper's eprint entry (not eprint.iacr.org in general,
+          //    which is used throughout Bibliography/references.md for unrelated citations).
+          //    Stop at markdown-special characters, not just whitespace -- "[URL](URL)" has
+          //    no whitespace between the two URL occurrences, and the trailing "}" in the
+          //    bibtex url field is not part of the URL either.
+          readme = readme.replace(/https:\/\/eprint\.iacr\.org\/2025\/1679[^\s)\]}]*/g, 'OMITTED_FOR_REVIEW');
+          readme = readme.replace(/\[OMITTED_FOR_REVIEW\]\(OMITTED_FOR_REVIEW\)/g, 'the full version (omitted for double-blind review)');
+          readme = readme.replace(/\[([^\]]*)\]\(OMITTED_FOR_REVIEW\)/g, '$1 (link omitted for double-blind review)');
+          readme = readme.replace(/OMITTED_FOR_REVIEW/g, 'the full version (omitted for double-blind review)');
+          readme = readme.replace(
+            'The full version of our paper is available as a preprint on the Cryptology ePrint Archive: the full version (omitted for double-blind review).',
+            'The full version of this paper is omitted from this repository for double-blind review.'
+          );
+
+          // 4. Redact the citation block's author list and drop the identifying url field.
+          readme = readme.replace(/author\s*=\s*\{[^}]*\}/, 'author       = {Anonymous Author(s)}');
+          readme = readme.replace(/\s*url\s*=\s*\{[^}]*\}\n/, '\n');
+          readme = readme.replace('@article{ZbudilaSYMAP25,', '@article{AnonymousSubmission,');
+
+          fs.writeFileSync('README.md', readme);
+          console.log('README.md scrubbed.');
+          EOF
+          node /tmp/scrub.js
+
+          # This repo's own CI/workflow config isn't relevant to reviewers and is
+          # excluded rather than audited line-by-line.
+          rm -rf .github
+
+      - name: Safety net -- fail if any author/org fingerprint remains
+        run: |
+          # Author surnames: excludes Bibliography/references.md and Tables/, since both are
+          # citation-heavy by design and routinely cite *other* papers co-authored by one of
+          # this SoK's own authors (e.g. a table citing an unrelated prior work) -- normal
+          # scholarly citation infrastructure, not an authorship leak, and DBLP-style
+          # citation keys often embed author surnames as substrings.
+          AUTHOR_PATTERN='Zbudila|Suresh|Yalame|Mirzamohammadi|Abidin|Preneel'
+          AUTHOR_MATCHES=$(grep -rniE "$AUTHOR_PATTERN" . \
+            --include='*.md' --include='*.yml' --include='*.yaml' \
+            --exclude-dir='.git' --exclude-dir='docs' --exclude-dir='Tables' \
+            | grep -v '^\./Bibliography/references\.md:' || true)
+
+          # Org name: checked everywhere. Deliberately NOT a bare "github.io" check, which
+          # would false-positive on unrelated citations that happen to link to other
+          # *.github.io sites (e.g. a CS231n course-notes citation in the bibliography).
+          ORG_MATCHES=$(grep -rniE 'KULeuven|kuleuven-cosic' . \
+            --include='*.md' --include='*.yml' --include='*.yaml' \
+            --exclude-dir='.git' --exclude-dir='docs' || true)
+
+          # This specific paper's eprint link only, not eprint.iacr.org in general.
+          EPRINT_MATCHES=$(grep -rniE 'eprint\.iacr\.org/2025/1679' . \
+            --include='*.md' --include='*.yml' --include='*.yaml' \
+            --exclude-dir='.git' --exclude-dir='docs' || true)
+
+          ALL_MATCHES=$(printf '%s\n%s\n%s\n' "$AUTHOR_MATCHES" "$ORG_MATCHES" "$EPRINT_MATCHES" | sed '/^$/d')
+          if [ -n "$ALL_MATCHES" ]; then
+            echo "Author/org fingerprint found:"
+            echo "$ALL_MATCHES"
+            echo ""
+            echo "Aborting -- fix the scrub step above before re-running."
+            exit 1
+          fi
+          echo "No author/org fingerprints found."
+
+      - name: Build a single anonymous orphan commit
+        run: |
+          git config user.name "Anonymous"
+          git config user.email "anonymous@example.com"
+
+          git checkout --orphan anonymous-submission-tmp
+          git add -A
+          git commit -m "Anonymous submission snapshot"
+
+          git branch -D anonymous-submission 2>/dev/null || true
+          git branch -m anonymous-submission
+          git push --force origin anonymous-submission
+
+      - name: Job summary
+        run: |
+          {
+            echo "## Anonymous submission branch updated"
+            echo ""
+            echo "- Pushed a single squashed commit to \`anonymous-submission\`, authored by a generic \`Anonymous\` identity (no real names or personal emails in the git history)."
+            echo "- Scrubbed: README citation block, eprint link, live-site badge/links (replaced with freshly captured screenshots under \`docs/website-preview/\`), and \`.github/\` workflow config."
+            echo "- **This repo still lives under the \`KULeuven-COSIC\` GitHub org** -- sharing this branch's raw GitHub URL with reviewers would still reveal the affiliation. Submit via a URL-masking proxy such as https://anonymous.4open.science/ pointed at this repo + the \`anonymous-submission\` branch instead."
+          } >> "$GITHUB_STEP_SUMMARY"
