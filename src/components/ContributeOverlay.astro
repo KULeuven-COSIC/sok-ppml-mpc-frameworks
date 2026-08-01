@@ -1,0 +1,68 @@
+---
+const base = import.meta.env.BASE_URL
+---
+<div
+  x-data
+  x-show="$store.contribute.open"
+  x-cloak
+  @keydown.escape.window="$store.contribute.open = false"
+  class="fixed inset-0 z-[60] flex items-center justify-center p-4"
+>
+  <!-- Backdrop -->
+  <div
+    class="absolute inset-0 bg-black/70 backdrop-blur-sm"
+    @click="$store.contribute.open = false"
+  ></div>
+
+  <!-- Panel -->
+  <div class="relative bg-navy-800 border border-slate-700/50 rounded-2xl p-6 sm:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+    <button
+      @click="$store.contribute.open = false"
+      class="absolute top-4 right-4 p-1.5 rounded-lg text-slate-500 hover:text-white hover:bg-slate-700/60 transition-colors"
+      aria-label="Close"
+    >
+      <i class="ph ph-x text-lg"></i>
+    </button>
+
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-medium mb-4">
+      <i class="ph ph-git-pull-request"></i>
+      Community Contributions
+    </div>
+    <h2 class="text-2xl font-bold text-white mb-2">Contribute a Framework</h2>
+    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+      Know a framework we missed or have updated data? Fill in the details and we'll generate a
+      pre-formatted GitHub Issue that maintainers can review and merge as a pull request.
+    </p>
+
+    <div class="grid grid-cols-5 gap-2 mb-6">
+      {[
+        { icon: 'ph ph-pencil', label: 'Fill Form' },
+        { icon: 'ph ph-eye', label: 'Preview' },
+        { icon: 'ph ph-github-logo', label: 'Open Issue' },
+        { icon: 'ph ph-git-pull-request', label: 'PR' },
+        { icon: 'ph ph-check-circle', label: 'Merged' },
+      ].map(step => (
+        <div class="text-center">
+          <div class="w-8 h-8 rounded-full bg-brand-500/15 border border-brand-500/30 flex items-center justify-center mx-auto mb-1.5">
+            <i class={step.icon + ' text-brand-400 text-sm'}></i>
+          </div>
+          <div class="text-slate-500 text-[10px] leading-tight">{step.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <a href={base + '/contribute'} class="btn-primary w-full justify-center mb-3">
+      <i class="ph ph-pencil"></i>
+      Open Contribution Form
+    </a>
+    <a
+      href="https://github.com/KULeuven-COSIC/sok-ppml-mpc-frameworks/blob/main/CONTRIBUTING.md"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center justify-center gap-1.5 text-slate-500 hover:text-slate-300 text-xs transition-colors"
+    >
+      <i class="ph ph-book-open"></i>
+      Experienced with Git? Read CONTRIBUTING.md →
+    </a>
+  </div>
+</div>
