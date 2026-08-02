@@ -8,7 +8,7 @@
 | -: | :--: | :--------------- | :---------------------: | :--------------------------: | :----------------: | :---: |
 |  2 |  SH  | SecureML [134](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17) |            —            | $\mathcal{O}(\Lambda\ell)$ |        $4$       |   SS  |
 |  2 |  SH  | ABY2 [139](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21) |      $\mathcal{O}(\Lambda)$      |       $460+4\ell$        |    $2+\log_4\ell$    |   SS  |
-|  2 |  SH  | Zheng et al. [203](../../Bibliography/references.md#SecureSoftmax/DBLP:conf/acsac/0021ZCPTLY23) |        $10\ell$       |          $2(k+5)$          |        $1$       |  STP  |
+|  2 |  SH  | Zheng et al. [203](../../Bibliography/references.md#SecureSoftmax/DBLP:conf/acsac/0021ZCPTLY23) |        $10\ell$       |          $2(k+5)$          |        $1$       |  TTP  |
 |  2 |  SH  | pMPL [165](../../Bibliography/references.md#pMPL/DBLP:conf/ccs/SongWWTLRWH22) |            —            |  $18\ell+4\ell\log\ell$  |  $\log\ell+5$  |   SS  |
 |  3 |  SH  | pMPL [165](../../Bibliography/references.md#pMPL/DBLP:conf/ccs/SongWWTLRWH22) |            —            |  $38\ell+8\ell\log\ell$  |  $\log\ell+6$  |   SS  |
 |  3 |   A  | ABY3 [133](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18) |       $108\ell$       |          $81\ell$          |  $\log\ell+4$  |   SS  |

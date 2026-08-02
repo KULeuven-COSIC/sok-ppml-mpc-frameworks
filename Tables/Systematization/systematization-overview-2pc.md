@@ -15,13 +15,13 @@
 | CryptFlow2 [151](../../Bibliography/references.md#cryptflow2/DBLP:conf/ccs/RatheeR0CGR020) | 2020 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |      ✓      |       ✓      |
 | MediSC [119](../../Bibliography/references.md#MediSC/DBLP:conf/esorics/LiuZYY21) | 2021 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
 | COINN [92](../../Bibliography/references.md#COINN/DBLP:conf/ccs/HussainJSK21) | 2021 |  ✓  |   ✗   |  ✗  |  ✗  |  ✓  |  ✓  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |      ✓      |       ✓      |
-| Muse [109](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21) | 2021 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✓  |  ✓  |    ✓    |   C-S   | $$A^C$$ |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
+| Muse [109](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21) | 2021 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✓  |  ✓  |    ✓    |   C-S   | $A^C$ |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
 | AriaNN [159](../../Bibliography/references.md#ariann/DBLP:journals/popets/RyffelTPB22) | 2021 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  | **FSS** |    O    |    SH   |     ✓    |     ✓     |    ◐ [T4]    |       ✓      |
 | SirNN [150](../../Bibliography/references.md#Sirnn/DBLP:conf/sp/RatheeRGGSCR21) | 2021 |  ✓  |   ✗   |  ✗  |  ✗  |  ✓  |  ✗  |  ✗  |    ✓    |    O    |    SH   |     ✗    |     ✓     |    ◐ [T3]    |       ✓      |
 | ABY2.0 [139](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21) | 2021 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✓  |  ✗  |    ✓    |    O    |    SH   |     ✓    |     ✓     |    ◐ [T3]    |     ◐ [T2]    |
 | SONIC [120](../../Bibliography/references.md#SONIC/DBLP:journals/tdsc/LiuZYY23) | 2022 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  |    ✓    |    O    |    SH   |     ✗    |     ✓     |      ✓      |     ◐ [T2]    |
 | Sphinx [171](../../Bibliography/references.md#Sphinx/DBLP:conf/sp/TianZRCZ0022) | 2022 |  ✓  |   ✗   |  ✗  |  ✓  |  ✗  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✓    |     ✓     |      ✗      |     ◐ [T2]    |
-| SIMC [38](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22) | 2022 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✓  |  ✓  |    ✓    |   C-S   | $$A^C$$ |     ✗    |     ✓     |      ✗      |       ✓      |
+| SIMC [38](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22) | 2022 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✓  |  ✓  |    ✓    |   C-S   | $A^C$ |     ✗    |     ✓     |      ✗      |       ✓      |
 | Cheetah [91](../../Bibliography/references.md#Cheetah/DBLP:conf/uss/HuangLHD22) | 2022 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |    ◐ [T3]    |       ✓      |
 | Iron [81](../../Bibliography/references.md#Iron/DBLP:conf/nips/HaoLCXXZ22) | 2022 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
 | Pika [178](../../Bibliography/references.md#Pika/DBLP:journals/popets/Wagh22) | 2022 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  | **FSS** |    O    |    A    |     ✓    |     ✓     |    ◐ [T3]    |     ◐ [T2]    |
@@ -36,7 +36,7 @@
 | Sigma [79](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24) | 2023 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  | **FSS** |    O    |    SH   |     ✗    |     ✓     |      ✓      |       ✓      |
 | Bolt [138](../../Bibliography/references.md#BOLT/DBLP:conf/sp/PangZMZS24) | 2023 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |      ✗      |       ✓      |
 | Nimbus [113](../../Bibliography/references.md#Nimbus/DBLP:conf/nips/LiYTLWWYZZGL24) | 2024 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |      ✗      |       ✓      |
-| SIMC 2.0 [183](../../Bibliography/references.md#Simc2/DBLP:journals/tdsc/XuHZXNHLD24) | 2024 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✓  |  ✓  |    ✓    |   C-S   | $$A^C$$ |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
+| SIMC 2.0 [183](../../Bibliography/references.md#Simc2/DBLP:journals/tdsc/XuHZXNHLD24) | 2024 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✓  |  ✓  |    ✓    |   C-S   | $A^C$ |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
 | Fregata [188](../../Bibliography/references.md#Fregata/DBLP:journals/tifs/YangCLHHJBD24) | 2024 |  ✓  |   ✗   |  ✗  |  ✓  |  ✗  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
 | SecFormer [126](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24) | 2024 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  |    ✓    |    O    |    SH   |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
 | MLFormer [118](../../Bibliography/references.md#MLFormer/DBLP:journals/jce/LiuLCDZLCK25) | 2024 |  ✓  |   ✗   |  ✗  |  ✓  |  ✗  |  ✗  |  ✗  |    ✓    |    O    |    SH   |     ✗    |     ✓     |      ✗      |     ◐ [T2]    |
@@ -45,8 +45,8 @@
 | Panther [72](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25) | 2025 |  ✓  |   ✗   |  ✗  |  ✓  |  ✓  |  ✗  |  ✗  |    ✓    |   C-S   |    SH   |     ✗    |     ✓     |    ◐ [T3]    |     ◐ [T2]    |
 | Guo et al. [77](../../Bibliography/references.md#Guo/DBLP:conf/uss/GuoPXPLH25) | 2025 |  ✓  |   ✗   |  ✗  |  ✗  |  ✓  |  ✗  |  ✗  |    ✓    |    O    |    SH   |     ✗    |     ✗     |      ✓      |       ✓      |
 | Shark [78](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025) | 2025 |  ✓  | ◐ [T1] |  ✗  |  ✗  |  ✗  |  ✗  |  ✗  | **FSS** |    O    |    A    |     ✗    |     ✓     |      ✓      |       ✓      |
-| Cavern [122](../../Bibliography/references.md#Cavern/sp/YZF26) | 2026 | ✓ | ◐ [T1] | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ | O | A | ✗ | ✓ | ◐ [T3] | ◐ [T2] |
-| CRISP [71](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26) | 2026 | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | **FSS** | C-S | $$A^C$$ | ✗ | ✓ | ✗ | ◐ [T2] |
+| Cavern [122](../../Bibliography/references.md#Cavern/sp/YZF26) | 2026 | ✓ | ◐ [T1] | ✗ | ✗ | ✗ | ✗ | ✗ | **FSS** | O | A | ✗ | ✓ | ◐ [T3] | ◐ [T2] |
+| CRISP [71](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26) | 2026 | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | **FSS** | C-S | $A^C$ | ✗ | ✓ | ✗ | ◐ [T2] |
 | PrivTI [127](../../Bibliography/references.md#luo2026privti) | 2026 | ✓ | ✗ | ✗ | ✓ | ✓ | ✗ | ✗ | ✓ | C-S | SH | ✗ | ✓ | ✗ | ✓ |
 
 
