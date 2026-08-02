@@ -193,78 +193,78 @@ flowchart TD
 
 | Framework | Year | Parties | Malicious? | Category |
 | --------- | ---: | :-----: | :--------: | -------- |
-| ABY [57](../../Bibliography/references.md#ABY/DBLP:conf/ndss/Demmler0Z15) | 2015 | 2 | ✗ | Additive, function-independent SS |
-| SecureML [134](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17) | 2017 | 2 | ✗ | Additive, function-independent SS |
-| ABY3 [133](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18) | 2018 | 3 | ✓ | Additive, function-independent SS |
-| Chameleon [155](../../Bibliography/references.md#Chameleon/DBLP:conf/ccs/RiaziWTS0K18) | 2018 | 2<sup>†</sup> | ✗ | Additive, function-independent SS |
-| Gordon et al. [76](../../Bibliography/references.md#DBLP:conf/asiacrypt/GordonR018) | 2018 | 4 | ✓ | Additive, function-independent SS |
+| ABY [55](../../Bibliography/references.md#ABY/DBLP:conf/ndss/Demmler0Z15) | 2015 | 2 | ✗ | Additive, function-independent SS |
+| SecureML [131](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17) | 2017 | 2 | ✗ | Additive, function-independent SS |
+| ABY3 [130](../../Bibliography/references.md#ABY3/DBLP:conf/ccs/MohasselR18) | 2018 | 3 | ✓ | Additive, function-independent SS |
+| Chameleon [152](../../Bibliography/references.md#Chameleon/DBLP:conf/ccs/RiaziWTS0K18) | 2018 | 2<sup>†</sup> | ✗ | Additive, function-independent SS |
+| Gordon et al. [74](../../Bibliography/references.md#DBLP:conf/asiacrypt/GordonR018) | 2018 | 4 | ✓ | Additive, function-independent SS |
 | QUOTIENT [6](../../Bibliography/references.md#Quotient/DBLP:conf/ccs/0002SKG19) | 2019 | 2 | ✗ | Additive, function-independent SS |
-| SecureNN [179](../../Bibliography/references.md#SecureNN/DBLP:journals/popets/WaghGC19) | 2019 | 3 | ✓ | Additive, function-independent SS |
-| CrypTFlow [107](../../Bibliography/references.md#cryptflow/DBLP:conf/sp/0001RCGR020) | 2020 | 2/3 | ✗ | Additive, function-independent SS |
-| QuantizedNN [49](../../Bibliography/references.md#DBLP:journals/popets/Dalskov0K20) | 2020 | 2/3 | ✓ | Additive, function-independent SS |
-| CryptGPU [168](../../Bibliography/references.md#Cryptgpu/DBLP:conf/sp/TanKTW21) | 2021 | 3 | ✗ | Additive, function-independent SS |
-| Crypten [102](../../Bibliography/references.md#Crypten/DBLP:conf/nips/KnottVHSIM21) | 2021 | N<sup>†</sup> | ✗ | Additive, function-independent SS |
-| FALCON [180](../../Bibliography/references.md#Falcon/DBLP:journals/popets/WaghTBKMR21) | 2021 | 3 | ✓ | Additive, function-independent SS |
-| Fantastic 4 [50](../../Bibliography/references.md#fantasticfour/DBLP:conf/uss/Dalskov0K21) | 2021 | 4 | ✓ | Additive, function-independent SS |
-| MediSC [119](../../Bibliography/references.md#MediSC/DBLP:conf/esorics/LiuZYY21) | 2021 | 2<sup>†</sup> | ✗ | Additive, function-independent SS |
-| SiRnn [150](../../Bibliography/references.md#Sirnn/DBLP:conf/sp/RatheeRGGSCR21) | 2021 | 2 | ✗ | Additive, function-independent SS |
+| SecureNN [176](../../Bibliography/references.md#SecureNN/DBLP:journals/popets/WaghGC19) | 2019 | 3 | ✓ | Additive, function-independent SS |
+| CrypTFlow [104](../../Bibliography/references.md#cryptflow/DBLP:conf/sp/0001RCGR020) | 2020 | 2/3 | ✗ | Additive, function-independent SS |
+| QuantizedNN [48](../../Bibliography/references.md#DBLP:journals/popets/Dalskov0K20) | 2020 | 2/3 | ✓ | Additive, function-independent SS |
+| CryptGPU [165](../../Bibliography/references.md#Cryptgpu/DBLP:conf/sp/TanKTW21) | 2021 | 3 | ✗ | Additive, function-independent SS |
+| Crypten [99](../../Bibliography/references.md#Crypten/DBLP:conf/nips/KnottVHSIM21) | 2021 | N<sup>†</sup> | ✗ | Additive, function-independent SS |
+| FALCON [177](../../Bibliography/references.md#Falcon/DBLP:journals/popets/WaghTBKMR21) | 2021 | 3 | ✓ | Additive, function-independent SS |
+| Fantastic 4 [49](../../Bibliography/references.md#fantasticfour/DBLP:conf/uss/Dalskov0K21) | 2021 | 4 | ✓ | Additive, function-independent SS |
+| MediSC [116](../../Bibliography/references.md#MediSC/DBLP:conf/esorics/LiuZYY21) | 2021 | 2<sup>†</sup> | ✗ | Additive, function-independent SS |
+| SiRnn [147](../../Bibliography/references.md#Sirnn/DBLP:conf/sp/RatheeRGGSCR21) | 2021 | 2 | ✗ | Additive, function-independent SS |
 | AdamInPrivate [12](../../Bibliography/references.md#AdamInPrivate/DBLP:journals/popets/AttrapadungHIKM22) | 2022 | 3 | ✓ | Additive, function-independent SS |
-| CECILIA [176](../../Bibliography/references.md#Cecilia/DBLP:journals/corr/abs-2202-03023) | 2022 | 3 | ✗ | Additive, function-independent SS |
-| Piranha [181](../../Bibliography/references.md#Piranha/DBLP:conf/uss/WatsonWP22) | 2022 | 3/4 | ✓ | Additive, function-independent SS |
-| SecFloat [149](../../Bibliography/references.md#SecFloat/DBLP:conf/sp/RatheeB00CR22) | 2022 | 2 | ✗ | Additive, function-independent SS |
-| pMPL [165](../../Bibliography/references.md#pMPL/DBLP:conf/ccs/SongWWTLRWH22) | 2022 | 3 | ✗ | Additive, function-independent SS |
+| CECILIA [173](../../Bibliography/references.md#Cecilia/DBLP:journals/corr/abs-2202-03023) | 2022 | 3 | ✗ | Additive, function-independent SS |
+| Piranha [178](../../Bibliography/references.md#Piranha/DBLP:conf/uss/WatsonWP22) | 2022 | 3/4 | ✓ | Additive, function-independent SS |
+| SecFloat [146](../../Bibliography/references.md#SecFloat/DBLP:conf/sp/RatheeB00CR22) | 2022 | 2 | ✗ | Additive, function-independent SS |
+| pMPL [162](../../Bibliography/references.md#pMPL/DBLP:conf/ccs/SongWWTLRWH22) | 2022 | 3 | ✗ | Additive, function-independent SS |
 | Baccarini et al. [15](../../Bibliography/references.md#DBLP:journals/popets/BaccariniBY23) | 2023 | N | ✗ | Additive, function-independent SS |
-| FastSecNet [82](../../Bibliography/references.md#FastSecNet/DBLP:journals/tifs/HaoLCXZ23) | 2023 | 2<sup>†</sup> | ✗ | Additive, function-independent SS |
-| Rathee et al. [148](../../Bibliography/references.md#SecureFloatingTraining/DBLP:conf/uss/RatheeB00S23) | 2023 | 2 | ✗ | Additive, function-independent SS |
-| SONIC [120](../../Bibliography/references.md#SONIC/DBLP:journals/tdsc/LiuZYY23) | 2023 | 2<sup>†</sup> | ✗ | Additive, function-independent SS |
-| Fregata [188](../../Bibliography/references.md#Fregata/DBLP:journals/tifs/YangCLHHJBD24) | 2024 | 2 | ✗ | Additive, function-independent SS |
-| Liu et al. [116](../../Bibliography/references.md#ScalableMPCforML/DBLP:conf/uss/LiuX024) | 2024 | N | ✗ | Additive, function-independent SS |
-| MD-ML [192](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024) | 2024 | N<sup>D</sup> | ✓ | Additive, function-independent SS |
+| FastSecNet [80](../../Bibliography/references.md#FastSecNet/DBLP:journals/tifs/HaoLCXZ23) | 2023 | 2<sup>†</sup> | ✗ | Additive, function-independent SS |
+| Rathee et al. [145](../../Bibliography/references.md#SecureFloatingTraining/DBLP:conf/uss/RatheeB00S23) | 2023 | 2 | ✗ | Additive, function-independent SS |
+| SONIC [117](../../Bibliography/references.md#SONIC/DBLP:journals/tdsc/LiuZYY23) | 2023 | 2<sup>†</sup> | ✗ | Additive, function-independent SS |
+| Fregata [185](../../Bibliography/references.md#Fregata/DBLP:journals/tifs/YangCLHHJBD24) | 2024 | 2 | ✗ | Additive, function-independent SS |
+| Liu et al. [113](../../Bibliography/references.md#ScalableMPCforML/DBLP:conf/uss/LiuX024) | 2024 | N | ✗ | Additive, function-independent SS |
+| MD-ML [189](../../Bibliography/references.md#md-ml/DBLP:conf/uss/YuanYZ0G024) | 2024 | N<sup>D</sup> | ✓ | Additive, function-independent SS |
 | FANNG-MPC [2](../../Bibliography/references.md#Fanng-MPC/DBLP:journals/tches/AarajAGMMPSSSSS25) | 2025 | N<sup>D</sup> | ✓ | Additive, function-independent SS |
-| Helix [200](../../Bibliography/references.md#Helix/DBLP:journals/iacr/ZhangCZDC25) | 2025 | N | ✓ | Additive, function-independent SS |
-| MD-SONIC [199](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25) | 2025 | N<sup>D</sup> | ✓ | Additive, function-independent SS |
-| Panther [72](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25) | 2025 | 2 | ✗ | Additive, function-independent SS |
-| ASTRA [39](../../Bibliography/references.md#astra/DBLP:conf/ccs/ChaudhariCPS19) | 2019 | 3 | ✓ | Masking-based, function-dependent SS |
-| Blaze [140](../../Bibliography/references.md#BLAZE/DBLP:conf/ndss/PatraS20) | 2020 | 3 | ✓ | Masking-based, function-dependent SS |
-| Flash [34](../../Bibliography/references.md#Flash/DBLP:journals/popets/ByaliCPS20) | 2020 | 4 | ✓ | Masking-based, function-dependent SS |
-| Trident [40](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20) | 2020 | 4 | ✓ | Masking-based, function-dependent SS |
-| ABY2.0 [139](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21) | 2021 | 2 | ✗ | Masking-based, function-dependent SS |
-| Swift [104](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21) | 2021 | 3/4 | ✓ | Masking-based, function-dependent SS |
-| Tetrad [106](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22) | 2022 | 4 | ✓ | Masking-based, function-dependent SS |
-| Meteor [62](../../Bibliography/references.md#meteor/DBLP:conf/www/DongCJLW23) | 2023 | 3 | ✗ | Masking-based, function-dependent SS |
-| DETI [32](../../Bibliography/references.md#Impostor/DBLP:conf/sp/BruggemannSSSY24) | 2024 | 3<sup>C</sup> | ✓ | Masking-based, function-dependent SS |
-| HPMPC [84](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25) | 2025 | 3/4 | ✓ | Masking-based, function-dependent SS |
-| MiniONN [117](../../Bibliography/references.md#MiniONN/DBLP:conf/ccs/LiuJLA17) | 2017 | 2 | ✗ | Hybrid MPC-HE |
-| Gazelle [96](../../Bibliography/references.md#Gazelle/DBLP:conf/uss/JuvekarVC18) | 2018 | 2 | ✗ | Hybrid MPC-HE |
-| CrypTFlow2 [151](../../Bibliography/references.md#cryptflow2/DBLP:conf/ccs/RatheeR0CGR020) | 2020 | 2 | ✗ | Hybrid MPC-HE |
-| Delphi [132](../../Bibliography/references.md#delphi/DBLP:conf/uss/MishraLSZP20) | 2020 | 2 | ✗ | Hybrid MPC-HE |
-| COINN [92](../../Bibliography/references.md#COINN/DBLP:conf/ccs/HussainJSK21) | 2021 | 2 | ✗ | Hybrid MPC-HE |
-| MUSE [109](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21) | 2021 | 2<sup>C</sup> | ✓ | Hybrid MPC-HE |
-| Cheetah [91](../../Bibliography/references.md#Cheetah/DBLP:conf/uss/HuangLHD22) | 2022 | 2 | ✗ | Hybrid MPC-HE |
-| SIMC [38](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22) | 2022 | 2<sup>C</sup> | ✓ | Hybrid MPC-HE |
-| Sphinx [171](../../Bibliography/references.md#Sphinx/DBLP:conf/sp/TianZRCZ0022) | 2022 | 2 | ✗ | Hybrid MPC-HE |
-| FUSION [61](../../Bibliography/references.md#Fusion/DBLP:conf/ndss/Dong0L0TYCH23) | 2023 | 2<sup>C</sup> | ✓ | Hybrid MPC-HE |
-| HELiKs [18](../../Bibliography/references.md#HELIKs/DBLP:conf/ccs/BallaK23) | 2023 | 2 | ✗ | Hybrid MPC-HE |
-| CRISP [71](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26) | 2026 | 2<sup>C</sup> | ✓ | Hybrid MPC-HE |
-| AriaNN [159](../../Bibliography/references.md#ariann/DBLP:journals/popets/RyffelTPB22) | 2022 | 2<sup>†</sup> | ✗ | Transformer-specific |
-| Iron [81](../../Bibliography/references.md#Iron/DBLP:conf/nips/HaoLCXXZ22) | 2022 | 2 | ✗ | Transformer-specific |
-| Llama [80](../../Bibliography/references.md#Llama/DBLP:journals/popets/GuptaKCG22) | 2022 | 2<sup>†</sup> | ✗ | Transformer-specific |
-| CipherGPT [89](../../Bibliography/references.md#CipherGPT/DBLP:journals/iacr/Hou0LLLH023) | 2023 | 2 | ✗ | Transformer-specific |
-| MPCFormer [110](../../Bibliography/references.md#MPCFORMER/DBLP:conf/iclr/LiWSGXZ23) | 2023 | 2 | ✗ | Transformer-specific |
-| PUMA [63](../../Bibliography/references.md#PUMA/DBLP:journals/corr/abs-2307-12533) | 2023 | 3 | ✗ | Transformer-specific |
-| Primer [202](../../Bibliography/references.md#Primer/DBLP:conf/dac/ZhengLJ23) | 2023 | 2 | ✗ | Transformer-specific |
+| Helix [197](../../Bibliography/references.md#Helix/DBLP:journals/iacr/ZhangCZDC25) | 2025 | N | ✓ | Additive, function-independent SS |
+| MD-SONIC [196](../../Bibliography/references.md#MD-SONIC/DBLP:journals/tifs/ZhangCDZHLC25) | 2025 | N<sup>D</sup> | ✓ | Additive, function-independent SS |
+| Panther [70](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25) | 2025 | 2 | ✗ | Additive, function-independent SS |
+| ASTRA [38](../../Bibliography/references.md#astra/DBLP:conf/ccs/ChaudhariCPS19) | 2019 | 3 | ✓ | Masking-based, function-dependent SS |
+| Blaze [137](../../Bibliography/references.md#BLAZE/DBLP:conf/ndss/PatraS20) | 2020 | 3 | ✓ | Masking-based, function-dependent SS |
+| Flash [33](../../Bibliography/references.md#Flash/DBLP:journals/popets/ByaliCPS20) | 2020 | 4 | ✓ | Masking-based, function-dependent SS |
+| Trident [39](../../Bibliography/references.md#trident/DBLP:conf/ndss/ChaudhariRS20) | 2020 | 4 | ✓ | Masking-based, function-dependent SS |
+| ABY2.0 [136](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21) | 2021 | 2 | ✗ | Masking-based, function-dependent SS |
+| Swift [101](../../Bibliography/references.md#swift/DBLP:conf/uss/KotiPPS21) | 2021 | 3/4 | ✓ | Masking-based, function-dependent SS |
+| Tetrad [103](../../Bibliography/references.md#tetrad/DBLP:conf/ndss/KotiPRS22) | 2022 | 4 | ✓ | Masking-based, function-dependent SS |
+| Meteor [60](../../Bibliography/references.md#meteor/DBLP:conf/www/DongCJLW23) | 2023 | 3 | ✗ | Masking-based, function-dependent SS |
+| DETI [31](../../Bibliography/references.md#Impostor/DBLP:conf/sp/BruggemannSSSY24) | 2024 | 3<sup>C</sup> | ✓ | Masking-based, function-dependent SS |
+| HPMPC [82](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25) | 2025 | 3/4 | ✓ | Masking-based, function-dependent SS |
+| MiniONN [114](../../Bibliography/references.md#MiniONN/DBLP:conf/ccs/LiuJLA17) | 2017 | 2 | ✗ | Hybrid MPC-HE |
+| Gazelle [93](../../Bibliography/references.md#Gazelle/DBLP:conf/uss/JuvekarVC18) | 2018 | 2 | ✗ | Hybrid MPC-HE |
+| CrypTFlow2 [148](../../Bibliography/references.md#cryptflow2/DBLP:conf/ccs/RatheeR0CGR020) | 2020 | 2 | ✗ | Hybrid MPC-HE |
+| Delphi [129](../../Bibliography/references.md#delphi/DBLP:conf/uss/MishraLSZP20) | 2020 | 2 | ✗ | Hybrid MPC-HE |
+| COINN [89](../../Bibliography/references.md#COINN/DBLP:conf/ccs/HussainJSK21) | 2021 | 2 | ✗ | Hybrid MPC-HE |
+| MUSE [106](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21) | 2021 | 2<sup>C</sup> | ✓ | Hybrid MPC-HE |
+| Cheetah [88](../../Bibliography/references.md#Cheetah/DBLP:conf/uss/HuangLHD22) | 2022 | 2 | ✗ | Hybrid MPC-HE |
+| SIMC [37](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22) | 2022 | 2<sup>C</sup> | ✓ | Hybrid MPC-HE |
+| Sphinx [168](../../Bibliography/references.md#Sphinx/DBLP:conf/sp/TianZRCZ0022) | 2022 | 2 | ✗ | Hybrid MPC-HE |
+| FUSION [59](../../Bibliography/references.md#Fusion/DBLP:conf/ndss/Dong0L0TYCH23) | 2023 | 2<sup>C</sup> | ✓ | Hybrid MPC-HE |
+| HELiKs [17](../../Bibliography/references.md#HELIKs/DBLP:conf/ccs/BallaK23) | 2023 | 2 | ✗ | Hybrid MPC-HE |
+| CRISP [69](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26) | 2026 | 2<sup>C</sup> | ✓ | Hybrid MPC-HE |
+| AriaNN [156](../../Bibliography/references.md#ariann/DBLP:journals/popets/RyffelTPB22) | 2022 | 2<sup>†</sup> | ✗ | Transformer-specific |
+| Iron [79](../../Bibliography/references.md#Iron/DBLP:conf/nips/HaoLCXXZ22) | 2022 | 2 | ✗ | Transformer-specific |
+| Llama [78](../../Bibliography/references.md#Llama/DBLP:journals/popets/GuptaKCG22) | 2022 | 2<sup>†</sup> | ✗ | Transformer-specific |
+| CipherGPT [86](../../Bibliography/references.md#CipherGPT/DBLP:journals/iacr/Hou0LLLH023) | 2023 | 2 | ✗ | Transformer-specific |
+| MPCFormer [107](../../Bibliography/references.md#MPCFORMER/DBLP:conf/iclr/LiWSGXZ23) | 2023 | 2 | ✗ | Transformer-specific |
+| PUMA [61](../../Bibliography/references.md#PUMA/DBLP:journals/corr/abs-2307-12533) | 2023 | 3 | ✗ | Transformer-specific |
+| Primer [199](../../Bibliography/references.md#Primer/DBLP:conf/dac/ZhengLJ23) | 2023 | 2 | ✗ | Transformer-specific |
 | Privformer [7](../../Bibliography/references.md#PrivFormer/DBLP:conf/eurosp/AkimotoFAS23) | 2023 | 3 | ✗ | Transformer-specific |
-| Bolt [138](../../Bibliography/references.md#BOLT/DBLP:conf/sp/PangZMZS24) | 2024 | 2 | ✗ | Transformer-specific |
-| Nimbus [113](../../Bibliography/references.md#Nimbus/DBLP:conf/nips/LiYTLWWYZZGL24) | 2024 | 2 | ✗ | Transformer-specific |
-| Orca [94](../../Bibliography/references.md#Orca/DBLP:conf/sp/JawalkarGBCGS24) | 2024 | 2<sup>†</sup> | ✗ | Transformer-specific |
-| SecFormer [126](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24) | 2024 | 2<sup>†</sup> | ✗ | Transformer-specific |
-| Sigma [79](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24) | 2024 | 2<sup>†</sup> | ✗ | Transformer-specific |
-| BumbleBee [124](../../Bibliography/references.md#BumbleBee/DBLP:conf/ndss/LuHGL000WC25) | 2025 | 2 | ✗ | Transformer-specific |
-| FssNN [186](../../Bibliography/references.md#FSSNN/ProvSec24/10.1007/978-981-96-0957-4_8) | 2025 | 2 | ✗ | Transformer-specific |
-| MLFormer [118](../../Bibliography/references.md#MLFormer/DBLP:journals/jce/LiuLCDZLCK25) | 2025 | 2 | ✗ | Transformer-specific |
-| Mosformer [43](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25) | 2025 | 3 | ✓ | Transformer-specific |
-| SHAFT [97](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25) | 2025 | 2<sup>†</sup> | ✗ | Transformer-specific |
-| Shark [78](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025) | 2025 | 2<sup>†</sup> | ✓ | Transformer-specific |
+| Bolt [135](../../Bibliography/references.md#BOLT/DBLP:conf/sp/PangZMZS24) | 2024 | 2 | ✗ | Transformer-specific |
+| Nimbus [110](../../Bibliography/references.md#Nimbus/DBLP:conf/nips/LiYTLWWYZZGL24) | 2024 | 2 | ✗ | Transformer-specific |
+| Orca [91](../../Bibliography/references.md#Orca/DBLP:conf/sp/JawalkarGBCGS24) | 2024 | 2<sup>†</sup> | ✗ | Transformer-specific |
+| SecFormer [123](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24) | 2024 | 2<sup>†</sup> | ✗ | Transformer-specific |
+| Sigma [77](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24) | 2024 | 2<sup>†</sup> | ✗ | Transformer-specific |
+| BumbleBee [121](../../Bibliography/references.md#BumbleBee/DBLP:conf/ndss/LuHGL000WC25) | 2025 | 2 | ✗ | Transformer-specific |
+| FssNN [183](../../Bibliography/references.md#FSSNN/ProvSec24/10.1007/978-981-96-0957-4_8) | 2025 | 2 | ✗ | Transformer-specific |
+| MLFormer [115](../../Bibliography/references.md#MLFormer/DBLP:journals/jce/LiuLCDZLCK25) | 2025 | 2 | ✗ | Transformer-specific |
+| Mosformer [42](../../Bibliography/references.md#Mosformer/DBLP:journals/iacr/ChengXSFQSZ25) | 2025 | 3 | ✓ | Transformer-specific |
+| SHAFT [94](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25) | 2025 | 2<sup>†</sup> | ✗ | Transformer-specific |
+| Shark [76](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025) | 2025 | 2<sup>†</sup> | ✓ | Transformer-specific |
 
 ---
 
