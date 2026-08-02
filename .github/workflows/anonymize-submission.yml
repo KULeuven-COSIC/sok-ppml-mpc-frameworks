@@ -45,9 +45,11 @@ jobs:
             'explorer': 'explorer',
             'cost-analysis': 'cost-analysis',
             'genealogy': 'genealogy',
+            'decision-graph': 'decision-graph',
             'mpc-puzzle': 'mpc-puzzle',
             'related-work': 'related-work',
             'bibliography': 'bibliography',
+            'contribute': 'contribute',
           };
 
           (async () => {
@@ -104,7 +106,7 @@ jobs:
           cat > scrub.js <<'EOF'
           const fs = require('fs');
 
-          const SLUGS = ['explorer', 'cost-analysis', 'genealogy', 'mpc-puzzle', 'related-work', 'bibliography'];
+          const SLUGS = ['explorer', 'cost-analysis', 'genealogy', 'decision-graph', 'mpc-puzzle', 'related-work', 'bibliography', 'contribute'];
           // Matches the live-site domain whether written as a full https:// URL or as
           // bare display text, with or without the repo path segment / a page slug.
           const SITE_RE = /(?:https?:\/\/)?kuleuven-cosic\.github\.io(?:\/sok-ppml-mpc-frameworks)?\/?([a-z-]*)/g;
