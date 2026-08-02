@@ -1,0 +1,74 @@
+[← Back to README](../../README.md)
+
+---
+
+### Overview of supported ML functionalities in 2PC frameworks. (✓) indicates explicit protocol support; (◐) denotes availability of underlying primitives; (✗) denotes no support.
+
+| Scheme                                                 | Year | Parties | Linear |  Conv | Truncation    |  ReLU | SoftMax | Sigmoid | Normalisation |  GeLU |
+| ------------------------------------------------------ | ---: | :-----: | :----: | :---: | :------------ | :---: | :-----: | :-----: | :-----------: | :---: |
+| SecureML [131](../../Bibliography/references.md#SecureML/DBLP:conf/sp/MohasselZ17)      | 2017 |    2    |    ✓   |   ✓   | Probabilistic |   ✓   |    ✓    |    ✗    |       ✗       |   ✗   |
+| DeepSecure [155](../../Bibliography/references.md#Deepsecure/DBLP:conf/dac/RouhaniRK18) | 2017 |    2    |    ✓   |   ✓   | ✗             | ◐ [T2] |  ◐ [T2]  |  ◐ [T2]  |       ✗       |   ✗   |
+| MiniONN [114](../../Bibliography/references.md#MiniONN/DBLP:conf/ccs/LiuJLA17)          | 2017 |    2    |    ✓   |   ✓   | ✓             |   ✓   |    ✗    |    ✓    |       ✗       |   ✗   |
+| Chameleon [152](../../Bibliography/references.md#Chameleon/DBLP:conf/ccs/RiaziWTS0K18)  | 2017 |    2    |    ✓   |   ✓   | ✓             |   ✓   |    ✗    |    ✓    |       ✗       |   ✗   |
+| Gazelle [93](../../Bibliography/references.md#Gazelle/DBLP:conf/uss/JuvekarVC18)       | 2018 |    2    |    ✓   |   ✓   | ✗             |   ✓   |    ✗    |    ✗    |       ✗       |   ✗   |
+| Quotient [6](../../Bibliography/references.md#Quotient/DBLP:conf/ccs/0002SKG19)       | 2019 |    2    |    ✓   |   ✓   | ✗             |   ✓   |    ✗    |    ✗    |       ◐       |   ✗   |
+| Delphi [129](../../Bibliography/references.md#delphi/DBLP:conf/uss/MishraLSZP20)        | 2020 |    2    |    ✓   |   ✓   | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗   |
+| CryptFlow2 [148](../../Bibliography/references.md#cryptflow2/DBLP:conf/ccs/RatheeR0CGR020) | 2020 |  2  |    ✓   |   ✓   | Faithful      |   ✓   |    ✗    |    ✗    |       ✗       |   ✗   |
+| MediSC [116](../../Bibliography/references.md#MediSC/DBLP:conf/esorics/LiuZYY21)       | 2021 |    2    |    ✓   |   ✓   | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗   |
+| COINN [89](../../Bibliography/references.md#COINN/DBLP:conf/ccs/HussainJSK21)         | 2021 |    2    |    ✓   |   ✓   | ✗             |   ✓   |    ✗    |    ✗    |       ✗       |   ✗   |
+| Muse [106](../../Bibliography/references.md#Muse/DBLP:conf/uss/LehmkuhlMSP21)           | 2021 |    2    |    ✓   |   ✓   | ✓             |   ✓   |    ✗    |    ✗    |       ✗       |   ✗   |
+| AriaNN [156](../../Bibliography/references.md#ariann/DBLP:journals/popets/RyffelTPB22)  | 2021 |    2    |    ✓   |   ✓   | Probabilistic |   ✓   |    ✗    |    ✗    |       ✓       |   ✗   |
+| SirNN [147](../../Bibliography/references.md#Sirnn/DBLP:conf/sp/RatheeRGGSCR21)         | 2021 |    2    |    ✓   |   ✓   | Faithful      |   ✓   |  ◐ [T1]  |    ✓    |       ✓       |   ✗   |
+| ABY2.0 [136](../../Bibliography/references.md#ABY2/DBLP:conf/uss/Patra0SY21)            | 2021 |    2    |    ✓   |   ✓   | Probabilistic |   ✓   |    ✓    |    ✓    |       ✗       |   ✗   |
+| SONIC [117](../../Bibliography/references.md#SONIC/DBLP:journals/tdsc/LiuZYY23)        | 2022 |    2    |    ✓   |   ✓   | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗   |
+| Sphinx [168](../../Bibliography/references.md#Sphinx/DBLP:conf/sp/TianZRCZ0022)        | 2022 |    2    |    ✓   |   ✓   | ✗             |   ✗   |    ✗    |    ✗    |       ✗       |   ✗   |
+| SIMC [37](../../Bibliography/references.md#Simc/DBLP:conf/uss/Chandran0OS22)          | 2022 |    2    |    ✓   |   ✓   | ✗             | ◐ [T2] |    ✗    |    ✗    |       ✗       |   ✗   |
+| Cheetah [88](../../Bibliography/references.md#Cheetah/DBLP:conf/uss/HuangLHD22)        | 2022 |    2    |    ✓   |   ✓   | Stochastic    | ✓ [T1] |    ✗    |    ✗    |       ✗       |   ✗   |
+| Iron [79](../../Bibliography/references.md#Iron/DBLP:conf/nips/HaoLCXXZ22)            | 2022 |    2    |    ✓   |   ✓   | Faithful      |   ✗   |    ✓    |    ✗    |       ✓       |   ✓   |
+| Pika [175](../../Bibliography/references.md#Pika/DBLP:journals/popets/Wagh22)           | 2022 |    2    |    ✗   |   ✗   | Probabilistic |   ✓   |    ✓    |    ✓    |       ✓       |   ✗   |
+| SecFloat [146](../../Bibliography/references.md#SecFloat/DBLP:conf/sp/RatheeB00CR22)    | 2022 |    2    |  ◐ [T1] | ◐ [T1] | Faithful      | ◐ [T1] |  ◐ [T1]  |  ◐ [T1]  |       ✓       |   ✗   |
+| Llama [78](../../Bibliography/references.md#Llama/DBLP:journals/popets/GuptaKCG22)     | 2022 |    2    |    ✓   |   ✓   | Faithful      |   ✓   |    ✓    |    ✓    |     ◐ [T1]     |   ✗   |
+| MPCFormer [107](../../Bibliography/references.md#MPCFORMER/DBLP:conf/iclr/LiWSGXZ23)    | 2023 |    2    |    ✓   |   ✗   | not specified |   ✗   |    ✓    |    ✗    |       ✗       |   ✓   |
+| Primer [199](../../Bibliography/references.md#Primer/DBLP:conf/dac/ZhengLJ23)          | 2023 |    2    |    ✓   |   ✓   | not specified |   ✗   |    ✗    |    ✗    |       ✗       |   ✗   |
+| FastSecNet [80](../../Bibliography/references.md#FastSecNet/DBLP:journals/tifs/HaoLCXZ23) | 2023 | 2 |  ✓ | ✓ | Probabilistic | ✓ | ✗ | ✗ | ✗ | ✗ |
+| Rathee et al. [145](../../Bibliography/references.md#SecureFloatingTraining/DBLP:conf/uss/RatheeB00S23) | 2023 | 2 | ✓ | ✓ | Faithful | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Orca [91](../../Bibliography/references.md#Orca/DBLP:conf/sp/JawalkarGBCGS24)         | 2023 |    2    |    ✓   |   ✓   | Stochastic    |   ✓   |    ✓    |    ✗    |       ✗       |   ✗   |
+| FssNN [183](../../Bibliography/references.md#FSSNN/ProvSec24/10.1007/978-981-96-0957-4_8) | 2023 | 2 | ✓ | ✓ | not specified | ✓ | ✗ | ✗ | ✗ | ✗ |
+| Sigma [77](../../Bibliography/references.md#Sigma/DBLP:journals/popets/GuptaJMCGPS24) | 2023 |    2    |    ✓   |   ✓   | Faithful      |   ✓   |    ✗    |    ✓    |       ✓       |   ✓   |
+| Bolt [135](../../Bibliography/references.md#BOLT/DBLP:conf/sp/PangZMZS24)              | 2023 |    2    |    ✓   |   ✓   | Probabilistic |   ✗   |    ✓    |    ✗    |       ✓       |   ✓   |
+| Nimbus [110](../../Bibliography/references.md#Nimbus/DBLP:conf/nips/LiYTLWWYZZGL24)    | 2024 |    2    |    ✓   |   ✓   | Stochastic    |   ✗   |    ✓    |    ✗    |       ✗       |   ✓   |
+| SIMC 2.0 [180](../../Bibliography/references.md#Simc2/DBLP:journals/tdsc/XuHZXNHLD24)  | 2024 |    2    |    ✓   |   ✓   | ✗             | ◐ [T2] |    ✗    |    ✗    |       ✗       |   ✗   |
+| Fregata [185](../../Bibliography/references.md#Fregata/DBLP:journals/tifs/YangCLHHJBD24) | 2024 | 2 | ✓ | ✓ | not specified | ◐ [T1] | ✗ | ✗ | ✗ | ✗ |
+| SecFormer [123](../../Bibliography/references.md#SecFormer/DBLP:conf/acl/LuoZZZMW0X24) | 2024 |    2    |    ✓   |   ✗   | Probabilistic |   ✗   |    ✓    |    ✗    |       ✓       |   ✓   |
+| MLFormer [115](../../Bibliography/references.md#MLFormer/DBLP:journals/jce/LiuLCDZLCK25) | 2025 | 2 | ✓ | ✓ | Probabilistic | ✗ | ◐ [T1] | ◐ [T1] | ◐ [T1] | ◐ [T1] |
+| BumbleBee [121](../../Bibliography/references.md#BumbleBee/DBLP:conf/ndss/LuHGL000WC25) | 2025 | 2 | ✓ | ✓ | Stochastic | ✗ | ✓ | ✗ | ✗ | ✓ |
+| SHAFT [94](../../Bibliography/references.md#SHAFT/DBLP:conf/ndss/KeiC25)              | 2025 |    2    |    ✓   |   ✗   | Probabilistic |   ✗   |    ✓    |    ✗    |       ✗       |   ✓   |
+| Panther [70](../../Bibliography/references.md#Panther/DBLP:journals/tifs/FengWSZL25)  | 2025 |    2    |    ✓   |   ✓   | Stochastic    | ◐ [T1] |    ✗    |    ✗    |       ✗       |   ✗   |
+| Guo et al. [75](../../Bibliography/references.md#Guo/DBLP:conf/uss/GuoPXPLH25)        | 2025 |    2    |    ✗   |   ✗   | All           |   ✗   |    ✗    |    ✗    |       ✗       |   ✗   |
+| PriFFT [188](../../Bibliography/references.md#PriFFT/DBLP:journals/corr/abs-2503-03146) | 2025 |   2   |    ✓   |   ✓   | Probabilistic | ◐ [T1] |    ✓    |  ◐ [T1]  |     ◐ [T1]     | ◐ [T1] |
+| Shark [76](../../Bibliography/references.md#Shark/DBLP:conf/sp/GuptaC0K025)           | 2025 |    2    |    ✓   |   ✓   | Faithful      |   ✓   |    ✓    |    ✓    |       ✗       |   ✓   |
+| Cavern [119](../../Bibliography/references.md#Cavern/sp/YZF26) | 2026 | 2 | ✓ | ✗ | ✗ | ◐ [T1] | ✗ | ◐ [T1] | ◐ [T1] | ◐ [T1] |
+| CRISP [69](../../Bibliography/references.md#CRISP/DBLP:conf/ndss/FangZG26) | 2026 | 2 | ✓ | ✓ | Not specified | ✓ | ✗ | ✗ | ✗ | ✗ |
+| PrivTI [124](../../Bibliography/references.md#luo2026privti) | 2026 | 2 | ✓ | ✗ | Probabilistic | ✗ | ✓ | ✗ | ✓ | ✓ |
+
+### Tablenotes
+[T1] Proposes underlying primitives needed for evaluation, but no dedicated protocol for the functionality.  
+[T2] Garbled Circuits.
+
+---
+
+## Related Tables & Navigation
+
+| Topic | Table(s) |
+| --- | --- |
+| 🗂️ Notation | [Notation & Abbreviations](../notation.md) |
+| 📚 Related Work | [Related Work Comparison](../Related-work/related-work-comparison.md) |
+| 🧭 Decision Graph | [Decision Graph](../Decision-graph/decision-graph.md) |
+| ⚙️ Design & Deployment | [Comprehensive MPC Design](../Systematization/systematization-mpc.md), [2PC](../Systematization/systematization-overview-2pc.md), [3/4PC](../Systematization/systematization-overview-34pc.md), [nPC](../Systematization/systematization-overview-npc.md) |
+| 🌳 Genealogy | [Genealogy](../Genealogy/genealogy.md) |
+| 🤖 ML Support | [2PC](../Systematization/systematization-ml-2pc.md), [MPC](../Systematization/systematization-ml-mpc.md) |
+| 🔐 Theoretical Costs | [Dot-Product](../Theoretical-analysis/theoretical-analysis-dot-product.md), [Truncation](../Theoretical-analysis/theoretical-analysis-truncation.md), [ReLU](../Theoretical-analysis/theoretical-analysis-relu.md), [Softmax](../Theoretical-analysis/theoretical-analysis-softmax.md), [Sigmoid](../Theoretical-analysis/theoretical-analysis-sigmoid.md), [GELU](../Theoretical-analysis/theoretical-analysis-gelu.md), [Normalization](../Theoretical-analysis/theoretical-analysis-normalization.md) |
+| 🧩 MPC Puzzle | [MPC Puzzle](../MPC-Puzzle/mpc-puzzle.md) |
+| 📖 Bibliography | [Bibliography](../../Bibliography/references.md) |
+
+[← Back to README](../../README.md)
