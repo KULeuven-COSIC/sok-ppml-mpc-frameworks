@@ -131,6 +131,14 @@ jobs:
             '[live site](docs/website-preview/home.png)',
             '[captured screenshots](docs/website-preview/)'
           );
+          // 2c. The hero "Explore interactively" line is a reviewer's first encounter with
+          //     the swapped-in screenshot link, with no surrounding table context (unlike the
+          //     Contents table rows, which sit under a "Live site page" column header) -- so
+          //     spell out why it's a screenshot instead of a live link, not just swap the text.
+          readme = readme.replace(
+            '**Explore interactively:** [preview screenshot](docs/website-preview/home.png) —',
+            '**Explore interactively:** *(the live site link is omitted for double-blind review — [screenshots](docs/website-preview/) are included instead)* —'
+          );
 
           // 3. Any link to this specific paper's eprint entry (not eprint.iacr.org in general,
           //    which is used throughout Bibliography/references.md for unrelated citations).
