@@ -19,17 +19,17 @@ flowchart TD
     ROOT{"Which deployment model best<br/>matches the application?"}
     THROUGHPUT{"Which performance objective<br/>dominates?"}
     HM{"Can the computing parties<br/>assume an honest majority?"}
-    HYBRID["Low-latency hybrid protocols<br/><i>HE for linear layers; GC/FSS/SS for non-linearities</i><br/>Panther [146], Cheetah [17], BumbleBee [213], Zhou [259], COINN [184]"]
+    HYBRID["Low-latency hybrid protocols<br/><i>HE for linear layers; GC/FSS/SS for non-linearities</i><br/>Panther [70], Cheetah [88], BumbleBee [121], Zhou [201], COINN [89]"]
     SH{"Is semi-honest security<br/>sufficient?"}
     OFFLINE{"Can the application support<br/>function-dependent preprocessing?"}
     RESTRICTED{"Are the MPC parties<br/>computationally constrained?"}
-    MAC["MAC-based protocols<br/><i>Dishonest majority, authenticated shares;<br/>distributed preprocessing;<br/>one-sided malicious security possible</i><br/>MD-ML [141], MD-SONIC [195], Muse [24], SIMC [130]"]
-    LOWSEC["Online-only or f-independent preprocessing<br/><i>Security varies</i><br/>Falcon [20], Fantastic Four [46], Zhou [259], Trio/Quad [238], ABY3 [12]"]
-    AFR["f-dependent preprocessing<br/><i>Security varies</i><br/>SWIFT [28], Tetrad [38], FLASH [21]"]
+    MAC["MAC-based protocols<br/><i>Dishonest majority, authenticated shares;<br/>distributed preprocessing;<br/>one-sided malicious security possible</i><br/>MD-ML [189], MD-SONIC [196], Muse [106], SIMC [37]"]
+    LOWSEC["Online-only or f-independent preprocessing<br/><i>Security varies</i><br/>Falcon [177], Fantastic Four [49], Zhou [201], Trio/Quad [82], ABY3 [130]"]
+    AFR["f-dependent preprocessing<br/><i>Security varies</i><br/>SWIFT [101], Tetrad [103], FLASH [33]"]
     DEALER{"Can the protocol rely on a<br/>preprocessing dealer?"}
-    FSS["FSS-based protocols<br/><i>Computational overhead, constant-round communication;<br/>dealer-based preprocessing possible</i><br/>Sigma [243], FssNN [245], Matchmaker [149], Shark [240], CRISP [258]"]
-    COMMODITY["Commodity-based protocols<br/><i>Dealer-based preprocessing</i><br/>Crypten [19], Chameleon [16], SHAFT [222], SecFormer [214]"]
-    SS["SS-based protocols<br/><i>Lightweight computation, heavier communication</i><br/>ABY2 [11], SecureML [25], MPCFORMER [72]"]
+    FSS["FSS-based protocols<br/><i>Computational overhead, constant-round communication;<br/>dealer-based preprocessing possible</i><br/>Sigma [77], FssNN [183], Matchmaker [90], Shark [76], CRISP [69]"]
+    COMMODITY["Commodity-based protocols<br/><i>Dealer-based preprocessing</i><br/>Crypten [99], Chameleon [152], SHAFT [94], SecFormer [123]"]
+    SS["SS-based protocols<br/><i>Lightweight computation, heavier communication</i><br/>ABY2 [136], SecureML [131], MPCFORMER [107]"]
 
     ROOT -->|Client-Server| THROUGHPUT
     ROOT -->|Outsourcing| HM
