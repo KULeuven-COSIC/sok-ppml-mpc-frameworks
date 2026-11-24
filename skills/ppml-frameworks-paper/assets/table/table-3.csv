@@ -1,0 +1,24 @@
+Dimension,Method,Variant,Frameworks
+Threat Model,DM,SH,"[75], [86], [94], [110], [186], [189]"
+Threat Model,DM,A,"[76], [175], [191], [199]"
+Threat Model,DM,A^C,"[37], [69], [106], [181]"
+Threat Model,DM,A^S,[59]
+Threat Model,HM,SH,"[7], [15], [61], [82], [113], [162], [173]"
+Threat Model,HM,A/F/R,"[12], [38], [130], [137], [177], [200]"
+Threat Model,Super HM,SH,"[47], [108]"
+Threat Model,Super HM,A/F/R,"[33], [39], [49], [82], [101], [103]"
+Algebraic Structure,ℤ_(2^ℓ),,"[42], [58], [77], [79], [91], [156], [202]"
+Algebraic Structure,ℤ_(2^ℓ) and ℤ_2,,"[49], [101], [103], [130], [131], [136]"
+Algebraic Structure,ℤ_(2^ℓ) and 𝔽_p,,"[60], [104], [176], [177]"
+Algebraic Structure,𝔽_p,,"[12], [37], [106], [181]"
+Algebraic Structure,ℤ_2,,[155]
+Execution Phase,Online-only,,"[88], [121], [130], [135], [146], [147]"
+Execution Phase,Pre-processing,f-dependent,"[31], [33], [38], [69], [82], [101], [136], [137]"
+Execution Phase,Pre-processing,f-independent,"[49], [79], [93], [110], [114], [131], [148], [177], [191], [199]"
+Execution Phase,Dealer,TTP,"[77], [91], [116], [117], [156], [175]"
+Execution Phase,Dealer,Distributed,[2]
+Deployment Mode,Outsourcing,,"[38], [39], [49], [60], [82], [94], [101], [103], [117], [130], [131], [176]"
+Deployment Mode,Client-Server,,"[16], [76], [77], [79], [80], [116], [145]"
+Network,High Throughput,,"[39], [49], [103], [136], [137]"
+Network,Low Latency,,"[16], [43], [76]–[78], [91], [114], [155], [156], [175], [184]"
+Network,Mixed,,"[88], [90], [103], [148]"

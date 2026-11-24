@@ -1,0 +1,79 @@
+Table 14 part,Reference,Framework,Ring,Field,Dishonest majority,Honest majority,Super honest majority,Online-only,Preprocessing,Dealer,Outsourcing,Client-server,High throughput,Low latency,Mixed network
+1,131,SecureML,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-independent,TTP,yes,not marked,yes,not marked,not marked
+1,155,DeepSecure,Z_2,not marked,SH,not marked,not marked,not marked,function-dependent,not marked,yes,not marked,not marked,yes,not marked
+1,114,MiniONN,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-independent,not marked,not marked,yes,not marked,yes,not marked
+1,152,Chameleon,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,yes,not marked,not marked
+1,93,Gazelle,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-independent,not marked,not marked,yes,not marked,yes,not marked
+1,130,ABY3,Z_(2^ℓ) / Z_2,not marked,not marked,SH/A,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+1,176,SecureNN,Z_(2^ℓ),F_p,not marked,SH/A,not marked,yes,not marked,not marked,yes,not marked,yes,not marked,not marked
+1,38,ASTRA,Z_(2^ℓ) / Z_2,not marked,not marked,SH/A/F,not marked,not marked,function-dependent,not marked,yes,not marked,yes,no,not marked
+1,104,Cryptflow,Z_(2^ℓ),F_p,not marked,SH/A,not marked,yes,not marked,not marked,yes,not marked,yes,not marked,not marked
+1,39,Trident,Z_(2^ℓ) / Z_2,not marked,not marked,not marked,F,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+1,108,PrivPy,Z_(2^ℓ) / Z_2,not marked,not marked,not marked,SH,yes,not marked,not marked,yes,not marked,yes,not marked,not marked
+1,129,Delphi,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-independent,not marked,not marked,yes,not marked,not marked,yes
+1,148,Cryptflow2,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,yes,not marked,not marked,not marked,yes,not marked,not marked,yes
+1,160,Shen et al.,Z_(2^ℓ),not marked,not marked,SH,not marked,yes,not marked,not marked,yes,yes,yes,not marked,not marked
+1,177,Falcon,Z_(2^ℓ),F_p,not marked,SH/A,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+1,137,BLAZE,Z_(2^ℓ) / Z_2,not marked,not marked,A/F,not marked,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+1,33,FLASH,Z_(2^ℓ) / Z_2,not marked,not marked,not marked,A/R,yes,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+1,101,SWIFT,Z_(2^ℓ) / Z_2,not marked,not marked,R,R,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+1,116,MediSC,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-dependent,TTP,not marked,yes,yes,not marked,not marked
+1,89,COINN,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-dependent,not marked,not marked,yes,not marked,not marked,yes
+1,106,Muse,Z_2,F_p,A^C,not marked,not marked,not marked,function-dependent,not marked,not marked,yes,not marked,not marked,yes
+1,156,AriaNN,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,not marked,yes,not marked
+1,147,Sirnn,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,yes,not marked,not marked,yes,not marked,yes,not marked,not marked
+1,136,ABY2,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+1,49,Fantastic Four,Z_(2^ℓ) / Z_2,not marked,not marked,not marked,A/R,yes,function-independent,not marked,yes,not marked,yes,not marked,not marked
+1,103,Tetrad,Z_(2^ℓ) / Z_2,not marked,not marked,F/R,not marked,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+1,117,SONIC,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,yes,not marked,not marked
+1,168,Sphinx,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,function-dependent,not marked,not marked,yes,not marked,yes,not marked
+1,37,Simc,Z_2,F_p,A^C,not marked,not marked,not marked,function-independent,not marked,not marked,yes,not marked,not marked,yes
+1,88,Cheetah,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,yes,not marked,not marked,not marked,yes,not marked,not marked,yes
+1,79,Iron,Z_(2^ℓ),not marked,SH,not marked,not marked,yes,not marked,not marked,not marked,yes,yes,not marked,not marked
+1,175,Pika,Z_(2^ℓ),not marked,A,not marked,not marked,not marked,not marked,yes,yes,not marked,not marked,yes,not marked
+1,146,SecFloat,Z_(2^ℓ),not marked,SH,not marked,not marked,yes,not marked,not marked,yes,not marked,yes,not marked,not marked
+1,78,Llama,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,not marked,yes,not marked
+1,162,pMPL,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,not marked,yes,not marked
+1,12,AdamInPrivate,not marked,F_p,not marked,A,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+1,107,MPCFormer,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,function-independent,not marked,not marked,yes,yes,not marked,not marked
+1,202,Primer,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-dependent,not marked,not marked,yes,not marked,not marked,yes
+1,80,FastSecNet,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,not marked,TTP,not marked,yes,not marked,yes,not marked
+1,145,Rathee et al.,Z_(2^ℓ),not marked,SH,not marked,not marked,yes,not marked,not marked,yes,not marked,yes,not marked,not marked
+1,91,Orca,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,not marked,yes,not marked
+1,184,FssNN,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,function-dependent,not marked,yes,not marked,not marked,yes,not marked
+1,77,Sigma,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,not marked,yes,not marked
+1,135,BOLT,Z_(2^ℓ),not marked,SH,not marked,not marked,yes,not marked,not marked,not marked,yes,not marked,not marked,yes
+1,60,Meteor,Z_(2^ℓ),F_p,not marked,SH,not marked,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+1,7,PrivFormer,Z_(2^ℓ),F_p,not marked,SH,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+1,15,Baccarini et al.,Z_(2^ℓ) / Z_2,not marked,not marked,SH,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+1,102,MPClan,Z_(2^ℓ) / Z_2,not marked,not marked,SH/A,not marked,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+1,47,Force,Z_(2^ℓ) / Z_2,not marked,not marked,not marked,SH,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+1,59,Fusion,not applicable,not applicable,A^S,not marked,not marked,not applicable,not applicable,not applicable,not marked,yes,not applicable,not applicable,not applicable
+1,110,Nimbus,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,function-dependent,not marked,not marked,yes,not marked,yes,not marked
+1,181,SIMC2.0,Z_2,F_p,A^C,not marked,not marked,not marked,function-independent,not marked,not marked,yes,not marked,not marked,yes
+2,186,Fregata,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,function-dependent,not marked,not marked,yes,not marked,yes,not marked
+2,123,SecFromer,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,yes,not marked,not marked
+2,115,MLFormer,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,yes,not marked,not marked
+2,82,Trio,Z_(2^ℓ) / Z_2,not marked,not marked,SH,not marked,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+2,82,Quad,Z_(2^ℓ) / Z_2,not marked,not marked,not marked,A,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+2,31,Brüggemann et al.,Z_(2^ℓ) / Z_2,not marked,not marked,A,not marked,not marked,function-dependent,not marked,yes,yes,yes,not marked,not marked
+2,113,Liu et al.,not marked,F_p,not marked,SH,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+2,191,MD-ML,Z_(2^ℓ) / Z_2,not marked,A,not marked,not marked,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+2,121,BumbleBee,Z_(2^ℓ),not marked,SH,not marked,not marked,yes,not marked,not marked,not marked,yes,not marked,yes,not marked
+2,94,SHAFT,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,yes,not marked,not marked
+2,70,Panther,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,yes,not marked,not marked,not marked,yes,not marked,not marked,yes
+2,75,Guo et al.,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,yes,not marked,not marked,yes,not marked,yes,not marked,not marked
+2,76,Shark,Z_(2^ℓ) / Z_2,not marked,A,not marked,not marked,not marked,not marked,TTP,yes,not marked,not marked,yes,not marked
+2,199,MD-SONIC,Z_(2^ℓ) / Z_2,not marked,A,not marked,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+2,2,Fanng-MPC,Z_(2^ℓ) / Z_2,F_p,A,A,A,not marked,not marked,Distributed,yes,not marked,yes,yes,yes
+2,90,Matchmaker,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,not marked,TTP,yes,not marked,not marked,not marked,yes
+2,42,Mosformer,Z_(2^ℓ),not marked,not marked,A,not marked,not marked,function-dependent,not marked,yes,not marked,not marked,yes,not marked
+2,119,Cavern,Z_(2^ℓ) / Z_2,not marked,A,not marked,not marked,not marked,not marked,yes,yes,not marked,not marked,yes,not marked
+2,63,ECHO,Z_(2^ℓ) / Z_2,not marked,not marked,Cov,not marked,not marked,function-dependent,not marked,yes,not marked,yes,not marked,not marked
+2,69,CRISP,Z_(2^ℓ),not marked,A^C,not marked,not marked,not marked,function-dependent,not marked,not marked,yes,not marked,not marked,yes
+2,204,Zhou,Z_(2^ℓ) / Z_2,not marked,SH,not marked,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked
+2,125,SMASH,Z_(2^ℓ) / Z_2,not marked,A,not marked,not marked,not marked,function-independent,not marked,yes,not marked,not marked,yes,not marked
+2,124,PrivTI,Z_(2^ℓ),not marked,SH,not marked,not marked,yes,not marked,not marked,not marked,yes,not marked,not marked,yes
+2,194,LightShark,Z_(2^ℓ) / Z_2,not marked,A,not marked,not marked,not marked,not marked,TTP,yes,not marked,not marked,yes,not marked
+2,178,CoPriNet,Z_(2^ℓ),not marked,SH,not marked,not marked,not marked,function-independent,not marked,yes,not marked,not marked,not marked,yes
+2,190,Yuan et al.,not marked,F_p,not marked,A,not marked,not marked,function-independent,not marked,yes,not marked,yes,not marked,not marked

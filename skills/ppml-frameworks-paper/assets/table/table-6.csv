@@ -1,0 +1,12 @@
+Approach,Method,Frameworks
+Mixed,A-G,"[38], [131], [152], [181]"
+Mixed,A-B,"[31], [33], [39], [101], [103], [108], [116], [117], [130], [137]"
+GCs,Exact,"[16], [37], [43], [93], [106], [114], [129], [155]"
+ASS,Quotient Transfer,"[60], [104], [176], [177]"
+ASS,Truncation-based,"[206], [207]"
+LUTs,OTs,"[88], [145]–[148]"
+FSS,,"[69], [76], [77], [91], [175], [184]"
+MPC-HE,HE offline,[186]
+MPC-HE,Piecewise Pol.,"[58], [110], [121], [135]"
+Plaintext,Permutation,"[172], [201]"
+Plaintext,Client-side,[168]

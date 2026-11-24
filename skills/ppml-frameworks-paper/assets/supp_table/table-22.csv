@@ -1,0 +1,17 @@
+N,Sec.,Protocol,Iterative,LUT,Piecewise Pol.,Exact,Tech.
+2,SH,DeepSecure [155],○,○,○,●,GC
+,,SirNN [147],●,○,○,○,SS
+,,Llama [78],○,○,●,○,FSS
+,,AriaNN [156],●,○,○,○,FSS
+,,Sigma [77],○,●,○,○,FSS
+,,SecFormer [123],●,○,○,○,SS
+,,PrivTI [124],●,○,○,○,SS
+,A,Pika [175],○,●,○,○,FSS
+3,SH,PrivFormer [7],●,○,○,○,SS
+,,SecureNN [176],●,○,○,○,SS
+,A,Falcon [177],●,○,○,○,SS
+,,AdamInPrivate [12],●,○,○,○,SS
+,,Mosformer [42],○,●,○,○,FSS
+4,SH,PrivPy [108],●,○,○,○,SS
+,F,Trident [39],○,○,○,●,GC
+,,Tetrad [103],○,○,○,●,GC

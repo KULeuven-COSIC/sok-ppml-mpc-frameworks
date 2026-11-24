@@ -14,7 +14,7 @@
 | Falcon [177](../../Bibliography/references.md#Falcon/DBLP:journals/popets/WaghTBKMR21)                  | 2020 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✓       |   ✗  |
 | BLAZE [137](../../Bibliography/references.md#BLAZE/DBLP:conf/ndss/PatraS20)                             | 2020 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✓    |       ✗       |   ✗  |
 | pMPL [162](../../Bibliography/references.md#pMPL/DBLP:conf/ccs/SongWWTLRWH22)                          | 2022 |    3    |    ✓   |   ✗  | Probabilistic |   ✓   |    ✗    |    ✓    |       ✗       |   ✗  |
-| AdamInPrivate [12](../../Bibliography/references.md#AdamInPrivate/DBLP:journals/popets/AttrapadungHIKM22) | 2022 | 3 | ✓ | ✓ | Faithful | ✓ | ✓ | ✗ | ✓ | ✗ |
+| AdamInPrivate [12](../../Bibliography/references.md#AdamInPrivate/DBLP:journals/popets/AttrapadungHIKM22) | 2022 | 3 | ✓ | ✓ | Stochastic | ✓ | ✓ | ✗ | ✓ | ✗ |
 | Meteor [60](../../Bibliography/references.md#meteor/DBLP:conf/www/DongCJLW23)                          | 2023 |    3    |    ✓   |   ✓  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✗       |   ✗  |
 | PrivFormer [7](../../Bibliography/references.md#PrivFormer/DBLP:conf/eurosp/AkimotoFAS23)            | 2023 |    3    |    ✓   |   ✗  | Probabilistic |   ✓   |    ✗    |    ✗    |       ✓       |   ✗  |
 | Trio [82](../../Bibliography/references.md#hpmpc/DBLP:journals/popets/HarthKitzerowSWYCA25)           | 2024 |    3    |    ✓   |   ✗  | Probabilistic | ◐ [T1] |    ✗    |    ✗    |       ✗       |   ✗  |

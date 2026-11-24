@@ -1,0 +1,30 @@
+N,Sec.,Protocol,ReLU,Square,Iterative,LUT,Max+Exp+Rec,Piecewise Pol.,Exact,Tech.
+2,SH,SecureML [131],●,○,○,○,○,○,○,"SS,GC"
+,,ABY2 [136],●,○,○,○,○,○,○,"SS,GC"
+,,DeepSecure [155],○,○,○,○,○,○,●,GC
+,,Pika [175],○,○,○,●,○,○,○,FSS
+,,MPCFormer [107],○,●,○,○,○,○,○,"SS,GC"
+,,East [58],○,○,●,○,●,○,○,SS
+,,Sigma [77],○,○,○,●,●,○,○,FSS
+,,Iron [79],○,○,○,●,●,○,○,FSS
+,,CipherGPT [86],○,○,○,●,●,○,○,FSS
+,,MPCViT [195],●,○,○,○,○,○,○,"SS,GC"
+,,Primer [202],○,○,○,○,○,○,●,GC
+,,PriFFT [189],○,○,●,○,○,○,○,SS
+,,SecFormer [123],○,●,●,○,●,○,○,SS
+,,SirNN [147],○,○,○,●,●,○,○,OT
+,,Nimbus [110],○,○,●,○,●,●,○,SS
+,,Bolt [135],○,○,○,●,●,●,○,FSS
+,,BumbleBee [121],○,○,●,○,●,●,○,SS
+,,Zhang et al. [203],○,○,●,○,○,○,○,SS
+,,SHAFT [94],○,○,●,○,○,○,○,SS
+,,Shark [76],●,○,○,●,○,○,○,FSS
+,,PrivTI [124],○,○,○,●,○,●,○,SS
+3,SH,PUMA [61],○,○,●,○,●,●,○,SS
+,,CryptGPU [165],○,○,●,○,●,○,○,SS
+,A,AdamInPrivate [12],○,○,●,●,●,○,○,"SS,OT"
+,,Mosformer [42],○,○,○,●,●,○,○,FSS
+4,F,Trident [39],●,○,○,○,○,○,○,"SS,GC"
+,,Tetrad [103],●,○,○,○,○,○,○,"SS,GC"
+N,SH,Zhou [204],●,○,○,○,○,○,○,SS
+,A,SMASH [125],○,○,○,●,○,○,○,"HE, SS"
