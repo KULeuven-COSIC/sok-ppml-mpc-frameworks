@@ -1,0 +1,25 @@
+Reference,Year,SoK/Survey,Techniques: MPC,Techniques: FSS,Techniques: FHE,Techniques: TEE,Setting: Hybrid,Setting: C/S,Setting: TTP,ML: Outsourcing,ML: Inference,ML: Training,Added value
+Riazi et al. [150],2019,SoK,●,○,○,○,●,●,●,●,●,●,Overview of attacks on ML
+Tanuwidjaja et al. [167],2019,Survey,●,○,●,○,●,●,○,●,●,●,Intro to PPML methods
+Azraoui et al. [13],2019,SoK,●,○,●,○,●,●,○,●,●,●,Limited evaluation
+Boulemtafes et al. [23],2020,Survey,●,○,●,○,○,●,●,●,●,●,Broad taxonomy overview
+Tanuwidjaja et al. [166],2020,Survey,●,○,●,●,●,●,●,●,●,●,Review for MLaaS settings
+Yang [185],2020,Survey,●,○,●,○,●,●,○,●,●,●,PPML architecture overview
+Pulido-Gaytan et al. [139],2020,Survey,○,○,●,○,○,○,○,●,●,●,Challenges in HE-based PPML
+Liu et al. [118],2021,Survey,●,○,●,●,●,●,●,●,●,●,Attack and defense analysis
+Tiwari et al. [169],2021,Survey,●,○,●,○,●,●,○,●,●,●,Threat–defense mapping
+Zhang et al. [198],2021,Survey,●,○,●,●,●,●,●,●,●,●,MPC benchmarks
+Pulido-Gaytan et al. [140],2021,Survey,○,○,●,○,○,○,○,●,●,●,Extended HE survey
+Cabrero-Holgueras et al. [34],2021,SoK,●,○,●,○,●,●,○,●,●,●,Bridging research and industry
+Podschwadt et al. [138],2022,Survey,○,○,●,○,○,○,○,●,●,●,HE taxonomy
+Rechberger et al. [149],2022,Survey,●,○,●,○,●,●,○,●,●,●,End-to-end ML view
+Kuzniewski et al. [105],2022,Survey,●,○,●,●,○,○,●,●,●,○,Limited benchmarks
+Ng et al. [132],2023,SoK,●,○,●,○,●,●,○,●,●,●,Genealogy
+Mann et al. [127],2024,Survey,●,○,●,○,●,●,○,●,●,●,Integrated view
+Khan et al. [98],2024,SoK,●,○,●,○,○,○,○,●,○,●,Experimental evaluation
+Qin et al. [142],2024,Survey,●,○,●,●,●,●,●,●,●,●,Crypto primitives mapping
+Zhou et al. [205],2024,Survey,●,○,○,○,○,●,○,●,●,●,MPC-centric taxonomy
+Allaart et al. [9],2025,Survey,●,○,●,○,●,●,●,●,●,●,Distributed DL challenges
+Njungle et al. [133],2025,Survey,●,○,●,●,●,●,●,●,●,●,Recommendation system
+Chen et al. [40],2025,Survey,●,●,○,○,●,●,●,●,●,●,Holistic synthesis
+This Work,2026,SoK,●,●,○,○,●,●,●,●,●,●,Low-level protocol analysis + conversion protocols

@@ -1,0 +1,6 @@
+Tech.,Method,Frameworks
+MPC,Matrix multiplication,"[49], [101], [130], [136], [176], [177]"
+MPC,Convolution triples,"[2], [41], [154]"
+HE,SIMD encoding,"[17], [21], [93], [114], [129], [197], [202]"
+HE,Coefficient encoding,"[79], [88], [121], [135]"
+HE,Hybrid,"[110], [168]"

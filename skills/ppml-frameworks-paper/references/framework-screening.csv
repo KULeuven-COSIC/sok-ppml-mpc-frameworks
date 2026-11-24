@@ -1,0 +1,76 @@
+SoK Table,Reference,Framework,Full party count or majority,Partial party-count qualification,Deployment,Security,Training,Inference,Experimental evaluation
+9,131,SecureML,2,3 offline dealer,O,SH,available,available,partial (implementation not public)
+9,155,DeepSecure,2,,O,SH,available,available,partial (implementation not public)
+9,114,MiniONN,2,,C-S,SH,unavailable,available,partial (implementation not public)
+9,152,Chameleon,2,3 offline dealer,O,SH,unavailable,available,partial (implementation not public)
+9,93,Gazelle,2,,C-S,SH,unavailable,available,partial (implementation not public)
+9,129,Delphi,2,,C-S,SH,unavailable,available,available
+9,148,Cryptflow2,2,,C-S,SH,unavailable,available,available
+9,116,MediSC,2,3 offline dealer,C-S,SH,unavailable,available,partial (implementation not public)
+9,89,COINN,2,,C-S,SH,unavailable,available,available
+9,106,Muse,2,,C-S,A^C,unavailable,available,partial (implementation not public)
+9,156,AriaNN,2,3 offline dealer,O,SH,available,available,available
+9,147,SiRnn,2,,O,SH,unavailable,available,available
+9,136,ABY2.0,2,,O,SH,available,available,partial (implementation not public)
+9,117,SONIC,2,3 offline dealer,O,SH,unavailable,available,partial (implementation not public)
+9,168,Sphinx,2,,C-S,SH,available,available,partial (implementation not public)
+9,37,SIMC,2,,C-S,A^C,unavailable,available,available
+9,88,Cheetah,2,,C-S,SH,unavailable,available,available
+9,79,Iron,2,,C-S,SH,unavailable,available,partial (implementation not public)
+9,175,Pika,2,3 offline dealer,O,A,available,available,partial (implementation not public)
+9,146,SecFloat,2,,O,SH,available,available,available
+9,78,Llama,2,3 offline dealer,O,SH,unavailable,available,available
+9,107,MPCFormer,2,,O,SH,unavailable,available,available
+9,202,Primer,2,,C-S,SH,unavailable,available,partial (implementation not public)
+9,80,FastSecNet,2,3 offline dealer,C-S,SH,unavailable,available,partial (implementation not public)
+9,145,Rathee et al.,2,,O,SH,available,available,available
+9,91,Orca,2,3 offline dealer,O,SH,available,available,available
+9,184,FssNN,2,,O,SH,available,available,partial (implementation not public)
+9,77,Sigma,2,3 offline dealer,O,SH,unavailable,available,available
+9,135,Bolt,2,,C-S,SH,unavailable,available,available
+9,110,Nimbus,2,,C-S,SH,unavailable,available,available
+9,181,SIMC 2.0,2,,C-S,A^C,unavailable,available,partial (implementation not public)
+9,186,Fregata,2,,C-S,SH,unavailable,available,partial (implementation not public)
+9,123,SecFromer,2,3 offline dealer,O,SH,unavailable,available,partial (implementation not public)
+9,115,MLFormer,2,,O,SH,unavailable,available,partial (implementation not public)
+9,121,BumbleBee,2,,C-S,SH,unavailable,available,available
+9,94,SHAFT,2,3 offline dealer,O,SH,unavailable,available,available
+9,70,Panther,2,,C-S,SH,unavailable,available,partial (implementation not public)
+9,75,Guo et al.,2,,O,SH,unavailable,unavailable,available
+9,76,Shark,2,3 offline dealer,O,A,unavailable,available,available
+9,119,Cavern,2,3 offline dealer,O,A,unavailable,available,partial (implementation not public)
+9,69,CRISP,2,,C-S,A^C,unavailable,available,partial (implementation not public)
+9,124,PrivTI,2,,C-S,SH,unavailable,available,available
+9,194,LightShark,2,3 offline dealer,O,A,unavailable,available,available
+9,178,CoPriNet,2,,O,SH,unavailable,available,partial (implementation not public)
+10,130,ABY3,3,,O,SH/A,available,available,available
+10,176,SecureNN,3,,O,SH/A,available,available,available
+10,38,ASTRA,3,2 online phase,O,SH/A/F,unavailable,available,partial (implementation not public)
+10,104,Cryptflow,3,,O,SH/A,unavailable,available,available
+10,160,Shen et al.,3,,C-S/O,SH,unavailable,available,partial (implementation not public)
+10,177,Falcon,3,,O,SH/A,available,available,available
+10,137,BLAZE,3,,O,F,available,available,partial (implementation not public)
+10,162,pMPL,2/3,,O,SH,available,available,available
+10,12,AdaminPrivate,3,,O,SH/A,available,available,partial (implementation not public)
+10,60,Meteor,3,,O,SH,unavailable,available,available
+10,7,PrivFormer,3,,O,SH,unavailable,unavailable,partial (implementation not public)
+10,82,Trio,3,,O,SH,unavailable,available,available
+10,31,Brüggemann et al.,3,,C-S/O,A,unavailable,available,partial (implementation not public)
+10,42,Mosformer,3,,O,A,unavailable,available,available
+10,63,ECHO,3,,O,Cov,available,available,available
+10,39,Trident,4,3 online phase,O,F,available,available,partial (implementation not public)
+10,108,PrivPy,4,,O,SH,available,available,partial (implementation not public)
+10,33,FLASH,4,,O,A/R,unavailable,available,partial (implementation not public)
+10,101,SWIFT,3/4,,O,R,partial (linear and logistic regression only),available,partial (implementation not public)
+10,49,Fantastic Four,3/4,,O,A/R,available,available,partial (implementation not public)
+10,103,Tetrad,4,2 online phase,O,F/R,available,available,partial (implementation not public)
+10,82,Quad,4,,O,A,unavailable,available,available
+11,102,MPClan,HM,,O,SH/A,unavailable,available,available
+11,15,Baccarini et al.,HM,,O,SH,unavailable,available,available
+11,113,Liu et al.,HM,,O,SH,unavailable,available,partial (implementation not public)
+11,191,MD-ML,DM,,O,A,unavailable,available,available
+11,199,MD-SONIC,DM,,O,A,unavailable,available,available
+11,2,FANNG-MPC,DM,,O,A,unavailable,available,available
+11,204,Zhou,HM,,O,SH,available,available,partial (implementation not public)
+11,125,SMASH,DM,,O,A,unavailable,available,available
+11,190,Yuan et al.,HM,,O,A,available,available,available

@@ -18,6 +18,16 @@ The full version of our paper is available on the Cryptology ePrint Archive: htt
 
 ---
 
+## AI companion
+
+🤖 **[PPML frameworks paper skill](skills/ppml-frameworks-paper/)** — Ask questions about the SoK in plain language, without having to read the full paper first. The skill uses the bundled manuscript, figures, and searchable comparison tables to help you shortlist frameworks, compare security and ML functionality, and look up theoretical costs or secret-sharing conversions, with references to the paper.
+
+**Get started:** Download or clone this repository and give the entire [`ppml-frameworks-paper`](skills/ppml-frameworks-paper/) folder to a skill-aware AI assistant. See the [setup instructions and examples](skills/ppml-frameworks-paper/README.md) and the [skill entry point](skills/ppml-frameworks-paper/SKILL.md).
+
+Try asking: “Which MPC frameworks fit my private inference workload if I need ReLU, faithful truncation, and no offline setup?” or “What does it cost to convert between replicated and masked secret sharing in 3PC?”
+
+---
+
 ## Start here
 
 New to this SoK? A suggested reading path:

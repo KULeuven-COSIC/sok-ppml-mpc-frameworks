@@ -1,0 +1,78 @@
+SoK Table,Reference,Framework,Party count,Linear,Convolution,Truncation,ReLU,Softmax,Sigmoid,Normalization,GELU
+12,131,SecureML,2,explicit,explicit,Probabilistic,explicit,explicit,no support,no support,no support
+12,155,DeepSecure,2,explicit,explicit,no support,partial (garbled circuits),partial (garbled circuits),partial (garbled circuits),no support,no support
+12,114,MiniONN,2,explicit,explicit,explicit,explicit,no support,explicit,no support,no support
+12,152,Chameleon,2,explicit,explicit,explicit,explicit,no support,explicit,no support,no support
+12,93,Gazelle,2,explicit,explicit,no support,explicit,no support,no support,no support,no support
+12,6,Quotient,2,explicit,explicit,no support,explicit,no support,no support,partial,no support
+12,129,Delphi,2,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+12,148,Cryptflow2,2,explicit,explicit,Faithful,explicit,no support,no support,no support,no support
+12,116,MediSC,2,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+12,89,COINN,2,explicit,explicit,no support,explicit,no support,no support,no support,no support
+12,106,Muse,2,explicit,explicit,explicit,explicit,no support,no support,no support,no support
+12,156,AriaNN,2,explicit,explicit,Probabilistic,explicit,no support,no support,explicit,no support
+12,147,SiRnn,2,explicit,explicit,Faithful,explicit,partial (underlying primitives only),explicit,explicit,no support
+12,136,ABY2.0,2,explicit,explicit,Probabilistic,explicit,explicit,explicit,no support,no support
+12,117,SONIC,2,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+12,168,Sphinx,2,explicit,explicit,no support,no support,no support,no support,no support,no support
+12,37,SIMC,2,explicit,explicit,no support,partial (garbled circuits),no support,no support,no support,no support
+12,88,Cheetah,2,explicit,explicit,Stochastic,explicit (underlying primitives only),no support,no support,no support,no support
+12,79,Iron,2,explicit,explicit,Faithful,no support,explicit,no support,explicit,explicit
+12,175,Pika,2,no support,no support,Probabilistic,explicit,explicit,explicit,explicit,no support
+12,146,SecFloat,2,partial (underlying primitives only),partial (underlying primitives only),Faithful,partial (underlying primitives only),partial (underlying primitives only),partial (underlying primitives only),explicit,no support
+12,78,Llama,2,explicit,explicit,Faithful,explicit,explicit,explicit,partial (underlying primitives only),no support
+12,107,MPCFormer,2,explicit,no support,Not specified,no support,explicit,no support,no support,explicit
+12,202,Primer,2,explicit,explicit,Not specified,no support,no support,no support,no support,no support
+12,80,FastSecNet,2,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+12,145,Rathee et al.,2,explicit,explicit,Faithful,no support,no support,no support,no support,no support
+12,91,Orca,2,explicit,explicit,Stochastic,explicit,explicit,no support,no support,no support
+12,184,FssNN,2,explicit,explicit,Not specified,explicit,no support,no support,no support,no support
+12,77,Sigma,2,explicit,explicit,Faithful,explicit,no support,explicit,explicit,explicit
+12,135,Bolt,2,explicit,explicit,Probabilistic,no support,explicit,no support,explicit,explicit
+12,110,Nimbus,2,explicit,explicit,Stochastic,no support,explicit,no support,no support,explicit
+12,181,SIMC 2.0,2,explicit,explicit,no support,partial (garbled circuits),no support,no support,no support,no support
+12,186,Fregata,2,explicit,explicit,Not specified,partial (underlying primitives only),no support,no support,no support,no support
+12,123,SecFormer,2,explicit,no support,Probabilistic,no support,explicit,no support,explicit,explicit
+12,115,MLFormer,2,explicit,explicit,Probabilistic,no support,partial (underlying primitives only),partial (underlying primitives only),partial (underlying primitives only),partial (underlying primitives only)
+12,121,BumbleBee,2,explicit,explicit,Stochastic,no support,explicit,no support,no support,explicit
+12,94,SHAFT,2,explicit,no support,Probabilistic,no support,explicit,no support,no support,explicit
+12,70,Panther,2,explicit,explicit,Stochastic,partial (underlying primitives only),no support,no support,no support,no support
+12,75,Guo et al.,2,no support,no support,All,no support,no support,no support,no support,no support
+12,189,PriFFT,2,explicit,explicit,Probabilistic,partial (underlying primitives only),explicit,partial (underlying primitives only),partial (underlying primitives only),partial (underlying primitives only)
+12,76,Shark,2,explicit,explicit,Faithful,explicit,explicit,explicit,no support,explicit
+12,119,Cavern,2,explicit,no support,no support,partial (underlying primitives only),no support,partial (underlying primitives only),partial (underlying primitives only),partial (underlying primitives only)
+12,69,CRISP,2,explicit,explicit,Not specified,explicit,no support,no support,no support,no support
+12,124,PrivTI,2,explicit,no support,Probabilistic,no support,explicit,no support,explicit,explicit
+12,194,LightShark,2,explicit,explicit,Faithful,explicit,partial (underlying primitives only),explicit,partial (underlying primitives only),partial (underlying primitives only)
+12,178,CoPriNet,2,explicit,explicit,Stochastic,explicit,no support,no support,explicit,no support
+13,130,ABY3,3,explicit,no support,Probabilistic,explicit,no support,explicit,no support,no support
+13,176,SecureNN,3,explicit,explicit,Probabilistic,explicit,no support,explicit,explicit,no support
+13,38,ASTRA,3,explicit,no support,no support,partial (source asterisk),no support,explicit,no support,no support
+13,104,Cryptflow,3,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+13,160,Shen et al.,3,explicit,explicit,Probabilistic,explicit,no support,explicit,no support,no support
+13,177,Falcon,3,explicit,explicit,Probabilistic,explicit,no support,no support,explicit,no support
+13,137,BLAZE,3,explicit,explicit,Probabilistic,explicit,no support,explicit,no support,no support
+13,162,pMPL,3,explicit,no support,Probabilistic,explicit,no support,explicit,no support,no support
+13,12,AdaminPrivate,3,explicit,explicit,Stochastic,explicit,explicit,no support,explicit,no support
+13,60,Meteor,3,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+13,7,PrivFormer,3,explicit,no support,Probabilistic,explicit,no support,no support,explicit,no support
+13,82,Trio,3,explicit,no support,Probabilistic,partial (underlying primitives only),no support,no support,no support,no support
+13,31,Brüggemann et al.,3,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+13,42,Mosformer,3,explicit,explicit,Probabilistic,explicit,explicit,no support,explicit,explicit
+13,63,ECHO,3,explicit,no support,Stochastic,partial (underlying primitives only),no support,no support,no support,no support
+13,39,Trident,4,explicit,explicit,Probabilistic,explicit,explicit,explicit,partial (garbled circuits),no support
+13,108,PrivPy,4,explicit,explicit,Probabilistic,partial (underlying primitives only),no support,explicit,explicit,no support
+13,33,FLASH,4,explicit,explicit,Probabilistic,explicit,no support,explicit,no support,no support
+13,101,SWIFT,3/4,explicit,explicit,Probabilistic,explicit,no support,explicit,no support,no support
+13,49,Fantastic Four,3/4,explicit,explicit,Stochastic,no support,no support,no support,no support,no support
+13,103,Tetrad,4,explicit,explicit,Probabilistic,explicit,explicit,explicit,partial (garbled circuits),no support
+13,82,Quad,4,explicit,no support,Probabilistic,partial (underlying primitives only),no support,no support,no support,no support
+13,102,MPClan,n,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+13,15,Baccarini et al.,n,explicit,explicit,Probabilistic,no support,no support,no support,no support,no support
+13,113,Liu et al.,n,explicit,explicit,Stochastic,explicit,no support,no support,no support,no support
+13,191,MD-ML,n,explicit,explicit,Probabilistic,partial (underlying primitives only),no support,no support,no support,no support
+13,199,MD-SONIC,n,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support
+13,2,FANNG-MPC,n,explicit,explicit,Probabilistic,explicit,partial (underlying primitives only),no support,partial (underlying primitives only),no support
+13,204,Zhou,n,explicit,explicit,Stochastic,explicit,partial (underlying primitives only),no support,partial (underlying primitives only),no support
+13,125,SMASH,n,no support,no support,no support,partial (underlying primitives only),partial (underlying primitives only),partial (underlying primitives only),partial (underlying primitives only),partial (underlying primitives only)
+13,190,Yuan et al.,n,explicit,explicit,Probabilistic,explicit,no support,no support,no support,no support

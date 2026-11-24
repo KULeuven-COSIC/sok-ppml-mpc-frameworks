@@ -19,6 +19,12 @@ When a framework is added, removed, or re-cited in the paper, work through all o
 
 Even with the checklist above, entries can go stale silently (e.g. a citation key the paper renamed, or a table row nobody remembered to add). Periodically — and especially before a new paper revision is submitted anywhere — it's worth diffing `Bibliography/references.md`'s citation keys against every `\cite{...}` actually used in the paper's live (non-commented) `.tex` files, and flagging anything only on one side.
 
+## AI companion maintenance
+
+The [PPML frameworks paper skill](skills/ppml-frameworks-paper/) is a self-contained snapshot of the manuscript, including searchable tables, source figures, and guidance for framework selection. It does not automatically inherit updates to `Tables/` or `Bibliography/`.
+
+When updating evidence covered by the skill, review its bundled `references/` and `assets/`, especially the three framework CSVs, decision guide, and evidence map. Apply author corrections consistently to both the repository tables and the skill. Keep the skill's section, table, and citation numbers consistent with its own manuscript, and verify that its relative links resolve when the skill folder is used on its own.
+
 ## Style
 
 - Follow the existing Markdown table format and citation link style already used throughout `Tables/`: `Name [N](../../Bibliography/references.md#key)`.

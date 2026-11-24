@@ -1,0 +1,7 @@
+Reference,Year,Techniques: MPC,Techniques: FSS,Techniques: FHE,Techniques: Hybrid,Setting: C/S,Setting: TTP,Setting: Outsourcing,ML: Inference,ML: Training,Added value
+Riazi et al. [150],2019,●,○,○,●,●,●,●,●,●,Overview of attacks on ML
+Azraoui et al. [13],2019,●,○,●,●,●,○,●,●,●,Limited experimental evaluation
+Cabrero-Holgueras et al. [34],2021,●,○,●,●,●,○,●,●,●,Bridge between research and industry
+Ng et al. [132],2023,●,○,●,●,●,○,●,●,●,Genealogy
+Khan et al. [98],2024,●,○,●,○,○,○,●,○,●,Experimental evaluation
+This Work,2026,●,●,○,●,●,●,●,●,●,"Low-level protocol analysis, Conversion protocols, Genealogy"
